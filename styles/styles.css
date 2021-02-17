@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Header section */
+header {
+    position: relative;
+    width: 375px;
+    height: 95px;
+    background-color: white;
+}
+
+header #logo {
+    width: 48.8px;
+    height: 48.8px;
+
+}
+
+header #burger {
+    width: 15px;
+    height: 14px;
+}
