@@ -10,18 +10,233 @@ body {
 /* Header section */
 header {
     position: relative;
-    width: 375px;
-    height: 95px;
-    background-color: white;
+    border-top: 5px solid #572EE5;
 }
 
 header #logo {
-    width: 48.8px;
-    height: 48.8px;
-
+    margin-left: 22px;
+    margin-top: 29px;
+    margin-bottom: 17.2px;
 }
 
-header #burger {
-    width: 15px;
-    height: 14px;
+header .checkbox-menu {
+    position: absolute;
+    margin-top: 47px;
+    margin-bottom: 34px;
+    right: 10%;
 }
+
+header .crossOff {
+    display: none;
+}
+
+header .burgerOff {
+    display: none;
+}
+
+/* Navigation Bar Section */
+nav #menu {
+    position: fixed;
+    background: rgba(87,46,229,0.90);
+    margin: 0;  
+    width: 100%;
+    height: 100%;
+    list-style-type: none;
+    padding: 0;
+    padding-top: 17px;
+    padding-bottom: 297px;
+    text-align: center;
+}
+
+nav .menuOff {
+    display: none;
+}
+
+#menu li a {
+    font-size: 15px;
+    color: #FFFFFF;
+    line-height: 60px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-decoration-line: unset; 
+}
+
+#menu li a hr {
+    width: 35px;
+    height: 2px;
+    background-color: white;
+    margin: 0 45%;
+}
+
+/* ------First Section */
+/* Ilustra Header - First Section */
+#firstSection .color_purple {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #572EE5;
+    text-align: center;
+    line-height: 33px;
+}
+
+#firstSection #color_aqua {
+    color: #5ED7C6;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#firstSection #ilustra_header {
+    width: 17rem;
+    display:block;
+    margin: auto;
+    margin-top: 6px;    
+}
+
+/* GIFOS Finder - First Section */
+#firstSection #gifosFinder {
+    text-align: center;
+    padding-left: 10px;
+}
+
+#gifosFinder #searchGifos {
+    background: #FFFFFF;
+    border: 1px solid #572EE5;
+    border-radius: 27px;
+    width: 334px;
+    height: 50px;
+    padding-left: 60px;
+}
+
+::placeholder {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;    
+}
+
+#gifosFinder .search {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 60px;
+    margin: 15px 0;
+}
+
+#gifosFinder .finderOff {
+    display: none;
+}
+
+#gifosFinder .magnifyingOff {
+    display: none;
+}
+
+/* Trending - First Section */
+#firstSection #trending {
+    margin: 31px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #572EE5;
+    text-align: center;
+    line-height: 25px;
+}
+
+#trending .color_purple {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #572EE5;
+    text-align: center;
+    line-height: 25px;
+}
+
+/*------Second Section */
+#secondSection #petsSection {
+    display: none;
+}
+
+/* Favorite Section */
+#secondSection #favoriteSection {
+    display: none;
+}
+
+/* My GIFOS Section */
+#secondSection #myGifosSection {
+    display: none;
+}
+
+/* GIFOS in Trend */
+#trends {
+    background: #F3F5F8;
+    width: 100%;
+    height: 430px;
+    margin-top: 14px;
+    padding-top: 45px;
+    padding-bottom: 82px;
+}
+
+#trends #gifosTrend {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #572EE5;
+    text-align: center;
+    line-height: 30px;
+}
+
+#trends #latestGifos {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+    text-align: center;
+    line-height: 23px;
+}
+
+#trends #cat {
+    border: 1px solid red;
+    width: 243px;
+    height: 187px;
+    margin-top: 32px;
+    margin-bottom: 82px;
+}
+
+/* Footer Section */
+#footer {
+    text-align: center;
+    width: 100%;
+    height: 190px;
+    display: inline-block;
+}
+
+#footer #footerShare {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: #000000;
+    letter-spacing: 0;
+    margin-top: 47px;
+    margin-bottom: 0;
+}
+
+#footer #socialMedia {
+    width: 35%;
+    margin-top: 22px;
+    margin-left: 32%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#footer #footerCopyright {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #000000;
+    letter-spacing: 0;
+    line-height: 20px;
+    
+}
+
+#footer {
+    border-bottom: 5px solid #572EE5;
+}
+

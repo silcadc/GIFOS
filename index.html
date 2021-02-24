@@ -1,47 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css" type="text/css">
-    <title>Document</title>
+    <title>Project GIFOS</title>
 </head>
+
 <body>
     <header>
         <img id="logo" src="./assets/logo-mobile.svg" alt="logoGifos">
-        <img id="burger" src="./assets/burger.svg" alt="logoBurger" tabindex="1">
-        <img id="checkBurger" src="./assets/close.svg" alt="logoCheckBurger">
-        <input type="checkbox" id="checkbox-menu">
+        <img class="checkbox-menu" id="burger" src="./assets/burger.svg" alt="logoBurger" tabindex="1">
+        <img class="checkbox-menu crossOff" id="cross" src="./assets/close.svg" alt="logoCheckBurger">
+        <nav>
+            <ul id="menu" class="menuOff">
+                <li><a href="#nightMode" tabindex="2">Modo Nocturno
+                        <hr>
+                    </a></li>
+                <li><a href="#favoriteGifs" tabindex="3">Favoritos
+                        <hr>
+                    </a></li>
+                <li><a href="#myGIFOS" tabindex="4">Mis GIFOS
+                        <hr>
+                    </a></li>
+            </ul>
+        </nav>
     </header>
-    <nav>
-        <ul id="menu">
-            <li><a href="#nightMode" tabindex="2">Modo Nocturno</a></li> 
-            <li><a href="#favoriteGifs" tabindex="3">Favoritos</a></li> 
-            <li><a href="#myGIFOS" tabindex="4">Mis GIFOS</a></li>   
-        </ul>  
-    </nav>
-    <section>
-        <h1 class="color_purple">Inspírate, busca,<br>guarda, y crea los<br>mejores <span id="color_aqua">GIFOS</span></h1>
+
+    <section id="firstSection">
+        <h1 class="color_purple">Inspírate, busca,<br>guarda, y crea los<br>mejores <span id="color_aqua">GIFOS</span>
+        </h1>
         <img id="ilustra_header" src="./assets/ilustra_header.svg" alt="making_friends_with_GIFOS">
-        <form>
-            <div>
-                <input type="text" src="./assets/CTA-ver-mas.svg"  id="searchGifos" name="name" placeholder="Busca GIFOS y más" tabindex="5">
-                <img id="search" src="./assets/icon-search.svg" alt="searchGifos" tabindex="6">
-                <img id="checkSearch" src="./assets/close.svg" alt="closeSearch">
-            </div>
+        <form id="gifosFinder">
+            <input type="text" id="searchGifos" name="name" placeholder="Busca GIFOS y más" tabindex="5">
+            <img id="magnifying" class="search" src="./assets/icon-search.svg" alt="searchGifos" tabindex="6">
+            <img id="crossMagnifying" class="search finderOff" src="./assets/close.svg" alt="closeSearch">
         </form>
-        <p><span>Trending: <br> </span>Reactions, Entertainment,<br> Sports, Stickers, Artists</p>
+        <p id="trending"><span class="color_purple">Trending: <br> </span>Reactions, Entertainment,<br> Sports, Stickers, Artists</p>
     </section>
-    
-    <section>
+
+    <section id="secondSection">
         <article id="petsSection">
             <h1 id="titlepet">Mascotas</h1>
             <div>GIFS DE MASCOTAS</div>
             <button>
                 <img class="seeMore" src="./assets/CTA-ver-mas.svg" alt="seeMore" tabindex="7">
             </button>
-        </article>  
-        
+        </article>
+
         <article id="favoriteSection">
             <div>
                 <img id="favoriteGifs" src="./assets/icon-favoritos.svg" alt="favorites">
@@ -50,9 +63,9 @@
             <div>GIFS DE FAVORITOS</div>
             <div>
                 <img class="seeMore" src="./assets/CTA-ver-mas.svg" alt="seeMore">
-            </div> 
+            </div>
         </article>
-        
+
         <article id="myGifosSection">
             <div>
                 <img id="myGifos" src="./assets/icon-mis-gifos.svg" alt="myGifos">
@@ -61,29 +74,28 @@
             <div>Mys GIFOS</div>
             <div>
                 <img class="seeMore" src="./assets/CTA-ver-mas.svg" alt="seeMore">
-            </div>    
+            </div>
         </article>
     </section>
-
-
-
-
-
-    <section id="bacgroundcolor_gray">
-        <h1  class="color_purple">Trending GIFOS</h1>
-        <P>Mira los últimos <br> GIFOS de nuestra comunidad.</P>
-        <figure>
-            <img id="cat" src="bikerCat" alt="BikerCat">
+    <!-- GIFOS in Trend -->
+    <section id="trends">
+        <h1 class="color_purple" id="gifosTrend">Trending GIFOS</h1>
+        <P id="latestGifos">Mira los últimos <br> GIFOS de nuestra comunidad.</P>
+        <figure id="cat">
+            <img src="bikerCat" alt="BikerCat">
         </figure>
     </section>
+
     <footer id="footer">
-        <span>&#169; GIFOS 2020 All Rights Reserved.</span>
-        <div>
+        <p id="footerShare">Compartir en:</p>
+        <div id="socialMedia">
             <img id="facebook" src="./assets/icon_facebook.svg" alt="facebook">
             <img id="twitter" src="./assets/icon-tw-normal.svg" alt="twitter">
             <img id="instagram" src="./assets/icon_instagram.svg" alt="instagram">
-        </div>
+        </div> <br> <br>
+        <div id="footerCopyright">&#169; GIFOS 2020 All Rights Reserved.</div>
     </footer>
     <script src="script/script.js"></script>
 </body>
+
 </html>
