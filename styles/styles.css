@@ -7,17 +7,34 @@ body {
     padding: 0;
 }
 
+.dark {
+    background: #37383C;
+}
+
 /* Header section */
 header {
     position: relative;
     border-top: 5px solid #572EE5;
 }
 
-header #logo {
+header .border {
+    border-top: 5px solid #000000;
+}
+
+header .logosHeader {
     margin-left: 22px;
     margin-top: 29px;
     margin-bottom: 17.2px;
 }
+/*logo dark*/
+header .logoDarkOff {
+    display: none;
+}
+
+header .logoOff {
+    display: none;
+}
+
 
 header .checkbox-menu {
     position: absolute;
@@ -75,6 +92,15 @@ nav .menuOff {
     font-weight: bold;
     font-size: 1.8rem;
     color: #572EE5;
+    text-align: center;
+    line-height: 33px;
+}
+
+#firstSection .color_white {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: white;
     text-align: center;
     line-height: 33px;
 }
@@ -192,12 +218,20 @@ nav .menuOff {
     line-height: 23px;
 }
 
-#trends #cat {
-    border: 1px solid red;
+#trends #newGifos {
     width: 243px;
     height: 187px;
     margin-top: 32px;
     margin-bottom: 82px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+#newGifos img {
+    width: 243px;
+    height: 187px;
+    padding-left: 22px;
+    align-self: center;
 }
 
 /* Footer Section */

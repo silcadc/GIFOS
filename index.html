@@ -15,13 +15,14 @@
 </head>
 
 <body>
-    <header>
-        <img id="logo" src="./assets/logo-mobile.svg" alt="logoGifos">
+    <header id="header">
+        <img id="logo" class="logosHeader" src="./assets/logo-mobile.svg" alt="logoGifos">
+        <img id="logoDark" class="logosHeader logoDarkOff" src="./assets/logo-mobile-modo-noct.svg" alt="logoGifos">
         <img class="checkbox-menu" id="burger" src="./assets/burger.svg" alt="logoBurger" tabindex="1">
         <img class="checkbox-menu crossOff" id="cross" src="./assets/close.svg" alt="logoCheckBurger">
         <nav>
             <ul id="menu" class="menuOff">
-                <li><a href="#nightMode" tabindex="2">Modo Nocturno
+                <li><a href="#nightMode" tabindex="2" id="darkMode">Modo Nocturno
                         <hr>
                     </a></li>
                 <li><a href="#favoriteGifs" tabindex="3">Favoritos
@@ -43,7 +44,8 @@
             <img id="magnifying" class="search" src="./assets/icon-search.svg" alt="searchGifos" tabindex="6">
             <img id="crossMagnifying" class="search finderOff" src="./assets/close.svg" alt="closeSearch">
         </form>
-        <p id="trending"><span class="color_purple">Trending: <br> </span>Reactions, Entertainment,<br> Sports, Stickers, Artists</p>
+        <p id="trending"><span class="color_purple">Trending: <br> </span>Reactions, Entertainment,<br> Sports,
+            Stickers, Artists</p>
     </section>
 
     <section id="secondSection">
@@ -81,9 +83,7 @@
     <section id="trends">
         <h1 class="color_purple" id="gifosTrend">Trending GIFOS</h1>
         <P id="latestGifos">Mira los últimos <br> GIFOS de nuestra comunidad.</P>
-        <figure id="cat">
-            <img src="bikerCat" alt="BikerCat">
-        </figure>
+        <figure id="newGifos"></figure>
     </section>
 
     <footer id="footer">
@@ -95,7 +95,7 @@
         </div> <br> <br>
         <div id="footerCopyright">&#169; GIFOS 2020 All Rights Reserved.</div>
     </footer>
-    
+
     <script src="script/script.js"></script>
 </body>
 
