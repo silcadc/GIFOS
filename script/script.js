@@ -1,29 +1,29 @@
 //click - navigation bar
 let headerCross = document.getElementById("burger")
 headerCross.addEventListener("click", () => {
-    headerCross.classList.add("burgerOff")
-    document.querySelector("#cross").classList.remove("crossOff")
-    document.querySelector("#menu").classList.remove("menuOff")
+    headerCross.classList.add("off")
+    document.querySelector("#cross").classList.remove("off")
+    document.querySelector("#menu").classList.remove("off")
 })
 
 let headerBurger = document.getElementById("cross")
 headerBurger.addEventListener("click", () => {
-    headerBurger.classList.add("crossOff")
-    document.querySelector("#burger").classList.remove("burgerOff")
-    document.querySelector("#menu").classList.add("menuOff")
+    headerBurger.classList.add("off")
+    document.querySelector("#burger").classList.remove("off")
+    document.querySelector("#menu").classList.add("off")
 })
 
 //click - GIFOS Finder - First Section
 let magnifying = document.getElementById("magnifying")
 magnifying.addEventListener("click", () => {
-    magnifying.classList.add("magnifyingOff")
-    document.querySelector("#crossMagnifying").classList.remove("finderOff")
+    magnifying.classList.add("off")
+    document.querySelector("#crossMagnifying").classList.remove("off")
 })
 
 let crossMagnifying = document.getElementById("crossMagnifying")
 crossMagnifying.addEventListener("click", () => {
-    crossMagnifying.classList.add("finderOff")
-    document.querySelector("#magnifying").classList.remove("magnifyingOff")
+    crossMagnifying.classList.add("off")
+    document.querySelector("#magnifying").classList.remove("off")
 })
 
 // GIFOS in Trend 
@@ -44,13 +44,24 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
 const darkMode = document.querySelector("#darkMode")
 darkMode.addEventListener("click", () => {
     document.body.classList.toggle("dark")
-    //document.querySelector("#header").classList.add("border")
-    darkMode.classList.add(".logoOff")
-    document.querySelector("#firtSection")
-    document.classList.add(".color_white")
-    document.querySelector("#firtSection")
-    document.classList.remove(".color_purple")
+    // document.querySelector("#firtSection")
+    // document.classList.add(".color_white")
+    // document.querySelector("#firtSection")
+    // document.classList.remove(".color_purple")
 })
+
+//trendin
+fetch(`https://api.giphy.com/v1/trending/searches?api_key=${API_KEY}`)
+    .then (response => response.json())
+    .then (response => {
+        console.log(response)
+        response.data.slice(0,5).forEach( term => {
+            console.log(term)
+            const ulTerms = document.createElement("li")
+            ulTerms.textContent = term
+            document.querySelector(".ultrending").appendChild(ulTerms)           
+        })
+    })
 
 
 

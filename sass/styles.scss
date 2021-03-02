@@ -1,0 +1,173 @@
+//inclusion of partials
+//base elements
+@import "base/reset";
+@import "base/tipografia";
+//settings and variables
+@import "utilities/functions";
+@import "utilities/mixins";
+@import "utilities/variables";
+//HTML components
+@import "components/botones";
+@import "components/links";
+//components
+@import "layout/grids";
+@import "layout/header";
+@import "layout/navigation";
+@import "layout/footer";
+
+.dark {
+    background: $color-darkgrey;
+}
+
+/* ------First Section */
+/* Ilustra Header - First Section */
+#firstSection .color_purple {
+    font-family: $font-titles;
+    font-weight: $font-weight-bold;
+    font-size: 1.8rem;
+    color: $color-purple;
+    text-align: center;
+    line-height: 33px;
+}
+
+#firstSection .color_white {
+    font-family: $font-titles;
+    font-weight: $font-weight-bold;
+    font-size: 1.8rem;
+    color: $color-white;
+    text-align: center;
+    line-height: 33px;
+}
+
+#firstSection #color_aqua {
+    color: $color-aqua;
+    font-family: $font-titles;
+}
+
+#firstSection #ilustra_header {
+    width: 17rem;
+    display: $display-block;
+    margin: auto;
+    margin-top: 6px;    
+}
+
+/* GIFOS Finder - First Section */
+#firstSection #gifosFinder {
+    text-align: center;
+    padding-left: 10px;
+}
+
+#gifosFinder #searchGifos {
+    background: $color-white;
+    border: $border $color-purple;
+    border-radius: $border-radius;
+    width: 334px;
+    height: 50px;
+    padding-left: 60px;
+}
+
+::placeholder {
+    font-family: $font-labes;
+    font-weight: 400;
+    font-size: 16px;
+    color: $color-black;    
+}
+
+#gifosFinder .search {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 60px;
+    margin: 15px 0;
+}
+
+#gifosFinder .finderOff {
+    display: $display-none;
+}
+
+#gifosFinder .magnifyingOff {
+    display: $display-none;
+}
+
+/* Trending - First Section */
+/*mira si funcion $font-weight-bold - 100 debe ser 500*/
+#firstSection #trending {
+    margin: 31px 0;
+    font-family: $font-titles;
+    font-weight: $font-weight-bold - 100;
+    font-size: 14px;
+    color: $color-purple;
+    text-align: center;
+    line-height: 25px;
+}
+
+#trending .color_purple {
+    font-family: $font-titles;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: $color-purple;
+    text-align: center;
+    line-height: 25px;
+}
+
+/*------Second Section */
+#secondSection #petsSection {
+    display: $display-none;
+}
+
+/* Favorite Section */
+#secondSection #favoriteSection {
+    display: $display-none;
+}
+
+/* My GIFOS Section */
+#secondSection #myGifosSection {
+    display: $display-none;
+}
+
+/* GIFOS in Trend */
+#trends {
+    background: $color-grey;
+    width: 100%;
+    height: 430px;
+    margin-top: 14px;
+    padding-top: 45px;
+    padding-bottom: 82px;
+}
+
+#trends #gifosTrend {
+    font-family: $font-titles;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: $color-purple;
+    text-align: center;
+    line-height: 30px;
+}
+
+#trends #latestGifos {
+    font-family: $font-labes;
+    font-weight: 400;
+    font-size: 16px;
+    color: $color-black;
+    text-align: center;
+    line-height: 23px;
+}
+
+#trends #newGifos {
+    width: 243px;
+    height: 187px;
+    margin-top: 32px;
+    margin-bottom: 82px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+#newGifos img {
+    width: 243px;
+    height: 187px;
+    padding-left: 22px;
+    align-self: center;
+}
+
+
+

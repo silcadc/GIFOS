@@ -17,18 +17,18 @@
 <body>
     <header id="header">
         <img id="logo" class="logosHeader" src="./assets/logo-mobile.svg" alt="logoGifos">
-        <img id="logoDark" class="logosHeader logoDarkOff" src="./assets/logo-mobile-modo-noct.svg" alt="logoGifos">
+        <img id="logoDark" class="logosHeader off" src="./assets/logo-mobile-modo-noct.svg" alt="logoGifos">
         <img class="checkbox-menu" id="burger" src="./assets/burger.svg" alt="logoBurger" tabindex="1">
-        <img class="checkbox-menu crossOff" id="cross" src="./assets/close.svg" alt="logoCheckBurger">
+        <img class="checkbox-menu off" id="cross" src="./assets/close.svg" alt="logoCheckBurger">
         <nav>
-            <ul id="menu" class="menuOff">
+            <ul id="menu" class="off">
                 <li><a href="#nightMode" tabindex="2" id="darkMode">Modo Nocturno
                         <hr>
                     </a></li>
-                <li><a href="#favoriteGifs" tabindex="3">Favoritos
+                <li><a href="/html/favoriteGifs.html" tabindex="3">Favoritos
                         <hr>
                     </a></li>
-                <li><a href="#myGIFOS" tabindex="4">Mis GIFOS
+                <li><a href="/html/myGifos.html" tabindex="4">Mis GIFOS
                         <hr>
                     </a></li>
             </ul>
@@ -42,44 +42,12 @@
         <form id="gifosFinder">
             <input type="text" id="searchGifos" name="name" placeholder="Busca GIFOS y más" tabindex="5">
             <img id="magnifying" class="search" src="./assets/icon-search.svg" alt="searchGifos" tabindex="6">
-            <img id="crossMagnifying" class="search finderOff" src="./assets/close.svg" alt="closeSearch">
+            <img id="crossMagnifying" class="search off" src="./assets/close.svg" alt="closeSearch">
         </form>
-        <p id="trending"><span class="color_purple">Trending: <br> </span>Reactions, Entertainment,<br> Sports,
-            Stickers, Artists</p>
+        <h3 id="trending" class="color_purple">Trending:</h3><ul class="ultrending"></ul>
     </section>
 
-    <section id="secondSection">
-        <article id="petsSection">
-            <h1 id="titlepet">Mascotas</h1>
-            <div>GIFS DE MASCOTAS</div>
-            <button>
-                <img class="seeMore" src="./assets/CTA-ver-mas.svg" alt="seeMore" tabindex="7">
-            </button>
-        </article>
-
-        <article id="favoriteSection">
-            <div>
-                <img id="favoriteGifs" src="./assets/icon-favoritos.svg" alt="favorites">
-            </div>
-            <h1 class="titles">Favoritos</h1>
-            <div>GIFS DE FAVORITOS</div>
-            <div>
-                <img class="seeMore" src="./assets/CTA-ver-mas.svg" alt="seeMore">
-            </div>
-        </article>
-
-        <article id="myGifosSection">
-            <div>
-                <img id="myGifos" src="./assets/icon-mis-gifos.svg" alt="myGifos">
-            </div>
-            <h1 class="titles">Mis GIFOS</h1>
-            <div>Mys GIFOS</div>
-            <div>
-                <img class="seeMore" src="./assets/CTA-ver-mas.svg" alt="seeMore">
-            </div>
-        </article>
-    </section>
-    <!-- GIFOS in Trend -->
+        <!-- GIFOS in Trend -->
     <section id="trends">
         <h1 class="color_purple" id="gifosTrend">Trending GIFOS</h1>
         <P id="latestGifos">Mira los últimos <br> GIFOS de nuestra comunidad.</P>
