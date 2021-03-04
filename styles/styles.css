@@ -11,9 +11,6 @@ body {
 }
 
 /*----------------------------*/
-/*         $MIXINS            */
-/*----------------------------*/
-/*----------------------------*/
 /*         $COLORS            */
 /*----------------------------*/
 /*----------------------------*/
@@ -22,39 +19,42 @@ body {
 /*----------------------------*/
 /*         $CONSTANTES        */
 /*----------------------------*/
-/*example about mixins*/
-/*section {
-    @include max-width;
-    background-color: $color-purple;
-    padding: $padding;
-}*/
+/*----------------------------*/
+/*         $FUNCTIONS           */
+/*----------------------------*/
+/*----------------------------*/
+/*         $MIXINS            */
+/*----------------------------*/
+#logoDark, .dark #logo, .off, #favoriteSection, #myGifosSection, #searchNewGifos {
+  display: none;
+}
+
+.dark #logoDark, #firstSection #ilustra_header {
+  display: block;
+}
+
+#firstSection .color_purple, #firstSection .color_white {
+  font-size: 1.8rem;
+  line-height: 33px;
+}
+
+#footer #footerShare, #footer #footerCopyright, #firstSection #gifosFinder #searchGifos ::placeholder, #trends #latestGifos {
+  color: #000000;
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 0;
+}
+
 /* Header section */
 header {
   position: relative;
   border-top: 5px solid #572EE5;
 }
 
-.dark header {
-  border-top: 5px solid #000000;
-}
-
 header .logosHeader {
   margin-left: 22px;
   margin-top: 29px;
   margin-bottom: 17.2px;
-}
-
-/*logo dark*/
-#logoDark {
-  display: none;
-}
-
-.dark #logo {
-  display: none;
-}
-
-.dark #logoDark {
-  display: block;
 }
 
 header .checkbox-menu {
@@ -64,41 +64,36 @@ header .checkbox-menu {
   right: 10%;
 }
 
-header .off {
-  display: none;
+.dark header {
+  border-top: 5px solid #000000;
 }
 
+/*logo dark*/
 /* Navigation Bar Section */
 nav #menu {
   position: fixed;
   background: #572EE5;
-  margin: 0;
   width: 100%;
   height: 100%;
   list-style-type: none;
+  margin: 0;
   padding: 0;
   padding-top: 17px;
   padding-bottom: 297px;
   text-align: center;
 }
 
-/* top: 0;
-background: white;
-z-index: 1; */
-nav .off {
-  display: none;
-}
-
-#menu li a {
-  font-size: 15px;
+nav #menu li a {
   color: #FFFFFF;
-  line-height: 60px;
-  font-family: 'Montserrat', sans-serif;
   font-weight: bold;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  line-height: 60px;
   text-decoration-line: unset;
 }
 
-#menu li a hr {
+nav #menu li a hr {
   width: 35px;
   height: 2px;
   background-color: #FFFFFF;
@@ -111,14 +106,11 @@ nav .off {
   width: 100%;
   height: 190px;
   display: inline-block;
+  border-bottom: 5px solid #572EE5;
 }
 
 #footer #footerShare {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
   font-size: 1.1rem;
-  color: #000000;
-  letter-spacing: 0;
   margin-top: 47px;
   margin-bottom: 0;
 }
@@ -132,16 +124,8 @@ nav .off {
 }
 
 #footer #footerCopyright {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
   font-size: 0.9rem;
-  color: #000000;
-  letter-spacing: 0;
   line-height: 20px;
-}
-
-#footer {
-  border-bottom: 5px solid #572EE5;
 }
 
 .dark {
@@ -151,21 +135,17 @@ nav .off {
 /* ------First Section */
 /* Ilustra Header - First Section */
 #firstSection .color_purple {
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
-  font-size: 1.8rem;
   color: #572EE5;
+  font-weight: bold;
   text-align: center;
-  line-height: 33px;
+  font-family: "Montserrat", sans-serif;
 }
 
 #firstSection .color_white {
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
-  font-size: 1.8rem;
   color: #FFFFFF;
+  font-weight: bold;
   text-align: center;
-  line-height: 33px;
+  font-family: "Montserrat", sans-serif;
 }
 
 #firstSection #color_aqua {
@@ -174,19 +154,17 @@ nav .off {
 }
 
 #firstSection #ilustra_header {
-  width: 17rem;
-  display: block;
+  width: 14rem;
   margin: auto;
   margin-top: 6px;
 }
 
-/* GIFOS Finder - First Section */
 #firstSection #gifosFinder {
   text-align: center;
   padding-left: 10px;
 }
 
-#gifosFinder #searchGifos {
+#firstSection #gifosFinder #searchGifos {
   background: #FFFFFF;
   border: 1px solid #572EE5;
   border-radius: 27px;
@@ -195,14 +173,11 @@ nav .off {
   padding-left: 60px;
 }
 
-::placeholder {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
+#firstSection #gifosFinder #searchGifos ::placeholder {
   font-size: 16px;
-  color: #000000;
 }
 
-#gifosFinder .search {
+#firstSection #gifosFinder .search {
   position: absolute;
   width: 20px;
   height: 20px;
@@ -210,74 +185,68 @@ nav .off {
   margin: 15px 0;
 }
 
-#gifosFinder .finderOff {
-  display: none;
-}
-
-#gifosFinder .magnifyingOff {
-  display: none;
-}
-
-/* Trending - First Section */
-/*mira si funcion $font-weight-bold - 100 debe ser 500*/
 #firstSection #trending {
-  margin: 31px 0;
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold-100;
-  font-size: 14px;
+  margin: 0;
+  margin-top: 31px;
   color: #572EE5;
-  text-align: center;
-  line-height: 25px;
-}
-
-#trending .color_purple {
-  font-family: "Montserrat", sans-serif;
   font-weight: bold;
-  font-size: 1.3rem;
-  color: #572EE5;
   text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
   line-height: 25px;
 }
 
-/*------Second Section */
-#secondSection #petsSection {
-  display: none;
+#firstSection #trending .color_purple {
+  color: #572EE5;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.8rem;
+  line-height: 25px;
+}
+
+#firstSection .ultrendings {
+  width: 100%;
+  height: 50px;
+  font-size: 14px;
+  line-height: 25px;
+  margin-left: 25%;
+}
+
+#firstSection .ultrendings p {
+  color: #572EE5;
+  font-weight: 500;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  width: 50%;
+  margin-top: 2px;
 }
 
 /* Favorite Section */
-#secondSection #favoriteSection {
-  display: none;
-}
-
 /* My GIFOS Section */
-#secondSection #myGifosSection {
-  display: none;
-}
-
-/* GIFOS in Trend */
+/*------Search Section---------- */
+/*--------- GIFOS in Trend------- */
 #trends {
   background: #F3F5F8;
   width: 100%;
   height: 430px;
-  margin-top: 14px;
+  margin-top: 59px;
   padding-top: 45px;
   padding-bottom: 82px;
 }
 
 #trends #gifosTrend {
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
-  font-size: 1.5rem;
   color: #572EE5;
+  font-weight: bold;
   text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
   line-height: 30px;
 }
 
 #trends #latestGifos {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
   font-size: 16px;
-  color: #000000;
   text-align: center;
   line-height: 23px;
 }
@@ -291,7 +260,7 @@ nav .off {
   grid-template-columns: auto auto auto;
 }
 
-#newGifos img {
+#trends #newGifos img {
   width: 243px;
   height: 187px;
   padding-left: 22px;

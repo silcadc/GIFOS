@@ -18,18 +18,19 @@ $color-darktrend: #222326; //background trend section
 $font-titles: 'Montserrat', sans-serif;
 $font-labes: 'Roboto', sans-serif;
 $font-weight-bold: bold;
+$font-weight-medium: 500;
+$font-weight-regular: 400;
+$text-align-center: center;
 $font-size16: 16px;
-$font-size15: 15px;
-$font-size14: 14px;
-
 
 /*----------------------------*/
 /*         $CONSTANTES        */
 /*----------------------------*/
+$rem: 1rem;
 $border-radius: 27px;
 $page-max-width: 100%;
 $border-top-bottom: 5px solid;
 $border: 1px solid;
-$display-none: none;
-$display-block: block;
-$padding: 5px;
+$list-none: none;
+$text-decoration: unset; 
+ 

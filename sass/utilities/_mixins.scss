@@ -1,11 +1,30 @@
 /*----------------------------*/
 /*         $MIXINS            */
 /*----------------------------*/
-// @mixin max-width($maxwidth: $page-max-width) {
-//     max-width: $maxwidth;
-// }  
+@mixin generals_font($color: $color-purple, $font: $font-weight-bold, 
+$text: $text-align-center, $fontFamily: $font-titles) {
+    color: $color;
+    font-weight: $font;
+    text-align: $text; 
+    font-family: $fontFamily;
+} 
+//Extend
+%display_none {
+    display: none;
+}
+%display_block {
+    display: block;
+}
+%size {
+    font-size: percentage(180%, $page-max-width, $rem);
+    line-height: 33px;
+}
+%robotos_font {
+    color: $color-black;
+    font-weight: $font-weight-regular;
+    font-family: $font-labes; 
+    letter-spacing: 0;
+}
 
-// @mixin font($maxwidth: $page-max-width) {
-//     max-width: $maxwidth;
-// } 
+
 

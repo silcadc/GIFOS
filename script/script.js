@@ -44,10 +44,10 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
 const darkMode = document.querySelector("#darkMode")
 darkMode.addEventListener("click", () => {
     document.body.classList.toggle("dark")
-    // document.querySelector("#firtSection")
-    // document.classList.add(".color_white")
-    // document.querySelector("#firtSection")
-    // document.classList.remove(".color_purple")
+    document.querySelector("#firtSection")
+    document.classList.remove(".color_purple")
+    document.querySelector("#firtSection")
+    document.classList.add(".color_white")
 })
 
 //trendin
@@ -55,12 +55,13 @@ fetch(`https://api.giphy.com/v1/trending/searches?api_key=${API_KEY}`)
     .then (response => response.json())
     .then (response => {
         console.log(response)
+        const ulTerms = document.createElement("p")
         response.data.slice(0,5).forEach( term => {
             console.log(term)
-            const ulTerms = document.createElement("li")
-            ulTerms.textContent = term
-            document.querySelector(".ultrending").appendChild(ulTerms)           
+            ulTerms.textContent = ulTerms.textContent + ", " + term.charAt(0).toUpperCase() + term.slice(1);
         })
+        ulTerms.textContent = ulTerms.textContent.substring(1)   
+        document.querySelector(".ultrendings").appendChild(ulTerms) 
     })
 
 

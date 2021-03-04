@@ -1,0 +1,12 @@
+/*----------------------------*/
+/*         $FUNCTIONS           */
+/*----------------------------*/
+@function sum($font-size16, $numero-suma) {
+    @return $font-size16 + $numero-suma;
+}
+@function subtraction($font-size16, $numero-resta) {
+    @return $font-size16 - $numero-resta;
+}
+@function percentage($number, $page-max-width, $rem) {
+    @return ($number * $rem) / $page-max-width;
+}
