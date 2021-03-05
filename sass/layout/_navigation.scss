@@ -1,8 +1,11 @@
-/* Navigation Bar Section */
+/*----------------------------*/
+/*  Navigation Bar Section    */
+/*----------------------------*/
 nav {
     #menu {
         position: fixed;
         background: $color-purple;
+        opacity: 90%;
         width: $page-max-width;
         height: $page-max-width;
         list-style-type: $list-none;
@@ -24,4 +27,16 @@ nav {
             }
         }
     }    
+}
+
+/*----------------------------*/
+/*         DARK MODE          */
+/*----------------------------*/
+.dark {    
+    nav {
+        #menu {
+            background: $color-black;
+            opacity: 100%;
+        }    
+    }
 }

@@ -23,15 +23,11 @@
     @extend %display_none;
 }
 
-/* ------First Section */
+/* ---------First Section---------- */
 /* Ilustra Header - First Section */
 #firstSection {
     .color_purple {
         @include generals_font;
-        @extend %size;
-    }
-    .color_white {
-        @include generals_font($color: $color-white);
         @extend %size;
     }
     #color_aqua {
@@ -40,13 +36,12 @@
     }
     #ilustra_header {
         @extend %display_block;
-        width: percentage(1400%, $page-max-width, $rem);
+        width: percentage(1700%, $page-max-width, $rem);
         margin: auto;
         margin-top: 6px;    
     }
     #gifosFinder {
         text-align: $text-align-center;
-        padding-left: 10px;
         #searchGifos {
             background: $color-white;
             border: $border $color-purple;
@@ -54,29 +49,26 @@
             width: 334px;
             height: 50px;
             padding-left: 60px;
-            ::placeholder {
-                @extend %robotos_font;
-                font-size: sum($font-size16, 0);
-            }
+        }
+        ::placeholder {
+            @extend %robotos_font;
+            font-size: sum($font-size16, 0);
+            color: $color-fontgrey;
         }
         .search {
-            position: absolute;
             width: 20px;
             height: 20px;
-            right: 60px;
-            margin: 15px 0;
+            position: absolute;
+            right: 16%;
+            top: 52%;
         }
     }
     #trending {
         margin: 0;
         margin-top: 31px;
-        @include generals_font;
-        font-size: sum($font-size16, 2px);
-        line-height: 25px;
+        font-size: sum($font-size16, 1px);
         .color_purple {
             @include generals_font;
-            font-size: percentage(180%, $page-max-width, $rem);
-            line-height: 25px;
         }
     }
     .ultrendings {
@@ -94,22 +86,20 @@
     }
 }
 
-/* Favorite Section */
+/*---------Favorite Section---------- */
 #favoriteSection {
     @extend %display_none;
 }
-
-/* My GIFOS Section */
+/*---------My GIFOS Section---------- */
 #myGifosSection {
     @extend %display_none;
 }
-
-/*------Search Section---------- */
+/*-----------Search Section---------- */
 #searchNewGifos {
     @extend %display_none;
 }
 
-/*--------- GIFOS in Trend------- */
+/*-----------GIFOS in Trend---------- */
 #trends {
     background: $color-grey;
     width: $page-max-width;
@@ -140,6 +130,65 @@
             height: 187px;
             padding-left: 22px;
             align-self: $text-align-center;
+        }
+    }
+}
+
+/*----------------------------*/
+/*         DARK MODE          */
+/*----------------------------*/
+/* Ilustra Header - First Section */
+.dark {
+    #firstSection {
+        .color_white {
+            @include generals_font($color: $color-white);
+            @extend %size;
+        }
+        #gifosFinder {
+            #searchGifos {
+                background: $color-darkgrey;
+                border: $border $color-white;
+            }
+            .search {
+                top: 50%;
+            }
+            #magnifying {
+                @extend %display_none;
+            }
+        }
+        #trending {
+            margin: 0;
+            margin-top: 31px;
+            font-size: sum($font-size16, 1px);
+            .color_white {
+                @include generals_font($color: $color-white);
+            }
+        }
+        .ultrendings {
+            width: 100%;
+            height: 50px;
+            font-size: subtraction($font-size16, 2px);
+            line-height: 25px;  
+            margin-left: 25%;
+            p {
+                @include generals_font($font: $font-weight-medium, $color: $color-white);
+                margin: 0;
+                width: 50%;
+                margin-top: 2px;
+            }
+        }
+    }
+    /*--------- GIFOS in Trend------- */
+    #trends {
+        background: $color-darktrend;
+        #gifosTrend {
+            @include generals_font($color: $color-white);
+            font-size: percentage(150%, $page-max-width, $rem);
+            line-height: 30px;
+        }
+        #latestGifos {
+            @extend %robotos_font;
+            color: $color-white;
         }
     }
 }

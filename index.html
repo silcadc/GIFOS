@@ -15,14 +15,19 @@
 </head>
 
 <body>
-    <header id="header">
+    <header> 
         <img id="logo" class="logosHeader" src="./assets/logo-mobile.svg" alt="logoGifos">
         <img id="logoDark" class="logosHeader off" src="./assets/logo-mobile-modo-noct.svg" alt="logoGifos">
-        <img class="checkbox-menu" id="burger" src="./assets/burger.svg" alt="logoBurger" tabindex="1">
-        <img class="checkbox-menu off" id="cross" src="./assets/close.svg" alt="logoCheckBurger">
+        <img id="burger" class="checkbox-menu" src="./assets/burger.svg" alt="logoBurger" tabindex="1">
+        <img id="burgerDark" class="checkbox-menu off" src="./assets/burger-modo-noct.svg" alt="logoBurgerDark">
+        <img id="cross" class="checkbox-menu off" src="./assets/close.svg" alt="logoCheckBurger">
+        <img id="crossDark" class="checkbox-menu off" src="./assets/close-modo-noct.svg" alt="logoCheckBurgerDark">
         <nav>
             <ul id="menu" class="off">
                 <li><a href="#nightMode" tabindex="2" id="darkMode">Modo Nocturno
+                        <hr>
+                    </a></li>
+                <li><a href="#dayMode" class="off" id="dayMode">Modo Diurno
                         <hr>
                     </a></li>
                 <li><a href="/html/favoriteGifs.html" tabindex="3">Favoritos
@@ -36,14 +41,16 @@
     </header>
 
     <section id="firstSection">
-        <h1 class="color_purple" >Inspírate, busca,<br>guarda, y crea los<br>mejores <span id="color_aqua">GIFOS</span></h1>
+        <h1 class="color_purple color_white" >Inspírate, busca,<br>guarda, y crea los<br>mejores <span id="color_aqua">GIFOS</span></h1>
         <img id="ilustra_header" src="./assets/ilustra_header.svg" alt="making_friends_with_GIFOS">
         <form id="gifosFinder">
             <input type="text" id="searchGifos" name="name" placeholder="Busca GIFOS y más" tabindex="5">
             <img id="magnifying" class="search" src="./assets/icon-search.svg" alt="searchGifos" tabindex="6">
+            <img id="magniDark" class="search off" src="./assets/icon-search-mod-noc.svg" alt="searchGifosDark">
             <img id="crossMagnifying" class="search off" src="./assets/close.svg" alt="closeSearch">
+            <img id="crossMagniDark" class="search off" src="./assets/close-modo-noct.svg" alt="closeSearchDark">
         </form>
-        <h3 id="trending" class="color_purple">Trending:</h3>
+        <h3 id="trending" class="color_purple color_white">Trending:</h3>
         <div class="ultrendings"></div>
     </section>
 

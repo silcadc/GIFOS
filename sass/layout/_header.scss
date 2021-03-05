@@ -1,6 +1,5 @@
 /* Header section */
 header {
-    position: relative;
     border-top: $border-top-bottom $color-purple;
     .logosHeader {
         margin-left: 22px;
@@ -9,25 +8,23 @@ header {
     }
     .checkbox-menu {
         position: absolute;
-        margin-top: 47px;
-        margin-bottom: 34px;
         right: 10%;
+        top: 47px;
+        cursor: pointer;
+    }    
+}
+
+/*----------------------------*/
+/*         DARK MODE          */
+/*----------------------------*/
+.dark {
+    header {
+        border-top: $border-top-bottom $color-black;
+        #logo {
+            @extend %display_none;
+        }
+        #logoDark {
+            @extend %display_block;
+        }
     }
-}
-
-.dark header {
-    border-top: $border-top-bottom $color-black;
-}
-
-/*logo dark*/
-#logoDark {
-    @extend %display_none;
-}
-
-.dark #logo {
-    @extend %display_none;
-}
-
-.dark #logoDark {
-    @extend %display_block;
 }
