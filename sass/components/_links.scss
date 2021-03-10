@@ -1,0 +1,54 @@
+/*----------------------------*/
+/*      FAVORITE SECTION      */
+/*----------------------------*/
+/*---------Favorite Section---------- */
+#favoriteSection {
+    text-align: $text-align-center;
+    #favoriteGifs{
+        width: 28px;
+        height: 21px;
+    }
+    .titlesSection {
+        @include generals_font;
+        font-size: sum($font-size16, 4px);
+        line-height: 30px;
+    }
+    #theFavoriteGifs {
+        width: auto;
+        height: 50px;
+        border: $border $color-purple;
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+    .seeMore {
+        background: transparent;
+        border: none;  
+    }
+}
+
+/*----------------------------*/
+/*      MY GIFOS SECTION      */
+/*----------------------------*/
+#myGifosSection {
+    text-align: $text-align-center;
+    #myGifos{
+        width: 28px;
+        height: 21px;
+    }
+    .titlesSection {
+        @include generals_font;
+        font-size: sum($font-size16, 4px);
+        line-height: 30px;
+    }
+    #myOwnGifs{
+        width: auto;
+        height: 50px;
+        border: $border $color-purple;
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+    .seeMore {
+        background: transparent;
+        border: none;  
+    }
+}

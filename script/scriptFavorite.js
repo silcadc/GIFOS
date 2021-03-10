@@ -18,34 +18,12 @@ headerBurger.addEventListener("click", () => {
 /*------------------------------------------*/
 /*   CLICK - GIFOS FINDER - FIRST SECTION   */
 /*------------------------------------------*/
-let magnifying = document.getElementById("magnifying")
-magnifying.addEventListener("click", () => {
-    magnifying.classList.add("off")
-    document.querySelector("#crossMagnifying").classList.remove("off")
-})
-
-let crossMagnifying = document.getElementById("crossMagnifying")
-crossMagnifying.addEventListener("click", () => {
-    crossMagnifying.classList.add("off")
-    document.querySelector("#magnifying").classList.remove("off")
-})
+//borrada
 
 /*----------------------------*/
 /*          TRENDING          */
 /*----------------------------*/
 const API_KEY = 'VfAQnZwBHdFaj75QChwBF5O4uEoTxQXh'
-fetch(`https://api.giphy.com/v1/trending/searches?api_key=${API_KEY}`)
-    .then (response => response.json())
-    .then (response => {
-        console.log(response)
-        const ulTerms = document.createElement("p")
-        response.data.slice(0,5).forEach( term => {
-            console.log(term)
-            ulTerms.textContent = ulTerms.textContent + ", " + term.charAt(0).toUpperCase() + term.slice(1);
-        })
-        ulTerms.textContent = ulTerms.textContent.substring(1)   
-        document.querySelector(".ultrendings").appendChild(ulTerms) 
-    })
 
 /*----------------------------*/
 /*       GIFOS IN TREND       */
@@ -94,21 +72,6 @@ hamburDark.addEventListener("click", () => {
     document.querySelector("#magniDark").classList.remove("off")
 })
 
-/*------------------------------------------------------*/
-/*   DARK MODE - CLICK - GIFOS FINDER - FIRST SECTION   */
-/*------------------------------------------------------*/
-let magnifDark = document.getElementById("magniDark")
-magnifDark.addEventListener("click", () => {
-    magnifDark.classList.add("off")
-    document.querySelector("#crossMagniDark").classList.remove("off")
-})
-
-let crossMagnifDark = document.getElementById("crossMagniDark")
-crossMagnifDark.addEventListener("click", () => {
-    crossMagnifDark.classList.add("off")
-    document.querySelector("#magniDark").classList.remove("off")
-})
-
 /*----------------------------*/
 /*       BACK DAYMODE         */
 /*----------------------------*/
@@ -121,34 +84,3 @@ dayMode.addEventListener("click", () => {
     document.querySelector("#burgerDark").classList.add("off")
     document.querySelector("#crossDark").classList.add("off")
 })
-
-/*----------------------------*/
-/*        GIFOS FINDER        */
-/*----------------------------*/
-const formGifosFinder = document.querySelector("#gifosFinder")
-const textToSearch = document.querySelector("#searchGifos")
-formGifosFinder.addEventListener("submit", (text) => {
-    text.preventDefault()
-    console.log(textToSearch.value)
-    getGifos(textToSearch.value)
-})
-const lineaSearch = document.querySelector(".ultrendings")
-lineaSearch.createElement("hr")
-const gifosContainer = document.querySelector(".gifosContainer")
-const getGifos = async (textToSearch) => {
-    const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${textToSearch}`)
-    console.log(textToSearch)
-    const responseFromApi = await response.json() 
-    console.log(responseFromApi) 
-    gifosContainer.innerHTML = ""
-    for (let i = 0; i < responseFromApi.pagination.count; i++)
-    {
-        if (i > 11) {break}
-        const imageGifos = document.createElement("img")
-        imageGifos.classList.add("showGifos")
-        imageGifos.src = responseFromApi.data[i].images.original.url
-        gifosContainer.appendChild(imageGifos)
-    }
-}
-const wordSearch = document.querySelector(".textToSearch")
-wordSearch.textContent = textToSearch.value

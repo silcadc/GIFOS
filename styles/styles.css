@@ -1,4 +1,7 @@
 /*----------------------------*/
+/*   INCLUSION OF PARTIALS    */
+/*----------------------------*/
+/*----------------------------*/
 /*         $RESET             */
 /*----------------------------*/
 * {
@@ -26,7 +29,7 @@ body {
 /*----------------------------*/
 /*         $MIXINS            */
 /*----------------------------*/
-.dark header #logo, .off, #favoriteSection, #myGifosSection, #searchNewGifos, .dark #firstSection #gifosFinder #magnifying {
+.dark header #logo, .off, .dark #firstSection #gifosFinder #magnifying {
   display: none;
 }
 
@@ -46,7 +49,78 @@ body {
   letter-spacing: 0;
 }
 
-/* Header section */
+/*----------------------------*/
+/*      FAVORITE SECTION      */
+/*----------------------------*/
+/*---------Favorite Section---------- */
+#favoriteSection {
+  text-align: center;
+}
+
+#favoriteSection #favoriteGifs {
+  width: 28px;
+  height: 21px;
+}
+
+#favoriteSection .titlesSection {
+  color: #572EE5;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+#favoriteSection #theFavoriteGifs {
+  width: auto;
+  height: 50px;
+  border: 1px solid #572EE5;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+#favoriteSection .seeMore {
+  background: transparent;
+  border: none;
+}
+
+/*----------------------------*/
+/*      MY GIFOS SECTION      */
+/*----------------------------*/
+#myGifosSection {
+  text-align: center;
+}
+
+#myGifosSection #myGifos {
+  width: 28px;
+  height: 21px;
+}
+
+#myGifosSection .titlesSection {
+  color: #572EE5;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+#myGifosSection #myOwnGifs {
+  width: auto;
+  height: 50px;
+  border: 1px solid #572EE5;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+#myGifosSection .seeMore {
+  background: transparent;
+  border: none;
+}
+
+/*----------------------------*/
+/*       HEADER SECTION       */
+/*----------------------------*/
 header {
   border-top: 5px solid #572EE5;
 }
@@ -65,7 +139,7 @@ header .checkbox-menu {
 }
 
 /*----------------------------*/
-/*         DARK MODE          */
+/*     DARK MODE - HEADER     */
 /*----------------------------*/
 .dark header {
   border-top: 5px solid #000000;
@@ -201,8 +275,8 @@ nav #menu li a hr {
   width: 20px;
   height: 20px;
   position: absolute;
-  right: 16%;
-  top: 52%;
+  right: 12%;
+  top: 64%;
 }
 
 #firstSection #trending {
@@ -236,9 +310,21 @@ nav #menu li a hr {
   margin-top: 2px;
 }
 
-/*---------Favorite Section---------- */
-/*---------My GIFOS Section---------- */
-/*-----------Search Section---------- */
+#firstSection .textToSearch {
+  margin: 40px 0;
+}
+
+#firstSection .gifosContainer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+#firstSection .gifosContainer .showGifos {
+  width: 156px;
+  height: 120px;
+  margin: 10%;
+}
+
 /*-----------GIFOS in Trend---------- */
 #trends {
   background: #F3F5F8;
@@ -301,7 +387,7 @@ nav #menu li a hr {
 }
 
 .dark #firstSection #gifosFinder .search {
-  top: 50%;
+  top: 60%;
 }
 
 .dark #firstSection #trending {
