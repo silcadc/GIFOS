@@ -42,7 +42,7 @@
 
     <section id="firstSection">
         <h1 class="color_purple color_white" >Inspírate, busca,<br>guarda, y crea los<br>mejores <span id="color_aqua">GIFOS</span></h1>
-        <img id="ilustra_header" src="./assets/ilustra_header.svg" alt="making_friends_with_GIFOS">
+        <img class="ilustra_header" src="./assets/ilustra_header.svg" alt="making_friends_with_GIFOS">
         <form id="gifosFinder">
             <input type="text" id="searchGifos" name="name" placeholder="Busca GIFOS y más" tabindex="5">
             <img id="magnifying" class="search" src="./assets/icon-search.svg" alt="searchGifos" tabindex="6">
@@ -51,9 +51,14 @@
             <img id="crossMagniDark" class="search off" src="./assets/close-modo-noct.svg" alt="closeSearchDark">
         </form>
         <h3 id="trending" class="color_purple color_white">Trending:</h3>
-        <div class="ultrendings"></div>
-        <h2 class="color_purple textToSearch"></h2>
+        <div class="ultrendings">
+        </div>
+        <hr class="lineUnderSearch off">
+        <h2 class="color_purple termToSearch off"></h2>
         <div class="gifosContainer"></div>
+        <button class="seeMore off">
+            <img src="/assets/CTA-ver-mas.svg" alt="seeMore">
+        </button>
     </section>
 
         <!-- GIFOS in Trend -->

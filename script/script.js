@@ -38,7 +38,7 @@ fetch(`https://api.giphy.com/v1/trending/searches?api_key=${API_KEY}`)
     .then (response => response.json())
     .then (response => {
         console.log(response)
-        const ulTerms = document.createElement("p")
+        const ulTerms = document.createElement("li")
         response.data.slice(0,5).forEach( term => {
             console.log(term)
             ulTerms.textContent = ulTerms.textContent + ", " + term.charAt(0).toUpperCase() + term.slice(1);
@@ -126,14 +126,40 @@ dayMode.addEventListener("click", () => {
 /*        GIFOS FINDER        */
 /*----------------------------*/
 const formGifosFinder = document.querySelector("#gifosFinder")
+const clickMagnifying = document.querySelector("#magnifying")
 const textToSearch = document.querySelector("#searchGifos")
-formGifosFinder.addEventListener("submit", (text) => {
+const lineHr = document.querySelector(".lineUnderSearch")
+const wordSearchH2 = document.querySelector(".termToSearch")
+const buttonSeeMore = document.querySelector(".seeMore")
+const offH1 = document.querySelector(".color_purple")
+const offIlustration = document.querySelector(".ilustra_header")
+const changePositionCross = document.querySelector(".search")
+//click on trendings words
+// const clickLi = document.querySelector(".ultrendings > li")
+
+// clickLi.addEventListener("click", () =>{
+//     clickOnTrendingsWords()
+// })
+
+clickMagnifying.addEventListener("click", () =>{
+    getGifos(textToSearch.value)
+    showTermH2()
+    showLineHr()
+    showButton()
+    offH1Title()
+    offIlustra_header()
+    //positionCross()
+})
+
+formGifosFinder.addEventListener("submit" , (text) => {
     text.preventDefault()
     console.log(textToSearch.value)
     getGifos(textToSearch.value)
+    showTermH2()
+    showLineHr()
+    showButton()
 })
-const lineaSearch = document.querySelector(".ultrendings")
-lineaSearch.createElement("hr")
+
 const gifosContainer = document.querySelector(".gifosContainer")
 const getGifos = async (textToSearch) => {
     const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${textToSearch}`)
@@ -149,6 +175,37 @@ const getGifos = async (textToSearch) => {
         imageGifos.src = responseFromApi.data[i].images.original.url
         gifosContainer.appendChild(imageGifos)
     }
+
 }
-const wordSearch = document.querySelector(".textToSearch")
-wordSearch.textContent = textToSearch.value
+
+const showLineHr = () => {
+    lineHr.classList.remove("off")
+}
+
+const showTermH2 = () => {
+    wordSearchH2.textContent = textToSearch.value
+    wordSearchH2.classList.remove("off")
+}
+
+const showButton = () => {
+    buttonSeeMore.classList.remove("off")
+}
+
+const offH1Title = () => {
+    offH1.classList.add("off")
+}
+
+const offIlustra_header = () => {
+    offIlustration.classList.remove("ilustra_header")
+    offIlustration.classList.add("off")
+}
+
+// const positionCross = () => {
+//     changePositionCross.classList.add("searchToTerm")
+//     changePositionCross.classList.remove("search")
+// }//no esta eliminando la class search y tampoco agrega la otra clase
+
+// const clickOnTrendingsWords = () => {
+//     offIlustration.classList.remove("ilustra_header")
+//     offIlustration.classList.add("off")
+// }

@@ -28,6 +28,7 @@
 /* ---------First Section---------- */
 /* Ilustra Header - First Section */
 #firstSection {
+    text-align: $text-align-center;
     .color_purple {
         @include generals_font;
         @extend %size;
@@ -36,7 +37,7 @@
         color: $color-aqua;
         font-family: $font-titles;
     }
-    #ilustra_header {
+    .ilustra_header {
         @extend %display_block;
         width: percentage(1700%, $page-max-width, $rem);
         margin: auto;
@@ -64,6 +65,13 @@
             right: 12%;
             top: 64%;
         }
+        .searchToTerm {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            right: 12%;
+            top: 10%;
+        }
     }
     #trending {
         margin: 0;
@@ -79,15 +87,23 @@
         font-size: subtraction($font-size16, 2px);
         line-height: 25px;
         margin-left: 25%;
-        p {
+        li {
             @include generals_font($font: $font-weight-medium);
             margin: 0;
             width: 50%;
             margin-top: 2px;
+            list-style-type: $list-none;
         }
     }
-    .textToSearch {
-        margin: 40px 0;
+    .lineUnderSearch{
+        width: 50%;
+        height: 1px;
+        opacity: 0.5;
+        border: $border $color-linegrey;
+        margin-top: 35px;
+    }
+    .termToSearch {
+        margin-top: 43px;
     }
     .gifosContainer {
         display: grid;
@@ -97,6 +113,11 @@
             height: 120px; 
             margin: 10%;           
         }
+    }
+    .seeMore {
+        background: transparent;
+        border: none;  
+        margin-top: 78px;
     }
 }
 
@@ -171,7 +192,7 @@
             font-size: subtraction($font-size16, 2px);
             line-height: 25px;
             margin-left: 25%;
-            p {
+            li {
                 @include generals_font($font: $font-weight-medium, $color: $color-white);
                 margin: 0;
                 width: 50%;

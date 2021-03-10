@@ -13,12 +13,17 @@
         font-size: sum($font-size16, 4px);
         line-height: 30px;
     }
-    #theFavoriteGifs {
-        width: auto;
-        height: 50px;
-        border: $border $color-purple;
+    .theFavoriteGifs {
+        width: 100%;
         display: grid;
-        grid-template-columns: auto auto auto;
+        .noContent {
+            width: 150px;
+            height: 150px;
+            margin-left: 30%;
+        }
+        .noContentText {
+            @include generals_font($color: $color-aqua);
+        }
     }
     .seeMore {
         background: transparent;
@@ -41,11 +46,16 @@
         line-height: 30px;
     }
     #myOwnGifs{
-        width: auto;
-        height: 50px;
-        border: $border $color-purple;
+        width: 100%;
         display: grid;
-        grid-template-columns: auto auto auto;
+        .noContent {
+            width: 150px;
+            height: 150px;
+            margin-left: 30%;
+        }
+        .noContentText {
+            @include generals_font($color: $color-aqua);
+        }
     }
     .seeMore {
         background: transparent;
