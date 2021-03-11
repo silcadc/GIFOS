@@ -29,11 +29,11 @@ body {
 /*----------------------------*/
 /*         $MIXINS            */
 /*----------------------------*/
-.dark header #logo, .off, .dark #firstSection #gifosFinder #magnifying {
+.dark header #logo, .off, .dark #firstSection #gifosFinder #magnifying, .dark #firstSection .seeMore {
   display: none;
 }
 
-.dark header #logoDark, #firstSection .ilustra_header {
+.dark header #logoDark, #firstSection .ilustra_header, .dark #firstSection #seeMoreDark {
   display: block;
 }
 
@@ -301,7 +301,7 @@ nav #menu li a hr {
   height: 20px;
   position: absolute;
   right: 12%;
-  top: 64%;
+  top: 24.8rem;
 }
 
 #firstSection #gifosFinder .searchToTerm {
@@ -309,7 +309,7 @@ nav #menu li a hr {
   height: 20px;
   position: absolute;
   right: 12%;
-  top: 19%;
+  top: 7.5rem;
 }
 
 #firstSection #trending {
@@ -354,6 +354,19 @@ nav #menu li a hr {
   opacity: 0.5;
   border: 1px solid #9CAFC3;
   margin-top: 35px;
+}
+
+#firstSection #tryAnotherSearch .noContent {
+  width: 150px;
+  height: 150px;
+  margin-top: 60px;
+}
+
+#firstSection #tryAnotherSearch .noContentText {
+  color: #50E3C2;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
 }
 
 #firstSection .termToSearch {
@@ -439,7 +452,11 @@ nav #menu li a hr {
 }
 
 .dark #firstSection #gifosFinder .search {
-  top: 60%;
+  top: 23.5rem;
+}
+
+.dark #firstSection #gifosFinder .searchToTerm {
+  top: 7.2rem;
 }
 
 .dark #firstSection #trending {
@@ -476,6 +493,23 @@ nav #menu li a hr {
   list-style-type: none;
   text-transform: capitalize;
   display: inline;
+}
+
+.dark #firstSection .lineUnderSearch {
+  border: 1px solid #FFFFFF;
+}
+
+.dark #firstSection .termToSearch {
+  color: #FFFFFF;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+.dark #firstSection #seeMoreDark {
+  background: transparent;
+  border: none;
+  margin-top: 78px;
 }
 
 .dark #trends {

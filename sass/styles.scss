@@ -64,14 +64,14 @@
             height: 20px;
             position: absolute;
             right: 12%;
-            top: 64%;
+            top: 24.8rem;
         }
         .searchToTerm {
             width: 20px;
             height: 20px;
             position: absolute;
             right: 12%;
-            top: 19%;
+            top: 7.5rem;
         }
     }
     #trending {
@@ -105,6 +105,16 @@
         opacity: 0.5;
         border: $border $color-linegrey;
         margin-top: 35px;
+    }
+    #tryAnotherSearch {
+        .noContent {
+            width: 150px;
+            height: 150px;
+            margin-top: 60px;
+        }
+        .noContentText {
+            @include generals_font($color: $color-aqua);
+        }
     }
     .termToSearch {
         margin-top: 43px;
@@ -176,7 +186,10 @@
                 border: $border $color-white;
             }
             .search {
-                top: 60%;
+                top: 23.5rem;
+            }
+            .searchToTerm {
+                top: 7.2rem;
             }
             #magnifying {
                 @extend %display_none;
@@ -206,6 +219,21 @@
                     display: inline;
                 }
             }
+        }
+        .lineUnderSearch{
+            border: $border $color-white;
+        }
+        .termToSearch {
+            @include generals_font($color: $color-white);
+        }
+        .seeMore {
+            @extend %display_none;
+        }
+        #seeMoreDark {
+            @extend %display_block;
+            background: transparent;
+            border: none;  
+            margin-top: 78px;
         }
     }
     /*--------- GIFOS in Trend------- */
