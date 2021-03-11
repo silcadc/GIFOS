@@ -279,6 +279,7 @@ nav #menu li a hr {
 
 #firstSection #gifosFinder {
   text-align: center;
+  cursor: pointer;
 }
 
 #firstSection #gifosFinder #searchGifos {
@@ -308,7 +309,7 @@ nav #menu li a hr {
   height: 20px;
   position: absolute;
   right: 12%;
-  top: 10%;
+  top: 19%;
 }
 
 #firstSection #trending {
@@ -329,18 +330,22 @@ nav #menu li a hr {
   height: 50px;
   font-size: 14px;
   line-height: 25px;
-  margin-left: 25%;
 }
 
-#firstSection .ultrendings li {
+#firstSection .ultrendings ul {
+  padding: 0 60px;
+}
+
+#firstSection .ultrendings ul li {
   color: #572EE5;
   font-weight: 500;
   text-align: center;
   font-family: "Montserrat", sans-serif;
-  margin: 0;
-  width: 50%;
-  margin-top: 2px;
+  margin: 2px;
+  width: 10%;
   list-style-type: none;
+  text-transform: capitalize;
+  display: inline;
 }
 
 #firstSection .lineUnderSearch {
@@ -455,17 +460,22 @@ nav #menu li a hr {
   height: 50px;
   font-size: 14px;
   line-height: 25px;
-  margin-left: 25%;
 }
 
-.dark #firstSection .ultrendings li {
+.dark #firstSection .ultrendings ul {
+  padding: 0 60px;
+}
+
+.dark #firstSection .ultrendings ul li {
   color: #FFFFFF;
   font-weight: 500;
   text-align: center;
   font-family: "Montserrat", sans-serif;
-  margin: 0;
-  width: 50%;
-  margin-top: 2px;
+  margin: 2px;
+  width: 10%;
+  list-style-type: none;
+  text-transform: capitalize;
+  display: inline;
 }
 
 .dark #trends {

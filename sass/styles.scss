@@ -45,6 +45,7 @@
     }
     #gifosFinder {
         text-align: $text-align-center;
+        cursor: pointer;
         #searchGifos {
             background: $color-white;
             border: $border $color-purple;
@@ -70,7 +71,7 @@
             height: 20px;
             position: absolute;
             right: 12%;
-            top: 10%;
+            top: 19%;
         }
     }
     #trending {
@@ -86,13 +87,16 @@
         height: 50px;
         font-size: subtraction($font-size16, 2px);
         line-height: 25px;
-        margin-left: 25%;
-        li {
-            @include generals_font($font: $font-weight-medium);
-            margin: 0;
-            width: 50%;
-            margin-top: 2px;
-            list-style-type: $list-none;
+        ul {
+            padding: 0 60px;
+            li {
+                @include generals_font($font: $font-weight-medium);
+                margin: 2px;
+                width: 10%;
+                list-style-type: $list-none;
+                text-transform: capitalize;
+                display: inline;
+            }
         }
     }
     .lineUnderSearch{
@@ -191,12 +195,16 @@
             height: 50px;
             font-size: subtraction($font-size16, 2px);
             line-height: 25px;
-            margin-left: 25%;
-            li {
-                @include generals_font($font: $font-weight-medium, $color: $color-white);
-                margin: 0;
-                width: 50%;
-                margin-top: 2px;
+            ul {
+                padding: 0 60px;
+                li {
+                    @include generals_font($font: $font-weight-medium, $color: $color-white);
+                    margin: 2px;
+                    width: 10%;
+                    list-style-type: $list-none;
+                    text-transform: capitalize;
+                    display: inline;
+                }
             }
         }
     }

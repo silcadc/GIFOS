@@ -38,13 +38,21 @@ fetch(`https://api.giphy.com/v1/trending/searches?api_key=${API_KEY}`)
     .then (response => response.json())
     .then (response => {
         console.log(response)
-        const ulTerms = document.createElement("li")
+        const ulcreate = document.createElement("ul")
+        
         response.data.slice(0,5).forEach( term => {
+            //console.log(term)
+            //liTerms.textContent = liTerms.textContent + ", " + term.charAt(0).toUpperCase() + term.slice(1);
+            const liTerms = document.createElement("li")//este li estaba fuera del forEach lo que mostraba
+            //en pantalla era el último string traido desde el array, ahora dentro del for, se crearan suficientes
+            //li para almacenar cada string del objeto
+            liTerms.textContent = term + ", " 
             console.log(term)
-            ulTerms.textContent = ulTerms.textContent + ", " + term.charAt(0).toUpperCase() + term.slice(1);
+            ulcreate.appendChild(liTerms)
+            //document.querySelector(".ultrendings").appendChild(ulcreate) 
         })
-        ulTerms.textContent = ulTerms.textContent.substring(1)   
-        document.querySelector(".ultrendings").appendChild(ulTerms) 
+        //ulcreate.appendChild(liTerms)
+        document.querySelector(".ultrendings").appendChild(ulcreate) 
     })
 
 /*----------------------------*/
@@ -112,54 +120,57 @@ crossMagnifDark.addEventListener("click", () => {
 /*----------------------------*/
 /*       BACK DAYMODE         */
 /*----------------------------*/
-const dayMode = document.querySelector("#dayMode")
-dayMode.addEventListener("click", () => {
-    document.body.classList.toggle("dark")
-    document.querySelector("#menu").classList.add("off")
-    document.querySelector("#cross").classList.add("off")
-    document.querySelector("#burger").classList.remove("off")
-    document.querySelector("#burgerDark").classList.add("off")
-    document.querySelector("#crossDark").classList.add("off")
-})
+// const dayMode = document.querySelector("#dayMode")
+// dayMode.addEventListener("click", () => {
+//     document.body.classList.toggle("dark")
+//     document.querySelector("#menu").classList.add("off")
+//     document.querySelector("#cross").classList.add("off")
+//     document.querySelector("#burger").classList.remove("off")
+//     document.querySelector("#burgerDark").classList.add("off")
+//     document.querySelector("#crossDark").classList.add("off")
+// }) 
+//  ¡¡¡¡agregue al elemento ancla #dayMode un enlace
+//     al index.html para volver al modo light!!!
 
 /*----------------------------*/
 /*        GIFOS FINDER        */
 /*----------------------------*/
 const formGifosFinder = document.querySelector("#gifosFinder")
-const clickMagnifying = document.querySelector("#magnifying")
-const textToSearch = document.querySelector("#searchGifos")
+const inputTextToSearch = document.querySelector("#searchGifos")
 const lineHr = document.querySelector(".lineUnderSearch")
 const wordSearchH2 = document.querySelector(".termToSearch")
 const buttonSeeMore = document.querySelector(".seeMore")
 const offH1 = document.querySelector(".color_purple")
 const offIlustration = document.querySelector(".ilustra_header")
-const changePositionCross = document.querySelector(".search")
-//click on trendings words
-// const clickLi = document.querySelector(".ultrendings > li")
+const changePositionCross = document.querySelector("#crossMagnifying")
 
-// clickLi.addEventListener("click", () =>{
-//     clickOnTrendingsWords()
-// })
-
+const clickMagnifying = document.querySelector("#magnifying")
 clickMagnifying.addEventListener("click", () =>{
-    getGifos(textToSearch.value)
-    showTermH2()
-    showLineHr()
-    showButton()
-    offH1Title()
-    offIlustra_header()
-    //positionCross()
+    console.log(inputTextToSearch)
+    console.log(inputTextToSearch.value)
+    if (inputTextToSearch.value !== "") {
+        getGifos(inputTextToSearch.value)
+        showTermH2()
+        showLineHr()
+        showButton()
+        offH1Title()
+        offIlustra_header()
+        positionCross()
+    }
 })
 
 formGifosFinder.addEventListener("submit" , (text) => {
     text.preventDefault()
-    console.log(textToSearch.value)
-    getGifos(textToSearch.value)
-    showTermH2()
-    showLineHr()
-    showButton()
+    if (inputTextToSearch.value !== "") {
+        console.log(inputTextToSearch.value)
+        getGifos(inputTextToSearch.value)
+        showTermH2()
+        showLineHr()
+        showButton()
+    }
 })
 
+let amount = 11
 const gifosContainer = document.querySelector(".gifosContainer")
 const getGifos = async (textToSearch) => {
     const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${textToSearch}`)
@@ -169,21 +180,27 @@ const getGifos = async (textToSearch) => {
     gifosContainer.innerHTML = ""
     for (let i = 0; i < responseFromApi.pagination.count; i++)
     {
-        if (i > 11) {break}
+        if (i > amount) {break}
         const imageGifos = document.createElement("img")
         imageGifos.classList.add("showGifos")
         imageGifos.src = responseFromApi.data[i].images.original.url
         gifosContainer.appendChild(imageGifos)
     }
-
 }
+
+const clickSeeMore = document.querySelector(".seeMore")
+clickSeeMore.addEventListener("click", () => {
+    amount = amount + 12
+    console.log(amount)
+    getGifos(inputTextToSearch.value)
+})
 
 const showLineHr = () => {
     lineHr.classList.remove("off")
 }
 
 const showTermH2 = () => {
-    wordSearchH2.textContent = textToSearch.value
+    wordSearchH2.textContent = inputTextToSearch.value
     wordSearchH2.classList.remove("off")
 }
 
@@ -200,12 +217,15 @@ const offIlustra_header = () => {
     offIlustration.classList.add("off")
 }
 
-// const positionCross = () => {
-//     changePositionCross.classList.add("searchToTerm")
-//     changePositionCross.classList.remove("search")
-// }//no esta eliminando la class search y tampoco agrega la otra clase
+const positionCross = () => {
+    console.log("entro a la función")
+    changePositionCross.classList.replace("search", "searchToTerm")
+    console.log(changePositionCross)
+}
 
-// const clickOnTrendingsWords = () => {
-//     offIlustration.classList.remove("ilustra_header")
-//     offIlustration.classList.add("off")
-// }
+//click on trendings words
+const clickLi = document.querySelector(".ultrendings > li")
+clickLi.addEventListener("click", () => {
+    inputTextToSearch.value = li.textContent
+    getGifos(inputTextToSearch.value)
+})
