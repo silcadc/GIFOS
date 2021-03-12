@@ -1,3 +1,4 @@
+let isNocturnal = false;
 /*----------------------------*/
 /*   CLICK - NAVIGATION BAR   */
 /*----------------------------*/
@@ -6,14 +7,14 @@ headerCross.addEventListener("click", () => {
     headerCross.classList.add("off")
     document.querySelector("#cross").classList.remove("off")
     document.querySelector("#menu").classList.remove("off")
-})
+})//verificado
 
 let headerBurger = document.getElementById("cross")
 headerBurger.addEventListener("click", () => {
     headerBurger.classList.add("off")
     document.querySelector("#burger").classList.remove("off")
     document.querySelector("#menu").classList.add("off")
-})
+})//verificado
 
 /*------------------------------------------*/
 /*   CLICK - GIFOS FINDER - FIRST SECTION   */
@@ -22,13 +23,14 @@ let magnifying = document.getElementById("magnifying")
 magnifying.addEventListener("click", () => {
     magnifying.classList.add("off")
     document.querySelector("#crossMagnifying").classList.remove("off")
-})
+})//verificado
 
 let crossMagnifying = document.getElementById("crossMagnifying")
-crossMagnifying.addEventListener("click", () => {
+crossMagnifying.addEventListener("click", (clic) => {
+    clic.preventDefault()
     crossMagnifying.classList.add("off")
     document.querySelector("#magnifying").classList.remove("off")
-})
+})//verificado
 
 /*----------------------------*/
 /*          TRENDING          */
@@ -75,13 +77,36 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
 /*         DARK MODE          */
 /*----------------------------*/
 const darkMode = document.querySelector("#darkMode")
+console.log(darkMode)
 darkMode.addEventListener("click", () => {
-    document.body.classList.toggle("dark")
-    document.querySelector("#menu").classList.add("off")
-    document.querySelector("#cross").classList.add("off")
-    document.querySelector("#burgerDark").classList.remove("off")
-    document.querySelector("#magniDark").classList.remove("off")
-})
+//hago este if porque cada vez que le damos click al nodo
+//isNocturnal debe cambiar de estado, desde false a true y viceversa
+    if (isNocturnal == true) {
+        isNocturnal = false;
+    } else {
+        isNocturnal = true;
+    }
+
+    if (isNocturnal == true) {
+        console.log("entrando en modo nocturno")
+        document.body.classList.add("dark")
+        darkMode.innerHTML = "Modo Diurno <hr>"
+        document.querySelector("#menu").classList.add("off")
+        document.querySelector("#cross").classList.add("off")
+        document.querySelector("#burgerDark").classList.remove("off")
+        document.querySelector("#magnifying").classList.add("off")
+        document.querySelector("#magniDark").classList.remove("off")
+    } else {
+        console.log("entrando en modo diurno")
+        document.body.classList.remove("dark")
+        darkMode.innerHTML = "Modo Nocturno <hr>"
+        document.querySelector("#menu").classList.remove("off")
+        document.querySelector("#cross").classList.remove("off")
+        document.querySelector("#burgerDark").classList.add("off")
+        document.querySelector("#magnifying").classList.remove("off")
+        document.querySelector("#magniDark").classList.add("off")
+    }
+})//verificado
 
 /*------------------------------------------*/
 /*    DARK MODE - CLICK - NAVIGATION BAR    */
@@ -91,18 +116,16 @@ crossDark.addEventListener("click", () => {
     crossDark.classList.add("off")
     document.querySelector("#crossDark").classList.remove("off")
     document.querySelector("#menu").classList.remove("off")
-    document.querySelector("#darkMode").classList.add("off")
-    document.querySelector("#dayMode").classList.remove("off")
-    document.querySelector("#magniDark").classList.add("off")
-})
+    document.querySelector("#magniDark").classList.add("off") //document.querySelector("#magniDark").classList.remove("off")
+})//verificado
 
 let hamburDark = document.getElementById("crossDark")
 hamburDark.addEventListener("click", () => {
     hamburDark.classList.add("off")
     document.querySelector("#burgerDark").classList.remove("off")
     document.querySelector("#menu").classList.add("off")
-    document.querySelector("#magniDark").classList.remove("off")
-})
+    document.querySelector("#magniDark").classList.remove("off")//esta línea funciona pero aún esta por ser revisada
+})//verificado
 
 /*------------------------------------------------------*/
 /*   DARK MODE - CLICK - GIFOS FINDER - FIRST SECTION   */
@@ -111,28 +134,13 @@ let magnifDark = document.getElementById("magniDark")
 magnifDark.addEventListener("click", () => {
     magnifDark.classList.add("off")
     document.querySelector("#crossMagniDark").classList.remove("off")
-})
+})//verificado
 
 let crossMagnifDark = document.getElementById("crossMagniDark")
 crossMagnifDark.addEventListener("click", () => {
     crossMagnifDark.classList.add("off")
     document.querySelector("#magniDark").classList.remove("off")
-})
-
-/*----------------------------*/
-/*       BACK DAYMODE         */
-/*----------------------------*/
-// const dayMode = document.querySelector("#dayMode")
-// dayMode.addEventListener("click", () => {
-//     document.body.classList.toggle("dark")
-//     document.querySelector("#menu").classList.add("off")
-//     document.querySelector("#cross").classList.add("off")
-//     document.querySelector("#burger").classList.remove("off")
-//     document.querySelector("#burgerDark").classList.add("off")
-//     document.querySelector("#crossDark").classList.add("off")
-// }) 
-//  ¡¡¡¡agregue al elemento ancla #dayMode un enlace
-//     al index.html para volver al modo light!!!
+})//verificado
 
 /*----------------------------*/
 /*        GIFOS FINDER        */
@@ -143,6 +151,7 @@ const lineHr = document.querySelector(".lineUnderSearch")
 const wordSearchH2 = document.querySelector(".termToSearch")
 const tryAnotherSearch = document.querySelector("#tryAnotherSearch")
 const buttonSeeMore = document.querySelector(".seeMore")
+const buttonSeeMoreDark = document.querySelector(".seeMoreDark")
 const offH1 = document.querySelector(".color_purple")
 const offIlustration = document.querySelector(".ilustra_header")
 const changePositionCross = document.querySelectorAll(".search")
@@ -161,15 +170,14 @@ clickMagnifying.addEventListener("click", () =>{
         showButton()
         offH1Title()
         offIlustra_header()
-        positionCross()
+        hiddenIconAnotherSearch()
+        positionCross()//funciona
     } else {
-        getGifos(inputTextToSearch.value)
-        showTermH2()
         showLineHr()
         showIconAnotherSearch()
-    }
+    }//esta funcion ejecuta muy bien
 })
-//esta es la funcion para clickMagniDark, aunque parece no funcionar
+
 clickMagniDark.addEventListener("click", () =>{
     console.log(inputTextToSearch)
     console.log(inputTextToSearch.value)
@@ -177,17 +185,15 @@ clickMagniDark.addEventListener("click", () =>{
         getGifos(inputTextToSearch.value)
         showTermH2()
         showLineHr()
-        showButton()
+        showButtonDark()
         offH1Title()
         offIlustra_header()
         positionCross()
         hiddenIconAnotherSearch()
     } else {
-        getGifos(inputTextToSearch.value)
-        showTermH2()
         showLineHr()
         showIconAnotherSearch()
-    }
+    }//esta funcion ejecuta muy bien
 })
 
 formGifosFinder.addEventListener("submit" , (text) => {
@@ -204,7 +210,7 @@ formGifosFinder.addEventListener("submit" , (text) => {
         showTermH2()
         showLineHr()
         showIconAnotherSearch()
-    }
+    }//esta funcion ejecuta muy bien
 })
 
 let amount = 11
@@ -223,14 +229,26 @@ const getGifos = async (textToSearch) => {
         imageGifos.src = responseFromApi.data[i].images.original.url
         gifosContainer.appendChild(imageGifos)
     }
-}
+}//bien hasta ahora
 
 const clickSeeMore = document.querySelector(".seeMore")
-clickSeeMore.addEventListener("click", () => {
-    amount = amount + 12
-    console.log(amount)
-    getGifos(inputTextToSearch.value)
-})
+// clickSeeMore.addEventListener("click", () => {
+//     amount = amount + 12
+//     console.log(amount)
+//     getGifos(inputTextToSearch.value)
+// }) //bien hasta ahora
+
+const clickSeeMoreDark = document.querySelector(".seeMoreDark")
+let clickButton 
+if (clickButton == clickSeeMore || clickButton == clickSeeMoreDark) {
+    clickButton.addEventListener("click", () => {
+        amount = amount + 12
+        console.log(amount)
+        getGifos(inputTextToSearch.value)
+    })
+}//el operador lógico O parece que no funciona, además de otras situaciones
+//al cambiar de modo day a dark siempre ocurren detalles en la pág que hacen
+//ver que falta aún mucho trabajo.
 
 const showLineHr = () => {
     lineHr.classList.remove("off")
@@ -243,15 +261,22 @@ const showTermH2 = () => {
 
 const showIconAnotherSearch = () => {
     tryAnotherSearch.classList.remove("off")
+    buttonSeeMore.classList.add("off")
+    buttonSeeMoreDark.classList.add("off")
 }
 
 const hiddenIconAnotherSearch = () => {
     tryAnotherSearch.classList.add("off")
-    //buttonSeeMore.classList.add("off")
 }
 
 const showButton = () => {
     buttonSeeMore.classList.remove("off")
+    buttonSeeMoreDark.classList.add("off")
+}
+
+const showButtonDark = () => {
+    buttonSeeMoreDark.classList.remove("off")
+    buttonSeeMore.classList.add("off")
 }
 
 const offH1Title = () => {

@@ -1,6 +1,8 @@
 /*----------------------------*/
 /*   CLICK - NAVIGATION BAR   */
 /*----------------------------*/
+let viewMode = false;
+
 let headerCross = document.getElementById("burger")
 headerCross.addEventListener("click", () => {
     headerCross.classList.add("off")
@@ -43,12 +45,21 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
 /*         DARK MODE          */
 /*----------------------------*/
 const darkMode = document.querySelector("#darkMode")
+
 darkMode.addEventListener("click", () => {
-    document.body.classList.toggle("dark")
-    document.querySelector("#menu").classList.add("off")
-    document.querySelector("#cross").classList.add("off")
-    document.querySelector("#burgerDark").classList.remove("off")
-    document.querySelector("#magniDark").classList.remove("off")
+    if (viewMode = true) {
+        document.body.classList.add("dark")
+        document.querySelector("#menu").classList.add("off")
+        document.querySelector("#cross").classList.add("off")
+        document.querySelector("#burgerDark").classList.remove("off")
+    } else {
+        console.log("entrando en modo nocturno")
+        document.body.classList.remove("dark")
+        document.querySelector("#menu").classList.remove("off")
+        document.querySelector("#cross").classList.remove("off")
+        document.querySelector("#burgerDark").classList.add("off")
+        document.querySelector("#magniDark").classList.add("off")
+    }
 })
 
 /*------------------------------------------*/
@@ -60,8 +71,6 @@ crossDark.addEventListener("click", () => {
     document.querySelector("#crossDark").classList.remove("off")
     document.querySelector("#menu").classList.remove("off")
     document.querySelector("#darkMode").classList.add("off")
-    document.querySelector("#dayMode").classList.remove("off")
-    document.querySelector("#magniDark").classList.add("off")
 })
 
 let hamburDark = document.getElementById("crossDark")
@@ -69,18 +78,4 @@ hamburDark.addEventListener("click", () => {
     hamburDark.classList.add("off")
     document.querySelector("#burgerDark").classList.remove("off")
     document.querySelector("#menu").classList.add("off")
-    document.querySelector("#magniDark").classList.remove("off")
-})
-
-/*----------------------------*/
-/*       BACK DAYMODE         */
-/*----------------------------*/
-const dayMode = document.querySelector("#dayMode")
-dayMode.addEventListener("click", () => {
-    document.body.classList.toggle("dark")
-    document.querySelector("#menu").classList.add("off")
-    document.querySelector("#cross").classList.add("off")
-    document.querySelector("#burger").classList.remove("off")
-    document.querySelector("#burgerDark").classList.add("off")
-    document.querySelector("#crossDark").classList.add("off")
 })

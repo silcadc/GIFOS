@@ -191,9 +191,6 @@
             .searchToTerm {
                 top: 7.2rem;
             }
-            #magnifying {
-                @extend %display_none;
-            }
         }
         #trending {
             margin: 0;
@@ -226,11 +223,7 @@
         .termToSearch {
             @include generals_font($color: $color-white);
         }
-        .seeMore {
-            @extend %display_none;
-        }
-        #seeMoreDark {
-            @extend %display_block;
+        .seeMoreDark {
             background: transparent;
             border: none;  
             margin-top: 78px;

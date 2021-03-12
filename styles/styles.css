@@ -29,11 +29,11 @@ body {
 /*----------------------------*/
 /*         $MIXINS            */
 /*----------------------------*/
-.dark header #logo, .off, .dark #firstSection #gifosFinder #magnifying, .dark #firstSection .seeMore {
+.dark header #logo, .off {
   display: none;
 }
 
-.dark header #logoDark, #firstSection .ilustra_header, .dark #firstSection #seeMoreDark {
+.dark header #logoDark, #firstSection .ilustra_header {
   display: block;
 }
 
@@ -94,6 +94,15 @@ body {
   border: none;
 }
 
+.dark #favoriteSection .titlesSection {
+  color: #FFFFFF;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+}
+
 /*----------------------------*/
 /*      MY GIFOS SECTION      */
 /*----------------------------*/
@@ -136,6 +145,15 @@ body {
 #myGifosSection .seeMore {
   background: transparent;
   border: none;
+}
+
+.dark #myGifosSection .titlesSection {
+  color: #FFFFFF;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  line-height: 30px;
 }
 
 /*----------------------------*/
@@ -506,7 +524,7 @@ nav #menu li a hr {
   font-family: "Montserrat", sans-serif;
 }
 
-.dark #firstSection #seeMoreDark {
+.dark #firstSection .seeMoreDark {
   background: transparent;
   border: none;
   margin-top: 78px;
