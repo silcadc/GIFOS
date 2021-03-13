@@ -1,4 +1,6 @@
-let isNocturnal = false;
+let isDark = sessionStorage.getItem("modeStyle"); /*Esto implica que el modo es Light*/
+sessionStorage.setItem("modeStyle", isDark);
+console.log(isDark)
 /*----------------------------*/
 /*   CLICK - NAVIGATION BAR   */
 /*----------------------------*/
@@ -76,18 +78,27 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
 /*----------------------------*/
 /*         DARK MODE          */
 /*----------------------------*/
-const darkMode = document.querySelector("#darkMode")
-console.log(darkMode)
-darkMode.addEventListener("click", () => {
-//hago este if porque cada vez que le damos click al nodo
-//isNocturnal debe cambiar de estado, desde false a true y viceversa
-    if (isNocturnal == true) {
-        isNocturnal = false;
-    } else {
-        isNocturnal = true;
-    }
 
-    if (isNocturnal == true) {
+const backDarkMode = (text) => { // "" == "lightMode"
+
+    if (text == "darkMode") {
+        isDark = true;
+    }else if(text == "lightMode") {
+        isDark = false;
+    }
+    else {
+        if (isDark == true) {
+            isDark = false;
+        } else {
+            isDark = true;
+        }
+    }
+    
+    sessionStorage.setItem("modeStyle", isDark);//utilizando local storage se logra almacenar el modo
+    //escogido sea dark o day, entonces debo utilizarlo para almacenar el mismo modo actual en los
+    //script.
+
+    if (isDark == true) {
         console.log("entrando en modo nocturno")
         document.body.classList.add("dark")
         darkMode.innerHTML = "Modo Diurno <hr>"
@@ -106,8 +117,33 @@ darkMode.addEventListener("click", () => {
         document.querySelector("#magnifying").classList.remove("off")
         document.querySelector("#magniDark").classList.add("off")
     }
-})//verificado
+}
 
+
+
+//verificado
+//con la siguiente funcion quiero lograr el retono a la pagina principal en modo dark
+//dando click al logo en modo Dark y no que regrese a la pagina principal en modo day
+const darkMode = document.querySelector("#darkMode")
+console.log(darkMode)
+darkMode.addEventListener("click", () => {  
+    backDarkMode()
+})
+
+let logoDark = document.querySelector("#logoDark")
+logoDark.addEventListener("click", () => {
+    backDarkMode("darkMode")//ya entiendo que pasa, cuando clickeo el logo Dark y ejecuto la funcion
+    //backDarkMode, el logo me lleve a la pagina principal en modo day porque la validación
+    //isDark == true es falsa entonces entra al modo diurno!!!
+})
+
+let logo= document.querySelector("#logo")
+logo.addEventListener("click", () => {
+    backDarkMode("lightMode")//ya entiendo que pasa, cuando clickeo el logo Dark y ejecuto la funcion
+    //backDarkMode, el logo me lleve a la pagina principal en modo day porque la validación
+    //isDark == true es falsa entonces entra al modo diurno!!!
+})
+backDarkMode()
 /*------------------------------------------*/
 /*    DARK MODE - CLICK - NAVIGATION BAR    */
 /*------------------------------------------*/
@@ -232,21 +268,22 @@ const getGifos = async (textToSearch) => {
 }//bien hasta ahora
 
 const clickSeeMore = document.querySelector(".seeMore")
+const clickSeeMoreDark = document.querySelector(".seeMoreDark")
 // clickSeeMore.addEventListener("click", () => {
 //     amount = amount + 12
 //     console.log(amount)
 //     getGifos(inputTextToSearch.value)
 // }) //bien hasta ahora
 
-const clickSeeMoreDark = document.querySelector(".seeMoreDark")
 let clickButton 
-if (clickButton == clickSeeMore || clickButton == clickSeeMoreDark) {
-    clickButton.addEventListener("click", () => {
-        amount = amount + 12
-        console.log(amount)
-        getGifos(inputTextToSearch.value)
+if (clickButton === clickSeeMore || 
+    clickButton === clickSeeMoreDark) {
+        clickButton.addEventListener("click", () => {
+            amount = amount + 12
+            console.log(amount)
+            getGifos(inputTextToSearch.value)
     })
-}//el operador lógico O parece que no funciona, además de otras situaciones
+}//el operador lógico "O" parece que no funciona, además de otras situaciones
 //al cambiar de modo day a dark siempre ocurren detalles en la pág que hacen
 //ver que falta aún mucho trabajo.
 
@@ -288,27 +325,17 @@ const offIlustra_header = () => {
     offIlustration.classList.add("off")
 }
 
-// function myFunction() {
-//     var x, i;
-//     x = document.querySelectorAll(".example");
-//     for (i = 0; i < x.length; i++) {
-//       x[i].style.backgroundColor = "red";
-//     }ejemplo de stackoverflow
-// }
-
 const positionCross = () => {
     console.log("entro a la función")
-    //changePositionCross.classList.replace("search", "searchToTerm")
     for (i = 0; i < changePositionCross.length; i++) {
         changePositionCross[i].classList.replace("search", "searchToTerm")
-    }//pude utilizar este for para mejorar la función positionCross 
-    //y la variable changePositionCross accede a todos los nodos con la 
-    //clase .search, gracias al uso de document.querySelectorAll
-    //necesito un for para aplicar el remplazo de clases a todos los elementos
-    //con .search porque all solo aplicara cambios a un solo nodo que yo 
-    //especifique, con el for puedo recorer la longitud de nodos con .search
-    console.log(changePositionCross)
+    }
 }
+
+
+
+
+
 
 //click on trendings words
 // const clickLi = document.querySelector(".ultrendings > li > a")

@@ -30,15 +30,7 @@
         border: none;  
     }
 }
-.dark {
-    #favoriteSection {
-        .titlesSection {
-            @include generals_font($color: $color-white);
-            font-size: sum($font-size16, 4px);
-            line-height: 30px;
-        }
-    }
-}
+
 /*----------------------------*/
 /*      MY GIFOS SECTION      */
 /*----------------------------*/
@@ -71,6 +63,21 @@
     }
 }
 
+/*----------------------------*/
+/*         DARK MODE          */
+/*----------------------------*/
+/*---------Favorite Section---------- */
+.dark {
+    #favoriteSection {
+        .titlesSection {
+            @include generals_font($color: $color-white);
+            font-size: sum($font-size16, 4px);
+            line-height: 30px;
+        }
+    }
+}
+
+/*---------My Gifos Section---------- */
 .dark {
     #myGifosSection {
         .titlesSection {

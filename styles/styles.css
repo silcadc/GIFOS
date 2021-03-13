@@ -94,15 +94,6 @@ body {
   border: none;
 }
 
-.dark #favoriteSection .titlesSection {
-  color: #FFFFFF;
-  font-weight: bold;
-  text-align: center;
-  font-family: "Montserrat", sans-serif;
-  font-size: 20px;
-  line-height: 30px;
-}
-
 /*----------------------------*/
 /*      MY GIFOS SECTION      */
 /*----------------------------*/
@@ -147,6 +138,20 @@ body {
   border: none;
 }
 
+/*----------------------------*/
+/*         DARK MODE          */
+/*----------------------------*/
+/*---------Favorite Section---------- */
+.dark #favoriteSection .titlesSection {
+  color: #FFFFFF;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+/*---------My Gifos Section---------- */
 .dark #myGifosSection .titlesSection {
   color: #FFFFFF;
   font-weight: bold;
