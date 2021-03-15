@@ -1,5 +1,27 @@
-let isDark = sessionStorage.getItem("modeStyle"); /*Esto implica que el modo es Light*/
-console.log(isDark)
+let isDark = false//isDark es el booleano con el que defino el estado day(false, es modo claro) o dark(true, entonces es modo nocturno)
+//de la aplicación
+//modeStyle, es la keyName utilizada en todo el programa para obtener y guardar
+//la información de isDark
+let modeValidation = () => {
+    let styleStatus = sessionStorage.getItem("modeStyle");
+    console.log("1. styleStatus: " + styleStatus);
+    if (styleStatus === null) {
+        styleStatus = false;    
+        console.log("entro al if");
+        console.log("2. styleStatus: " + styleStatus);
+        sessionStorage.setItem("modeStyle", styleStatus);//debo guardar el valor modeStyle, porque lo pido
+        //al iniciar la funcion y si no lo guardo mi funcion seguira con un valor nulo y siempre entrara en 
+        //if.
+    } else if (styleStatus !== null) {
+        isDark = Boolean(styleStatus);//el session Storage me entrega string y yo necesito Booleano por eso
+        //se castea el dato, o se convierte el valor.
+        console.log("entro al else");
+        console.log("3. styleStatus: " + styleStatus);
+        sessionStorage.setItem("modeStyle", styleStatus);
+    }
+}
+modeValidation();
+console.log(isDark);
 
 /*----------------------------*/
 /*   CLICK - NAVIGATION BAR   */
@@ -32,38 +54,35 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
             document.querySelector("#newGifos").appendChild(image)
         })
     })
-//verificado
-//con la siguiente funcion quiero lograr el retono a la pagina principal en modo dark
-//dando click al logo en modo Dark y no que regrese a la pagina principal en modo day
-const darkMode = document.querySelector("#darkMode")
-console.log(darkMode)
-darkMode.addEventListener("click", () => {  
-    backDarkMode()
-})
-
-let logoDark = document.querySelector("#logoDark")
-logoDark.addEventListener("click", () => {
-    backDarkMode("darkMode")
-})
 
 /*----------------------------*/
 /*         DARK MODE          */
 /*----------------------------*/
-const backDarkMode = (text) => { // "" == "lightMode"
-    if (text == "darkMode") {
+const changeModeStyle = (text) => { // "" == "lightMode"
+    if (text == "darkLogoClick") {//al darle click al logo dark
+        console.log("Entrendo por darkLogo");
         isDark = true;
-    }else if(text == "lightMode") {
+    }else if(text == "dayLogoClick") {
+        console.log("Entrendo por DAYLogo");
         isDark = false;
-    }
-    else {
+    }else if(text == "repaintStyles") {
+        console.log("Entrendo A Repintar Styles");
+        console.log(isDark)
+    }else {
         if (isDark == true) {
+            console.log("Cambiando IsDark a Falso");
             isDark = false;
         } else {
+            console.log("Cambiando IsDark a verdad");
             isDark = true;
         }
     }
+    console.log(isDark)
     sessionStorage.setItem("modeStyle", isDark);
-    if (isDark == true) {
+    console.log(isDark)
+    console.log(isDark === true)
+    
+    if (isDark === true) {
         console.log("entrando en modo nocturno")
         document.body.classList.add("dark")
         darkMode.innerHTML = "Modo Diurno <hr>"
@@ -80,14 +99,23 @@ const backDarkMode = (text) => { // "" == "lightMode"
     }
 }
 
-backDarkMode()
-
-
-
-let logo= document.querySelector("#logo")
-logo.addEventListener("click", () => {
-    backDarkMode("lightMode")
+const darkMode = document.querySelector("#darkMode")
+console.log(darkMode)
+darkMode.addEventListener("click", () => {  
+    changeModeStyle()
 })
+
+let logoDark = document.querySelector("#logoDark")
+logoDark.addEventListener("click", () => {
+    changeModeStyle("darkLogoClick")
+})
+
+let logo = document.querySelector("#logo")
+logo.addEventListener("click", () => {
+    changeModeStyle("dayLogoClick")
+})
+
+changeModeStyle("repaintStyles")
 
 /*------------------------------------------*/
 /*    DARK MODE - CLICK - NAVIGATION BAR    */

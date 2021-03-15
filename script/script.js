@@ -1,6 +1,26 @@
-let isDark = sessionStorage.getItem("modeStyle"); /*Esto implica que el modo es Light*/
-sessionStorage.setItem("modeStyle", isDark);
-console.log(isDark)
+let isDark = false//isDark es el booleano con el que defino el estado day(false, es modo claro) o dark(true, entonces es modo nocturno)
+//de la aplicación
+//modeStyle, es la keyName utilizada en todo el programa para obtener y guardar
+//la información de isDark
+let modeValidation = () => {
+    let styleStatus = sessionStorage.getItem("modeStyle");
+    console.log("1. styleStatus: " + styleStatus);
+    if (styleStatus === null) {
+        styleStatus = false;    
+        console.log("entro al if");
+        console.log("2. styleStatus: " + styleStatus);
+        sessionStorage.setItem("modeStyle", styleStatus);//debo guardar el valor modeStyle, porque lo pido
+        //al iniciar la funcion y si no lo guardo mi funcion seguira con un valor nulo y siempre entrara en 
+        //if.
+    } else if (styleStatus !== null) {
+        isDark = Boolean(styleStatus);
+        console.log("entro al else");
+        console.log("3. styleStatus: " + styleStatus);
+        sessionStorage.setItem("modeStyle", styleStatus);
+    }
+}
+modeValidation();
+console.log(isDark);
 /*----------------------------*/
 /*   CLICK - NAVIGATION BAR   */
 /*----------------------------*/
@@ -79,26 +99,30 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
 /*         DARK MODE          */
 /*----------------------------*/
 
-const backDarkMode = (text) => { // "" == "lightMode"
+const changeModeStyle = (text) => { // "" == "lightMode"
 
-    if (text == "darkMode") {
+    if (text == "darkLogoClick") {//al darle click al logo dark
         isDark = true;
-    }else if(text == "lightMode") {
+    }else if(text == "dayLogoClick") {
         isDark = false;
-    }
-    else {
+    }else if(text == "repaintStyles") {
+    }else {
         if (isDark == true) {
             isDark = false;
         } else {
             isDark = true;
         }
-    }
+    }//esta validación es necesario para los 4 casos que se presentar al cambiar de
+    //pagina, y asi controlar que se mantenga el estilo.
+//1er. caso cuando la funcion se ejecuta con un parametro vacio porque le doy click al 
+//logo dark. 
+//2do caso
     
     sessionStorage.setItem("modeStyle", isDark);//utilizando local storage se logra almacenar el modo
     //escogido sea dark o day, entonces debo utilizarlo para almacenar el mismo modo actual en los
     //script.
 
-    if (isDark == true) {
+    if (isDark === true) {
         console.log("entrando en modo nocturno")
         document.body.classList.add("dark")
         darkMode.innerHTML = "Modo Diurno <hr>"
@@ -119,31 +143,34 @@ const backDarkMode = (text) => { // "" == "lightMode"
     }
 }
 
-
-
 //verificado
 //con la siguiente funcion quiero lograr el retono a la pagina principal en modo dark
 //dando click al logo en modo Dark y no que regrese a la pagina principal en modo day
+//--------------------------
+//--------1er caso, 
 const darkMode = document.querySelector("#darkMode")
 console.log(darkMode)
 darkMode.addEventListener("click", () => {  
-    backDarkMode()
+    changeModeStyle()
 })
-
+//2do caso cuando le doy click al logo en dark, para volver al inicio de la app 
+//pero manteniendo el dark, el parametro lo identifico como darkLogoClick
 let logoDark = document.querySelector("#logoDark")
 logoDark.addEventListener("click", () => {
-    backDarkMode("darkMode")//ya entiendo que pasa, cuando clickeo el logo Dark y ejecuto la funcion
-    //backDarkMode, el logo me lleve a la pagina principal en modo day porque la validación
+    changeModeStyle("darkLogoClick")//ya entiendo que pasa, cuando clickeo el logo Dark y ejecuto la funcion
+    //changeModeStyle, el logo me lleve a la pagina principal en modo day porque la validación
+    //isDark == true es falsa entonces entra al modo diurno!!!
+})
+//3er caso cuando le doy click al logo en day, para volver al inicio de la app 
+//pero manteniendo el day, el parametro lo identifico como dayLogoClick
+let logo = document.querySelector("#logo")
+logo.addEventListener("click", () => {
+    changeModeStyle("dayLogoClick")//ya entiendo que pasa, cuando clickeo el logo Dark y ejecuto la funcion
+    //changeModeStyle, el logo me lleve a la pagina principal en modo day porque la validación
     //isDark == true es falsa entonces entra al modo diurno!!!
 })
 
-let logo= document.querySelector("#logo")
-logo.addEventListener("click", () => {
-    backDarkMode("lightMode")//ya entiendo que pasa, cuando clickeo el logo Dark y ejecuto la funcion
-    //backDarkMode, el logo me lleve a la pagina principal en modo day porque la validación
-    //isDark == true es falsa entonces entra al modo diurno!!!
-})
-backDarkMode()
+changeModeStyle("repaintStyles")
 /*------------------------------------------*/
 /*    DARK MODE - CLICK - NAVIGATION BAR    */
 /*------------------------------------------*/
