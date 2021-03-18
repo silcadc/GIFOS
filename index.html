@@ -16,8 +16,8 @@
 
 <body>
     <header> 
-        <img id="logo" class="logosHeader" src="./assets/logo-mobile.svg" alt="logoGifos">
-        <img id="logoDark" class="logosHeader off" src="./assets/logo-mobile-modo-noct.svg" alt="logoGifos">
+        <a href="/index.html"><img id="logo" class="logosHeader" src="./assets/logo-mobile.svg" alt="logoGifos"></a>
+        <a href="/index.html"><img id="logoDark" class="logosHeader off" src="./assets/logo-mobile-modo-noct.svg" alt="logoGifos"></a>
         <img id="burger" class="checkbox-menu" src="./assets/burger.svg" alt="logoBurger" tabindex="1">
         <img id="burgerDark" class="checkbox-menu off" src="./assets/burger-modo-noct.svg" alt="logoBurgerDark">
         <img id="cross" class="checkbox-menu off" src="./assets/close.svg" alt="logoCheckBurger">
@@ -55,7 +55,7 @@
             <img class="noContent" src="/assets/icon-busqueda-sin-resultado.svg" alt="No Search Results">
             <h3 class="noContentText">Intenta con otra búsqueda.</h3>
         </div>
-        <h2 class="color_purple termToSearch off"></h2>
+        <h2 class="color_purple termToSearch off" id="titleToSearch"></h2>
         <div class="gifosContainer"></div>
         <button class="seeMore off">
             <img src="/assets/CTA-ver-mas.svg" alt="See More">
@@ -71,6 +71,8 @@
         <P id="latestGifos">Mira los últimos <br> GIFOS de nuestra comunidad.</P>
         <figure id="newGifos"></figure>
     </section>
+
+    <section id="containerMaxGifs"></section>
 
     <footer id="footer">
         <p id="footerShare">Compartir en:</p>

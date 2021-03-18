@@ -1,4 +1,4 @@
-let isDark = false//isDark es el booleano con el que defino el estado day(false, es modo claro) o dark(true, entonces es modo nocturno)
+let isDark//isDark es el booleano con el que defino el estado day(false, es modo claro) o dark(true, entonces es modo nocturno)
 //de la aplicación
 //modeStyle, es la keyName utilizada en todo el programa para obtener y guardar
 //la información de isDark
@@ -13,10 +13,11 @@ let modeValidation = () => {
         //al iniciar la funcion y si no lo guardo mi funcion seguira con un valor nulo y siempre entrara en 
         //if.
     } else if (styleStatus !== null) {
-        isDark = Boolean(styleStatus);//el session Storage me entrega string y yo necesito Booleano por eso
+        isDark = (styleStatus == 'true');//el session Storage me entrega string y yo necesito Booleano por eso
         //se castea el dato, o se convierte el valor.
         console.log("entro al else");
         console.log("3. styleStatus: " + styleStatus);
+        console.log("4. isDark: " + isDark);
         sessionStorage.setItem("modeStyle", styleStatus);
     }
 }
@@ -86,16 +87,35 @@ const changeModeStyle = (text) => { // "" == "lightMode"
         console.log("entrando en modo nocturno")
         document.body.classList.add("dark")
         darkMode.innerHTML = "Modo Diurno <hr>"
-        document.querySelector("#menu").classList.add("off")
+        //document.querySelector("#menu").classList.add("off")
         document.querySelector("#cross").classList.add("off")
         document.querySelector("#burgerDark").classList.remove("off")
+        if (text == "darkLogoClick") {
+            console.log("if del click logo Dark")
+            document.querySelector("#crossDark").classList.add("off")
+            document.querySelector("#burger").classList.add("off")
+            document.querySelector("#burgerDark").classList.remove("off")
+        } else if (text == undefined) {
+            console.log("if del click repaintStyles")
+            document.querySelector("#crossDark").classList.remove("off")
+            document.querySelector("#burgerDark").classList.add("off")
+        }
     } else {
         console.log("entrando en modo diurno")
         document.body.classList.remove("dark")
         darkMode.innerHTML = "Modo Nocturno <hr>"
-        document.querySelector("#menu").classList.remove("off")
+        //document.querySelector("#menu").classList.remove("off")
         document.querySelector("#cross").classList.remove("off")
         document.querySelector("#burgerDark").classList.add("off")
+        if (text == "repaintStyles") {
+            document.querySelector("#menu").classList.add("off")
+            document.querySelector("#cross").classList.add("off") 
+            document.querySelector("#burger").classList.remove("off")
+        } else if (text == "dayLogoClick") {
+            console.log("entrando dayLogoClick")
+            document.querySelector("#cross").classList.add("off") 
+            document.querySelector("#burger").classList.remove("off")
+        }
     }
 }
 
