@@ -170,6 +170,51 @@
     }
 }
 
+/*------Container to Maximum Image---------- */
+#containerMaxGifs {
+    @extend %display_none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color-white;
+    opacity: 90%;
+    
+    #imgMaxSize{
+        width: 318px;
+        height: 245px;
+    }
+
+    h2 {
+        @include generals_font($color: $color-black);
+        font-size: $font-size16;
+    }
+
+    h3 {
+        @extend %robotos_font; 
+        font-size: subtraction($font-size16, 1px);
+    }
+    #imgCrossMax {
+        position: relative;
+        right: 50%;
+        top: 47px;
+        cursor: pointer;
+    }  
+
+    #imgFavoriteMax:hover{
+        background-color: aquamarine;
+        cursor: pointer;
+    }
+
+    #imgDownloadMax {
+        opacity: 0.5;
+        border: 1px solid #9CAFC3;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+}
+
 /*----------------------------*/
 /*         DARK MODE          */
 /*----------------------------*/
