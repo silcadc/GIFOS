@@ -181,30 +181,55 @@
     background-color: $color-white;
     opacity: 90%;
     
+    
     #imgMaxSize{
         width: 318px;
         height: 245px;
+        position: absolute;
+        top: 142px;
+        right: 6%;
     }
 
     h2 {
         @include generals_font($color: $color-black);
+        text-align: left;
         font-size: $font-size16;
+        position: relative;
+        top: 68%;
+        left: 7%;
+        height: 100px;
+        width: 224px;
     }
 
     h3 {
         @extend %robotos_font; 
         font-size: subtraction($font-size16, 1px);
+        position: absolute;
+        bottom: 28%;
+        left: 9%;
     }
+
     #imgCrossMax {
-        position: relative;
-        right: 50%;
+        position: absolute;
+        right: 37px;
         top: 47px;
         cursor: pointer;
     }  
 
-    #imgFavoriteMax:hover{
-        background-color: aquamarine;
+    #imgFavoriteMax {
         cursor: pointer;
+        position: absolute;
+        top: 412px;
+        right: 73px;
+        width: 40px;
+        height: 35px;
+    }
+
+    #favoriteActive {
+        cursor: pointer;
+        position: absolute;
+        top: 420px;
+        right: 82px;
     }
 
     #imgDownloadMax {
@@ -212,6 +237,9 @@
         border: 1px solid #9CAFC3;
         border-radius: 6px;
         cursor: pointer;
+        position: absolute;
+        top: 414px;
+        right: 22px;
     }
 }
 
@@ -285,6 +313,22 @@
         #latestGifos {
             @extend %robotos_font;
             color: $color-white;
+        }
+    }
+
+    /*------Container to Maximum Image---------- */
+    #containerMaxGifs { 
+        h2 {
+            @include generals_font($color: $color-white, $text: left);
+        }
+
+        h3 {
+            @extend %robotos_font;
+            color: $color-white;
+        }
+
+        #imgDownloadMax {
+            opacity: 1;
         }
     }
 }

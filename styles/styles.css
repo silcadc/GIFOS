@@ -42,7 +42,7 @@ body {
   line-height: 33px;
 }
 
-#footer #footerShare, #footer #footerCopyright, .dark #footer #footerShare, #firstSection #gifosFinder ::placeholder, #trends #latestGifos, #containerMaxGifs h3, .dark #trends #latestGifos {
+#footer #footerShare, #footer #footerCopyright, .dark #footer #footerShare, #firstSection #gifosFinder ::placeholder, #trends #latestGifos, #containerMaxGifs h3, .dark #trends #latestGifos, .dark #containerMaxGifs h3 {
   color: #000000;
   font-weight: 400;
   font-family: "Roboto", sans-serif;
@@ -69,6 +69,11 @@ body {
   font-family: "Montserrat", sans-serif;
   font-size: 20px;
   line-height: 30px;
+}
+
+#favoriteSection .savedGifs {
+  width: 100%;
+  display: grid;
 }
 
 #favoriteSection .theFavoriteGifs {
@@ -468,6 +473,9 @@ nav #menu li a hr {
 #containerMaxGifs #imgMaxSize {
   width: 318px;
   height: 245px;
+  position: absolute;
+  top: 142px;
+  right: 6%;
 }
 
 #containerMaxGifs h2 {
@@ -475,23 +483,43 @@ nav #menu li a hr {
   font-weight: bold;
   text-align: center;
   font-family: "Montserrat", sans-serif;
+  text-align: left;
   font-size: 16px;
+  position: relative;
+  top: 68%;
+  left: 7%;
+  height: 100px;
+  width: 224px;
 }
 
 #containerMaxGifs h3 {
   font-size: 15px;
+  position: absolute;
+  bottom: 28%;
+  left: 9%;
 }
 
 #containerMaxGifs #imgCrossMax {
-  position: relative;
-  right: 50%;
+  position: absolute;
+  right: 37px;
   top: 47px;
   cursor: pointer;
 }
 
-#containerMaxGifs #imgFavoriteMax:hover {
-  background-color: aquamarine;
+#containerMaxGifs #imgFavoriteMax {
   cursor: pointer;
+  position: absolute;
+  top: 412px;
+  right: 73px;
+  width: 40px;
+  height: 35px;
+}
+
+#containerMaxGifs #favoriteActive {
+  cursor: pointer;
+  position: absolute;
+  top: 420px;
+  right: 82px;
 }
 
 #containerMaxGifs #imgDownloadMax {
@@ -499,6 +527,9 @@ nav #menu li a hr {
   border: 1px solid #9CAFC3;
   border-radius: 6px;
   cursor: pointer;
+  position: absolute;
+  top: 414px;
+  right: 22px;
 }
 
 /*----------------------------*/
@@ -507,6 +538,7 @@ nav #menu li a hr {
 /* Ilustra Header - First Section */
 .dark {
   /*--------- GIFOS in Trend------- */
+  /*------Container to Maximum Image---------- */
 }
 
 .dark #firstSection .color_white {
@@ -597,5 +629,20 @@ nav #menu li a hr {
 
 .dark #trends #latestGifos {
   color: #FFFFFF;
+}
+
+.dark #containerMaxGifs h2 {
+  color: #FFFFFF;
+  font-weight: bold;
+  text-align: left;
+  font-family: "Montserrat", sans-serif;
+}
+
+.dark #containerMaxGifs h3 {
+  color: #FFFFFF;
+}
+
+.dark #containerMaxGifs #imgDownloadMax {
+  opacity: 1;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -149,16 +149,35 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
             image.setAttribute("id", gif.id)
             document.querySelector("#newGifos").appendChild(image)
         })
+
+        let favoritesGifosCheck = [];
+        document.getElementById("savedGifs").innerHTML = favoritesGifosCheck;
              
         let imgNewGifos = document.querySelectorAll("#newGifos > img")
         imgNewGifos.forEach(imgGifosTrend => {
             imgGifosTrend.addEventListener("click", () => {
-
                 let containerMaxGifs = document.querySelector("#containerMaxGifs")
                 let containerImage = document.createElement("img")
 
                 const anchor = document.createElement("a");
                 const href = document.createAttribute("href");
+
+                let imgCross = document.createElement("img")
+                let imgFavorite = document.createElement("img")
+                let favoriteActive = document.createElement("img")
+                let imgDownload = document.createElement("img")
+
+                if (isDark == true) {
+                    containerMaxGifs.style.background = "#000000";
+                   
+                    imgCross.src = './assets/close-modo-noct.svg';
+                    imgCross.setAttribute("id", "imgCrossMax")
+                } else if (isDark !== true) {
+                    containerMaxGifs.style.backgroundColor = "#ffffff";
+                  
+                    imgCross.src = './assets/close.svg';
+                    imgCross.setAttribute("id", "imgCrossMax")
+                }
 
                 anchor.setAttributeNode(href);
                 anchor.setAttribute("download", "Gifo");
@@ -167,20 +186,19 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
                                                                            
                 containerImage.src = imgGifosTrend.src
                 containerImage.setAttribute("id", "imgMaxSize")
-
-                let imgCross = document.createElement("img")
-                imgCross.src = './assets/close.svg';
-                imgCross.setAttribute("id", "imgCrossMax")
-                let imgFavorite = document.createElement("img")
+                
                 imgFavorite.src = './assets/icon-fav-hover.svg';
-                imgFavorite.setAttribute("id", "imgFavoriteMax")
-                let imgDownload = document.createElement("img")
+                imgFavorite.setAttribute("id", "imgFavoriteMax");
+
+                favoriteActive.src = './assets/icon-fav-active.svg'
+                favoriteActive.setAttribute("class", "off");
+                favoriteActive.setAttribute("id", "favoriteActive");
+                
                 imgDownload.src = './assets/icon-download-hover.svg';
                 imgDownload.setAttribute("id", "imgDownloadMax")
 
                 let idGifos = imgGifosTrend.getAttribute("id")
                 for (i=0; i<apiResponseList.length; i++) {
-                    console.log("indice    " + i)
                     if (idGifos === apiResponseList[i].id) {
                         const titleGifos = document.createElement("h2")
                         titleGifos.textContent = apiResponseList[i].title
@@ -198,6 +216,7 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
                 containerMaxGifs.appendChild(anchor)      
                 containerMaxGifs.appendChild(imgCross)
                 containerMaxGifs.appendChild(imgFavorite)
+                containerMaxGifs.appendChild(favoriteActive)
                 containerMaxGifs.appendChild(imgDownload)
                 
                 document.querySelector("#containerMaxGifs").style.display = "block"
@@ -213,10 +232,27 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
                 // downloadMax.addEventListener("click", () => {
                 
                 // })
+
+                imgFavorite.addEventListener("click", () => {
+                    imgFavorite.classList.toggle("off")
+                    favoriteActive.classList.remove("off")
+                    //con este click se debe guardar en mis favoritos
+                    //document.querySelector(".theFavoriteGifs").add("off")
+                    function myFunction() {
+                        favoritesGifosCheck.push("id + url ojo");
+                        document.getElementById("demo").innerHTML = fruits;
+                    }
+
+                })
                 
+                favoriteActive.addEventListener("click", () => {
+                    favoriteActive.classList.toggle("off")
+                    imgFavorite.classList.remove("off")
+                    //con este click se debe sacar de mis favoritos
+                })
             })
         })    
-    }) 
+    })  
 
 
 

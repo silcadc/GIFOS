@@ -13,6 +13,12 @@
         font-size: sum($font-size16, 4px);
         line-height: 30px;
     }
+
+    .savedGifs {
+        width: 100%;
+        display: grid;
+    }
+
     .theFavoriteGifs {
         width: 100%;
         display: grid;
