@@ -137,11 +137,7 @@ fetch(`https://api.giphy.com/v1/trending/searches?api_key=${API_KEY}`)
 fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
     .then (response => response.json())
     .then (response => {
-        let apiResponseList = response.data//esta variable trae consigo una lista, 
-        //por eso cuando la usaba en otros lugares junto con .title era undefined,
-        //yo queria que me dieran el titulo de todo un array. Para usar la variabla
-        //luego del for le agrego [i] indicando el indice al que quiero acceder. 
-       // console.log("API RESPUESTA" + apiResponseList)
+        let apiResponseList = response.data
         console.log(apiResponseList)
         response.data.forEach( gif => {
             const image = document.createElement("img")
@@ -150,12 +146,28 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
             document.querySelector("#newGifos").appendChild(image)
         })
 
-        let favoritesGifosCheck = [];
-        document.getElementById("savedGifs").innerHTML = favoritesGifosCheck;
              
         let imgNewGifos = document.querySelectorAll("#newGifos > img")
         imgNewGifos.forEach(imgGifosTrend => {
             imgGifosTrend.addEventListener("click", () => {
+                let arrayFavorite = [];
+                if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
+                    console.log(arrayFavorite)
+                    //-----------------------------------------------------//
+                    arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));
+                    //-----------------------------------------------------//
+                }
+                console.log(arrayFavorite)
+                console.log(sessionStorage.getItem("fullHeart"))
+                
+                let isFavorite = false;
+                let idGifos = imgGifosTrend.getAttribute("id")
+                for (i=0; i<arrayFavorite.length; i++) {
+                    if (idGifos === arrayFavorite[i]) {
+                        isFavorite = true;
+                    }
+                }
+
                 let containerMaxGifs = document.querySelector("#containerMaxGifs")
                 let containerImage = document.createElement("img")
 
@@ -193,11 +205,20 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
                 favoriteActive.src = './assets/icon-fav-active.svg'
                 favoriteActive.setAttribute("class", "off");
                 favoriteActive.setAttribute("id", "favoriteActive");
+
+                if (isFavorite === true) {
+                    favoriteActive.classList.remove("off");
+                    imgFavorite.classList.add("off");
+                }else {
+                    imgFavorite.classList.remove("off");
+                    favoriteActive.classList.add("off");
+                }
                 
                 imgDownload.src = './assets/icon-download-hover.svg';
                 imgDownload.setAttribute("id", "imgDownloadMax")
 
-                let idGifos = imgGifosTrend.getAttribute("id")
+                
+                console.log(idGifos)
                 for (i=0; i<apiResponseList.length; i++) {
                     if (idGifos === apiResponseList[i].id) {
                         const titleGifos = document.createElement("h2")
@@ -222,9 +243,8 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
                 document.querySelector("#containerMaxGifs").style.display = "block"
                 
                 const crossMax = document.getElementById("imgCrossMax")
-                console.log("crossMax    " + crossMax)
                 crossMax.addEventListener("click", () => {
-                    containerMaxGifs.innerHTML = "" //con esta línea evito guardar las imagenes
+                    containerMaxGifs.innerHTML = "" 
                     document.querySelector("#containerMaxGifs").style.display = "none"
                 })
 
@@ -235,26 +255,27 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
 
                 imgFavorite.addEventListener("click", () => {
                     imgFavorite.classList.toggle("off")
-                    favoriteActive.classList.remove("off")
-                    //con este click se debe guardar en mis favoritos
-                    //document.querySelector(".theFavoriteGifs").add("off")
-                    function myFunction() {
-                        favoritesGifosCheck.push("id + url ojo");
-                        document.getElementById("demo").innerHTML = fruits;
-                    }
-
+                    favoriteActive.classList.remove("off");//Todos los ID que tengan el corazon full se van al array vacio
+                    console.log(arrayFavorite)
+                    arrayFavorite.push(idGifos);
+                    
+                    sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
+                    console.log("Guardó")
                 })
                 
                 favoriteActive.addEventListener("click", () => {
                     favoriteActive.classList.toggle("off")
                     imgFavorite.classList.remove("off")
-                    //con este click se debe sacar de mis favoritos
+                    let index = arrayFavorite.indexOf(idGifos);
+                    if (index > -1) {//-1 indica que no encontre el elemento
+                        arrayFavorite.splice(index, 1);
+                        sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
+                        console.log("Quitó")
+                    }
                 })
             })
         })    
     })  
-
-
 
 /*----------------------------*/
 /*         DARK MODE          */

@@ -133,7 +133,7 @@
         border: none;  
         margin-top: 78px;
     }
-}
+}//////////////////////////////////////////////////////////media
 
 /*-----------GIFOS in Trend---------- */
 #trends {
@@ -332,3 +332,129 @@
         }
     }
 }
+
+
+
+/* Large devices (laptops/desktops, 768px and up) */
+// @media only screen and (min-width: 768px) {
+//     .dark {
+//         background: $color-darkgrey;
+//     }
+    
+//     .off {
+//         @extend %display_none;
+//     }
+    
+//     /* ---------First Section---------- */
+//     /* Ilustra Header - First Section */
+//     #firstSection {
+//         text-align: $text-align-center;
+//         .color_purple {
+//             @include generals_font;
+//             @extend %size;
+//         }
+//         #color_aqua {
+//             color: $color-aqua;
+//             font-family: $font-titles;
+//         }
+//         .ilustra_header {
+//             @extend %display_block;
+//             width: percentage(1700%, $page-max-width, $rem);
+//             margin: auto;
+//             margin-top: 6px;
+//         }
+//         #gifosFinder {
+//             text-align: $text-align-center;
+//             cursor: pointer;
+//             #searchGifos {
+//                 background: $color-white;
+//                 border: $border $color-purple;
+//                 border-radius: $border-radius;
+//                 width: 334px;
+//                 height: 50px;
+//                 padding-left: 60px;
+//             }
+//             ::placeholder {
+//                 @extend %robotos_font;
+//                 font-size: sum($font-size16, 0);
+//                 color: $color-fontgrey;
+//             }
+//             .search {
+//                 width: 20px;
+//                 height: 20px;
+//                 position: absolute;
+//                 right: 12%;
+//                 top: 24.8rem;
+//             }
+//             .searchToTerm {
+//                 width: 20px;
+//                 height: 20px;
+//                 position: absolute;
+//                 right: 12%;
+//                 top: 7.5rem;
+//             }
+//         }
+//         #trending {
+//             margin: 0;
+//             margin-top: 31px;
+//             font-size: sum($font-size16, 1px);
+//             .color_purple {
+//                 @include generals_font;
+//             }
+//         }
+//         .ultrendings {
+//             width: 100%;
+//             height: 50px;
+//             font-size: subtraction($font-size16, 2px);
+//             line-height: 25px;
+//             ul {
+//                 padding: 0 60px;
+//                 li {
+//                     @include generals_font($font: $font-weight-medium);
+//                     margin: 2px;
+//                     width: 10%;
+//                     list-style-type: $list-none;
+//                     text-transform: capitalize;
+//                     display: inline;
+//                 }
+//             }
+//         }
+//         .lineUnderSearch{
+//             width: 50%;
+//             height: 1px;
+//             opacity: 0.5;
+//             border: $border $color-linegrey;
+//             margin-top: 35px;
+//         }
+//         #tryAnotherSearch {
+//             .noContent {
+//                 width: 150px;
+//                 height: 150px;
+//                 margin-top: 60px;
+//             }
+//             .noContentText {
+//                 @include generals_font($color: $color-aqua);
+//             }
+//         }
+//         .termToSearch {
+//             margin-top: 43px;
+//         }
+//         .gifosContainer {
+//             display: grid;
+//             grid-template-columns: 50% 50%;
+//             .showGifos {
+//                 width: 156px;
+//                 height: 120px; 
+//                 margin: 10%;           
+//             }
+//         }
+//         .seeMore {
+//             background: transparent;
+//             border: none;  
+//             margin-top: 78px;
+//         }
+//     }
+
+
+
+// }

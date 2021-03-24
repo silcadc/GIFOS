@@ -193,6 +193,20 @@ header .checkbox-menu {
   border-top: 5px solid #000000;
 }
 
+/*------------------------------------------------*/
+/* Large devices (laptops/desktops, 768px and up) */
+/*------------------------------------------------*/
+@media only screen and (min-width: 786px) {
+  header .logosHeader {
+    margin-left: 157px;
+    margin-top: 23px;
+    margin-bottom: 17.2px;
+  }
+  header .checkbox-menu {
+    display: none;
+  }
+}
+
 /*----------------------------*/
 /*  Navigation Bar Section    */
 /*----------------------------*/
@@ -233,6 +247,41 @@ nav #menu li a hr {
 .dark nav #menu {
   background: #000000;
   opacity: 100%;
+}
+
+/*------------------------------------------------*/
+/* Large devices (laptops/desktops, 768px and up) */
+/*------------------------------------------------*/
+@media only screen and (min-width: 786px) {
+  nav #menu {
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    top: 23px;
+    background: #572EE5;
+    opacity: 100%;
+    width: 50%;
+    height: 20px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: center;
+  }
+  nav #menu li a {
+    display: inline;
+    color: #572EE5;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    line-height: 60px;
+    text-decoration-line: unset;
+  }
+  nav #menu li a hr {
+    display: none;
+  }
 }
 
 /*----------------------------*/
@@ -645,4 +694,6 @@ nav #menu li a hr {
 .dark #containerMaxGifs #imgDownloadMax {
   opacity: 1;
 }
+
+/* Large devices (laptops/desktops, 768px and up) */
 /*# sourceMappingURL=styles.css.map */

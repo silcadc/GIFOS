@@ -40,3 +40,37 @@ nav {
         }    
     }
 }
+
+/*------------------------------------------------*/
+/* Large devices (laptops/desktops, 768px and up) */
+/*------------------------------------------------*/
+@media only screen and (min-width: 786px) {
+    nav {
+        #menu {   
+            display: inline-block;   
+            position: relative;
+            left: 50%;
+            top: 23px;
+            background: $color-purple;
+            opacity: 100%;
+            width: 50%;
+            height: 20px;
+            list-style-type: $list-none;
+            margin: 0; 
+            padding: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            text-align: $text-align-center;
+        li a {
+            display: inline; 
+            @include generals_font($color: $color-purple);
+            font-size: subtraction($font-size16, 2px);
+            line-height: 60px;
+            text-decoration-line: $text-decoration; 
+                hr {
+                   display: none;
+                }
+            }
+        }    
+    }
+}
