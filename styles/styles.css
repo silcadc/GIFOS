@@ -29,11 +29,11 @@ body {
 /*----------------------------*/
 /*         $MIXINS            */
 /*----------------------------*/
-.dark header #logo, .off, #containerMaxGifs {
+.off, #firstSection #h1Desktops, #containerMaxGifs {
   display: none;
 }
 
-.dark header #logoDark, #firstSection .ilustra_header {
+#firstSection .ilustra_header {
   display: block;
 }
 
@@ -71,20 +71,24 @@ body {
   line-height: 30px;
 }
 
-#favoriteSection .savedGifs {
-  width: 100%;
+#favoriteSection #savedGifs {
   display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+#favoriteSection #savedGifs .favoritesGifosCheck {
+  width: 156px;
+  height: 120px;
+  margin: 10%;
 }
 
 #favoriteSection .theFavoriteGifs {
   width: 100%;
-  display: grid;
 }
 
 #favoriteSection .theFavoriteGifs .noContent {
   width: 150px;
   height: 150px;
-  margin-left: 30%;
 }
 
 #favoriteSection .theFavoriteGifs .noContentText {
@@ -156,6 +160,26 @@ body {
   line-height: 30px;
 }
 
+.dark #favoriteSection #savedGifs {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.dark #favoriteSection #savedGifs .favoritesGifosCheck {
+  width: 156px;
+  height: 120px;
+  margin: 10%;
+}
+
+.dark #favoriteSection .seeMore {
+  display: none;
+}
+
+.dark #favoriteSection .seeMoreDark {
+  background: transparent;
+  border: none;
+}
+
 /*---------My Gifos Section---------- */
 .dark #myGifosSection .titlesSection {
   color: #FFFFFF;
@@ -166,17 +190,33 @@ body {
   line-height: 30px;
 }
 
+.dark .seeMore {
+  display: none;
+}
+
+.dark .seeMoreDark {
+  background: transparent;
+  border: none;
+}
+
 /*----------------------------*/
 /*       HEADER SECTION       */
 /*----------------------------*/
 header {
   border-top: 5px solid #572EE5;
+  /*----------------------------*/
+  /*  Navigation Bar Section    */
+  /*----------------------------*/
 }
 
 header .logosHeader {
   margin-left: 22px;
   margin-top: 29px;
   margin-bottom: 17.2px;
+}
+
+header .logosHeaderDesktop {
+  display: none;
 }
 
 header .checkbox-menu {
@@ -186,31 +226,7 @@ header .checkbox-menu {
   cursor: pointer;
 }
 
-/*----------------------------*/
-/*     DARK MODE - HEADER     */
-/*----------------------------*/
-.dark header {
-  border-top: 5px solid #000000;
-}
-
-/*------------------------------------------------*/
-/* Large devices (laptops/desktops, 768px and up) */
-/*------------------------------------------------*/
-@media only screen and (min-width: 786px) {
-  header .logosHeader {
-    margin-left: 157px;
-    margin-top: 23px;
-    margin-bottom: 17.2px;
-  }
-  header .checkbox-menu {
-    display: none;
-  }
-}
-
-/*----------------------------*/
-/*  Navigation Bar Section    */
-/*----------------------------*/
-nav #menu {
+header nav #menu {
   position: fixed;
   background: #572EE5;
   opacity: 90%;
@@ -224,7 +240,7 @@ nav #menu {
   text-align: center;
 }
 
-nav #menu li a {
+header nav #menu .btnsNavigations {
   color: #FFFFFF;
   font-weight: bold;
   text-align: center;
@@ -234,16 +250,38 @@ nav #menu li a {
   text-decoration-line: unset;
 }
 
-nav #menu li a hr {
+header nav #menu .btnsNavigations hr {
   width: 35px;
   height: 2px;
   background-color: #FFFFFF;
   margin: 0 45%;
 }
 
+header nav #menu #createMyGifos {
+  display: none;
+}
+
 /*----------------------------*/
-/*         DARK MODE          */
+/*     DARK MODE - HEADER     */
 /*----------------------------*/
+.dark {
+  /*----------------------------*/
+  /*         DARK MODE          */
+  /*----------------------------*/
+}
+
+.dark header {
+  border-top: 5px solid #000000;
+}
+
+.dark header .logosHeaderDesktop {
+  display: none;
+}
+
+.dark header .logosHeader {
+  display: block;
+}
+
 .dark nav #menu {
   background: #000000;
   opacity: 100%;
@@ -253,34 +291,67 @@ nav #menu li a hr {
 /* Large devices (laptops/desktops, 768px and up) */
 /*------------------------------------------------*/
 @media only screen and (min-width: 786px) {
-  nav #menu {
-    display: inline-block;
-    position: relative;
-    left: 50%;
-    top: 23px;
-    background: #572EE5;
-    opacity: 100%;
-    width: 50%;
-    height: 20px;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    text-align: center;
+  header {
+    border-top: 5px solid #572EE5;
   }
-  nav #menu li a {
-    display: inline;
-    color: #572EE5;
-    font-weight: bold;
-    text-align: center;
-    font-family: "Montserrat", sans-serif;
-    font-size: 14px;
-    line-height: 60px;
-    text-decoration-line: unset;
+  header .logosHeaderDesktop {
+    margin-left: 105px;
+    margin-top: 23px;
+    margin-bottom: 17.2px;
   }
-  nav #menu li a hr {
+  header .logosHeader {
     display: none;
+  }
+  header nav #menu {
+    position: absolute;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    background: #FFFFFF;
+    opacity: 100;
+    right: 5%;
+    top: 23px;
+    width: 500px;
+    height: auto;
+    padding: 0;
+    text-align: unset;
+  }
+  header nav #menu .btnsNavigations {
+    color: #572EE5;
+  }
+  header nav #menu .btnsNavigations hr {
+    display: none;
+  }
+  header nav #menu #createMyGifos {
+    display: block;
+  }
+  /*----------------------------*/
+  /*     DARK MODE - HEADER     */
+  /*----------------------------*/
+  .dark {
+    /*----------------------------*/
+    /*         DARK MODE          */
+    /*----------------------------*/
+  }
+  .dark header {
+    border-top: 5px solid #000000;
+  }
+  .dark header .logosHeaderDesktop {
+    display: block;
+  }
+  .dark header .logosHeader {
+    display: none;
+  }
+  .dark nav #menu {
+    background: #37383C;
+  }
+  .dark nav #menu .btnsNavigations {
+    color: #FFFFFF;
+  }
+  .dark nav #menu .btnsNavigations hr {
+    display: none;
+  }
+  .dark nav #menu #createMyGifos {
+    display: block;
   }
 }
 
@@ -309,6 +380,14 @@ nav #menu li a hr {
   justify-content: space-evenly;
 }
 
+#footer #socialMedia #twitter {
+  display: block;
+}
+
+#footer #socialMedia #twitterpurple {
+  display: none;
+}
+
 #footer #footerCopyright {
   font-size: 0.9rem;
   line-height: 20px;
@@ -324,6 +403,47 @@ nav #menu li a hr {
 
 .dark #footer #footerCopyright {
   color: #FFFFFF;
+}
+
+@media only screen and (min-width: 768px) {
+  /*----------------------------*/
+  /*       FOOTER SECTION       */
+  /*----------------------------*/
+  #footer {
+    padding: 0 100px;
+    height: 100px;
+    left: 10px;
+    display: grid;
+    grid-template-columns: 224px 127px 101px;
+    grid-template-rows: auto;
+    grid-template-areas: "footerShare socialMedia foterCopyright";
+  }
+  #footer #footerShare {
+    margin: 0;
+    grid-area: footerShare;
+    margin-top: 36px;
+  }
+  #footer #socialMedia {
+    margin: 0;
+    grid-area: socialMedia;
+    margin-top: 30px;
+  }
+  #footer #socialMedia a {
+    margin: 10px;
+  }
+  #footer #socialMedia a #twitterpurple {
+    display: block;
+  }
+  #footer #socialMedia a #twitter {
+    display: none;
+  }
+  #footer br {
+    display: none;
+  }
+  #footer #footerCopyright {
+    grid-area: footerCopyright;
+    margin-top: -47px;
+  }
 }
 
 .dark {
@@ -376,9 +496,9 @@ nav #menu li a hr {
 #firstSection #gifosFinder .search {
   width: 20px;
   height: 20px;
-  position: absolute;
+  position: relative;
   right: 12%;
-  top: 24.8rem;
+  top: 30%;
 }
 
 #firstSection #gifosFinder .searchToTerm {
@@ -386,7 +506,7 @@ nav #menu li a hr {
   height: 20px;
   position: absolute;
   right: 12%;
-  top: 7.5rem;
+  top: 10.5rem;
 }
 
 #firstSection #trending {
@@ -419,7 +539,6 @@ nav #menu li a hr {
   text-align: center;
   font-family: "Montserrat", sans-serif;
   margin: 2px;
-  width: 10%;
   list-style-type: none;
   text-transform: capitalize;
   display: inline;
@@ -471,7 +590,7 @@ nav #menu li a hr {
 #trends {
   background: #F3F5F8;
   width: 100%;
-  height: 430px;
+  height: 40%;
   margin-top: 59px;
   padding-top: 45px;
   padding-bottom: 82px;
@@ -493,10 +612,9 @@ nav #menu li a hr {
 }
 
 #trends #newGifos {
-  width: 243px;
-  height: 187px;
-  margin-top: 32px;
-  margin-bottom: 82px;
+  width: 100%;
+  height: 40%;
+  margin: 0;
   display: grid;
   grid-template-columns: auto auto auto;
 }
@@ -524,7 +642,7 @@ nav #menu li a hr {
   height: 245px;
   position: absolute;
   top: 142px;
-  right: 6%;
+  right: 9%;
 }
 
 #containerMaxGifs h2 {
@@ -535,7 +653,7 @@ nav #menu li a hr {
   text-align: left;
   font-size: 16px;
   position: relative;
-  top: 68%;
+  top: 72%;
   left: 7%;
   height: 100px;
   width: 224px;
@@ -544,7 +662,7 @@ nav #menu li a hr {
 #containerMaxGifs h3 {
   font-size: 15px;
   position: absolute;
-  bottom: 28%;
+  bottom: 24%;
   left: 9%;
 }
 
@@ -558,10 +676,10 @@ nav #menu li a hr {
 #containerMaxGifs #imgFavoriteMax {
   cursor: pointer;
   position: absolute;
-  top: 412px;
-  right: 73px;
   width: 40px;
-  height: 35px;
+  height: 33px;
+  top: 414px;
+  right: 73px;
 }
 
 #containerMaxGifs #favoriteActive {
@@ -578,7 +696,7 @@ nav #menu li a hr {
   cursor: pointer;
   position: absolute;
   top: 414px;
-  right: 22px;
+  right: 34px;
 }
 
 /*----------------------------*/
@@ -603,11 +721,11 @@ nav #menu li a hr {
 }
 
 .dark #firstSection #gifosFinder .search {
-  top: 23.5rem;
+  top: 21%;
 }
 
 .dark #firstSection #gifosFinder .searchToTerm {
-  top: 7.2rem;
+  top: 29%;
 }
 
 .dark #firstSection #trending {
@@ -640,7 +758,6 @@ nav #menu li a hr {
   text-align: center;
   font-family: "Montserrat", sans-serif;
   margin: 2px;
-  width: 10%;
   list-style-type: none;
   text-transform: capitalize;
   display: inline;
@@ -696,4 +813,157 @@ nav #menu li a hr {
 }
 
 /* Large devices (laptops/desktops, 768px and up) */
+@media only screen and (min-width: 768px) {
+  /* ---------First Section---------- */
+  /* Ilustra Header - First Section */
+  #firstSection .color_purple {
+    font-size: 2.18rem;
+  }
+  #firstSection #h1Mobile {
+    display: none;
+  }
+  #firstSection #h1Desktops {
+    display: block;
+    margin-top: 76px;
+  }
+  #firstSection .ilustra_header {
+    width: 27rem;
+  }
+  #firstSection #gifosFinder #searchGifos {
+    width: 35rem;
+    height: 50px;
+    padding-left: 60px;
+  }
+  #firstSection #gifosFinder .search {
+    position: relative;
+    right: 6%;
+    top: 16.5%;
+  }
+  #firstSection #gifosFinder .searchToTerm {
+    position: relative;
+    right: 6%;
+    top: 15%;
+  }
+  #firstSection #trending {
+    margin-top: 73px;
+    font-size: 20px;
+  }
+  #firstSection .ultrendings {
+    font-size: 18px;
+  }
+  #firstSection .lineUnderSearch {
+    width: 50%;
+    height: 1px;
+    opacity: 0.5;
+    border: 1px solid #9CAFC3;
+    margin-top: 35px;
+  }
+  #firstSection #tryAnotherSearch .noContent {
+    width: 250px;
+    height: 250px;
+  }
+  #firstSection .gifosContainer {
+    grid-template-columns: 25% 25% 25% 25%;
+    padding: 15px;
+  }
+  #firstSection .gifosContainer .showGifos {
+    margin: 8%;
+  }
+  /*-----------GIFOS in Trend---------- */
+  #trends #latestGifos {
+    font-size: 18px;
+  }
+  #trends #latestGifos br {
+    display: none;
+  }
+  #trends div {
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+  #trends div .btnSliderLeft {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: 100%;
+    top: 36.5%;
+  }
+  #trends div #newGifos {
+    width: 80%;
+    height: 60%;
+    margin-left: 10%;
+    margin-top: 32px;
+    margin-bottom: 82px;
+  }
+  #trends div #newGifos img {
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+  }
+  #trends div .btnSliderRight {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    right: 92%;
+    top: 36.5%;
+  }
+  /*---------Container to Maximum Image---------- */
+  #containerMaxGifs #imgMaxSize {
+    width: 60%;
+    height: 60%;
+    position: absolute;
+    right: 20%;
+  }
+  #containerMaxGifs h2 {
+    top: 87%;
+    left: 20%;
+    width: 450px;
+  }
+  #containerMaxGifs h3 {
+    bottom: 11%;
+    left: 21%;
+    width: 350px;
+  }
+  #containerMaxGifs #imgCrossMax {
+    right: 80px;
+  }
+  #containerMaxGifs #imgFavoriteMax {
+    top: 571px;
+    right: 246px;
+  }
+  #containerMaxGifs #favoriteActive {
+    top: 578px;
+    right: 258px;
+  }
+  #containerMaxGifs #imgDownloadMax {
+    top: 570px;
+    right: 206px;
+  }
+  /*----------------------------*/
+  /*         DARK MODE          */
+  /*----------------------------*/
+  /* Ilustra Header - First Section */
+  .dark {
+    /*--------- GIFOS in Trend------- */
+  }
+  .dark #firstSection #gifosFinder .search {
+    top: 12.2%;
+  }
+  .dark #firstSection #gifosFinder .searchToTerm {
+    top: 7.2%;
+  }
+  .dark #firstSection #trending {
+    margin: 0;
+    margin-top: 73px;
+    font-size: 20px;
+  }
+  .dark #firstSection .ultrendings {
+    font-size: 18px;
+  }
+  .dark #firstSection .lineUnderSearch {
+    border: 1px solid #FFFFFF;
+  }
+  .dark #trends #latestGifos {
+    color: #FFFFFF;
+  }
+}
 /*# sourceMappingURL=styles.css.map */

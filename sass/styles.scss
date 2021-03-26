@@ -33,6 +33,9 @@
         @include generals_font;
         @extend %size;
     }
+    #h1Desktops {
+        @extend %display_none;
+    }
     #color_aqua {
         color: $color-aqua;
         font-family: $font-titles;
@@ -62,16 +65,16 @@
         .search {
             width: 20px;
             height: 20px;
-            position: absolute;
+            position: relative;
             right: 12%;
-            top: 24.8rem;
+            top: 30%;
         }
         .searchToTerm {
             width: 20px;
             height: 20px;
             position: absolute;
             right: 12%;
-            top: 7.5rem;
+            top: 10.5rem;
         }
     }
     #trending {
@@ -92,7 +95,6 @@
             li {
                 @include generals_font($font: $font-weight-medium);
                 margin: 2px;
-                width: 10%;
                 list-style-type: $list-none;
                 text-transform: capitalize;
                 display: inline;
@@ -133,13 +135,13 @@
         border: none;  
         margin-top: 78px;
     }
-}//////////////////////////////////////////////////////////media
+}
 
 /*-----------GIFOS in Trend---------- */
 #trends {
     background: $color-grey;
     width: $page-max-width;
-    height: 430px;
+    height: 40%;
     margin-top: 59px;
     padding-top: 45px;
     padding-bottom: 82px;
@@ -155,10 +157,9 @@
         line-height: 23px;
     }
     #newGifos {
-        width: 243px;
-        height: 187px;
-        margin-top: 32px;
-        margin-bottom: 82px;
+        width: 100%;
+        height: 40%;
+        margin: 0;
         display: grid;
         grid-template-columns: auto auto auto;
         img {
@@ -180,58 +181,50 @@
     height: 100%;
     background-color: $color-white;
     opacity: 90%;
-    
-    
     #imgMaxSize{
         width: 318px;
         height: 245px;
         position: absolute;
         top: 142px;
-        right: 6%;
+        right: 9%;
     }
-
     h2 {
         @include generals_font($color: $color-black);
         text-align: left;
         font-size: $font-size16;
         position: relative;
-        top: 68%;
+        top: 72%;
         left: 7%;
         height: 100px;
         width: 224px;
     }
-
     h3 {
         @extend %robotos_font; 
         font-size: subtraction($font-size16, 1px);
         position: absolute;
-        bottom: 28%;
+        bottom: 24%;
         left: 9%;
     }
-
     #imgCrossMax {
         position: absolute;
         right: 37px;
         top: 47px;
         cursor: pointer;
     }  
-
     #imgFavoriteMax {
         cursor: pointer;
         position: absolute;
-        top: 412px;
-        right: 73px;
         width: 40px;
-        height: 35px;
+        height: 33px;
+        top: 414px;
+        right: 73px;
     }
-
     #favoriteActive {
         cursor: pointer;
         position: absolute;
         top: 420px;
         right: 82px;
     }
-
     #imgDownloadMax {
         opacity: 0.5;
         border: 1px solid #9CAFC3;
@@ -239,10 +232,10 @@
         cursor: pointer;
         position: absolute;
         top: 414px;
-        right: 22px;
+        right: 34px;
     }
 }
-
+///////////////////////////////////
 /*----------------------------*/
 /*         DARK MODE          */
 /*----------------------------*/
@@ -259,10 +252,10 @@
                 border: $border $color-white;
             }
             .search {
-                top: 23.5rem;
+                top: 21%;
             }
             .searchToTerm {
-                top: 7.2rem;
+                top: 29%;
             }
         }
         #trending {
@@ -283,7 +276,6 @@
                 li {
                     @include generals_font($font: $font-weight-medium, $color: $color-white);
                     margin: 2px;
-                    width: 10%;
                     list-style-type: $list-none;
                     text-transform: capitalize;
                     display: inline;
@@ -321,140 +313,185 @@
         h2 {
             @include generals_font($color: $color-white, $text: left);
         }
-
         h3 {
             @extend %robotos_font;
             color: $color-white;
         }
-
         #imgDownloadMax {
             opacity: 1;
         }
     }
 }
 
-
-
 /* Large devices (laptops/desktops, 768px and up) */
-// @media only screen and (min-width: 768px) {
-//     .dark {
-//         background: $color-darkgrey;
-//     }
-    
-//     .off {
-//         @extend %display_none;
-//     }
-    
-//     /* ---------First Section---------- */
-//     /* Ilustra Header - First Section */
-//     #firstSection {
-//         text-align: $text-align-center;
-//         .color_purple {
-//             @include generals_font;
-//             @extend %size;
-//         }
-//         #color_aqua {
-//             color: $color-aqua;
-//             font-family: $font-titles;
-//         }
-//         .ilustra_header {
-//             @extend %display_block;
-//             width: percentage(1700%, $page-max-width, $rem);
-//             margin: auto;
-//             margin-top: 6px;
-//         }
-//         #gifosFinder {
-//             text-align: $text-align-center;
-//             cursor: pointer;
-//             #searchGifos {
-//                 background: $color-white;
-//                 border: $border $color-purple;
-//                 border-radius: $border-radius;
-//                 width: 334px;
-//                 height: 50px;
-//                 padding-left: 60px;
-//             }
-//             ::placeholder {
-//                 @extend %robotos_font;
-//                 font-size: sum($font-size16, 0);
-//                 color: $color-fontgrey;
-//             }
-//             .search {
-//                 width: 20px;
-//                 height: 20px;
-//                 position: absolute;
-//                 right: 12%;
-//                 top: 24.8rem;
-//             }
-//             .searchToTerm {
-//                 width: 20px;
-//                 height: 20px;
-//                 position: absolute;
-//                 right: 12%;
-//                 top: 7.5rem;
-//             }
-//         }
-//         #trending {
-//             margin: 0;
-//             margin-top: 31px;
-//             font-size: sum($font-size16, 1px);
-//             .color_purple {
-//                 @include generals_font;
-//             }
-//         }
-//         .ultrendings {
-//             width: 100%;
-//             height: 50px;
-//             font-size: subtraction($font-size16, 2px);
-//             line-height: 25px;
-//             ul {
-//                 padding: 0 60px;
-//                 li {
-//                     @include generals_font($font: $font-weight-medium);
-//                     margin: 2px;
-//                     width: 10%;
-//                     list-style-type: $list-none;
-//                     text-transform: capitalize;
-//                     display: inline;
-//                 }
-//             }
-//         }
-//         .lineUnderSearch{
-//             width: 50%;
-//             height: 1px;
-//             opacity: 0.5;
-//             border: $border $color-linegrey;
-//             margin-top: 35px;
-//         }
-//         #tryAnotherSearch {
-//             .noContent {
-//                 width: 150px;
-//                 height: 150px;
-//                 margin-top: 60px;
-//             }
-//             .noContentText {
-//                 @include generals_font($color: $color-aqua);
-//             }
-//         }
-//         .termToSearch {
-//             margin-top: 43px;
-//         }
-//         .gifosContainer {
-//             display: grid;
-//             grid-template-columns: 50% 50%;
-//             .showGifos {
-//                 width: 156px;
-//                 height: 120px; 
-//                 margin: 10%;           
-//             }
-//         }
-//         .seeMore {
-//             background: transparent;
-//             border: none;  
-//             margin-top: 78px;
-//         }
-//     }
+@media only screen and (min-width: 768px) {
+    /* ---------First Section---------- */
+    /* Ilustra Header - First Section */
+    #firstSection {
+        .color_purple {
+            font-size: percentage(218%, $page-max-width, $rem);
+        }
+        #h1Mobile {
+            display: none;
+        }
+        #h1Desktops {
+            display: block;
+            margin-top: 76px;
+        }
+        .ilustra_header {
+            width: percentage(2700%, $page-max-width, $rem);
+        }
+        #gifosFinder {
+            #searchGifos {
+                width: percentage(3500%, $page-max-width, $rem);
+                height: 50px;
+                padding-left: 60px;
+            }
+            .search {
+                position: relative;
+                right: 6%;
+                top: 16.5%;
+            }
+            .searchToTerm {
+                position: relative;
+                right: 6%;
+                top: 15%;
+            }
+        }
+        #trending {
+            margin-top: 73px;
+            font-size: sum($font-size16, 4px);
+        }
+        .ultrendings {
+            font-size: sum($font-size16, 2px);
+        }
+        .lineUnderSearch{
+            width: 50%;
+            height: 1px;
+            opacity: 0.5;
+            border: $border $color-linegrey;
+            margin-top: 35px;
+        }
+        #tryAnotherSearch {
+            .noContent {
+                width: 250px;
+                height: 250px;
+            }
+        }
+        .gifosContainer {
+            grid-template-columns: 25% 25% 25% 25%;
+            padding: 15px;
+            .showGifos {
+                margin: 8%;           
+            }
+        }
+    }
 
+    /*-----------GIFOS in Trend---------- */
+    #trends {
+        #latestGifos {
+            font-size: sum($font-size16, 2);
+            br{
+                display: none;
+            }
+        }
+        div {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            .btnSliderLeft {
+                width: 30px;
+                height: 30px;
+                position: relative;
+                left: 100%;
+                top: 36.5%;
+            }
+            #newGifos {
+                width: 80%;
+                height: 60%;
+                margin-left: 10%;
+                margin-top: 32px;
+                margin-bottom: 82px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    padding: 0 10px;
+                }
+            }
+            .btnSliderRight {
+                width: 30px;
+                height: 30px;
+                position: relative;
+                right: 92%;
+                top: 36.5%;
+            }
+        } 
+    }
 
-
-// }
+    /*---------Container to Maximum Image---------- */
+    #containerMaxGifs {
+        #imgMaxSize{
+            width: 60%;
+            height: 60%;
+            position: absolute;
+            right: 20%;
+        }
+        h2 {
+            top: 87%;
+            left: 20%;
+            width: 450px;
+        }
+        h3 {
+            bottom: 11%;
+            left: 21%;
+            width: 350px;
+        }
+        #imgCrossMax {
+            right: 80px;
+        }  
+        #imgFavoriteMax {
+            top: 571px;
+            right: 246px;
+        }
+        #favoriteActive {
+            top: 578px;
+            right: 258px;
+        }
+        #imgDownloadMax {
+            top: 570px;
+            right: 206px;
+        }
+    }
+    /*----------------------------*/
+    /*         DARK MODE          */
+    /*----------------------------*/
+    /* Ilustra Header - First Section */
+    .dark {
+        #firstSection {
+            #gifosFinder {
+                .search {
+                    top: 12.2%;
+                }
+                .searchToTerm {
+                    top: 7.2%;
+                }
+            }
+            #trending {
+                margin: 0;
+                margin-top: 73px;
+                font-size: sum($font-size16, 4px);
+            }
+            .ultrendings {
+                font-size: sum($font-size16, 2px);
+            }
+            .lineUnderSearch{
+                border: $border $color-white;
+            }
+        }
+        /*--------- GIFOS in Trend------- */
+        #trends {
+            #latestGifos {
+                color: $color-white;
+            }
+        }
+    }
+}

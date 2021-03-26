@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/styles.css" type="text/css">
-    <title>My Gifos Section</title>
+    <!-- <link rel="stylesheet" href="/styles/styles.css" type="text/css"> -->
+    <title>Project GIFOS</title>
 </head>
+
 <body>
-    <header> 
+    <header>
         <a href="/index.html"><img id="logo" class="logosHeader" src="/assets/logo-mobile.svg" alt="logoGifos"></a>
-        <a href="/index.html"><img id="logoDark" class="logosHeader off" src="/assets/logo-mobile-modo-noct.svg" alt="logoGifos"></a>
+        <a href="/index.html"><img id="logoDark" class="logosHeader off" src="/assets/logo-mobile-modo-noct.svg"
+                alt="logoGifos"></a>
         <img id="burger" class="checkbox-menu" src="/assets/burger.svg" alt="logoBurger" tabindex="1">
         <img id="burgerDark" class="checkbox-menu off" src="/assets/burger-modo-noct.svg" alt="logoBurgerDark">
         <img id="cross" class="checkbox-menu off" src="/assets/close.svg" alt="logoCheckBurger">
@@ -25,49 +28,34 @@
                 <li><a href="#nightMode" tabindex="2" id="darkMode">Modo Nocturno
                         <hr>
                     </a></li>
-                <li><a href="./favoriteGifs.html" tabindex="3">Favoritos
+                <li><a href="/html/favoriteGifs.html" tabindex="3" id="linkFavoritos">Favoritos
                         <hr>
                     </a></li>
-                <li><a href="#myGifos" tabindex="4">Mis GIFOS
+                <li><a href="/html/myGifos.html" tabindex="4">Mis GIFOS
                         <hr>
                     </a></li>
             </ul>
         </nav>
     </header>
-    <section id="myGifosSection">
-        <div>
-            <img id="myGifos" src="/assets/icon-mis-gifos.svg" alt="myGifos">
-        </div>
-        <h2 class="titlesSection">Mis GIFOS</h2>
-        <div id="myOwnGifs">
-            <img class="noContent" src="/assets/icon-mis-gifos-sin-contenido.svg" alt="Gifos Without Content">
-            <h3 class="noContentText">¡Anímate a crear tu primer GIFO!</h3>
-        </div>
-        <button class="seeMore off">
-            <img src="/assets/CTA-ver-mas.svg" alt="See More">
-        </button>
-        <button class="seeMoreDark off">
-            <img src="/assets/CTA-ver+-modo-noc.svg" alt="see More Dark">
-        </button>
-    </section>
-    <!-- GIFOS in Trend -->
-    <section id="trends">
-        <h2 class="color_purple" id="gifosTrend">Trending GIFOS</h1>
-        <P id="latestGifos">Mira los últimos <br> GIFOS de nuestra comunidad.</P>
-        <figure id="newGifos"></figure>
-    </section>
 
-    <section id="containerMaxGifs"></section>
+
 
     <footer id="footer">
         <p id="footerShare">Compartir en:</p>
         <div id="socialMedia">
-            <img id="facebook" src="/assets/icon_facebook.svg" alt="facebook">
-            <img id="twitter" src="/assets/icon-tw-normal.svg" alt="twitter">
-            <img id="instagram" src="/assets/icon_instagram.svg" alt="instagram">
+            <a href="https://www.facebook.com" target="_top" title="Follow us on Facebook">
+                <img id="facebook" src="/assets/icon_facebook.svg" alt="facebook">
+            </a>
+            <a href="https://twitter.com" target="_blank" title="Follow us on Twitter">
+                <img id="twitter" src="/assets/icon-tw-normal.svg" alt="twitter">
+            </a>
+            <a href="https://www.instagram.com/" target="_self" title="Follow us on Instagram">
+                <img id="instagram" src="/assets/icon_instagram.svg" alt="instagram">
+            </a>
         </div> <br> <br>
         <div id="footerCopyright">&#169; GIFOS 2020 All Rights Reserved.</div>
     </footer>
-    <script src="../script/scriptMyGifos.js"></script>
+    <!-- <script src="/script/script.js"></script> -->
 </body>
+
 </html>

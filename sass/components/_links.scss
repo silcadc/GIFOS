@@ -13,19 +13,20 @@
         font-size: sum($font-size16, 4px);
         line-height: 30px;
     }
-
-    .savedGifs {
-        width: 100%;
+    #savedGifs {
         display: grid;
+        grid-template-columns: 50% 50%;
+        .favoritesGifosCheck {
+            width: 156px;
+            height: 120px; 
+            margin: 10%; 
+        }
     }
-
     .theFavoriteGifs {
         width: 100%;
-        display: grid;
         .noContent {
             width: 150px;
             height: 150px;
-            margin-left: 30%;
         }
         .noContentText {
             @include generals_font($color: $color-aqua);
@@ -80,7 +81,23 @@
             font-size: sum($font-size16, 4px);
             line-height: 30px;
         }
-    }
+        #savedGifs {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            .favoritesGifosCheck {
+                width: 156px;
+                height: 120px; 
+                margin: 10%; 
+            }
+        }
+        .seeMore {
+            display: none; 
+        }
+        .seeMoreDark {
+            background: transparent;
+            border: none;  
+        }
+    }    
 }
 
 /*---------My Gifos Section---------- */
@@ -91,5 +108,12 @@
             font-size: sum($font-size16, 4px);
             line-height: 30px;
         }
+    }
+    .seeMore {
+        display: none; 
+    }
+    .seeMoreDark {
+        background: transparent;
+        border: none;  
     }
 }

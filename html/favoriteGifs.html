@@ -16,21 +16,26 @@
     <header> 
         <a href="/index.html"><img id="logo" class="logosHeader" src="/assets/logo-mobile.svg" alt="logoGifos"></a>
         <a href="/index.html"><img id="logoDark" class="logosHeader off" src="/assets/logo-mobile-modo-noct.svg" alt="logoGifos"></a>
+        <a href="/index.html"><img id="logoDesktop" class="logosHeaderDesktop" src="/assets/logo-desktop.svg" alt="logoGifos"></a>
+        <a href="/index.html"><img id="logoDarkDesktop" class="logosHeaderDesktop" src="/assets/Logo-modo-noc.svg" alt="logoGifos"></a>
         <img id="burger" class="checkbox-menu" src="/assets/burger.svg" alt="logoBurger" tabindex="1">
         <img id="burgerDark" class="checkbox-menu off" src="/assets/burger-modo-noct.svg" alt="logoBurgerDark">
         <img id="cross" class="checkbox-menu off" src="/assets/close.svg" alt="logoCheckBurger">
         <img id="crossDark" class="checkbox-menu off" src="/assets/close-modo-noct.svg" alt="logoCheckBurgerDark">
         <nav>
             <ul id="menu" class="off">
-                <li><a href="#nightMode" tabindex="2" id="darkMode">Modo Nocturno
+                <li><a href="#nightMode" class="btnsNavigations" tabindex="2" id="darkMode">Modo Nocturno
                         <hr>
                     </a></li>
-                <li><a href="#favoriteGifs" tabindex="3">Favoritos
+                <li><a href="#favoriteGifs" class="btnsNavigations" tabindex="3">Favoritos
                         <hr>
                     </a></li>
-                <li><a href="./myGifos.html" tabindex="4">Mis GIFOS
+                <li><a href="./myGifos.html" class="btnsNavigations" tabindex="4">Mis GIFOS
                         <hr>
                     </a></li>
+                <li><a href="/html/createGifos.html" tabindex="5">
+                    <img id="createMyGifos" src="/assets/button-crear-gifo.svg" alt="Button Create">
+                </a></li>
             </ul>
         </nav>
     </header>
@@ -39,11 +44,9 @@
             <img id="favoriteGifs" src="/assets/icon-favoritos.svg" alt="favorites">
         </div>
         <h2 class="titlesSection">Favoritos</h2>
-        <div id="savedGifs">
-            
-        </div>
+        <div id="savedGifs"></div>
         <div class="theFavoriteGifs">
-            <img class="noContent" src="/assets/icon-fav-sin-contenido.svg" alt="Favorite Without Content">
+            <img id="noContent" class="noContent" src="/assets/icon-fav-sin-contenido.svg" alt="Favorite Without Content">
             <h3 class="noContentText">"¡Guarda tu primer GIFO en Fvoritos <br> para que se muestre aquí!"</h3>
         </div>
         <button class="seeMore off">
@@ -57,17 +60,30 @@
     <section id="trends">
         <h2 class="color_purple" id="gifosTrend">Trending GIFOS</h1>
         <P id="latestGifos">Mira los últimos <br> GIFOS de nuestra comunidad.</P>
-        <figure id="newGifos"></figure>
+        <div>
+            <img id="btnSliderLeft" class="btnSliderLeft" src="/assets/button-slider-left.svg" alt="button slider left">
+            <img id="btnSliderLeftDark" class="btnSliderLeft" src="/assets/button-slider-left-md-noct.svg" alt="button slider left">
+            <figure id="newGifos"></figure>
+            <img id="btnSliderRight" class="btnSliderRight" src="/assets/Button-Slider-right.svg" alt="button slider right">
+            <img id="btnSliderRightDark" class="btnSliderRight" src="/assets/button-slider-right-md-noct.svg" alt="button slider right">
+        </div>
     </section>
 
     <section id="containerMaxGifs"></section>
-    
+
     <footer id="footer">
         <p id="footerShare">Compartir en:</p>
         <div id="socialMedia">
-            <img id="facebook" src="/assets/icon_facebook.svg" alt="facebook">
-            <img id="twitter" src="/assets/icon-tw-normal.svg" alt="twitter">
-            <img id="instagram" src="/assets/icon_instagram.svg" alt="instagram">
+            <a href="https://www.facebook.com" target="_top" title="Follow us on Facebook">
+                <img id="facebook" src="/assets/icon_facebook.svg" alt="facebook">
+            </a>
+            <a href="https://twitter.com" target="_blank" title="Follow us on Twitter">
+                <img id="twitter" src="/assets/icon-tw-normal.svg" alt="twitter">
+                <img id="twitterpurple" src="/assets/icon-twitter-hover.svg" alt="twitter">
+            </a>
+            <a href="https://www.instagram.com/" target="_self" title="Follow us on Instagram">
+                <img id="instagram" src="/assets/icon_instagram.svg" alt="instagram">
+            </a>
         </div> <br> <br>
         <div id="footerCopyright">&#169; GIFOS 2020 All Rights Reserved.</div>
     </footer>
