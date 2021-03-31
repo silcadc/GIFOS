@@ -55,8 +55,8 @@ let showButtonsMoreInFavorite = () => {
     let checkContentClass = document.getElementById("noContent");
     let hasOff = checkContentClass.classList.contains("off");//CONTAINS,solo me funciono 
     //utilizando getElementById, intente con class y era undefined.
-    if (hasOff == false) {
-        if (isDark == false) {
+    if (hasOff === true) {
+        if (isDark === false) {
             document.querySelector(".seeMore").classList.remove("off")
             document.querySelector(".seeMoreDark").classList.add("off")
         } else {
@@ -68,22 +68,18 @@ let showButtonsMoreInFavorite = () => {
 
 let changeBtnSlider = () => {
     if (window.screen.width > 768) {
-        console.log("es desktop")
         if (isDark === true) {
-            console.log("entrando oscuro")
             btnSliderLeft.style.display = "none"
             btnSliderRight.style.display = "none"
             btnSliderLeftDark.style.display = "block"
             btnSliderRightDark.style.display = "block"
         } else {
-            console.log("entrando claro")
             btnSliderLeft.style.display = "block"
             btnSliderRight.style.display = "block"
             btnSliderLeftDark.style.display = "none"
             btnSliderRightDark.style.display = "none"
         }
     } else if (window.screen.width < 768) {
-        console.log("es mobile")
         btnSliderLeft.style.display = "none"
         btnSliderRight.style.display = "none"
         btnSliderLeftDark.style.display = "none"
@@ -224,29 +220,29 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
         })    
     })      
 
-let arrayFavoriteToString = JSON.parse(sessionStorage.getItem("fullHeart"));
-let idsFavorite = arrayFavoriteToString.join(", ");
-if (arrayFavoriteToString.length > 0) {
-    /*--------------------------------*/   
-    /*        FAVORITES GIFOS         */   
-    /*--------------------------------*/   
-    fetch(`https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${idsFavorite}`)
-    .then (response => response.json())
-    .then (response => {
-        console.log(response.data)
-        response.data.forEach( gif => {
-            const image = document.createElement("img")
-            image.src = gif.images.original.url
-            image.setAttribute("class", "favoritesGifosCheck")
-            document.querySelector("#savedGifs").appendChild(image)
+const getGifosFavorites = () => {
+    let arrayFavoriteToString = JSON.parse(sessionStorage.getItem("fullHeart"));
+    let cantFavorite = arrayFavoriteToString.join(", ");
+    if (arrayFavoriteToString.length > 0) {
+        /*--------------------------------*/   
+        /*        FAVORITES GIFOS         */   
+        /*--------------------------------*/  
+        fetch(`https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${cantFavorite}`)
+        .then (response => response.json())
+        .then (response => {
+            savedGifs.innerHTML = ""
+            for (let i = 0; i < response.data.length; i++){
+                if (i > amount) {break}
+                const image = document.createElement("img")
+                image.src = response.data[i].images.original.url
+                image.setAttribute("class", "favoritesGifosCheck")
+                document.querySelector("#savedGifs").appendChild(image)
+            }
+            document.querySelector(".noContent").classList.add("off");
+            document.querySelector(".noContentText").classList.add("off");
+            showButtonsMoreInFavorite() 
         })
-        document.querySelector(".noContent").classList.add("off");
-        document.querySelector(".noContentText").classList.add("off");
-        if (idsFavorite > 12) {
-            console.log(idsFavorite)
-            showButtonsMoreInFavorite();
-        }
-    })
+    }
 }
 
 /*----------------------------*/
@@ -273,6 +269,8 @@ const changeModeStyle = (text) => {
         darkMode.innerHTML = "Modo Diurno <hr>"
         changeBtnSlider()
         changesLogosHeader()
+        showButtonsMoreInFavorite()
+        getGifosFavorites()
         if (text == "darkLogoClick") {
             document.querySelector("#crossDark").classList.add("off")
             document.querySelector("#burger").classList.add("off")
@@ -281,20 +279,20 @@ const changeModeStyle = (text) => {
             document.querySelector("#menu").classList.add("off")
             document.querySelector("#burgerDark").classList.remove("off")
             document.querySelector("#cross").classList.add("off")
-            //showButtonsMoreInFavorite()
         }
     } else {
         document.body.classList.remove("dark")
         darkMode.innerHTML = "Modo Nocturno <hr>"
         changeBtnSlider()
         changesLogosHeader()
+        showButtonsMoreInFavorite()
+        getGifosFavorites()
         if (text == undefined || text == "repaintStyles") {
             document.querySelector("#menu").classList.add("off")
             document.querySelector("#cross").classList.add("off")
             document.querySelector("#crossDark").classList.add("off") 
             document.querySelector("#burger").classList.remove("off")
             document.querySelector("#burgerDark").classList.add("off")
-            //showButtonsMoreInFavorite()
         } else if (text == "dayLogoClick") {
             document.querySelector("#cross").classList.add("off") 
             document.querySelector("#burger").classList.remove("off")
@@ -356,6 +354,7 @@ hamburDark.addEventListener("click", () => {
 
 clickSeeMore.addEventListener("click", () => {
     clickButtonSeeMore()
+
 }) 
 
 clickSeeMoreDark.addEventListener("click", () => {
@@ -364,4 +363,5 @@ clickSeeMoreDark.addEventListener("click", () => {
 
 const clickButtonSeeMore = () => {
     amount = amount + 12
+    getGifosFavorites()
 }

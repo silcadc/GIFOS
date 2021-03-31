@@ -126,13 +126,11 @@ body {
 
 #myGifosSection #myOwnGifs {
   width: 100%;
-  display: grid;
 }
 
 #myGifosSection #myOwnGifs .noContent {
   width: 150px;
   height: 150px;
-  margin-left: 30%;
 }
 
 #myGifosSection #myOwnGifs .noContentText {
@@ -197,6 +195,226 @@ body {
 .dark .seeMoreDark {
   background: transparent;
   border: none;
+}
+
+/* Large devices (laptops/desktops, 768px and up) */
+@media only screen and (min-width: 768px) {
+  /*----------------------------*/
+  /*      FAVORITE SECTION      */
+  /*----------------------------*/
+  /*---------Favorite Section---------- */
+  #favoriteSection .titlesSection {
+    font-size: 25px;
+  }
+  #favoriteSection #savedGifs {
+    grid-template-columns: 25% 25% 25% 25%;
+    margin: 50px;
+  }
+  #favoriteSection #savedGifs .favoritesGifosCheck {
+    width: 255px;
+    height: 200px;
+    margin: 0;
+    padding: 5px;
+  }
+  /*----------------------------*/
+  /*      MY GIFOS SECTION      */
+  /*----------------------------*/
+  #myGifosSection .titlesSection {
+    font-size: 25px;
+  }
+  /*----------------------------*/
+  /*   CREATE GIFOS SECTION     */
+  /*----------------------------*/
+  #createGifosSection #camera {
+    position: relative;
+    left: 155px;
+    bottom: 290px;
+  }
+  #createGifosSection #camlight {
+    position: relative;
+    left: 281px;
+    bottom: 432px;
+  }
+  #createGifosSection #containerShowCam {
+    position: relative;
+    left: 400px;
+    border: 1px solid #572EE5;
+    width: 688px;
+    height: 390px;
+  }
+  #createGifosSection #containerShowCam #corner1 {
+    border: 1px solid #50E3C2;
+    width: 27px;
+    height: 25px;
+    position: relative;
+    left: 640px;
+    top: 17px;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+  }
+  #createGifosSection #containerShowCam #corner2 {
+    border: 1px solid #50E3C2;
+    width: 27px;
+    height: 25px;
+    position: relative;
+    left: 15px;
+    bottom: 7px;
+    border-right-style: hidden;
+    border-bottom-style: hidden;
+  }
+  #createGifosSection #containerShowCam #corner3 {
+    border: 1px solid #50E3C2;
+    width: 27px;
+    height: 25px;
+    position: relative;
+    left: 15px;
+    top: 297px;
+    border-right-style: hidden;
+    border-top-style: hidden;
+  }
+  #createGifosSection #containerShowCam #corner4 {
+    border: 1px solid #50E3C2;
+    width: 27px;
+    height: 25px;
+    position: relative;
+    left: 641px;
+    top: 272px;
+    border-left-style: hidden;
+    border-top-style: hidden;
+  }
+  #createGifosSection #containerShowCam h1 {
+    margin-top: 45px;
+    color: #572EE5;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 25px;
+    line-height: 30px;
+  }
+  #createGifosSection #containerShowCam h1 #color_aqua {
+    color: #50E3C2;
+  }
+  #createGifosSection #containerShowCam h2 {
+    color: #000000;
+    font-weight: 400;
+    font-family: "Roboto", sans-serif;
+    letter-spacing: 0;
+    font-size: 16px;
+    text-align: center;
+    line-height: 23px;
+    margin-bottom: 117.28px;
+  }
+  #createGifosSection #steplight {
+    position: relative;
+    bottom: 270px;
+    left: 42%;
+  }
+  #createGifosSection #steplight .steps {
+    margin-right: 3%;
+  }
+  #createGifosSection #movie {
+    position: absolute;
+    bottom: 26%;
+    left: 80%;
+  }
+  #createGifosSection #movieDark {
+    display: none;
+  }
+  #createGifosSection hr {
+    position: relative;
+    bottom: 256px;
+    width: 796px;
+    height: 6.9px;
+    border-radius: 25px;
+    background: #572EE5;
+  }
+  #createGifosSection .comenzar {
+    border: 1px solid #572EE5;
+    border-radius: 25px;
+    width: 127px;
+    height: 50px;
+    position: relative;
+    bottom: 235px;
+    left: 45%;
+    cursor: pointer;
+    background-color: transparent;
+  }
+  #createGifosSection .comenzar .color_purple {
+    color: #572EE5;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+  }
+  /*----------------------------------------------------------*/
+  /*                          DARK MODE                       */
+  /*----------------------------------------------------------*/
+  /*---------Favorite Section---------- */
+  .dark #favoriteSection .titlesSection {
+    font-size: 25px;
+  }
+  .dark #favoriteSection #savedGifs {
+    grid-template-columns: 25% 25% 25% 25%;
+    margin: 50px;
+  }
+  .dark #favoriteSection #savedGifs .favoritesGifosCheck {
+    width: 255px;
+    height: 200px;
+    margin: 0;
+    padding: 5px;
+  }
+  /*---------My Gifos Section---------- */
+  .dark #myGifosSection .titlesSection {
+    font-size: 25px;
+  }
+  /*----------------------------*/
+  /*   CREATE GIFOS SECTION     */
+  /*----------------------------*/
+  .dark #createGifosSection #cameraDark {
+    position: relative;
+    left: 155px;
+    bottom: 290px;
+  }
+  .dark #createGifosSection #containerShowCam {
+    position: relative;
+    left: 400px;
+    border: 1px solid #FFFFFF;
+    width: 688px;
+    height: 390px;
+  }
+  .dark #createGifosSection #containerShowCam h1 {
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+  }
+  .dark #createGifosSection #containerShowCam h2 {
+    color: #FFFFFF;
+  }
+  .dark #createGifosSection #stepDark {
+    position: relative;
+    bottom: 270px;
+    left: 42%;
+  }
+  .dark #createGifosSection #stepDark .steps {
+    margin-right: 3%;
+  }
+  .dark #createGifosSection #movieDark {
+    position: absolute;
+    bottom: 26%;
+    left: 80%;
+  }
+  .dark #createGifosSection hr {
+    background: #FFFFFF;
+  }
+  .dark #createGifosSection .comenzar {
+    border: 1px solid #FFFFFF;
+  }
+  .dark #createGifosSection .comenzar .color_purple {
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+  }
 }
 
 /*----------------------------*/
@@ -264,12 +482,6 @@ header nav #menu #createMyGifos {
 /*----------------------------*/
 /*     DARK MODE - HEADER     */
 /*----------------------------*/
-.dark {
-  /*----------------------------*/
-  /*         DARK MODE          */
-  /*----------------------------*/
-}
-
 .dark header {
   border-top: 5px solid #000000;
 }
@@ -295,7 +507,7 @@ header nav #menu #createMyGifos {
     border-top: 5px solid #572EE5;
   }
   header .logosHeaderDesktop {
-    margin-left: 105px;
+    margin-left: 156px;
     margin-top: 23px;
     margin-bottom: 17.2px;
   }
@@ -327,11 +539,6 @@ header nav #menu #createMyGifos {
   /*----------------------------*/
   /*     DARK MODE - HEADER     */
   /*----------------------------*/
-  .dark {
-    /*----------------------------*/
-    /*         DARK MODE          */
-    /*----------------------------*/
-  }
   .dark header {
     border-top: 5px solid #000000;
   }
@@ -412,10 +619,7 @@ header nav #menu #createMyGifos {
   #footer {
     padding: 0 100px;
     height: 100px;
-    left: 10px;
     display: grid;
-    grid-template-columns: 224px 127px 101px;
-    grid-template-rows: auto;
     grid-template-areas: "footerShare socialMedia foterCopyright";
   }
   #footer #footerShare {
@@ -703,11 +907,6 @@ header nav #menu #createMyGifos {
 /*         DARK MODE          */
 /*----------------------------*/
 /* Ilustra Header - First Section */
-.dark {
-  /*--------- GIFOS in Trend------- */
-  /*------Container to Maximum Image---------- */
-}
-
 .dark #firstSection .color_white {
   color: #FFFFFF;
   font-weight: bold;
@@ -814,8 +1013,6 @@ header nav #menu #createMyGifos {
 
 /* Large devices (laptops/desktops, 768px and up) */
 @media only screen and (min-width: 768px) {
-  /* ---------First Section---------- */
-  /* Ilustra Header - First Section */
   #firstSection .color_purple {
     font-size: 2.18rem;
   }
@@ -869,7 +1066,6 @@ header nav #menu #createMyGifos {
   #firstSection .gifosContainer .showGifos {
     margin: 8%;
   }
-  /*-----------GIFOS in Trend---------- */
   #trends #latestGifos {
     font-size: 18px;
   }
@@ -906,7 +1102,6 @@ header nav #menu #createMyGifos {
     right: 92%;
     top: 36.5%;
   }
-  /*---------Container to Maximum Image---------- */
   #containerMaxGifs #imgMaxSize {
     width: 60%;
     height: 60%;
@@ -941,10 +1136,6 @@ header nav #menu #createMyGifos {
   /*----------------------------*/
   /*         DARK MODE          */
   /*----------------------------*/
-  /* Ilustra Header - First Section */
-  .dark {
-    /*--------- GIFOS in Trend------- */
-  }
   .dark #firstSection #gifosFinder .search {
     top: 12.2%;
   }

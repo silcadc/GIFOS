@@ -1,11 +1,5 @@
 let isDark;
 //-
-let headerCross = document.getElementById("burger")
-let headerBurger = document.getElementById("cross")
-//-
-let magnifying = document.getElementById("magnifying")
-let crossMagnifying = document.getElementById("crossMagnifying")
-//-
 const API_KEY = 'VfAQnZwBHdFaj75QChwBF5O4uEoTxQXh'
 //-
 const darkMode = document.querySelector("#darkMode")
@@ -15,34 +9,18 @@ let logo = document.querySelector("#logo")
 let crossDark = document.getElementById("burgerDark")
 let hamburDark = document.getElementById("crossDark")
 //-
-let magnifDark = document.getElementById("magniDark")
-let crossMagnifDark = document.getElementById("crossMagniDark")
+let headerCross = document.getElementById("burger")
+let headerBurger = document.getElementById("cross")
 //-
 let amount = 11
-const gifosContainer = document.querySelector(".gifosContainer")
+const theFavoriteGifs = document.querySelector(".theFavoriteGifs")
 //-
 const clickSeeMore = document.querySelector(".seeMore")
 const clickSeeMoreDark = document.querySelector(".seeMoreDark")
 //-
-const formGifosFinder = document.querySelector("#gifosFinder")
-const inputTextToSearch = document.querySelector("#searchGifos")
-//-
-const lineHr = document.querySelector(".lineUnderSearch")
-const wordSearchH2 = document.querySelector(".termToSearch")
-//-
-const tryAnotherSearch = document.querySelector("#tryAnotherSearch")
-
 const buttonSeeMore = document.querySelector(".seeMore")
 const buttonSeeMoreDark = document.querySelector(".seeMoreDark")
 //-
-const offH1 = document.querySelector(".color_purple")
-const offIlustration = document.querySelector(".ilustra_header")
-//-
-const changePositionCross = document.querySelectorAll(".search")
-//-
-const clickMagnifying = document.querySelector("#magnifying")
-const clickMagniDark = document.querySelector("#magniDark")
-
 /*-------------------------------*/
 /*   CHANGE MODE - DAY OR DARK   */
 /*-------------------------------*/
@@ -73,6 +51,43 @@ headerBurger.addEventListener("click", () => {
     document.querySelector("#menu").classList.add("off")
 })
 
+let showButtonsMoreInFavorite = () => {
+    let checkContentClass = document.getElementById("noContent");
+    let hasOff = checkContentClass.classList.contains("off");//CONTAINS,solo me funciono 
+    //utilizando getElementById, intente con class y era undefined.
+    if (hasOff === true) {
+        if (isDark === false) {
+            document.querySelector(".seeMore").classList.remove("off")
+            document.querySelector(".seeMoreDark").classList.add("off")
+        } else {
+            document.querySelector(".seeMore").classList.add("off")
+            document.querySelector(".seeMoreDark").classList.remove("off")
+        }
+    }
+}
+
+let changeBtnSlider = () => {
+    if (window.screen.width > 768) {
+        if (isDark === true) {
+            btnSliderLeft.style.display = "none"
+            btnSliderRight.style.display = "none"
+            btnSliderLeftDark.style.display = "block"
+            btnSliderRightDark.style.display = "block"
+        } else {
+            btnSliderLeft.style.display = "block"
+            btnSliderRight.style.display = "block"
+            btnSliderLeftDark.style.display = "none"
+            btnSliderRightDark.style.display = "none"
+        }
+    } else if (window.screen.width < 768) {
+        btnSliderLeft.style.display = "none"
+        btnSliderRight.style.display = "none"
+        btnSliderLeftDark.style.display = "none"
+        btnSliderRightDark.style.display = "none"
+    } 
+}
+changeBtnSlider()
+
 /*----------------------------*/
 /*       GIFOS IN TREND       */
 /*----------------------------*/   
@@ -86,8 +101,7 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
             image.setAttribute("id", gif.id)
             document.querySelector("#newGifos").appendChild(image)
         })
-
-             
+  
         let imgNewGifos = document.querySelectorAll("#newGifos > img")
         imgNewGifos.forEach(imgGifosTrend => {
             imgGifosTrend.addEventListener("click", () => {
@@ -119,12 +133,10 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
 
                 if (isDark == true) {
                     containerMaxGifs.style.background = "#000000";
-                   
                     imgCross.src = '/assets/close-modo-noct.svg';
                     imgCross.setAttribute("id", "imgCrossMax")
                 } else if (isDark !== true) {
                     containerMaxGifs.style.backgroundColor = "#ffffff";
-                  
                     imgCross.src = '/assets/close.svg';
                     imgCross.setAttribute("id", "imgCrossMax")
                 }
@@ -152,9 +164,9 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
                     favoriteActive.classList.add("off");
                 }
                 
-                imgDownload.src = '/assets/icon-download-hover.svg';
+                imgDownload.src = "/assets/icon-download-hover.svg";
                 imgDownload.setAttribute("id", "imgDownloadMax")
-
+                
                 for (i=0; i<apiResponseList.length; i++) {
                     if (idGifos === apiResponseList[i].id) {
                         const titleGifos = document.createElement("h2")
@@ -192,7 +204,6 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
                     imgFavorite.classList.toggle("off")
                     favoriteActive.classList.remove("off");//Todos los ID que tengan el corazon full se van al array vacio
                     arrayFavorite.push(idGifos);
-                    
                     sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));//JSON.stringify convierte el objeto a string
                 })
                 
@@ -208,6 +219,31 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
             })
         })    
     })      
+
+// const getGifosFavorites = () => {
+//     let arrayFavoriteToString = JSON.parse(sessionStorage.getItem("fullHeart"));
+//     let cantFavorite = arrayFavoriteToString.join(", ");
+//     if (arrayFavoriteToString.length > 0) {
+//         /*--------------------------------*/   
+//         /*        FAVORITES GIFOS         */   
+//         /*--------------------------------*/  
+//         fetch(`https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${cantFavorite}`)
+//         .then (response => response.json())
+//         .then (response => {
+//             savedGifs.innerHTML = ""
+//             for (let i = 0; i < response.data.length; i++){
+//                 if (i > amount) {break}
+//                 const image = document.createElement("img")
+//                 image.src = response.data[i].images.original.url
+//                 image.setAttribute("class", "favoritesGifosCheck")
+//                 document.querySelector("#savedGifs").appendChild(image)
+//             }
+//             document.querySelector(".noContent").classList.add("off");
+//             document.querySelector(".noContentText").classList.add("off");
+//             showButtonsMoreInFavorite() 
+//         })
+//     }
+// }
 
 /*----------------------------*/
 /*         DARK MODE          */
@@ -225,40 +261,38 @@ const changeModeStyle = (text) => {
             isDark = true;
         }
     }
-    sessionStorage.setItem("modeStyle", isDark);
 
+    sessionStorage.setItem("modeStyle", isDark);
+    
     if (isDark === true) {
         document.body.classList.add("dark")
         darkMode.innerHTML = "Modo Diurno <hr>"
-        document.querySelector("#cross").classList.add("off")
-        document.querySelector("#crossDark").classList.add("off")
-        document.querySelector("#burgerDark").classList.remove("off")
-        document.querySelector("#magnifying").classList.add("off")
-        document.querySelector("#magniDark").classList.remove("off")
-        document.querySelector("#magnifying").classList.add("off")
-        document.querySelector(".seeMore").classList.add("off")
+        changeBtnSlider()
+        changesLogosHeader()
+        showButtonsMoreInFavorite()
+        //getGifosFavorites()
         if (text == "darkLogoClick") {
             document.querySelector("#crossDark").classList.add("off")
             document.querySelector("#burger").classList.add("off")
             document.querySelector("#burgerDark").classList.remove("off")
         } else if (text == undefined || text == "repaintStyles") {
             document.querySelector("#menu").classList.add("off")
-            document.querySelector("#crossDark").classList.add("off")
             document.querySelector("#burgerDark").classList.remove("off")
-            showButtonsMore()
+            document.querySelector("#cross").classList.add("off")
         }
     } else {
         document.body.classList.remove("dark")
         darkMode.innerHTML = "Modo Nocturno <hr>"
-        document.querySelector("#crossDark").classList.add("off")
-        document.querySelector("#burgerDark").classList.add("off")
-        document.querySelector("#cross").classList.remove("off")
-        document.querySelector("#burger").classList.add("off")
-        document.querySelector(".seeMoreDark").classList.add("off")
+        changeBtnSlider()
+        changesLogosHeader()
+        showButtonsMoreInFavorite()
+        //getGifosFavorites()
         if (text == undefined || text == "repaintStyles") {
             document.querySelector("#menu").classList.add("off")
-            document.querySelector("#cross").classList.add("off") 
+            document.querySelector("#cross").classList.add("off")
+            document.querySelector("#crossDark").classList.add("off") 
             document.querySelector("#burger").classList.remove("off")
+            document.querySelector("#burgerDark").classList.add("off")
         } else if (text == "dayLogoClick") {
             document.querySelector("#cross").classList.add("off") 
             document.querySelector("#burger").classList.remove("off")
@@ -270,13 +304,35 @@ darkMode.addEventListener("click", () => {
     changeModeStyle()
 })
 
-logoDark.addEventListener("click", () => {
-    changeModeStyle("darkLogoClick")
-})
-
-logo.addEventListener("click", () => {
-    changeModeStyle("dayLogoClick")
-})
+let changesLogosHeader = () => {
+    if (window.screen.width > 768) {
+        if (isDark === true) { 
+            logoDarkDesktop.style.display = "block"
+            logoDesktop.style.display = "none"
+            logoDark.style.display = "none"
+            logo.style.display = "none" 
+        } else {
+            logoDarkDesktop.style.display = "none"
+            logoDesktop.style.display = "block"
+            logoDark.style.display = "none"
+            logo.style.display = "none" 
+            
+        }
+    } else if (window.screen.width < 768) {
+        if (isDark === true) { 
+            logoDesktop.style.display = "none"
+            logoDarkDesktop.style.display = "none"
+            logo.style.display = "none" 
+            logoDark.style.display = "block"
+        } else {
+            logoDesktop.style.display = "none"
+            logoDarkDesktop.style.display = "none"
+            logoDark.style.display = "none"
+            logo.style.display = "block" 
+        }     
+    } 
+}
+changesLogosHeader()
 
 changeModeStyle("repaintStyles")
 
@@ -294,3 +350,17 @@ hamburDark.addEventListener("click", () => {
     document.querySelector("#burgerDark").classList.remove("off")
     document.querySelector("#menu").classList.add("off")
 })
+
+
+clickSeeMore.addEventListener("click", () => {
+    clickButtonSeeMore()
+}) 
+
+clickSeeMoreDark.addEventListener("click", () => {
+    clickButtonSeeMore()
+})
+
+const clickButtonSeeMore = () => {
+    amount = amount + 12
+    //getGifosFavorites()
+}

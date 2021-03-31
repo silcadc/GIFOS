@@ -111,22 +111,18 @@ let showButtonsMore = () => {
 
 let changeBtnSlider = () => {
     if (window.screen.width > 768) {
-        console.log("es desktop")
         if (isDark === true) {
-            console.log("entrando oscuro")
             btnSliderLeft.style.display = "none"
             btnSliderRight.style.display = "none"
             btnSliderLeftDark.style.display = "block"
             btnSliderRightDark.style.display = "block"
         } else {
-            console.log("entrando claro")
             btnSliderLeft.style.display = "block"
             btnSliderRight.style.display = "block"
             btnSliderLeftDark.style.display = "none"
             btnSliderRightDark.style.display = "none"
         }
     } else if (window.screen.width < 768) {
-        console.log("es mobile")
         btnSliderLeft.style.display = "none"
         btnSliderRight.style.display = "none"
         btnSliderLeftDark.style.display = "none"
@@ -142,7 +138,6 @@ fetch(`https://api.giphy.com/v1/trending/searches?api_key=${API_KEY}`)
     .then (response => response.json())
     .then (response => {
         const ulcreate = document.createElement("ul")
-        
         response.data.slice(0,5).forEach( term => {
             const liTerms = document.createElement("li")
             const aTerms = document.createElement("a")
@@ -178,8 +173,7 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
             image.setAttribute("id", gif.id)
             document.querySelector("#newGifos").appendChild(image)
         })
-
-             
+    
         let imgNewGifos = document.querySelectorAll("#newGifos > img")
         imgNewGifos.forEach(imgGifosTrend => {
             imgGifosTrend.addEventListener("click", () => {
@@ -489,7 +483,6 @@ formGifosFinder.addEventListener("submit" , (text) => {
 const getGifos = async (textToSearch) => {
     const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${textToSearch}`)
     const responseFromApi = await response.json() 
-    console.log(responseFromApi)
     gifosContainer.innerHTML = ""
     for (let i = 0; i < responseFromApi.pagination.count; i++)
     {

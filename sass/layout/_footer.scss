@@ -53,10 +53,9 @@
     #footer {
         padding: 0 100px;
         height: 100px;
-        left: 10px;
         display: grid;
-        grid-template-columns: 224px 127px 101px;
-        grid-template-rows: auto;
+        //grid-template-columns: 224px 127px 101px;
+        //grid-template-rows: auto;
         grid-template-areas:
             "footerShare socialMedia foterCopyright";
         #footerShare {

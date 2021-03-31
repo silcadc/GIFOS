@@ -54,11 +54,9 @@
     }
     #myOwnGifs{
         width: 100%;
-        display: grid;
         .noContent {
             width: 150px;
             height: 150px;
-            margin-left: 30%;
         }
         .noContentText {
             @include generals_font($color: $color-aqua);
@@ -115,5 +113,235 @@
     .seeMoreDark {
         background: transparent;
         border: none;  
+    }
+}
+
+/* Large devices (laptops/desktops, 768px and up) */
+@media only screen and (min-width: 768px) {
+    /*----------------------------*/
+    /*      FAVORITE SECTION      */
+    /*----------------------------*/
+    /*---------Favorite Section---------- */
+    #favoriteSection {
+        .titlesSection {
+            font-size: sum($font-size16, 9px);
+        }
+        #savedGifs {
+            grid-template-columns: 25% 25% 25% 25%;
+            margin: 50px;
+            .favoritesGifosCheck {
+                width: 255px;
+                height: 200px; 
+                margin: 0;
+                padding: 5px;
+            }
+        }
+    }
+
+    /*----------------------------*/
+    /*      MY GIFOS SECTION      */
+    /*----------------------------*/
+    #myGifosSection {
+        .titlesSection {
+            font-size: sum($font-size16, 9px);
+        }
+    }  
+    /*----------------------------*/
+    /*   CREATE GIFOS SECTION     */
+    /*----------------------------*/
+    #createGifosSection {
+        #camera {
+            position: relative;
+            left: 155px;
+            bottom: 290px;
+        }
+        #camlight {
+            position: relative;
+            left: 281px;
+            bottom: 432px;
+        }
+        #containerShowCam {
+            position: relative;
+            left: 400px;
+            border: 1px solid $color-purple;
+            width: 688px;
+            height: 390px;
+            #corner1 {
+                border: 1px solid $color-aqua;
+                width: 27px;
+                height: 25px;
+                position: relative;
+                left: 640px;
+                top: 17px;
+                border-left-style: hidden;
+                border-bottom-style: hidden;
+            }
+            #corner2 {
+                border: 1px solid $color-aqua;
+                width: 27px;
+                height: 25px;
+                position: relative;
+                left: 15px;
+                bottom: 7px;
+                border-right-style: hidden;
+                border-bottom-style: hidden;
+            }
+            #corner3 {
+                border: 1px solid $color-aqua;
+                width: 27px;
+                height: 25px;
+                position: relative;
+                left: 15px;
+                top: 297px;
+                border-right-style: hidden;
+                border-top-style: hidden;
+            }
+            #corner4 {
+                border: 1px solid $color-aqua;
+                width: 27px;
+                height: 25px;
+                position: relative;
+                left: 641px;
+                top: 272px;
+                border-left-style: hidden;
+                border-top-style: hidden;
+            }
+            h1 {
+                margin-top: 45px;
+                @include generals_font;
+                font-size: sum($font-size16, 9px);
+                line-height: 30px;
+                #color_aqua {
+                    color: $color-aqua;
+                }
+            }
+            h2 {
+                color: $color-black;
+                font-weight: $font-weight-regular;
+                font-family: $font-labes; 
+                letter-spacing: 0;
+                font-size: sum($font-size16, 0);
+                text-align: $text-align-center;
+                line-height: 23px;
+                margin-bottom: 117.28px;
+            }
+        }
+        #steplight {
+            position: relative;
+            bottom: 270px;
+            left: 42%;
+            .steps {
+                margin-right: 3%;
+            }
+        }   
+        #movie {
+            position: absolute;
+            bottom: 26%;
+            left: 80%;
+        }
+        #movieDark {
+            display: none;
+        }
+        hr {
+            position: relative;
+            bottom: 256px;
+            width: 796px;
+            height: 6.9px;
+            border-radius: 25px;
+            background: $color-purple;
+        }
+        .comenzar {
+            border: 1px solid $color-purple;
+            border-radius: 25px;
+            width: 127px;
+            height: 50px;
+            position: relative;
+            bottom: 235px;
+            left: 45%;
+            cursor:pointer;
+            background-color: transparent;
+            .color_purple {
+                @include generals_font;
+            }
+        }
+    }
+
+    /*----------------------------------------------------------*/
+    /*                          DARK MODE                       */
+    /*----------------------------------------------------------*/
+    /*---------Favorite Section---------- */
+    .dark {
+        #favoriteSection {
+            .titlesSection {
+                font-size: sum($font-size16, 9px);
+            }
+            #savedGifs {
+                grid-template-columns: 25% 25% 25% 25%;
+                margin: 50px;
+                .favoritesGifosCheck {
+                    width: 255px;
+                    height: 200px; 
+                    margin: 0;
+                    padding: 5px;
+                }
+            }
+        }    
+    }
+
+    /*---------My Gifos Section---------- */
+    .dark {
+        #myGifosSection {
+            .titlesSection {
+                font-size: sum($font-size16, 9px);
+            }
+        }
+    }
+
+    /*----------------------------*/
+    /*   CREATE GIFOS SECTION     */
+    /*----------------------------*/
+    .dark {
+        #createGifosSection {
+            #cameraDark {
+                position: relative;
+                left: 155px;
+                bottom: 290px;
+            }
+            #containerShowCam {
+                position: relative;
+                left: 400px;
+                border: 1px solid $color-white;
+                width: 688px;
+                height: 390px;
+                h1 {
+                    @include generals_font($color: $color-white);
+                }
+                h2 {
+                    color: $color-white;
+                }
+            }
+            #stepDark {
+                position: relative;
+                bottom: 270px;
+                left: 42%;
+                .steps {
+                    margin-right: 3%;
+                }
+            }
+            #movieDark {
+                position: absolute;
+                bottom: 26%;
+                left: 80%;
+            }
+            hr {
+                background: $color-white;
+            }
+            .comenzar {
+                border: 1px solid $color-white;
+                .color_purple {
+                    @include generals_font($color: $color-white);
+                }
+            }
+        }
     }
 }

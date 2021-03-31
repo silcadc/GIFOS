@@ -294,7 +294,6 @@
             margin-top: 78px;
         }
     }
-    /*--------- GIFOS in Trend------- */
     #trends {
         background: $color-darktrend;
         #gifosTrend {
@@ -307,9 +306,7 @@
             color: $color-white;
         }
     }
-
-    /*------Container to Maximum Image---------- */
-    #containerMaxGifs { 
+    #containerMaxGifs {
         h2 {
             @include generals_font($color: $color-white, $text: left);
         }
@@ -325,8 +322,6 @@
 
 /* Large devices (laptops/desktops, 768px and up) */
 @media only screen and (min-width: 768px) {
-    /* ---------First Section---------- */
-    /* Ilustra Header - First Section */
     #firstSection {
         .color_purple {
             font-size: percentage(218%, $page-max-width, $rem);
@@ -386,8 +381,6 @@
             }
         }
     }
-
-    /*-----------GIFOS in Trend---------- */
     #trends {
         #latestGifos {
             font-size: sum($font-size16, 2);
@@ -426,8 +419,6 @@
             }
         } 
     }
-
-    /*---------Container to Maximum Image---------- */
     #containerMaxGifs {
         #imgMaxSize{
             width: 60%;
@@ -464,7 +455,6 @@
     /*----------------------------*/
     /*         DARK MODE          */
     /*----------------------------*/
-    /* Ilustra Header - First Section */
     .dark {
         #firstSection {
             #gifosFinder {
@@ -487,8 +477,7 @@
                 border: $border $color-white;
             }
         }
-        /*--------- GIFOS in Trend------- */
-        #trends {
+        #trends { 
             #latestGifos {
                 color: $color-white;
             }

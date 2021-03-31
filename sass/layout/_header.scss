@@ -65,9 +65,6 @@ header {
             display: block;
         }
     }
-    /*----------------------------*/
-    /*         DARK MODE          */
-    /*----------------------------*/
     nav {
         #menu {
             background: $color-black;
@@ -83,7 +80,7 @@ header {
     header {
         border-top: $border-top-bottom $color-purple;
         .logosHeaderDesktop {
-            margin-left: 105px;
+            margin-left: 156px;
             margin-top: 23px;
             margin-bottom: 17.2px;
         }
@@ -129,9 +126,6 @@ header {
                 display: none;
             }
         }
-        /*----------------------------*/
-        /*         DARK MODE          */
-        /*----------------------------*/
         nav {
             #menu {
                 background: $color-darkgrey;
