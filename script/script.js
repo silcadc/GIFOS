@@ -89,8 +89,7 @@ magnifying.addEventListener("click", () => {
     document.querySelector("#crossMagnifying").classList.remove("off")
 })
 
-crossMagnifying.addEventListener("click", (clic) => {
-    // clic.preventDefault()
+crossMagnifying.addEventListener("click", () => {
     crossMagnifying.classList.add("off")
     document.querySelector("#magnifying").classList.remove("off")
 })
@@ -206,7 +205,7 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
 
                 if (isDark == true) {
                     containerMaxGifs.style.background = "#000000";
-                   
+            
                     imgCross.src = './assets/close-modo-noct.svg';
                     imgCross.setAttribute("id", "imgCrossMax")
                 } else if (isDark !== true) {
@@ -293,12 +292,126 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
                     }
                 })
             })
+           
+            imgGifosTrend.addEventListener("mouseover", () => {
+             
+                // let containerMaxGifs = document.querySelector("#containerMaxGifs")
+                // let containerPurpleFilter = document.createElement("div")
+
+                // const anchor = document.createElement("a");
+                // const href = document.createAttribute("href");
+
+                // let imgFavorite = document.createElement("img")
+                // let favoriteActive = document.createElement("img")
+                // let imgDownload = document.createElement("img")
+
+                // if (isDark == true) {
+                //     containerMaxGifs.style.background = "#000000";
+            
+                //     imgCross.src = './assets/close-modo-noct.svg';
+                //     imgCross.setAttribute("id", "imgCrossMax")
+                // } else if (isDark !== true) {
+                //     containerMaxGifs.style.backgroundColor = "#ffffff";
+                  
+                    
+                // }
+
+                // anchor.setAttributeNode(href);
+                // anchor.setAttribute("download", "Gifo");
+                // anchor.setAttribute("id", "anchorDownload")
+                // //anchor.setAttribute("target", "_blank")
+                                                                           
+                // containerImage.src = imgGifosTrend.src
+                // containerImage.setAttribute("id", "imgMaxSize")
+                
+                // imgFavorite.src = './assets/icon-fav-hover.svg';
+                // imgFavorite.setAttribute("id", "imgFavoriteMax");
+
+                // favoriteActive.src = './assets/icon-fav-active.svg'
+                // favoriteActive.setAttribute("class", "off");
+                // favoriteActive.setAttribute("id", "favoriteActive");
+
+                // if (isFavorite === true) {
+                //     favoriteActive.classList.remove("off");
+                //     imgFavorite.classList.add("off");
+                // }else {
+                //     imgFavorite.classList.remove("off");
+                //     favoriteActive.classList.add("off");
+                // }
+                
+                // imgDownload.src = './assets/icon-download-hover.svg';
+                // imgDownload.setAttribute("id", "imgDownloadMax")
+
+                // for (i=0; i<apiResponseList.length; i++) {
+                //     if (idGifos === apiResponseList[i].id) {
+                //         const titleGifos = document.createElement("h2")
+                //         titleGifos.textContent = apiResponseList[i].title
+                //         const user = document.createElement("h3")
+                //         user.textContent = apiResponseList[i].username
+                //         document.querySelector("#containerMaxGifs").appendChild(titleGifos)
+                //         document.querySelector("#containerMaxGifs").appendChild(user)
+                //         href.value = apiResponseList[i].images.fixed_width.url
+                //         break;
+                //     }
+                // } 
+
+                // anchor.appendChild(containerImage)
+                // containerMaxGifs.appendChild(anchor)      
+                // containerMaxGifs.appendChild(imgCross)
+                // containerMaxGifs.appendChild(imgFavorite)
+                // containerMaxGifs.appendChild(favoriteActive)
+                // containerMaxGifs.appendChild(imgDownload)
+                
+                // document.querySelector("#containerMaxGifs").style.display = "block"
+                
+                
+                // // const downloadMax = document.getElementById("imgDownloadMax")
+                // // downloadMax.addEventListener("click", () => {
+                
+                // // })
+
+                // imgFavorite.addEventListener("click", () => {
+                //     imgFavorite.classList.toggle("off")
+                //     favoriteActive.classList.remove("off");
+                //     arrayFavorite.push(idGifos);
+                    
+                //     sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
+                // })
+                
+                // favoriteActive.addEventListener("click", () => {
+                //     favoriteActive.classList.toggle("off")
+                //     imgFavorite.classList.remove("off")
+                //     let index = arrayFavorite.indexOf(idGifos);
+                //     if (index > -1) {
+                //         arrayFavorite.splice(index, 1);
+                //         sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
+                //     }
+                // })
+
+
+
+
+
+
+
+                
+                // const createPurpleFilter = document.createElement("div")
+                // createPurpleFilter.appendChild(gifTrends)
+                // console.log(createPurpleFilter)
+                // newGifosMousesOver_Out.style.background = "#572EE5";
+                // gifTrends.style.opacity = "0.6";
+        
+            })
+
+            // imgGifosTrend.addEventListener("mouseout", () => {
+            //     gifTrends.style.background = "#572EE5";
+            //     gifTrends.style.opacity = "0.6";
+        
+            // })
         })
         
-        console.log(apiResponseList)
         let gifTrends = document.querySelectorAll(".gifTrends");
-        console.log(gifTrends)
-
+        
         let index = 3;
         let show = function(increase) {
             console.log(show)
@@ -315,10 +428,19 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
             show(+1);
         });
 
+        btnSliderRightDark.addEventListener('click', function(){
+            show(+1);
+        });
+
         btnSliderLeft.addEventListener('click', function(){
             show(-1);
         });
-    })  
+
+        btnSliderLeftDark.addEventListener('click', function(){
+            show(-1);
+        });
+    }) 
+
 
 /*----------------------------*/
 /*         DARK MODE          */
@@ -566,3 +688,35 @@ const positionCross = () => {
         changePositionCross[i].classList.replace("search", "searchToTerm")
     }
 }
+
+btnSliderRight.addEventListener("mouseover", () => {
+    btnSliderRight.src = './assets/Button-Slider-right-hover.svg'
+})
+
+btnSliderRight.addEventListener("mouseout", () => {
+    btnSliderRight.src = './assets/Button-Slider-right.svg'
+})
+
+btnSliderLeft.addEventListener("mouseover", () => {
+    btnSliderLeft.src = './assets/Button-Slider-left-hover.svg'
+})
+
+btnSliderLeft.addEventListener("mouseout", () => {
+    btnSliderLeft.src = './assets/button-slider-left.svg'
+})
+
+btnSliderRightDark.addEventListener("mouseover", () => {
+    btnSliderRightDark.src = './assets/Button-Slider-right-hover.svg'
+})
+
+btnSliderRightDark.addEventListener("mouseout", () => {
+    btnSliderRightDark.src = './assets/button-slider-right-md-noct.svg'
+})
+
+btnSliderLeftDark.addEventListener("mouseover", () => {
+    btnSliderLeftDark.src = './assets/Button-Slider-left-hover.svg'
+})
+
+btnSliderLeftDark.addEventListener("mouseout", () => {
+    btnSliderLeftDark.src = './assets/button-slider-left-md-noct.svg'
+})
