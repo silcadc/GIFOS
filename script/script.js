@@ -163,14 +163,15 @@ fetch(`https://api.giphy.com/v1/trending/searches?api_key=${API_KEY}`)
 /*----------------------------*/
 /*       GIFOS IN TREND       */
 /*----------------------------*/   
-fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
+fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
     .then (response => response.json())
     .then (response => {
         let apiResponseList = response.data
         response.data.forEach( gif => {
             const image = document.createElement("img")
-            image.src = gif.images.original.url
+            image.src = gif.images.fixed_width.url
             image.setAttribute("id", gif.id)
+            image.setAttribute("class", 'gifTrends')
             document.querySelector("#newGifos").appendChild(image)
         })
     
@@ -249,7 +250,7 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
                         user.textContent = apiResponseList[i].username
                         document.querySelector("#containerMaxGifs").appendChild(titleGifos)
                         document.querySelector("#containerMaxGifs").appendChild(user)
-                        href.value = apiResponseList[i].images.original.url
+                        href.value = apiResponseList[i].images.fixed_width.url
                         break;
                     }
                 } 
@@ -276,7 +277,7 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
 
                 imgFavorite.addEventListener("click", () => {
                     imgFavorite.classList.toggle("off")
-                    favoriteActive.classList.remove("off");//Todos los ID que tengan el corazon full se van al array vacio
+                    favoriteActive.classList.remove("off");
                     arrayFavorite.push(idGifos);
                     
                     sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
@@ -286,13 +287,37 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
                     favoriteActive.classList.toggle("off")
                     imgFavorite.classList.remove("off")
                     let index = arrayFavorite.indexOf(idGifos);
-                    if (index > -1) {//-1 indica que no encontre el elemento
+                    if (index > -1) {
                         arrayFavorite.splice(index, 1);
                         sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
                     }
                 })
             })
-        })    
+        })
+        
+        console.log(apiResponseList)
+        let gifTrends = document.querySelectorAll(".gifTrends");
+        console.log(gifTrends)
+
+        let index = 3;
+        let show = function(increase) {
+            console.log(show)
+            index = index + increase;
+            console.log(index)
+            index = Math.min(
+                Math.max(index,0),
+                gifTrends.length-1
+            );
+            gifTrends[index].scrollIntoView({behavior: 'smooth'});
+        }
+
+        btnSliderRight.addEventListener('click', function(){
+            show(+1);
+        });
+
+        btnSliderLeft.addEventListener('click', function(){
+            show(-1);
+        });
     })  
 
 /*----------------------------*/
@@ -489,7 +514,7 @@ const getGifos = async (textToSearch) => {
         if (i > amount) {break}
         const imageGifos = document.createElement("img")
         imageGifos.classList.add("showGifos")
-        imageGifos.src = responseFromApi.data[i].images.original.url
+        imageGifos.src = responseFromApi.data[i].images.fixed_width.url
         gifosContainer.appendChild(imageGifos)
     }
 }

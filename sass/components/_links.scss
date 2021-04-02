@@ -155,6 +155,9 @@
             left: 155px;
             bottom: 290px;
         }
+        #cameraDark {
+            display: none;
+        }
         #camlight {
             position: relative;
             left: 281px;
@@ -229,11 +232,33 @@
         #steplight {
             position: relative;
             bottom: 270px;
-            left: 42%;
-            .steps {
-                margin-right: 3%;
+            left: 44%;
+            width: 150px;
+            height: 32px;
+            .stepTwoThree {
+                width: 32px;
+                height: 32px;
+                border: 1px solid $color-purple;
+                border-radius: 50%;
+                font-weight: $font-weight-regular;
+                font-family: $font-labes; 
+                font-size: 18px;
+                text-align: center;
+                color: $color-purple;
+                padding: 5px;
+                position: relative;
+                bottom: 35px;
+                left: 49px;
             }
-        }   
+            .three {
+                position: relative;
+                bottom: 67px;
+                left: 98px;
+            }
+        }  
+        #stepDark {
+            display: none;
+        }
         #movie {
             position: absolute;
             bottom: 26%;
@@ -323,9 +348,28 @@
             #stepDark {
                 position: relative;
                 bottom: 270px;
-                left: 42%;
-                .steps {
-                    margin-right: 3%;
+                left: 44%;
+                width: 150px;
+                height: 32px;
+                .stepTwoThree {
+                    width: 32px;
+                    height: 32px;
+                    border: 1px solid $color-white;
+                    border-radius: 50%;
+                    font-weight: $font-weight-regular;
+                    font-family: $font-labes; 
+                    font-size: 18px;
+                    text-align: center;
+                    color: $color-white;
+                    padding: 5px;
+                    position: relative;
+                    bottom: 35px;
+                    left: 49px;
+                }
+                .three {
+                    position: relative;
+                    bottom: 67px;
+                    left: 98px;
                 }
             }
             #movieDark {

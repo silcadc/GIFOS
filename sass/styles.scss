@@ -162,7 +162,7 @@
         margin: 0;
         display: grid;
         grid-template-columns: auto auto auto;
-        img {
+        .gifTrends {
             width: 243px;
             height: 187px;
             padding-left: 22px;
@@ -389,37 +389,42 @@
             }
         }
         div {
-            display: grid;
-            grid-template-columns: auto auto auto;
+            position: relative;
+            text-align: center;
             .btnSliderLeft {
-                width: 30px;
-                height: 30px;
-                position: relative;
-                left: 100%;
-                top: 36.5%;
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                left: 10%;
+                top: 130px;
+
             }
             #newGifos {
-                width: 80%;
+                width: 60%;
                 height: 60%;
-                margin-left: 10%;
-                margin-top: 32px;
-                margin-bottom: 82px;
-                img {
-                    width: 100%;
-                    height: 100%;
+                display: flex;
+                margin: 0 auto;
+                padding: 0;
+                overflow: hidden;
+                .gifTrends {
+                    display: block;
+                    width: 380px;
+                    height: 275px;
                     padding: 0 10px;
                 }
             }
             .btnSliderRight {
-                width: 30px;
-                height: 30px;
-                position: relative;
-                right: 92%;
-                top: 36.5%;
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                left: 85%;
+                top: 130px;
+             
             }
         } 
     }
     #containerMaxGifs {
+        opacity: 100%;
         #imgMaxSize{
             width: 60%;
             height: 60%;
@@ -440,16 +445,16 @@
             right: 80px;
         }  
         #imgFavoriteMax {
-            top: 571px;
-            right: 246px;
+            top: 83%;
+            right: 24%;
         }
         #favoriteActive {
-            top: 578px;
-            right: 258px;
+            top: 84%;
+            right: 25%;
         }
         #imgDownloadMax {
-            top: 570px;
-            right: 206px;
+            top: 83%;
+            right: 20%;
         }
     }
     /*----------------------------*/

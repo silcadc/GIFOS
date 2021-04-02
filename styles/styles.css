@@ -230,6 +230,9 @@ body {
     left: 155px;
     bottom: 290px;
   }
+  #createGifosSection #cameraDark {
+    display: none;
+  }
   #createGifosSection #camlight {
     position: relative;
     left: 281px;
@@ -307,10 +310,32 @@ body {
   #createGifosSection #steplight {
     position: relative;
     bottom: 270px;
-    left: 42%;
+    left: 44%;
+    width: 150px;
+    height: 32px;
   }
-  #createGifosSection #steplight .steps {
-    margin-right: 3%;
+  #createGifosSection #steplight .stepTwoThree {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #572EE5;
+    border-radius: 50%;
+    font-weight: 400;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    text-align: center;
+    color: #572EE5;
+    padding: 5px;
+    position: relative;
+    bottom: 35px;
+    left: 49px;
+  }
+  #createGifosSection #steplight .three {
+    position: relative;
+    bottom: 67px;
+    left: 98px;
+  }
+  #createGifosSection #stepDark {
+    display: none;
   }
   #createGifosSection #movie {
     position: absolute;
@@ -393,10 +418,29 @@ body {
   .dark #createGifosSection #stepDark {
     position: relative;
     bottom: 270px;
-    left: 42%;
+    left: 44%;
+    width: 150px;
+    height: 32px;
   }
-  .dark #createGifosSection #stepDark .steps {
-    margin-right: 3%;
+  .dark #createGifosSection #stepDark .stepTwoThree {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #FFFFFF;
+    border-radius: 50%;
+    font-weight: 400;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 5px;
+    position: relative;
+    bottom: 35px;
+    left: 49px;
+  }
+  .dark #createGifosSection #stepDark .three {
+    position: relative;
+    bottom: 67px;
+    left: 98px;
   }
   .dark #createGifosSection #movieDark {
     position: absolute;
@@ -823,7 +867,7 @@ header nav #menu #createMyGifos {
   grid-template-columns: auto auto auto;
 }
 
-#trends #newGifos img {
+#trends #newGifos .gifTrends {
   width: 243px;
   height: 187px;
   padding-left: 22px;
@@ -1073,34 +1117,39 @@ header nav #menu #createMyGifos {
     display: none;
   }
   #trends div {
-    display: grid;
-    grid-template-columns: auto auto auto;
+    position: relative;
+    text-align: center;
   }
   #trends div .btnSliderLeft {
-    width: 30px;
-    height: 30px;
-    position: relative;
-    left: 100%;
-    top: 36.5%;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 10%;
+    top: 130px;
   }
   #trends div #newGifos {
-    width: 80%;
+    width: 60%;
     height: 60%;
-    margin-left: 10%;
-    margin-top: 32px;
-    margin-bottom: 82px;
+    display: flex;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
   }
-  #trends div #newGifos img {
-    width: 100%;
-    height: 100%;
+  #trends div #newGifos .gifTrends {
+    display: block;
+    width: 380px;
+    height: 275px;
     padding: 0 10px;
   }
   #trends div .btnSliderRight {
-    width: 30px;
-    height: 30px;
-    position: relative;
-    right: 92%;
-    top: 36.5%;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 85%;
+    top: 130px;
+  }
+  #containerMaxGifs {
+    opacity: 100%;
   }
   #containerMaxGifs #imgMaxSize {
     width: 60%;
@@ -1122,16 +1171,16 @@ header nav #menu #createMyGifos {
     right: 80px;
   }
   #containerMaxGifs #imgFavoriteMax {
-    top: 571px;
-    right: 246px;
+    top: 83%;
+    right: 24%;
   }
   #containerMaxGifs #favoriteActive {
-    top: 578px;
-    right: 258px;
+    top: 84%;
+    right: 25%;
   }
   #containerMaxGifs #imgDownloadMax {
-    top: 570px;
-    right: 206px;
+    top: 83%;
+    right: 20%;
   }
   /*----------------------------*/
   /*         DARK MODE          */
