@@ -91,18 +91,22 @@ changeBtnSlider()
 /*----------------------------*/
 /*       GIFOS IN TREND       */
 /*----------------------------*/   
-fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
+fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
     .then (response => response.json())
     .then (response => {
         let apiResponseList = response.data
         response.data.forEach( gif => {
             const image = document.createElement("img")
-            image.src = gif.images.original.url
+            const divContainer = document.createElement("div")
+            divContainer.setAttribute("class", "purpleFilter");
+            image.src = gif.images.fixed_width.url
             image.setAttribute("id", gif.id)
-            document.querySelector("#newGifos").appendChild(image)
+            image.setAttribute("class", 'gifTrends')
+            divContainer.appendChild(image)
+            document.querySelector("#newGifos").appendChild(divContainer)
         })
   
-        let imgNewGifos = document.querySelectorAll("#newGifos > img")
+        let imgNewGifos = document.querySelectorAll("#newGifos > div > img")
         imgNewGifos.forEach(imgGifosTrend => {
             imgGifosTrend.addEventListener("click", () => {
                 let arrayFavorite = [];
@@ -217,7 +221,37 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
                     }
                 })
             })
-        })    
+        })  
+        
+        let gifTrends = document.querySelectorAll(".gifTrends");
+        
+        let index = 3;
+        let show = function(increase) {
+            console.log(show)
+            index = index + increase;
+            console.log(index)
+            index = Math.min(
+                Math.max(index,0),
+                gifTrends.length-1
+            );
+            gifTrends[index].scrollIntoView({behavior: 'smooth'});
+        }
+
+        btnSliderRight.addEventListener('click', function(){
+            show(+1);
+        });
+
+        btnSliderRightDark.addEventListener('click', function(){
+            show(+1);
+        });
+
+        btnSliderLeft.addEventListener('click', function(){
+            show(-1);
+        });
+
+        btnSliderLeftDark.addEventListener('click', function(){
+            show(-1);
+        });
     })      
 
 const getGifosFavorites = () => {
@@ -365,3 +399,35 @@ const clickButtonSeeMore = () => {
     amount = amount + 12
     getGifosFavorites()
 }
+
+btnSliderRight.addEventListener("mouseover", () => {
+    btnSliderRight.src = '/assets/Button-Slider-right-hover.svg'
+})
+
+btnSliderRight.addEventListener("mouseout", () => {
+    btnSliderRight.src = '/assets/Button-Slider-right.svg'
+})
+
+btnSliderLeft.addEventListener("mouseover", () => {
+    btnSliderLeft.src = '/assets/Button-Slider-left-hover.svg'
+})
+
+btnSliderLeft.addEventListener("mouseout", () => {
+    btnSliderLeft.src = '/assets/button-slider-left.svg'
+})
+
+btnSliderRightDark.addEventListener("mouseover", () => {
+    btnSliderRightDark.src = '/assets/Button-Slider-right-hover.svg'
+})
+
+btnSliderRightDark.addEventListener("mouseout", () => {
+    btnSliderRightDark.src = '/assets/button-slider-right-md-noct.svg'
+})
+
+btnSliderLeftDark.addEventListener("mouseover", () => {
+    btnSliderLeftDark.src = '/assets/Button-Slider-left-hover.svg'
+})
+
+btnSliderLeftDark.addEventListener("mouseout", () => {
+    btnSliderLeftDark.src = '/assets/button-slider-left-md-noct.svg'
+})

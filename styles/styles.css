@@ -124,6 +124,17 @@ body {
   line-height: 30px;
 }
 
+#myGifosSection #savedmyOwnGifs {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+#myGifosSection #savedmyOwnGifs .myGifosCheck {
+  width: 156px;
+  height: 120px;
+  margin: 10%;
+}
+
 #myGifosSection #myOwnGifs {
   width: 100%;
 }
@@ -199,9 +210,6 @@ body {
 
 /* Large devices (laptops/desktops, 768px and up) */
 @media only screen and (min-width: 768px) {
-  /*----------------------------*/
-  /*      FAVORITE SECTION      */
-  /*----------------------------*/
   /*---------Favorite Section---------- */
   #favoriteSection .titlesSection {
     font-size: 25px;
@@ -221,6 +229,16 @@ body {
   /*----------------------------*/
   #myGifosSection .titlesSection {
     font-size: 25px;
+  }
+  #myGifosSection #savedmyOwnGifs {
+    grid-template-columns: 25% 25% 25% 25%;
+    margin: 50px;
+  }
+  #myGifosSection #savedmyOwnGifs .myGifosCheck {
+    width: 255px;
+    height: 200px;
+    margin: 0;
+    padding: 5px;
   }
   /*----------------------------*/
   /*   CREATE GIFOS SECTION     */
@@ -307,12 +325,24 @@ body {
     line-height: 23px;
     margin-bottom: 117.28px;
   }
+  #createGifosSection #containerShowCam video {
+    width: 654px;
+    height: 355px;
+    position: absolute;
+    left: 14px;
+    top: 17px;
+  }
   #createGifosSection #steplight {
     position: relative;
     bottom: 270px;
     left: 44%;
     width: 150px;
     height: 32px;
+  }
+  #createGifosSection #steplight .stepTwo {
+    position: relative;
+    bottom: 0;
+    left: 9%;
   }
   #createGifosSection #steplight .stepTwoThree {
     width: 32px;
@@ -325,14 +355,23 @@ body {
     text-align: center;
     color: #572EE5;
     padding: 5px;
-    position: relative;
-    bottom: 35px;
+  }
+  #createGifosSection #steplight .two {
+    position: absolute;
+    bottom: 0;
     left: 49px;
   }
   #createGifosSection #steplight .three {
-    position: relative;
-    bottom: 67px;
+    position: absolute;
+    bottom: 0;
     left: 98px;
+  }
+  #createGifosSection #steplight .stepThree {
+    position: absolute;
+    bottom: 0;
+    left: 98px;
+    background-color: #572EE5;
+    color: #FFFFFF;
   }
   #createGifosSection #stepDark {
     display: none;
@@ -353,18 +392,18 @@ body {
     border-radius: 25px;
     background: #572EE5;
   }
-  #createGifosSection .comenzar {
+  #createGifosSection div .btnCreateGifos {
     border: 1px solid #572EE5;
     border-radius: 25px;
     width: 127px;
     height: 50px;
     position: relative;
     bottom: 235px;
-    left: 45%;
+    left: 44%;
     cursor: pointer;
     background-color: transparent;
   }
-  #createGifosSection .comenzar .color_purple {
+  #createGifosSection div .btnCreateGifos .color_purple {
     color: #572EE5;
     font-weight: bold;
     text-align: center;
@@ -450,10 +489,10 @@ body {
   .dark #createGifosSection hr {
     background: #FFFFFF;
   }
-  .dark #createGifosSection .comenzar {
+  .dark #createGifosSection div .btnCreateGifos {
     border: 1px solid #FFFFFF;
   }
-  .dark #createGifosSection .comenzar .color_purple {
+  .dark #createGifosSection div .btnCreateGifos .color_purple {
     color: #FFFFFF;
     font-weight: bold;
     text-align: center;
@@ -1135,7 +1174,10 @@ header nav #menu #createMyGifos {
     padding: 0;
     overflow: hidden;
   }
-  #trends div #newGifos .gifTrends {
+  #trends div #newGifos .purpleFilter {
+    background-image: linear-gradient(rgba(255, 0, 0, 0.3), rgba(255, 0, 0, 0.3));
+  }
+  #trends div #newGifos .purpleFilter .gifTrends {
     display: block;
     width: 380px;
     height: 275px;

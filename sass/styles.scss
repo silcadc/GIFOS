@@ -406,11 +406,14 @@
                 margin: 0 auto;
                 padding: 0;
                 overflow: hidden;
-                .gifTrends {
-                    display: block;
-                    width: 380px;
-                    height: 275px;
-                    padding: 0 10px;
+                .purpleFilter{
+                    background-image: linear-gradient(rgba(255, 0, 0, 0.3), rgba(255, 0, 0, 0.3));
+                    .gifTrends {
+                        display: block;
+                        width: 380px;
+                        height: 275px;
+                        padding: 0 10px;
+                    }
                 }
             }
             .btnSliderRight {

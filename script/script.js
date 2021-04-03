@@ -168,13 +168,16 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
         let apiResponseList = response.data
         response.data.forEach( gif => {
             const image = document.createElement("img")
+            const divContainer = document.createElement("div")
+            divContainer.setAttribute("class", "purpleFilter");
             image.src = gif.images.fixed_width.url
             image.setAttribute("id", gif.id)
             image.setAttribute("class", 'gifTrends')
-            document.querySelector("#newGifos").appendChild(image)
+            divContainer.appendChild(image)
+            document.querySelector("#newGifos").appendChild(divContainer)
         })
     
-        let imgNewGifos = document.querySelectorAll("#newGifos > img")
+        let imgNewGifos = document.querySelectorAll("#newGifos > div > img")
         imgNewGifos.forEach(imgGifosTrend => {
             imgGifosTrend.addEventListener("click", () => {
                 let arrayFavorite = [];
@@ -293,10 +296,12 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
                 })
             })
            
-            imgGifosTrend.addEventListener("mouseover", () => {
+            // imgGifosTrend.addEventListener("mouseover", () => {
              
-                // let containerMaxGifs = document.querySelector("#containerMaxGifs")
-                // let containerPurpleFilter = document.createElement("div")
+                 // let containerMaxGifs = document.querySelector("#containerMaxGifs")
+                //  let divPurpleFilter = document.querySelectorAll("newGifos > div");
+                //  divPurpleFilter.style.background = "linear-gradient(rgba(255, 0, 0, 0.3), rgba(255, 0, 0, 0.3))";
+                //  console.log(divPurpleFilter)
 
                 // const anchor = document.createElement("a");
                 // const href = document.createAttribute("href");
@@ -401,7 +406,7 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
                 // newGifosMousesOver_Out.style.background = "#572EE5";
                 // gifTrends.style.opacity = "0.6";
         
-            })
+            //})
 
             // imgGifosTrend.addEventListener("mouseout", () => {
             //     gifTrends.style.background = "#572EE5";
@@ -440,7 +445,6 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
             show(-1);
         });
     }) 
-
 
 /*----------------------------*/
 /*         DARK MODE          */

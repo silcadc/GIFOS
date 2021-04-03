@@ -21,6 +21,8 @@ const clickSeeMoreDark = document.querySelector(".seeMoreDark")
 const buttonSeeMore = document.querySelector(".seeMore")
 const buttonSeeMoreDark = document.querySelector(".seeMoreDark")
 //-
+const savedmyOwnGifs = document.querySelector("#savedmyOwnGifs")
+//-
 /*-------------------------------*/
 /*   CHANGE MODE - DAY OR DARK   */
 /*-------------------------------*/
@@ -91,18 +93,22 @@ changeBtnSlider()
 /*----------------------------*/
 /*       GIFOS IN TREND       */
 /*----------------------------*/   
-fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
+fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
     .then (response => response.json())
     .then (response => {
         let apiResponseList = response.data
         response.data.forEach( gif => {
             const image = document.createElement("img")
-            image.src = gif.images.original.url
+            const divContainer = document.createElement("div")
+            divContainer.setAttribute("class", "purpleFilter");
+            image.src = gif.images.fixed_width.url
             image.setAttribute("id", gif.id)
-            document.querySelector("#newGifos").appendChild(image)
+            image.setAttribute("class", 'gifTrends')
+            divContainer.appendChild(image)
+            document.querySelector("#newGifos").appendChild(divContainer)
         })
   
-        let imgNewGifos = document.querySelectorAll("#newGifos > img")
+        let imgNewGifos = document.querySelectorAll("#newGifos > div > img")
         imgNewGifos.forEach(imgGifosTrend => {
             imgGifosTrend.addEventListener("click", () => {
                 let arrayFavorite = [];
@@ -217,33 +223,38 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=3`)
                     }
                 })
             })
-        })    
-    })      
+        })  
 
-// const getGifosFavorites = () => {
-//     let arrayFavoriteToString = JSON.parse(sessionStorage.getItem("fullHeart"));
-//     let cantFavorite = arrayFavoriteToString.join(", ");
-//     if (arrayFavoriteToString.length > 0) {
-//         /*--------------------------------*/   
-//         /*        FAVORITES GIFOS         */   
-//         /*--------------------------------*/  
-//         fetch(`https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${cantFavorite}`)
-//         .then (response => response.json())
-//         .then (response => {
-//             savedGifs.innerHTML = ""
-//             for (let i = 0; i < response.data.length; i++){
-//                 if (i > amount) {break}
-//                 const image = document.createElement("img")
-//                 image.src = response.data[i].images.original.url
-//                 image.setAttribute("class", "favoritesGifosCheck")
-//                 document.querySelector("#savedGifs").appendChild(image)
-//             }
-//             document.querySelector(".noContent").classList.add("off");
-//             document.querySelector(".noContentText").classList.add("off");
-//             showButtonsMoreInFavorite() 
-//         })
-//     }
-// }
+        let gifTrends = document.querySelectorAll(".gifTrends");
+        
+        let index = 3;
+        let show = function(increase) {
+            console.log(show)
+            index = index + increase;
+            console.log(index)
+            index = Math.min(
+                Math.max(index,0),
+                gifTrends.length-1
+            );
+            gifTrends[index].scrollIntoView({behavior: 'smooth'});
+        }
+
+        btnSliderRight.addEventListener('click', function(){
+            show(+1);
+        });
+
+        btnSliderRightDark.addEventListener('click', function(){
+            show(+1);
+        });
+
+        btnSliderLeft.addEventListener('click', function(){
+            show(-1);
+        });
+
+        btnSliderLeftDark.addEventListener('click', function(){
+            show(-1);
+        });
+    })      
 
 /*----------------------------*/
 /*         DARK MODE          */
@@ -351,7 +362,6 @@ hamburDark.addEventListener("click", () => {
     document.querySelector("#menu").classList.add("off")
 })
 
-
 clickSeeMore.addEventListener("click", () => {
     clickButtonSeeMore()
 }) 
@@ -362,5 +372,53 @@ clickSeeMoreDark.addEventListener("click", () => {
 
 const clickButtonSeeMore = () => {
     amount = amount + 12
-    //getGifosFavorites()
 }
+
+btnSliderRight.addEventListener("mouseover", () => {
+    btnSliderRight.src = '/assets/Button-Slider-right-hover.svg'
+})
+
+btnSliderRight.addEventListener("mouseout", () => {
+    btnSliderRight.src = '/assets/Button-Slider-right.svg'
+})
+
+btnSliderLeft.addEventListener("mouseover", () => {
+    btnSliderLeft.src = '/assets/Button-Slider-left-hover.svg'
+})
+
+btnSliderLeft.addEventListener("mouseout", () => {
+    btnSliderLeft.src = '/assets/button-slider-left.svg'
+})
+
+btnSliderRightDark.addEventListener("mouseover", () => {
+    btnSliderRightDark.src = '/assets/Button-Slider-right-hover.svg'
+})
+
+btnSliderRightDark.addEventListener("mouseout", () => {
+    btnSliderRightDark.src = '/assets/button-slider-right-md-noct.svg'
+})
+
+btnSliderLeftDark.addEventListener("mouseover", () => {
+    btnSliderLeftDark.src = '/assets/Button-Slider-left-hover.svg'
+})
+
+btnSliderLeftDark.addEventListener("mouseout", () => {
+    btnSliderLeftDark.src = '/assets/button-slider-left-md-noct.svg'
+})
+
+gifos = JSON.parse(window.localStorage.getItem('mygifos'))
+
+getGifos = async () => {
+    const response = await fetch(`https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${gifos.join()}`)
+    const result = await response.json()
+    result.data.forEach(gif => {
+        const image = document.createElement('img')
+        image.src = gif.images.original.url
+        savedmyOwnGifs.appendChild(image)
+    })
+    document.querySelector(".noContent").classList.add("off");
+    document.querySelector(".noContentText").classList.add("off");
+    showButtonsMoreInFavorite() 
+}
+
+getGifos()

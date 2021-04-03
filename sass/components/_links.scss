@@ -52,6 +52,15 @@
         font-size: sum($font-size16, 4px);
         line-height: 30px;
     }
+    #savedmyOwnGifs {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        .myGifosCheck {
+            width: 156px;
+            height: 120px; 
+            margin: 10%; 
+        }
+    }
     #myOwnGifs{
         width: 100%;
         .noContent {
@@ -118,9 +127,6 @@
 
 /* Large devices (laptops/desktops, 768px and up) */
 @media only screen and (min-width: 768px) {
-    /*----------------------------*/
-    /*      FAVORITE SECTION      */
-    /*----------------------------*/
     /*---------Favorite Section---------- */
     #favoriteSection {
         .titlesSection {
@@ -144,6 +150,16 @@
     #myGifosSection {
         .titlesSection {
             font-size: sum($font-size16, 9px);
+        }
+        #savedmyOwnGifs {
+            grid-template-columns: 25% 25% 25% 25%;
+            margin: 50px;
+            .myGifosCheck {
+                width: 255px;
+                height: 200px; 
+                margin: 0;
+                padding: 5px;
+            }
         }
     }  
     /*----------------------------*/
@@ -228,6 +244,13 @@
                 line-height: 23px;
                 margin-bottom: 117.28px;
             }
+            video {
+                width: 654px;
+                height: 355px;
+                position: absolute;
+                left: 14px;
+                top: 17px;
+            }
         }
         #steplight {
             position: relative;
@@ -235,6 +258,11 @@
             left: 44%;
             width: 150px;
             height: 32px;
+            .stepTwo {
+                position: relative;
+                bottom: 0;
+                left: 9%;
+            }
             .stepTwoThree {
                 width: 32px;
                 height: 32px;
@@ -246,14 +274,23 @@
                 text-align: center;
                 color: $color-purple;
                 padding: 5px;
-                position: relative;
-                bottom: 35px;
+            }
+            .two {
+                position: absolute;
+                bottom: 0;
                 left: 49px;
             }
             .three {
-                position: relative;
-                bottom: 67px;
+                position: absolute;
+                bottom: 0;
                 left: 98px;
+            }
+            .stepThree {
+                position: absolute;
+                bottom: 0;
+                left: 98px;
+                background-color: $color-purple;
+                color: $color-white;
             }
         }  
         #stepDark {
@@ -275,18 +312,20 @@
             border-radius: 25px;
             background: $color-purple;
         }
-        .comenzar {
-            border: 1px solid $color-purple;
-            border-radius: 25px;
-            width: 127px;
-            height: 50px;
-            position: relative;
-            bottom: 235px;
-            left: 45%;
-            cursor:pointer;
-            background-color: transparent;
-            .color_purple {
-                @include generals_font;
+        div {
+            .btnCreateGifos {
+                border: 1px solid $color-purple;
+                border-radius: 25px;
+                width: 127px;
+                height: 50px;
+                position: relative;
+                bottom: 235px;
+                left: 44%;
+                cursor:pointer;
+                background-color: transparent;
+                .color_purple {
+                    @include generals_font;
+                }
             }
         }
     }
@@ -380,10 +419,12 @@
             hr {
                 background: $color-white;
             }
-            .comenzar {
-                border: 1px solid $color-white;
-                .color_purple {
-                    @include generals_font($color: $color-white);
+            div {
+                .btnCreateGifos {
+                    border: 1px solid $color-white;
+                    .color_purple {
+                        @include generals_font($color: $color-white);
+                    }
                 }
             }
         }
