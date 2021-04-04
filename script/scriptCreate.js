@@ -28,17 +28,30 @@ const btnStart = document.querySelector("#btnStart");
 const btnRecord = document.querySelector("#btnRecord");
 const btnFinish = document.querySelector("#btnFinish");
 const btnUpload = document.querySelector("#btnUpload");
+let btnCreateGifos = document.querySelector(".btnCreateGifos");
 
 let h1CreateGifos = document.querySelector("#h1CreateGifos");
 let h1CameraAccess = document.querySelector("#h1CameraAccess");
 let h2instructionCreate = document.querySelector("#instructionCreate");
 let instructionOfAccess = document.querySelector("#instructionOfAccess");
 
+let stepOne = document.querySelector(".stepOne");
+let one = document.querySelector(".one");
 let two = document.querySelector(".two");
 let stepTwo = document.querySelector(".stepTwo");
 
 let three = document.querySelector(".three");
 let stepThree = document.querySelector(".stepThree");
+
+let chronometer = document.querySelector(".chronometer");
+let hr = 0;
+let min = 0;
+let seg = 0;
+let idInterval;
+
+let repeatCapture = document.querySelector(".repeatCapture");
+let purpleFilter = document.querySelector(".purpleFilter");
+let upSuccess = document.querySelector(".upSuccess");
 
 let recorder
 let gifBlob
@@ -223,6 +236,10 @@ const getStream = () => {
 
         btnStart.classList.add('off')
         btnRecord.classList.remove('off')
+        two.classList.add('off');
+        stepTwo.classList.remove('off');
+        stepOne.classList.remove('off');
+        one.classList.add('off');
     })
     .catch(error => {
         console.error(error)
@@ -256,25 +273,109 @@ const uploadGif = async () => {
     const responseJson = await response.json()
     myGifos.push(responseJson.data.id)
     window.localStorage.setItem('mygifos', JSON.stringify(myGifos))
-  }
+    purpleFilter.classList.add('off');
+    upSuccess.classList.remove('off');
+}
 
 btnStart.addEventListener('click', () => {
     h1CreateGifos.classList.add('off');
     h1CameraAccess.classList.remove('off');
     h2instructionCreate.classList.add('off');
     instructionOfAccess.classList.remove('off');
+    stepOne.classList.add('off');
+    one.classList.remove('off');
+    getStream();
+});
+
+btnRecord.addEventListener('click', () => {
     two.classList.add('off');
     stepTwo.classList.remove('off');
-    getStream();
-})
+    stepOne.classList.remove('off');
+    one.classList.add('off');
+    chronometer.classList.remove('off');
+    recordStart();
+    chronometerFunction();
+});
 
-btnRecord.addEventListener('click', recordStart)
-btnFinish.addEventListener('click', recordStop)
-
-btnUpload.addEventListener('click', () => {
-    three.classList.add('off');
-    stepThree.classList.remove('off');
+btnFinish.addEventListener('click', () => {
     two.classList.remove('off');
     stepTwo.classList.add('off');
-    uploadGif();
+    three.classList.add('off');
+    stepThree.classList.remove('off');
+    stopChronometer()
+    chronometer.classList.add('off');   
+    repeatCapture.classList.remove('off');
+    recordStop()
+});
+
+
+
+function chronometerFunction(){
+    hr = 0;
+    min = 0;
+    seg = 0;
+    counting();
+    idInterval = setInterval(counting,1000);
+}
+
+function counting(){
+    let hAux, mAux, sAux;
+    seg++;
+    if (seg>59){
+        min++;
+        seg=0;
+    }
+    if (min>59){
+        hr++;
+        min=0;
+    }
+    if (hr>24){
+        hr=0;
+    }
+    if (seg<10){
+        sAux="0"+seg;
+    }else{
+        sAux=seg;
+    }
+    if (min<10){
+        mAux="0"+min;
+    }else{
+        mAux=min;
+    }
+    if (hr<10){
+        hAux="0"+hr;
+    }else{
+        hAux=hr;
+    }
+    chronometer.innerHTML = hAux + ":" + mAux + ":" + sAux; 
+}
+
+function stopChronometer(){
+    clearInterval(idInterval);
+}
+
+repeatCapture.addEventListener('click', () => {
+    getStream();
+    stepOne.classList.remove('off');
+    one.classList.add('off');
+    two.classList.add('off');
+    stepTwo.classList.remove('off');
+    three.classList.remove('off');
+    stepThree.classList.add('off');
+
+    btnStart.classList.add('off')
+    btnUpload.classList.add('off'); 
+    btnRecord.classList.remove('off')
+    repeatCapture.classList.add('off');   
 })
+
+btnUpload.addEventListener('click', () => { 
+    btnUpload.classList.add('off');
+    repeatCapture.classList.add('off');
+    three.classList.add('off');
+    stepThree.classList.remove('off');
+    repeatCapture.classList.add('off'); 
+    chronometer.classList.add('off');   
+    purpleFilter.classList.remove('off');
+    uploadGif();
+});

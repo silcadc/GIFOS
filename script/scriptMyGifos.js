@@ -18,9 +18,6 @@ const theFavoriteGifs = document.querySelector(".theFavoriteGifs")
 const clickSeeMore = document.querySelector(".seeMore")
 const clickSeeMoreDark = document.querySelector(".seeMoreDark")
 //-
-const buttonSeeMore = document.querySelector(".seeMore")
-const buttonSeeMoreDark = document.querySelector(".seeMoreDark")
-//-
 const savedmyOwnGifs = document.querySelector("#savedmyOwnGifs")
 //-
 /*-------------------------------*/
@@ -55,8 +52,7 @@ headerBurger.addEventListener("click", () => {
 
 let showButtonsMoreInFavorite = () => {
     let checkContentClass = document.getElementById("noContent");
-    let hasOff = checkContentClass.classList.contains("off");//CONTAINS,solo me funciono 
-    //utilizando getElementById, intente con class y era undefined.
+    let hasOff = checkContentClass.classList.contains("off");
     if (hasOff === true) {
         if (isDark === false) {
             document.querySelector(".seeMore").classList.remove("off")
@@ -362,18 +358,6 @@ hamburDark.addEventListener("click", () => {
     document.querySelector("#menu").classList.add("off")
 })
 
-clickSeeMore.addEventListener("click", () => {
-    clickButtonSeeMore()
-}) 
-
-clickSeeMoreDark.addEventListener("click", () => {
-    clickButtonSeeMore()
-})
-
-const clickButtonSeeMore = () => {
-    amount = amount + 12
-}
-
 btnSliderRight.addEventListener("mouseover", () => {
     btnSliderRight.src = '/assets/Button-Slider-right-hover.svg'
 })
@@ -407,18 +391,34 @@ btnSliderLeftDark.addEventListener("mouseout", () => {
 })
 
 gifos = JSON.parse(window.localStorage.getItem('mygifos'))
+console.log(gifos)
 
 getGifos = async () => {
     const response = await fetch(`https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${gifos.join()}`)
-    const result = await response.json()
-    result.data.forEach(gif => {
+    const result = await response.json()  
+    savedmyOwnGifs.innerHTML = "";
+    for (let i = 0; i < result.data.length; i++){
+        console.log(result.data.length)
+        if (i > amount) {break}
         const image = document.createElement('img')
-        image.src = gif.images.original.url
+        image.src = result.data[i].images.original.url
         savedmyOwnGifs.appendChild(image)
-    })
+    }
     document.querySelector(".noContent").classList.add("off");
     document.querySelector(".noContentText").classList.add("off");
     showButtonsMoreInFavorite() 
 }
-
 getGifos()
+
+clickSeeMore.addEventListener("click", () => {
+    clickButtonSeeMore()
+}) 
+
+clickSeeMoreDark.addEventListener("click", () => {
+    clickButtonSeeMore()
+})
+
+const clickButtonSeeMore = () => {
+    amount = amount + 12
+    getGifos()
+}

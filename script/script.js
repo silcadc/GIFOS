@@ -572,7 +572,6 @@ magnifDark.addEventListener("click", () => {
 })
 
 crossMagnifDark.addEventListener("click", () => {
-
     crossMagnifDark.classList.add("off")
     document.querySelector("#magniDark").classList.remove("off")
 })

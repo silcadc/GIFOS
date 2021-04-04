@@ -263,10 +263,13 @@ body {
     width: 688px;
     height: 390px;
   }
-  #createGifosSection #containerShowCam #corner1 {
+  #createGifosSection #containerShowCam .corner {
+    position: relative;
     border: 1px solid #50E3C2;
     width: 27px;
     height: 25px;
+  }
+  #createGifosSection #containerShowCam #corner1 {
     position: relative;
     left: 640px;
     top: 17px;
@@ -274,9 +277,6 @@ body {
     border-bottom-style: hidden;
   }
   #createGifosSection #containerShowCam #corner2 {
-    border: 1px solid #50E3C2;
-    width: 27px;
-    height: 25px;
     position: relative;
     left: 15px;
     bottom: 7px;
@@ -284,9 +284,6 @@ body {
     border-bottom-style: hidden;
   }
   #createGifosSection #containerShowCam #corner3 {
-    border: 1px solid #50E3C2;
-    width: 27px;
-    height: 25px;
     position: relative;
     left: 15px;
     top: 297px;
@@ -294,9 +291,6 @@ body {
     border-top-style: hidden;
   }
   #createGifosSection #containerShowCam #corner4 {
-    border: 1px solid #50E3C2;
-    width: 27px;
-    height: 25px;
     position: relative;
     left: 641px;
     top: 272px;
@@ -328,9 +322,55 @@ body {
   #createGifosSection #containerShowCam video {
     width: 654px;
     height: 355px;
+    position: relative;
+    left: 6px;
+    bottom: 372px;
+  }
+  #createGifosSection #containerShowCam .purpleFilter {
+    width: 472px;
+    height: 354px;
+    background: #572EE5;
+    opacity: 0.6;
+    text-align: center;
     position: absolute;
-    left: 14px;
-    top: 17px;
+    left: 97px;
+    top: 18px;
+  }
+  #createGifosSection #containerShowCam .purpleFilter .loading {
+    position: absolute;
+    left: 222px;
+    top: 133px;
+    opacity: 100;
+  }
+  #createGifosSection #containerShowCam .purpleFilter .upGifo {
+    margin-top: 45px;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    position: absolute;
+    left: 131px;
+    top: 133px;
+  }
+  #createGifosSection #containerShowCam .upSuccess .iconDownload {
+    position: absolute;
+    left: 375px;
+    top: 16px;
+  }
+  #createGifosSection #containerShowCam .upSuccess .iconLink {
+    position: absolute;
+    left: 421px;
+    top: 16px;
+  }
+  #createGifosSection #containerShowCam .upSuccess .check {
+    position: absolute;
+    left: 222px;
+    top: 133px;
+    opacity: 100;
+  }
+  #createGifosSection #containerShowCam .upSuccess .upGifo {
+    left: 147px;
   }
   #createGifosSection #steplight {
     position: relative;
@@ -356,6 +396,13 @@ body {
     color: #572EE5;
     padding: 5px;
   }
+  #createGifosSection #steplight .one {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #572EE5;
+    color: #FFFFFF;
+  }
   #createGifosSection #steplight .two {
     position: absolute;
     bottom: 0;
@@ -372,6 +419,21 @@ body {
     left: 98px;
     background-color: #572EE5;
     color: #FFFFFF;
+  }
+  #createGifosSection .chronometer {
+    color: #572EE5;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    position: absolute;
+    top: 70%;
+    left: 67%;
+  }
+  #createGifosSection .repeatCapture {
+    left: 62%;
+    border-bottom: 3px solid #50E3C2;
+    cursor: pointer;
   }
   #createGifosSection #stepDark {
     display: none;
@@ -460,6 +522,11 @@ body {
     left: 44%;
     width: 150px;
     height: 32px;
+  }
+  .dark #createGifosSection #stepDark .stepTwo {
+    position: relative;
+    bottom: 0;
+    left: 9%;
   }
   .dark #createGifosSection #stepDark .stepTwoThree {
     width: 32px;

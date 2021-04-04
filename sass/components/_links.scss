@@ -159,6 +159,7 @@
                 height: 200px; 
                 margin: 0;
                 padding: 5px;
+
             }
         }
     }  
@@ -185,10 +186,13 @@
             border: 1px solid $color-purple;
             width: 688px;
             height: 390px;
-            #corner1 {
+            .corner {
+                position: relative;
                 border: 1px solid $color-aqua;
                 width: 27px;
                 height: 25px;
+            }
+            #corner1 {
                 position: relative;
                 left: 640px;
                 top: 17px;
@@ -196,9 +200,6 @@
                 border-bottom-style: hidden;
             }
             #corner2 {
-                border: 1px solid $color-aqua;
-                width: 27px;
-                height: 25px;
                 position: relative;
                 left: 15px;
                 bottom: 7px;
@@ -206,9 +207,6 @@
                 border-bottom-style: hidden;
             }
             #corner3 {
-                border: 1px solid $color-aqua;
-                width: 27px;
-                height: 25px;
                 position: relative;
                 left: 15px;
                 top: 297px;
@@ -216,9 +214,6 @@
                 border-top-style: hidden;
             }
             #corner4 {
-                border: 1px solid $color-aqua;
-                width: 27px;
-                height: 25px;
                 position: relative;
                 left: 641px;
                 top: 272px;
@@ -247,9 +242,54 @@
             video {
                 width: 654px;
                 height: 355px;
+                position: relative;
+                left: 6px;
+                bottom: 372px;
+            }
+            .purpleFilter {
+                width: 472px;
+                height: 354px;
+                background: #572EE5;
+                opacity: 0.6;
+                text-align: center;
                 position: absolute;
-                left: 14px;
-                top: 17px;
+                left: 97px;
+                top: 18px;
+                .loading {
+                    position: absolute;
+                    left: 222px;
+                    top: 133px;
+                    opacity: 100;
+                }
+                .upGifo {
+                    margin-top: 45px;
+                    @include generals_font($color: $color-white);
+                    font-size: subtraction($font-size16, 1px);
+                    position: absolute;
+                    left: 131px;
+                    top: 133px;
+                }
+            }
+            .upSuccess {
+                .iconDownload {
+                    position: absolute;
+                    left: 375px;
+                    top: 16px;
+                }
+                .iconLink {
+                    position: absolute;
+                    left: 421px;
+                    top: 16px;
+                }
+                .check {
+                    position: absolute;
+                    left: 222px;
+                    top: 133px;
+                    opacity: 100;
+                }
+                .upGifo {
+                    left: 147px;
+                }
             }
         }
         #steplight {
@@ -275,6 +315,13 @@
                 color: $color-purple;
                 padding: 5px;
             }
+            .one {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                background-color: $color-purple;
+                color: $color-white;
+            }
             .two {
                 position: absolute;
                 bottom: 0;
@@ -292,7 +339,19 @@
                 background-color: $color-purple;
                 color: $color-white;
             }
-        }  
+        } 
+        .chronometer {
+            @include generals_font;
+            font-size: subtraction($font-size16, 1px);
+            position: absolute;
+            top: 70%;
+            left: 67%;
+        }
+        .repeatCapture {
+            left: 62%;
+            border-bottom: 3px solid $color-aqua;
+            cursor:pointer;
+        }
         #stepDark {
             display: none;
         }
@@ -390,6 +449,11 @@
                 left: 44%;
                 width: 150px;
                 height: 32px;
+                .stepTwo {
+                    position: relative;
+                    bottom: 0;
+                    left: 9%;
+                }
                 .stepTwoThree {
                     width: 32px;
                     height: 32px;
