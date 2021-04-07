@@ -124,10 +124,23 @@
     .gifosContainer {
         display: grid;
         grid-template-columns: 50% 50%;
-        .showGifos {
+        .gifosInTopFive {
+            background-color: chartreuse;
             width: 156px;
             height: 120px; 
-            margin: 10%;           
+            margin: 10%;  
+            .showGifos {
+                width: 156px;
+                height: 120px;           
+            }
+            .filterPurpleTopFive {
+                position: relative;
+                bottom: 123px;
+                background: #572EE5;
+                opacity: 0.6;
+                width: 156px;
+                height: 120px;         
+            }
         }
     }
     .seeMore {
@@ -360,7 +373,7 @@
         .ultrendings {
             font-size: sum($font-size16, 2px);
         }
-        .lineUnderSearch{
+        .lineUnderSearch {
             width: 50%;
             height: 1px;
             opacity: 0.5;
@@ -375,16 +388,76 @@
         }
         .gifosContainer {
             grid-template-columns: 25% 25% 25% 25%;
-            padding: 15px;
-            .showGifos {
-                margin: 8%;           
+            margin: 0 7%;
+            .gifosInTopFive {
+                position: relative;
+                width: 276px;
+                height: 148px;
+                left: 12px;
+                margin: 0;
+                margin-top: 21%;
+                .showGifos { 
+                    width: 302px;
+                    height: 190px;        
+                }
+                .filterPurpleTopFive {
+                    position: absolute;
+                    top: 0;
+                    background: #572EE5;
+                    opacity: 0.7;
+                    width: 302px;
+                    height: 191px;
+                    left: 0;
+                    .iconFavTopFive {
+                        position: absolute;
+                        top: 10px;
+                        right: 89px;
+                    }
+                    .iconDowTopFive {
+                        position: absolute;
+                        top: 10px;
+                        right: 49px;
+                    }
+                    .iconMaxTopFive {
+                        position: absolute;
+                        right: 10px;
+                        top: 10px;
+                    }
+                    h2 {
+                        text-align: left;
+                        position: absolute;
+                        font-family: $font-labes; 
+                        font-size: 16px;
+                        font-weight: $font-weight-bold;
+                        color: $color-white;
+                        top: 67%;
+                        width: 281px;
+                        height: 51px;
+                        margin: 10px;
+                    }
+                    h3 {
+                        text-align: left;
+                        position: absolute;
+                        color: $color-black;
+                        font-weight: $font-weight-regular;
+                        font-family: $font-labes; 
+                        font-size: 15px;
+                        color: $color-white;
+                        top: 51%;
+                        width: 281px;
+                        margin: 10px;
+                    }
+                }
             }
+        }
+        .seeMore {
+            margin-top: 130px;
         }
     }
     #trends {
         #latestGifos {
             font-size: sum($font-size16, 2);
-            br{
+            br {
                 display: none;
             }
         }
@@ -397,7 +470,6 @@
                 position: absolute;
                 left: 10%;
                 top: 130px;
-
             }
             #newGifos {
                 width: 60%;
@@ -406,13 +478,60 @@
                 margin: 0 auto;
                 padding: 0;
                 overflow: hidden;
-                .purpleFilter{
-                    background-image: linear-gradient(rgba(255, 0, 0, 0.3), rgba(255, 0, 0, 0.3));
-                    .gifTrends {
-                        display: block;
-                        width: 380px;
-                        height: 275px;
-                        padding: 0 10px;
+                .gifTrends {
+                    display: block;
+                    width: 380px;
+                    height: 275px;
+                    padding: 0 10px;
+                }
+                .purpleFilterWithIcons {
+                    position: relative;
+                    bottom: 275px;
+                    margin: auto;
+                    background: #572EE5;
+                    opacity: 0.6;
+                    width: 363px;
+                    height: 274px;
+                    padding: 0 10px;
+                    .iconFavoriteStyle {
+                        position: absolute;
+                        top: 10px;
+                        right: 89px;
+                    }
+                    .iconDownloadStyle {
+                        position: absolute;
+                        top: 10px;
+                        right: 49px;
+                    }
+                    .iconMaximumStyle {
+                        position: absolute;
+                        right: 10px;
+                        top: 10px;
+                    }
+                    h2 {
+                        text-align: left;
+                        position: absolute;
+                        font-family: $font-labes; 
+                        font-size: 16px;
+                        font-weight: $font-weight-bold;
+                        color: $color-white;
+                        top: 70%;
+                        right: 4%;
+                        width: 324px;
+                        height: 51px;
+                        margin: 10px;
+                    }
+                    h3 {
+                        text-align: left;
+                        position: absolute;
+                        color: $color-black;
+                        font-weight: $font-weight-regular;
+                        font-family: $font-labes; 
+                        font-size: 15px;
+                        color: $color-white;
+                        top: 59%;
+                        right: 4%;
+                        width: 324px;
                     }
                 }
             }

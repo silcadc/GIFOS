@@ -400,9 +400,66 @@ getGifos = async () => {
     for (let i = 0; i < result.data.length; i++){
         console.log(result.data.length)
         if (i > amount) {break}
+        let fatherMyGifosCheck = document.createElement("div");
+        fatherMyGifosCheck.setAttribute("class", "fatherMyGifosCheck");
+        let brotherMyGifosCheck = document.createElement("div");
+        brotherMyGifosCheck.setAttribute("class", "brotherMyGifosCheck");
         const image = document.createElement('img')
+        image.setAttribute("class", "myGifosCheck")
         image.src = result.data[i].images.original.url
-        savedmyOwnGifs.appendChild(image)
+        fatherMyGifosCheck.appendChild(image)
+        fatherMyGifosCheck.appendChild(brotherMyGifosCheck)
+        savedmyOwnGifs.appendChild(fatherMyGifosCheck)
+
+        let iconTrashMyGifos = document.createElement("img");
+        iconTrashMyGifos.src = '/assets/icon-trash-normal.svg';
+        iconTrashMyGifos.setAttribute("class", "iconTrashMyGifos");
+        
+        let iconTrashMyGifosActive = document.createElement("img");
+        iconTrashMyGifosActive.src = '/assets/con-trash-hover.svg';
+        iconTrashMyGifosActive.setAttribute("class", "iconTrashMyGifos off");
+        
+        let iconDowMyGifos = document.createElement("img");
+        iconDowMyGifos.src = '/assets/icon-download.svg';
+        iconDowMyGifos.setAttribute("class", "iconDowMyGifos");
+        
+        let iconDowMyGifosActive = document.createElement("img");
+        iconDowMyGifosActive.src = '/assets/icon-download-hover.svg';
+        iconDowMyGifosActive.setAttribute("class", "iconDowMyGifos off");
+        
+        let iconMaxMyGifos = document.createElement("img");
+        iconMaxMyGifos.src = '/assets/icon-max-normal.svg';
+        iconMaxMyGifos.setAttribute("class", "iconMaxMyGifos");
+        
+        let iconMaxMyGifosActive = document.createElement("img");
+        iconMaxMyGifosActive.src = '/assets/icon-max-hover.svg';
+        iconMaxMyGifosActive.setAttribute("class", "iconMaxMyGifos off");
+        
+        const titleGifosMyGifos = document.createElement("h2")
+        //titleGifosMyGifos.textContent = result.data[i].title
+        
+        const userMyGifos = document.createElement("h3")
+        // userMyGifos.textContent = result.data[i].username
+    
+        brotherMyGifosCheck.appendChild(iconTrashMyGifos)
+        brotherMyGifosCheck.appendChild(iconTrashMyGifosActive)
+        brotherMyGifosCheck.appendChild(iconDowMyGifos)
+        brotherMyGifosCheck.appendChild(iconDowMyGifosActive)
+        brotherMyGifosCheck.appendChild(iconMaxMyGifos)
+        brotherMyGifosCheck.appendChild(iconMaxMyGifosActive)
+        brotherMyGifosCheck.appendChild(titleGifosMyGifos)
+        brotherMyGifosCheck.appendChild(userMyGifos)
+
+        
+        // let fatherOfBrotherShowGifos = imageGifos.parentNode
+        // fatherOfBrotherShowGifos.addEventListener("mouseover", () => {
+        //     let purpleBrother = fatherOfBrotherShowGifos.lastChild
+        //     purpleBrother.classList.remove("off"); 
+        // })
+        // fatherOfBrotherShowGifos.addEventListener("mouseleave", () => {
+        //     let purpleBrother = fatherOfBrotherShowGifos.lastChild
+        //     purpleBrother.classList.add("off");
+        // })
     }
     document.querySelector(".noContent").classList.add("off");
     document.querySelector(".noContentText").classList.add("off");

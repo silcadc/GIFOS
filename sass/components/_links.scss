@@ -134,13 +134,18 @@
         }
         #savedGifs {
             grid-template-columns: 25% 25% 25% 25%;
-            margin: 50px;
+            margin: 0 7%;
             .favoritesGifosCheck {
-                width: 255px;
-                height: 200px; 
+                position: relative;
+                width: 276px;
+                height: 148px;
+                left: 12px;
                 margin: 0;
-                padding: 5px;
+                margin-top: 21%;
             }
+        }
+        .seeMore {
+            margin-top: 49px;
         }
     }
 
@@ -153,14 +158,18 @@
         }
         #savedmyOwnGifs {
             grid-template-columns: 25% 25% 25% 25%;
-            margin: 50px;
+            margin: 0 7%;
             .myGifosCheck {
-                width: 255px;
-                height: 200px; 
+                position: relative;
+                width: 276px;
+                height: 148px;
+                left: 12px;
                 margin: 0;
-                padding: 5px;
-
+                margin-top: 21%;
             }
+        }
+        .seeMore {
+            margin-top: 49px;
         }
     }  
     /*----------------------------*/
@@ -246,7 +255,7 @@
                 left: 6px;
                 bottom: 372px;
             }
-            .purpleFilter {
+            .purpleFilterCreate {
                 width: 472px;
                 height: 354px;
                 background: #572EE5;
@@ -442,6 +451,12 @@
                 h2 {
                     color: $color-white;
                 }
+            }
+            .chronometer {
+                color: $color-white;
+            }
+            .repeatCapture {
+                color: $color-white;
             }
             #stepDark {
                 position: relative;

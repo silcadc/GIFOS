@@ -57,7 +57,7 @@ const btnSliderRightDark = document.querySelector("#btnSliderRightDark")
 let modeValidation = () => {
     let styleStatus = sessionStorage.getItem("modeStyle");
     if (styleStatus === null) {
-        styleStatus = false;    
+        styleStatus = false;
         sessionStorage.setItem("modeStyle", styleStatus);
     } else if (styleStatus !== null) {
         isDark = (styleStatus == 'true');
@@ -126,7 +126,7 @@ let changeBtnSlider = () => {
         btnSliderRight.style.display = "none"
         btnSliderLeftDark.style.display = "none"
         btnSliderRightDark.style.display = "none"
-    } 
+    }
 }
 changeBtnSlider()
 
@@ -140,12 +140,12 @@ fetch(`https://api.giphy.com/v1/trending/searches?api_key=${API_KEY}`)
         response.data.slice(0,5).forEach( term => {
             const liTerms = document.createElement("li")
             const aTerms = document.createElement("a")
-            aTerms.textContent = term + ", " 
+            aTerms.textContent = term + ", "
             ulcreate.appendChild(liTerms)
-            liTerms.appendChild(aTerms) 
+            liTerms.appendChild(aTerms)
         })
-        document.querySelector(".ultrendings").appendChild(ulcreate) 
-        
+        document.querySelector(".ultrendings").appendChild(ulcreate)
+
         const clickLista = document.querySelectorAll(".ultrendings > ul > li > a")
         clickLista.forEach( clicksito => {
             let texto = clicksito.innerText
@@ -161,22 +161,76 @@ fetch(`https://api.giphy.com/v1/trending/searches?api_key=${API_KEY}`)
 
 /*----------------------------*/
 /*       GIFOS IN TREND       */
-/*----------------------------*/   
+/*----------------------------*/
 fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
     .then (response => response.json())
     .then (response => {
         let apiResponseList = response.data
         response.data.forEach( gif => {
+            let purpleFilterContainer = document.createElement("div")
+            purpleFilterContainer.setAttribute("class", "purpleFilterWithIcons off");
             const image = document.createElement("img")
             const divContainer = document.createElement("div")
-            divContainer.setAttribute("class", "purpleFilter");
+            divContainer.setAttribute("id", "gifosInTrendingContainer");
             image.src = gif.images.fixed_width.url
             image.setAttribute("id", gif.id)
             image.setAttribute("class", 'gifTrends')
             divContainer.appendChild(image)
-            document.querySelector("#newGifos").appendChild(divContainer)
+            divContainer.appendChild(purpleFilterContainer)
+            
+            const anchor = document.createElement("a");
+            const href = document.createAttribute("href");
+
+            let iconFavorite = document.createElement("img");
+            iconFavorite.src = './assets/icon-fav.svg';
+            iconFavorite.setAttribute("class", "iconFavoriteStyle");
+            
+            let iconFavoriteActive = document.createElement("img");
+            iconFavoriteActive.src = './assets/icon-fav-active.svg';
+            iconFavoriteActive.setAttribute("class", "iconFavoriteStyle off");
+           
+            let iconDownload = document.createElement("img");
+            iconDownload.src = './assets/icon-download.svg';
+            iconDownload.setAttribute("class", "iconDownloadStyle");
+            
+            let iconDownloadActive = document.createElement("img");
+            iconDownloadActive.src = './assets/icon-download-hover.svg';
+            iconDownloadActive.setAttribute("class", "iconDownloadStyle off");
+            
+            let iconMaximum = document.createElement("img");
+            iconMaximum.src = './assets/icon-max-normal.svg';
+            iconMaximum.setAttribute("class", "iconMaximumStyle");
+            
+            let iconMaximumActive = document.createElement("img");
+            iconMaximumActive.src = './assets/icon-max-hover.svg';
+            iconMaximumActive.setAttribute("class", "iconMaximumStyle off");
+           
+            document.querySelector("#newGifos").appendChild(divContainer);
+           
+            //anchor.appendChild(containerImage)
+            purpleFilterContainer.appendChild(iconFavorite)
+            purpleFilterContainer.appendChild(iconFavoriteActive)
+            purpleFilterContainer.appendChild(iconDownload)
+            purpleFilterContainer.appendChild(iconDownloadActive)
+            purpleFilterContainer.appendChild(iconMaximum)
+            purpleFilterContainer.appendChild(iconMaximumActive)
+
+            let idOfGifosMouseOver = image.getAttribute("id")
+
+            for (i=0; i<apiResponseList.length; i++) {
+                if (idOfGifosMouseOver === apiResponseList[i].id) {
+                    const titleGifos = document.createElement("h2")
+                    titleGifos.textContent = apiResponseList[i].title
+                    const user = document.createElement("h3")
+                    user.textContent = apiResponseList[i].username
+                    purpleFilterContainer.appendChild(titleGifos)
+                    purpleFilterContainer.appendChild(user)
+                    href.value = apiResponseList[i].images.fixed_width.url
+                    break;
+                }
+            }
         })
-    
+
         let imgNewGifos = document.querySelectorAll("#newGifos > div > img")
         imgNewGifos.forEach(imgGifosTrend => {
             imgGifosTrend.addEventListener("click", () => {
@@ -186,7 +240,7 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
                     arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));
                     //-----------------------------------------------------//
                 }
-                
+
                 let isFavorite = false;
                 let idGifos = imgGifosTrend.getAttribute("id")
                 for (i=0; i<arrayFavorite.length; i++) {
@@ -208,12 +262,12 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
 
                 if (isDark == true) {
                     containerMaxGifs.style.background = "#000000";
-            
+
                     imgCross.src = './assets/close-modo-noct.svg';
                     imgCross.setAttribute("id", "imgCrossMax")
                 } else if (isDark !== true) {
                     containerMaxGifs.style.backgroundColor = "#ffffff";
-                  
+
                     imgCross.src = './assets/close.svg';
                     imgCross.setAttribute("id", "imgCrossMax")
                 }
@@ -222,10 +276,10 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
                 anchor.setAttribute("download", "Gifo");
                 anchor.setAttribute("id", "anchorDownload")
                 //anchor.setAttribute("target", "_blank")
-                                                                           
+
                 containerImage.src = imgGifosTrend.src
                 containerImage.setAttribute("id", "imgMaxSize")
-                
+
                 imgFavorite.src = './assets/icon-fav-hover.svg';
                 imgFavorite.setAttribute("id", "imgFavoriteMax");
 
@@ -240,7 +294,7 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
                     imgFavorite.classList.remove("off");
                     favoriteActive.classList.add("off");
                 }
-                
+
                 imgDownload.src = './assets/icon-download-hover.svg';
                 imgDownload.setAttribute("id", "imgDownloadMax")
 
@@ -255,36 +309,35 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
                         href.value = apiResponseList[i].images.fixed_width.url
                         break;
                     }
-                } 
+                }
 
                 anchor.appendChild(containerImage)
-                containerMaxGifs.appendChild(anchor)      
+                containerMaxGifs.appendChild(anchor)
                 containerMaxGifs.appendChild(imgCross)
                 containerMaxGifs.appendChild(imgFavorite)
                 containerMaxGifs.appendChild(favoriteActive)
                 containerMaxGifs.appendChild(imgDownload)
-                
+
                 document.querySelector("#containerMaxGifs").style.display = "block"
-                
+
                 const crossMax = document.getElementById("imgCrossMax")
                 crossMax.addEventListener("click", () => {
-                    containerMaxGifs.innerHTML = "" 
+                    containerMaxGifs.innerHTML = ""
                     document.querySelector("#containerMaxGifs").style.display = "none"
                 })
 
                 // const downloadMax = document.getElementById("imgDownloadMax")
                 // downloadMax.addEventListener("click", () => {
-                
+
                 // })
 
                 imgFavorite.addEventListener("click", () => {
                     imgFavorite.classList.toggle("off")
                     favoriteActive.classList.remove("off");
                     arrayFavorite.push(idGifos);
-                    
                     sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
                 })
-                
+
                 favoriteActive.addEventListener("click", () => {
                     favoriteActive.classList.toggle("off")
                     imgFavorite.classList.remove("off")
@@ -295,133 +348,38 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
                     }
                 })
             })
-           
+
+            //estas funciones comentareadas funcionaban pero provocaban un conflicto, cuando hacia mouseover
+            //o mouseleave se bloqueaba y no mostraba correctamente el filtro morado sobre el gifo, el evento
+            //estaba en el hermano. 
             // imgGifosTrend.addEventListener("mouseover", () => {
-             
-                 // let containerMaxGifs = document.querySelector("#containerMaxGifs")
-                //  let divPurpleFilter = document.querySelectorAll("newGifos > div");
-                //  divPurpleFilter.style.background = "linear-gradient(rgba(255, 0, 0, 0.3), rgba(255, 0, 0, 0.3))";
-                //  console.log(divPurpleFilter)
-
-                // const anchor = document.createElement("a");
-                // const href = document.createAttribute("href");
-
-                // let imgFavorite = document.createElement("img")
-                // let favoriteActive = document.createElement("img")
-                // let imgDownload = document.createElement("img")
-
-                // if (isDark == true) {
-                //     containerMaxGifs.style.background = "#000000";
-            
-                //     imgCross.src = './assets/close-modo-noct.svg';
-                //     imgCross.setAttribute("id", "imgCrossMax")
-                // } else if (isDark !== true) {
-                //     containerMaxGifs.style.backgroundColor = "#ffffff";
-                  
-                    
-                // }
-
-                // anchor.setAttributeNode(href);
-                // anchor.setAttribute("download", "Gifo");
-                // anchor.setAttribute("id", "anchorDownload")
-                // //anchor.setAttribute("target", "_blank")
-                                                                           
-                // containerImage.src = imgGifosTrend.src
-                // containerImage.setAttribute("id", "imgMaxSize")
-                
-                // imgFavorite.src = './assets/icon-fav-hover.svg';
-                // imgFavorite.setAttribute("id", "imgFavoriteMax");
-
-                // favoriteActive.src = './assets/icon-fav-active.svg'
-                // favoriteActive.setAttribute("class", "off");
-                // favoriteActive.setAttribute("id", "favoriteActive");
-
-                // if (isFavorite === true) {
-                //     favoriteActive.classList.remove("off");
-                //     imgFavorite.classList.add("off");
-                // }else {
-                //     imgFavorite.classList.remove("off");
-                //     favoriteActive.classList.add("off");
-                // }
-                
-                // imgDownload.src = './assets/icon-download-hover.svg';
-                // imgDownload.setAttribute("id", "imgDownloadMax")
-
-                // for (i=0; i<apiResponseList.length; i++) {
-                //     if (idGifos === apiResponseList[i].id) {
-                //         const titleGifos = document.createElement("h2")
-                //         titleGifos.textContent = apiResponseList[i].title
-                //         const user = document.createElement("h3")
-                //         user.textContent = apiResponseList[i].username
-                //         document.querySelector("#containerMaxGifs").appendChild(titleGifos)
-                //         document.querySelector("#containerMaxGifs").appendChild(user)
-                //         href.value = apiResponseList[i].images.fixed_width.url
-                //         break;
-                //     }
-                // } 
-
-                // anchor.appendChild(containerImage)
-                // containerMaxGifs.appendChild(anchor)      
-                // containerMaxGifs.appendChild(imgCross)
-                // containerMaxGifs.appendChild(imgFavorite)
-                // containerMaxGifs.appendChild(favoriteActive)
-                // containerMaxGifs.appendChild(imgDownload)
-                
-                // document.querySelector("#containerMaxGifs").style.display = "block"
-                
-                
-                // // const downloadMax = document.getElementById("imgDownloadMax")
-                // // downloadMax.addEventListener("click", () => {
-                
-                // // })
-
-                // imgFavorite.addEventListener("click", () => {
-                //     imgFavorite.classList.toggle("off")
-                //     favoriteActive.classList.remove("off");
-                //     arrayFavorite.push(idGifos);
-                    
-                //     sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
-                // })
-                
-                // favoriteActive.addEventListener("click", () => {
-                //     favoriteActive.classList.toggle("off")
-                //     imgFavorite.classList.remove("off")
-                //     let index = arrayFavorite.indexOf(idGifos);
-                //     if (index > -1) {
-                //         arrayFavorite.splice(index, 1);
-                //         sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
-                //     }
-                // })
-
-
-
-
-
-
-
-                
-                // const createPurpleFilter = document.createElement("div")
-                // createPurpleFilter.appendChild(gifTrends)
-                // console.log(createPurpleFilter)
-                // newGifosMousesOver_Out.style.background = "#572EE5";
-                // gifTrends.style.opacity = "0.6";
-        
-            //})
-
-            // imgGifosTrend.addEventListener("mouseout", () => {
-            //     gifTrends.style.background = "#572EE5";
-            //     gifTrends.style.opacity = "0.6";
-        
+            //     let purpleSibling = imgGifosTrend.nextSibling
+            //     purpleSibling.classList.remove("off");
             // })
+            // imgGifosTrend.addEventListener("mouseleave", () => {
+            //     let purpleSibling = imgGifosTrend.nextSibling
+            //     purpleSibling.classList.add("off");
+            // })
+            //las funciones fueron modificadas, incluyendo el evento al padre.
+            //el padre reconoce limpiamente si el mouse esta sobre o fuera del gifo
+            //entre hermanos hay un conflicto
+            let father = imgGifosTrend.parentNode
+            father.addEventListener("mouseover", () => {
+                let purpleSibling = father.lastChild
+                purpleSibling.classList.remove("off"); 
+            })
+            father.addEventListener("mouseleave", () => {
+                let purpleSibling = father.lastChild
+                purpleSibling.classList.add("off");
+            })
         })
-        
+
         let gifTrends = document.querySelectorAll(".gifTrends");
-        
+
         let index = 3;
         let show = function(increase) {
             console.log(show)
             index = index + increase;
-            console.log(index)
             index = Math.min(
                 Math.max(index,0),
                 gifTrends.length-1
@@ -444,12 +402,12 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
         btnSliderLeftDark.addEventListener('click', function(){
             show(-1);
         });
-    }) 
+    })
 
 /*----------------------------*/
 /*         DARK MODE          */
 /*----------------------------*/
-const changeModeStyle = (text) => { 
+const changeModeStyle = (text) => {
     if (text == "darkLogoClick") {
         isDark = true;
     }else if(text == "dayLogoClick") {
@@ -501,47 +459,47 @@ const changeModeStyle = (text) => {
         changesLogosHeader()
         if (text == undefined || text == "repaintStyles") {
             document.querySelector("#menu").classList.add("off")
-            document.querySelector("#cross").classList.add("off") 
+            document.querySelector("#cross").classList.add("off")
             document.querySelector("#burger").classList.remove("off")
             showButtonsMore()
         } else if (text == "dayLogoClick") {
-            document.querySelector("#cross").classList.add("off") 
+            document.querySelector("#cross").classList.add("off")
             document.querySelector("#burger").classList.remove("off")
         }
     }
 }
 
-darkMode.addEventListener("click", () => {  
+darkMode.addEventListener("click", () => {
     changeModeStyle()
 })
 
 let changesLogosHeader = () => {
     if (window.screen.width > 768) {
-        if (isDark === true) { 
+        if (isDark === true) {
             logoDarkDesktop.style.display = "block"
             logoDesktop.style.display = "none"
             logoDark.style.display = "none"
-            logo.style.display = "none" 
+            logo.style.display = "none"
         } else {
             logoDarkDesktop.style.display = "none"
             logoDesktop.style.display = "block"
             logoDark.style.display = "none"
-            logo.style.display = "none" 
-            
+            logo.style.display = "none"
+
         }
     } else if (window.screen.width < 768) {
-        if (isDark === true) { 
+        if (isDark === true) {
             logoDesktop.style.display = "none"
             logoDarkDesktop.style.display = "none"
-            logo.style.display = "none" 
+            logo.style.display = "none"
             logoDark.style.display = "block"
         } else {
             logoDesktop.style.display = "none"
             logoDarkDesktop.style.display = "none"
             logoDark.style.display = "none"
-            logo.style.display = "block" 
-        }     
-    } 
+            logo.style.display = "block"
+        }
+    }
 }
 changesLogosHeader()
 
@@ -553,7 +511,7 @@ crossDark.addEventListener("click", () => {
     crossDark.classList.add("off")
     document.querySelector("#crossDark").classList.remove("off")
     document.querySelector("#menu").classList.remove("off")
-    document.querySelector("#magniDark").classList.add("off") 
+    document.querySelector("#magniDark").classList.add("off")
 })
 
 hamburDark.addEventListener("click", () => {
@@ -632,21 +590,76 @@ formGifosFinder.addEventListener("submit" , (text) => {
 
 const getGifos = async (textToSearch) => {
     const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${textToSearch}`)
-    const responseFromApi = await response.json() 
+    const responseFromApi = await response.json()
     gifosContainer.innerHTML = ""
     for (let i = 0; i < responseFromApi.pagination.count; i++)
     {
         if (i > amount) {break}
+        let fatherShowGifos = document.createElement("div");
+        fatherShowGifos.setAttribute("class", "gifosInTopFive");
+        let brotherShowGifos = document.createElement("div");
+        brotherShowGifos.setAttribute("class", "filterPurpleTopFive off");
         const imageGifos = document.createElement("img")
         imageGifos.classList.add("showGifos")
         imageGifos.src = responseFromApi.data[i].images.fixed_width.url
-        gifosContainer.appendChild(imageGifos)
+        fatherShowGifos.appendChild(imageGifos)
+        fatherShowGifos.appendChild(brotherShowGifos)
+        gifosContainer.appendChild(fatherShowGifos)
+
+        let iconFavTopFive = document.createElement("img");
+        iconFavTopFive.src = './assets/icon-fav.svg';
+        iconFavTopFive.setAttribute("class", "iconFavTopFive");
+        
+        let iconFavTopFiveActive = document.createElement("img");
+        iconFavTopFiveActive.src = './assets/icon-fav-active.svg';
+        iconFavTopFiveActive.setAttribute("class", "iconFavTopFive off");
+        
+        let iconDowTopFive = document.createElement("img");
+        iconDowTopFive.src = './assets/icon-download.svg';
+        iconDowTopFive.setAttribute("class", "iconDowTopFive");
+        
+        let iconDowTopFiveActive = document.createElement("img");
+        iconDowTopFiveActive.src = './assets/icon-download-hover.svg';
+        iconDowTopFiveActive.setAttribute("class", "iconDowTopFive off");
+        
+        let iconMaxTopFive = document.createElement("img");
+        iconMaxTopFive.src = './assets/icon-max-normal.svg';
+        iconMaxTopFive.setAttribute("class", "iconMaxTopFive");
+        
+        let iconMaxTopFiveActive = document.createElement("img");
+        iconMaxTopFiveActive.src = './assets/icon-max-hover.svg';
+        iconMaxTopFiveActive.setAttribute("class", "iconMaxTopFive off");
+        
+        const titleGifosTopFive = document.createElement("h2")
+        titleGifosTopFive.textContent = responseFromApi.data[i].title
+        
+        const userTopFive = document.createElement("h3")
+        userTopFive.textContent = responseFromApi.data[i].username
+    
+        brotherShowGifos.appendChild(iconFavTopFive)
+        brotherShowGifos.appendChild(iconFavTopFiveActive)
+        brotherShowGifos.appendChild(iconDowTopFive)
+        brotherShowGifos.appendChild(iconDowTopFiveActive)
+        brotherShowGifos.appendChild(iconMaxTopFive)
+        brotherShowGifos.appendChild(iconMaxTopFiveActive)
+        brotherShowGifos.appendChild(titleGifosTopFive)
+        brotherShowGifos.appendChild(userTopFive)
+
+        let fatherOfBrotherShowGifos = imageGifos.parentNode
+        fatherOfBrotherShowGifos.addEventListener("mouseover", () => {
+            let purpleBrother = fatherOfBrotherShowGifos.lastChild
+            purpleBrother.classList.remove("off"); 
+        })
+        fatherOfBrotherShowGifos.addEventListener("mouseleave", () => {
+            let purpleBrother = fatherOfBrotherShowGifos.lastChild
+            purpleBrother.classList.add("off");
+        })
     }
 }
 
 clickSeeMore.addEventListener("click", () => {
     clickButtonSeeMore()
-}) 
+})
 
 clickSeeMoreDark.addEventListener("click", () => {
     clickButtonSeeMore()

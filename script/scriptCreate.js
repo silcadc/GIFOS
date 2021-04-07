@@ -50,7 +50,7 @@ let seg = 0;
 let idInterval;
 
 let repeatCapture = document.querySelector(".repeatCapture");
-let purpleFilter = document.querySelector(".purpleFilter");
+let purpleFilterCreate = document.querySelector(".purpleFilterCreate");
 let upSuccess = document.querySelector(".upSuccess");
 
 let recorder
@@ -230,7 +230,7 @@ const getStream = () => {
             width: 360,
             height: 240,
             onGifRecordingStarted: function() {
-                console.log('started')
+                console.log('Debe volver a intentarlo')
             }
         })
 
@@ -273,7 +273,7 @@ const uploadGif = async () => {
     const responseJson = await response.json()
     myGifos.push(responseJson.data.id)
     window.localStorage.setItem('mygifos', JSON.stringify(myGifos))
-    purpleFilter.classList.add('off');
+    purpleFilterCreate.classList.add('off');
     upSuccess.classList.remove('off');
 }
 
@@ -376,6 +376,6 @@ btnUpload.addEventListener('click', () => {
     stepThree.classList.remove('off');
     repeatCapture.classList.add('off'); 
     chronometer.classList.add('off');   
-    purpleFilter.classList.remove('off');
+    purpleFilterCreate.classList.remove('off');
     uploadGif();
 });
