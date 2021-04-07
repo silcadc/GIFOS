@@ -125,21 +125,12 @@
         display: grid;
         grid-template-columns: 50% 50%;
         .gifosInTopFive {
-            background-color: chartreuse;
             width: 156px;
             height: 120px; 
             margin: 10%;  
             .showGifos {
                 width: 156px;
                 height: 120px;           
-            }
-            .filterPurpleTopFive {
-                position: relative;
-                bottom: 123px;
-                background: #572EE5;
-                opacity: 0.6;
-                width: 156px;
-                height: 120px;         
             }
         }
     }
@@ -169,17 +160,20 @@
         text-align: $text-align-center;
         line-height: 23px;
     }
-    #newGifos {
-        width: 100%;
-        height: 40%;
-        margin: 0;
-        display: grid;
-        grid-template-columns: auto auto auto;
-        .gifTrends {
-            width: 243px;
-            height: 187px;
-            padding-left: 22px;
-            align-self: $text-align-center;
+    div {
+        #newGifos {
+            display: flex;
+            overflow: hidden;
+            #gifosInTrendingContainer {
+                width: 100%;
+                height: 98%;
+                margin: 0;
+                .gifTrends {
+                    width: 269px;
+                    height: 208px;
+                    padding-left: 22px;
+                }
+            }
         }
     }
 }
@@ -468,70 +462,70 @@
                 width: 40px;
                 height: 40px;
                 position: absolute;
-                left: 10%;
+                left: 8%;
                 top: 130px;
             }
             #newGifos {
-                width: 60%;
-                height: 60%;
                 display: flex;
+                width: 75%;
                 margin: 0 auto;
-                padding: 0;
                 overflow: hidden;
-                .gifTrends {
-                    display: block;
-                    width: 380px;
+                #gifosInTrendingContainer{
                     height: 275px;
-                    padding: 0 10px;
-                }
-                .purpleFilterWithIcons {
-                    position: relative;
-                    bottom: 275px;
-                    margin: auto;
-                    background: #572EE5;
-                    opacity: 0.6;
-                    width: 363px;
-                    height: 274px;
-                    padding: 0 10px;
-                    .iconFavoriteStyle {
-                        position: absolute;
-                        top: 10px;
-                        right: 89px;
+                    .gifTrends {
+                        width: 380px;
+                        height: 275px;
+                        padding: 0 10px;
                     }
-                    .iconDownloadStyle {
-                        position: absolute;
-                        top: 10px;
-                        right: 49px;
-                    }
-                    .iconMaximumStyle {
-                        position: absolute;
-                        right: 10px;
-                        top: 10px;
-                    }
-                    h2 {
-                        text-align: left;
-                        position: absolute;
-                        font-family: $font-labes; 
-                        font-size: 16px;
-                        font-weight: $font-weight-bold;
-                        color: $color-white;
-                        top: 70%;
-                        right: 4%;
-                        width: 324px;
-                        height: 51px;
-                        margin: 10px;
-                    }
-                    h3 {
-                        text-align: left;
-                        position: absolute;
-                        color: $color-black;
-                        font-weight: $font-weight-regular;
-                        font-family: $font-labes; 
-                        font-size: 15px;
-                        color: $color-white;
-                        top: 59%;
-                        right: 4%;
-                        width: 324px;
+                    .purpleFilterWithIcons {
+                        position: relative;
+                        background: #572EE5;
+                        opacity: 0.6;
+                        width: 363px;
+                        height: 276px;
+                        padding: 0 10px;
+                        bottom: 279px;
+                        margin: auto;
+                        .iconFavoriteStyle {
+                            position: absolute;
+                            top: 10px;
+                            right: 89px;
+                        }
+                        .iconDownloadStyle {
+                            position: absolute;
+                            top: 10px;
+                            right: 49px;
+                        }
+                        .iconMaximumStyle {
+                            position: absolute;
+                            right: 10px;
+                            top: 10px;
+                        }
+                        h2 {
+                            text-align: left;
+                            position: absolute;
+                            font-family: $font-labes; 
+                            font-size: 16px;
+                            font-weight: $font-weight-bold;
+                            color: $color-white;
+                            top: 70%;
+                            right: 4%;
+                            width: 324px;
+                            height: 51px;
+                            margin: 10px;
+                        }
+                        h3 {
+                            text-align: left;
+                            position: absolute;
+                            color: $color-black;
+                            font-weight: $font-weight-regular;
+                            font-family: $font-labes; 
+                            font-size: 15px;
+                            color: $color-white;
+                            top: 59%;
+                            right: 4%;
+                            width: 324px;
+                        }
                     }
                 }
             }
@@ -539,7 +533,7 @@
                 width: 40px;
                 height: 40px;
                 position: absolute;
-                left: 85%;
+                left: 89%;
                 top: 130px;
             }
         } 
@@ -601,6 +595,9 @@
             }
             .lineUnderSearch{
                 border: $border $color-white;
+            }
+            .seeMoreDark {
+                margin-top: 130px;
             }
         }
         #trends { 

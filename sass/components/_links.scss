@@ -135,17 +135,70 @@
         #savedGifs {
             grid-template-columns: 25% 25% 25% 25%;
             margin: 0 7%;
-            .favoritesGifosCheck {
+            .fatherFavoGifos {
                 position: relative;
-                width: 276px;
-                height: 148px;
-                left: 12px;
-                margin: 0;
-                margin-top: 21%;
+                    width: 276px;
+                    height: 148px;
+                    left: 12px;
+                    margin: 0;
+                    margin-top: 21%;
+                .favoritesGifosCheck {
+                    width: 302px;
+                    height: 190px; 
+                    margin: 0;
+                }
+                .brotherFavoGifos {
+                    position: absolute;
+                    top: 0;
+                    background: #572EE5;
+                    opacity: 0.7;
+                    width: 302px;
+                    height: 191px;
+                    left: 0;
+                    .iconFavoGifos {
+                        position: absolute;
+                        top: 10px;
+                        right: 89px;
+                    }
+                    .iconDowFavoGifos {
+                        position: absolute;
+                        top: 10px;
+                        right: 49px;
+                    }
+                    .iconMaxFavoGifos {
+                        position: absolute;
+                        right: 10px;
+                        top: 10px;
+                    }
+                    h2 {
+                        text-align: left;
+                        position: absolute;
+                        font-family: $font-labes; 
+                        font-size: 16px;
+                        font-weight: $font-weight-bold;
+                        color: $color-white;
+                        top: 67%;
+                        width: 281px;
+                        height: 51px;
+                        margin: 10px;
+                    }
+                    h3 {
+                        text-align: left;
+                        position: absolute;
+                        color: $color-black;
+                        font-weight: $font-weight-regular;
+                        font-family: $font-labes; 
+                        font-size: 15px;
+                        color: $color-white;
+                        top: 51%;
+                        width: 281px;
+                        margin: 10px;
+                    }
+                }
             }
         }
         .seeMore {
-            margin-top: 49px;
+            margin-top: 130px;
         }
     }
 
@@ -159,17 +212,70 @@
         #savedmyOwnGifs {
             grid-template-columns: 25% 25% 25% 25%;
             margin: 0 7%;
-            .myGifosCheck {
+            .fatherMyGifosCheck {
                 position: relative;
                 width: 276px;
                 height: 148px;
                 left: 12px;
                 margin: 0;
                 margin-top: 21%;
+                .myGifosCheck {
+                    width: 302px;
+                    height: 190px; 
+                    margin: 0;
+                }
+                .brotherMyGifosCheck{
+                    position: absolute;
+                    top: 0;
+                    background: #572EE5;
+                    opacity: 0.7;
+                    width: 302px;
+                    height: 191px;
+                    left: 0;
+                    .iconTrashMyGifos {
+                        position: absolute;
+                        top: 10px;
+                        right: 89px;
+                    }
+                    .iconDowMyGifos {
+                        position: absolute;
+                        top: 10px;
+                        right: 49px;
+                    }
+                    .iconMaxMyGifos {
+                        position: absolute;
+                        right: 10px;
+                        top: 10px;
+                    }
+                    h2 {
+                        text-align: left;
+                        position: absolute;
+                        font-family: $font-labes; 
+                        font-size: 16px;
+                        font-weight: $font-weight-bold;
+                        color: $color-white;
+                        top: 67%;
+                        width: 281px;
+                        height: 51px;
+                        margin: 10px;
+                    }
+                    h3 {
+                        text-align: left;
+                        position: absolute;
+                        color: $color-black;
+                        font-weight: $font-weight-regular;
+                        font-family: $font-labes; 
+                        font-size: 15px;
+                        color: $color-white;
+                        top: 51%;
+                        width: 281px;
+                        margin: 10px;
+                    }
+                }
             }
         }
         .seeMore {
-            margin-top: 49px;
+            margin-top: 130px;
         }
     }  
     /*----------------------------*/
@@ -409,13 +515,22 @@
             }
             #savedGifs {
                 grid-template-columns: 25% 25% 25% 25%;
-                margin: 50px;
-                .favoritesGifosCheck {
-                    width: 255px;
-                    height: 200px; 
+                .fatherFavoGifos {
+                    position: relative;
+                    width: 276px;
+                    height: 148px;
+                    left: 12px;
                     margin: 0;
-                    padding: 5px;
-                }
+                    margin-top: 21%;
+                    .favoritesGifosCheck {
+                        width: 302px;
+                        height: 190px; 
+                        margin: 0;
+                    }
+                }             
+            }
+            .seeMoreDark {
+                margin-top: 130px;
             }
         }    
     }
@@ -426,6 +541,9 @@
             .titlesSection {
                 font-size: sum($font-size16, 9px);
             }
+        }
+        .seeMoreDark {
+            margin-top: 130px;
         }
     }
 

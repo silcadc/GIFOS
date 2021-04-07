@@ -308,8 +308,6 @@ btnFinish.addEventListener('click', () => {
     recordStop()
 });
 
-
-
 function chronometerFunction(){
     hr = 0;
     min = 0;

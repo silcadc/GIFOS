@@ -86,174 +86,9 @@ let changeBtnSlider = () => {
         btnSliderRightDark.style.display = "none"
     } 
 }
-changeBtnSlider()
+changeBtnSlider()      
 
-/*----------------------------*/
-/*       GIFOS IN TREND       */
-/*----------------------------*/   
-fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
-    .then (response => response.json())
-    .then (response => {
-        let apiResponseList = response.data
-        response.data.forEach( gif => {
-            const image = document.createElement("img")
-            const divContainer = document.createElement("div")
-            divContainer.setAttribute("class", "purpleFilter");
-            image.src = gif.images.fixed_width.url
-            image.setAttribute("id", gif.id)
-            image.setAttribute("class", 'gifTrends')
-            divContainer.appendChild(image)
-            document.querySelector("#newGifos").appendChild(divContainer)
-        })
-  
-        let imgNewGifos = document.querySelectorAll("#newGifos > div > img")
-        imgNewGifos.forEach(imgGifosTrend => {
-            imgGifosTrend.addEventListener("click", () => {
-                let arrayFavorite = [];
-                if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
-                    //-----------------------------------------------------//
-                    arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));//JSON.parse, me permite convertir el String a un objeto.
-                    //-----------------------------------------------------//
-                }
-                
-                let isFavorite = false;
-                let idGifos = imgGifosTrend.getAttribute("id")
-                for (i=0; i<arrayFavorite.length; i++) {
-                    if (idGifos === arrayFavorite[i]) {
-                        isFavorite = true;
-                    }
-                }
-
-                let containerMaxGifs = document.querySelector("#containerMaxGifs")
-                let containerImage = document.createElement("img")
-
-                const anchor = document.createElement("a");
-                const href = document.createAttribute("href");
-
-                let imgCross = document.createElement("img")
-                let imgFavorite = document.createElement("img")
-                let favoriteActive = document.createElement("img")
-                let imgDownload = document.createElement("img")
-
-                if (isDark == true) {
-                    containerMaxGifs.style.background = "#000000";
-                    imgCross.src = '/assets/close-modo-noct.svg';
-                    imgCross.setAttribute("id", "imgCrossMax")
-                } else if (isDark !== true) {
-                    containerMaxGifs.style.backgroundColor = "#ffffff";
-                    imgCross.src = '/assets/close.svg';
-                    imgCross.setAttribute("id", "imgCrossMax")
-                }
-
-                anchor.setAttributeNode(href);
-                anchor.setAttribute("download", "Gifo");
-                anchor.setAttribute("id", "anchorDownload")
-                //anchor.setAttribute("target", "_blank")
-                                                                           
-                containerImage.src = imgGifosTrend.src
-                containerImage.setAttribute("id", "imgMaxSize")
-                
-                imgFavorite.src = '/assets/icon-fav-hover.svg';
-                imgFavorite.setAttribute("id", "imgFavoriteMax");
-
-                favoriteActive.src = '/assets/icon-fav-active.svg'
-                favoriteActive.setAttribute("class", "off");
-                favoriteActive.setAttribute("id", "favoriteActive");
-
-                if (isFavorite === true) {
-                    favoriteActive.classList.remove("off");
-                    imgFavorite.classList.add("off");
-                }else {
-                    imgFavorite.classList.remove("off");
-                    favoriteActive.classList.add("off");
-                }
-                
-                imgDownload.src = "/assets/icon-download-hover.svg";
-                imgDownload.setAttribute("id", "imgDownloadMax")
-                
-                for (i=0; i<apiResponseList.length; i++) {
-                    if (idGifos === apiResponseList[i].id) {
-                        const titleGifos = document.createElement("h2")
-                        titleGifos.textContent = apiResponseList[i].title
-                        const user = document.createElement("h3")
-                        user.textContent = apiResponseList[i].username
-                        document.querySelector("#containerMaxGifs").appendChild(titleGifos)
-                        document.querySelector("#containerMaxGifs").appendChild(user)
-                        href.value = apiResponseList[i].images.original.url
-                        break;
-                    }
-                } 
-
-                anchor.appendChild(containerImage)
-                containerMaxGifs.appendChild(anchor)      
-                containerMaxGifs.appendChild(imgCross)
-                containerMaxGifs.appendChild(imgFavorite)
-                containerMaxGifs.appendChild(favoriteActive)
-                containerMaxGifs.appendChild(imgDownload)
-                
-                document.querySelector("#containerMaxGifs").style.display = "block"
-                
-                const crossMax = document.getElementById("imgCrossMax")
-                crossMax.addEventListener("click", () => {
-                    containerMaxGifs.innerHTML = "" 
-                    document.querySelector("#containerMaxGifs").style.display = "none"
-                })
-
-                // const downloadMax = document.getElementById("imgDownloadMax")
-                // downloadMax.addEventListener("click", () => {
-                
-                // })
-
-                imgFavorite.addEventListener("click", () => {
-                    imgFavorite.classList.toggle("off")
-                    favoriteActive.classList.remove("off");//Todos los ID que tengan el corazon full se van al array vacio
-                    arrayFavorite.push(idGifos);
-                    sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));//JSON.stringify convierte el objeto a string
-                })
-                
-                favoriteActive.addEventListener("click", () => {
-                    favoriteActive.classList.toggle("off")
-                    imgFavorite.classList.remove("off")
-                    let index = arrayFavorite.indexOf(idGifos);
-                    if (index > -1) {//-1 indica que no encontre el elemento
-                        arrayFavorite.splice(index, 1);
-                        sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
-                    }
-                })
-            })
-        })  
-        
-        let gifTrends = document.querySelectorAll(".gifTrends");
-        
-        let index = 3;
-        let show = function(increase) {
-            console.log(show)
-            index = index + increase;
-            console.log(index)
-            index = Math.min(
-                Math.max(index,0),
-                gifTrends.length-1
-            );
-            gifTrends[index].scrollIntoView({behavior: 'smooth'});
-        }
-
-        btnSliderRight.addEventListener('click', function(){
-            show(+1);
-        });
-
-        btnSliderRightDark.addEventListener('click', function(){
-            show(+1);
-        });
-
-        btnSliderLeft.addEventListener('click', function(){
-            show(-1);
-        });
-
-        btnSliderLeftDark.addEventListener('click', function(){
-            show(-1);
-        });
-    })      
-
+let savedGifs = document.querySelector("#savedGifs")
 const getGifosFavorites = () => {
     let arrayFavoriteToString = JSON.parse(sessionStorage.getItem("fullHeart"));
     let cantFavorite = arrayFavoriteToString.join(", ");
@@ -267,10 +102,66 @@ const getGifosFavorites = () => {
             savedGifs.innerHTML = ""
             for (let i = 0; i < response.data.length; i++){
                 if (i > amount) {break}
+                let fatherFavoGifos = document.createElement("div");
+                fatherFavoGifos.setAttribute("class", "fatherFavoGifos");
+                let brotherFavoGifos = document.createElement("div");
+                brotherFavoGifos.setAttribute("class", "brotherFavoGifos off");
                 const image = document.createElement("img")
                 image.src = response.data[i].images.original.url
                 image.setAttribute("class", "favoritesGifosCheck")
-                document.querySelector("#savedGifs").appendChild(image)
+                
+                fatherFavoGifos.appendChild(image)
+                fatherFavoGifos.appendChild(brotherFavoGifos)
+                savedGifs.appendChild(fatherFavoGifos)
+        
+                let iconFavoGifos = document.createElement("img");
+                iconFavoGifos.src = '/assets/icon-fav.svg';
+                iconFavoGifos.setAttribute("class", "iconFavoGifos");
+                
+                let iconFavoGifosActive = document.createElement("img");
+                iconFavoGifosActive.src = '/assets/icon-fav-active.svg';
+                iconFavoGifosActive.setAttribute("class", "iconFavoGifos off");
+                
+                let iconDowFavoGifos = document.createElement("img");
+                iconDowFavoGifos.src = '/assets/icon-download.svg';
+                iconDowFavoGifos.setAttribute("class", "iconDowFavoGifos");
+                
+                let iconDowFavoGifosActive = document.createElement("img");
+                iconDowFavoGifosActive.src = '/assets/icon-download-hover.svg';
+                iconDowFavoGifosActive.setAttribute("class", "iconDowFavoGifos off");
+                
+                let iconMaxFavoGifos = document.createElement("img");
+                iconMaxFavoGifos.src = '/assets/icon-max-normal.svg';
+                iconMaxFavoGifos.setAttribute("class", "iconMaxFavoGifos");
+                
+                let iconMaxFavoGifosActive = document.createElement("img");
+                iconMaxFavoGifosActive.src = '/assets/icon-max-hover.svg';
+                iconMaxFavoGifosActive.setAttribute("class", "iconMaxFavoGifos off");
+                
+                const titleFavoGifos = document.createElement("h2")
+                titleFavoGifos.textContent = response.data[i].title
+                
+                const userFavoGifos = document.createElement("h3")
+                userFavoGifos.textContent = response.data[i].username
+            
+                brotherFavoGifos.appendChild(iconFavoGifos)
+                brotherFavoGifos.appendChild(iconFavoGifosActive)
+                brotherFavoGifos.appendChild(iconDowFavoGifos)
+                brotherFavoGifos.appendChild(iconDowFavoGifosActive)
+                brotherFavoGifos.appendChild(iconMaxFavoGifos)
+                brotherFavoGifos.appendChild(iconMaxFavoGifosActive)
+                brotherFavoGifos.appendChild(titleFavoGifos)
+                brotherFavoGifos.appendChild(userFavoGifos)
+                
+                let fatherFavoriteGifos = image.parentNode
+                fatherFavoriteGifos.addEventListener("mouseover", () => {
+                    let purpleBrotherFavoGifos = fatherFavoGifos.lastChild
+                    purpleBrotherFavoGifos.classList.remove("off"); 
+                })
+                fatherFavoriteGifos.addEventListener("mouseleave", () => {
+                    let purpleBrotherFavoGifos = fatherFavoGifos.lastChild
+                    purpleBrotherFavoGifos.classList.add("off");
+                })
             }
             document.querySelector(".noContent").classList.add("off");
             document.querySelector(".noContentText").classList.add("off");

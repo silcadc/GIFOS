@@ -218,7 +218,7 @@ body {
     grid-template-columns: 25% 25% 25% 25%;
     margin: 0 7%;
   }
-  #favoriteSection #savedGifs .favoritesGifosCheck {
+  #favoriteSection #savedGifs .fatherFavoGifos {
     position: relative;
     width: 276px;
     height: 148px;
@@ -226,8 +226,61 @@ body {
     margin: 0;
     margin-top: 21%;
   }
+  #favoriteSection #savedGifs .fatherFavoGifos .favoritesGifosCheck {
+    width: 302px;
+    height: 190px;
+    margin: 0;
+  }
+  #favoriteSection #savedGifs .fatherFavoGifos .brotherFavoGifos {
+    position: absolute;
+    top: 0;
+    background: #572EE5;
+    opacity: 0.7;
+    width: 302px;
+    height: 191px;
+    left: 0;
+  }
+  #favoriteSection #savedGifs .fatherFavoGifos .brotherFavoGifos .iconFavoGifos {
+    position: absolute;
+    top: 10px;
+    right: 89px;
+  }
+  #favoriteSection #savedGifs .fatherFavoGifos .brotherFavoGifos .iconDowFavoGifos {
+    position: absolute;
+    top: 10px;
+    right: 49px;
+  }
+  #favoriteSection #savedGifs .fatherFavoGifos .brotherFavoGifos .iconMaxFavoGifos {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+  #favoriteSection #savedGifs .fatherFavoGifos .brotherFavoGifos h2 {
+    text-align: left;
+    position: absolute;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFFFFF;
+    top: 67%;
+    width: 281px;
+    height: 51px;
+    margin: 10px;
+  }
+  #favoriteSection #savedGifs .fatherFavoGifos .brotherFavoGifos h3 {
+    text-align: left;
+    position: absolute;
+    color: #000000;
+    font-weight: 400;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    color: #FFFFFF;
+    top: 51%;
+    width: 281px;
+    margin: 10px;
+  }
   #favoriteSection .seeMore {
-    margin-top: 49px;
+    margin-top: 130px;
   }
   /*----------------------------*/
   /*      MY GIFOS SECTION      */
@@ -239,7 +292,7 @@ body {
     grid-template-columns: 25% 25% 25% 25%;
     margin: 0 7%;
   }
-  #myGifosSection #savedmyOwnGifs .myGifosCheck {
+  #myGifosSection #savedmyOwnGifs .fatherMyGifosCheck {
     position: relative;
     width: 276px;
     height: 148px;
@@ -247,8 +300,61 @@ body {
     margin: 0;
     margin-top: 21%;
   }
+  #myGifosSection #savedmyOwnGifs .fatherMyGifosCheck .myGifosCheck {
+    width: 302px;
+    height: 190px;
+    margin: 0;
+  }
+  #myGifosSection #savedmyOwnGifs .fatherMyGifosCheck .brotherMyGifosCheck {
+    position: absolute;
+    top: 0;
+    background: #572EE5;
+    opacity: 0.7;
+    width: 302px;
+    height: 191px;
+    left: 0;
+  }
+  #myGifosSection #savedmyOwnGifs .fatherMyGifosCheck .brotherMyGifosCheck .iconTrashMyGifos {
+    position: absolute;
+    top: 10px;
+    right: 89px;
+  }
+  #myGifosSection #savedmyOwnGifs .fatherMyGifosCheck .brotherMyGifosCheck .iconDowMyGifos {
+    position: absolute;
+    top: 10px;
+    right: 49px;
+  }
+  #myGifosSection #savedmyOwnGifs .fatherMyGifosCheck .brotherMyGifosCheck .iconMaxMyGifos {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+  #myGifosSection #savedmyOwnGifs .fatherMyGifosCheck .brotherMyGifosCheck h2 {
+    text-align: left;
+    position: absolute;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFFFFF;
+    top: 67%;
+    width: 281px;
+    height: 51px;
+    margin: 10px;
+  }
+  #myGifosSection #savedmyOwnGifs .fatherMyGifosCheck .brotherMyGifosCheck h3 {
+    text-align: left;
+    position: absolute;
+    color: #000000;
+    font-weight: 400;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    color: #FFFFFF;
+    top: 51%;
+    width: 281px;
+    margin: 10px;
+  }
   #myGifosSection .seeMore {
-    margin-top: 49px;
+    margin-top: 130px;
   }
   /*----------------------------*/
   /*   CREATE GIFOS SECTION     */
@@ -490,17 +596,29 @@ body {
   }
   .dark #favoriteSection #savedGifs {
     grid-template-columns: 25% 25% 25% 25%;
-    margin: 50px;
   }
-  .dark #favoriteSection #savedGifs .favoritesGifosCheck {
-    width: 255px;
-    height: 200px;
+  .dark #favoriteSection #savedGifs .fatherFavoGifos {
+    position: relative;
+    width: 276px;
+    height: 148px;
+    left: 12px;
     margin: 0;
-    padding: 5px;
+    margin-top: 21%;
+  }
+  .dark #favoriteSection #savedGifs .fatherFavoGifos .favoritesGifosCheck {
+    width: 302px;
+    height: 190px;
+    margin: 0;
+  }
+  .dark #favoriteSection .seeMoreDark {
+    margin-top: 130px;
   }
   /*---------My Gifos Section---------- */
   .dark #myGifosSection .titlesSection {
     font-size: 25px;
+  }
+  .dark .seeMoreDark {
+    margin-top: 130px;
   }
   /*----------------------------*/
   /*   CREATE GIFOS SECTION     */
@@ -945,22 +1063,12 @@ header nav #menu #createMyGifos {
 }
 
 #firstSection .gifosContainer .gifosInTopFive {
-  background-color: chartreuse;
   width: 156px;
   height: 120px;
   margin: 10%;
 }
 
 #firstSection .gifosContainer .gifosInTopFive .showGifos {
-  width: 156px;
-  height: 120px;
-}
-
-#firstSection .gifosContainer .gifosInTopFive .filterPurpleTopFive {
-  position: relative;
-  bottom: 123px;
-  background: #572EE5;
-  opacity: 0.6;
   width: 156px;
   height: 120px;
 }
@@ -996,19 +1104,21 @@ header nav #menu #createMyGifos {
   line-height: 23px;
 }
 
-#trends #newGifos {
-  width: 100%;
-  height: 40%;
-  margin: 0;
-  display: grid;
-  grid-template-columns: auto auto auto;
+#trends div #newGifos {
+  display: flex;
+  overflow: hidden;
 }
 
-#trends #newGifos .gifTrends {
-  width: 243px;
-  height: 187px;
+#trends div #newGifos #gifosInTrendingContainer {
+  width: 100%;
+  height: 98%;
+  margin: 0;
+}
+
+#trends div #newGifos #gifosInTrendingContainer .gifTrends {
+  width: 269px;
+  height: 208px;
   padding-left: 22px;
-  align-self: center;
 }
 
 /*------Container to Maximum Image---------- */
@@ -1321,49 +1431,49 @@ header nav #menu #createMyGifos {
     width: 40px;
     height: 40px;
     position: absolute;
-    left: 10%;
+    left: 8%;
     top: 130px;
   }
   #trends div #newGifos {
-    width: 60%;
-    height: 60%;
     display: flex;
+    width: 75%;
     margin: 0 auto;
-    padding: 0;
     overflow: hidden;
   }
-  #trends div #newGifos .gifTrends {
-    display: block;
+  #trends div #newGifos #gifosInTrendingContainer {
+    height: 275px;
+  }
+  #trends div #newGifos #gifosInTrendingContainer .gifTrends {
     width: 380px;
     height: 275px;
     padding: 0 10px;
   }
-  #trends div #newGifos .purpleFilterWithIcons {
+  #trends div #newGifos #gifosInTrendingContainer .purpleFilterWithIcons {
     position: relative;
-    bottom: 275px;
-    margin: auto;
     background: #572EE5;
     opacity: 0.6;
     width: 363px;
-    height: 274px;
+    height: 276px;
     padding: 0 10px;
+    bottom: 279px;
+    margin: auto;
   }
-  #trends div #newGifos .purpleFilterWithIcons .iconFavoriteStyle {
+  #trends div #newGifos #gifosInTrendingContainer .purpleFilterWithIcons .iconFavoriteStyle {
     position: absolute;
     top: 10px;
     right: 89px;
   }
-  #trends div #newGifos .purpleFilterWithIcons .iconDownloadStyle {
+  #trends div #newGifos #gifosInTrendingContainer .purpleFilterWithIcons .iconDownloadStyle {
     position: absolute;
     top: 10px;
     right: 49px;
   }
-  #trends div #newGifos .purpleFilterWithIcons .iconMaximumStyle {
+  #trends div #newGifos #gifosInTrendingContainer .purpleFilterWithIcons .iconMaximumStyle {
     position: absolute;
     right: 10px;
     top: 10px;
   }
-  #trends div #newGifos .purpleFilterWithIcons h2 {
+  #trends div #newGifos #gifosInTrendingContainer .purpleFilterWithIcons h2 {
     text-align: left;
     position: absolute;
     font-family: "Roboto", sans-serif;
@@ -1376,7 +1486,7 @@ header nav #menu #createMyGifos {
     height: 51px;
     margin: 10px;
   }
-  #trends div #newGifos .purpleFilterWithIcons h3 {
+  #trends div #newGifos #gifosInTrendingContainer .purpleFilterWithIcons h3 {
     text-align: left;
     position: absolute;
     color: #000000;
@@ -1392,7 +1502,7 @@ header nav #menu #createMyGifos {
     width: 40px;
     height: 40px;
     position: absolute;
-    left: 85%;
+    left: 89%;
     top: 130px;
   }
   #containerMaxGifs {
@@ -1448,6 +1558,9 @@ header nav #menu #createMyGifos {
   }
   .dark #firstSection .lineUnderSearch {
     border: 1px solid #FFFFFF;
+  }
+  .dark #firstSection .seeMoreDark {
+    margin-top: 130px;
   }
   .dark #trends #latestGifos {
     color: #FFFFFF;
