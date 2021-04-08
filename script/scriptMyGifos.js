@@ -1,90 +1,12 @@
-let isDark;
-//-
-const API_KEY = 'VfAQnZwBHdFaj75QChwBF5O4uEoTxQXh'
-//-
-const darkMode = document.querySelector("#darkMode")
-let logoDark = document.querySelector("#logoDark")
-let logo = document.querySelector("#logo")
-//-
-let crossDark = document.getElementById("burgerDark")
-let hamburDark = document.getElementById("crossDark")
-//-
-let headerCross = document.getElementById("burger")
-let headerBurger = document.getElementById("cross")
-//-
-let amount = 11
-const theFavoriteGifs = document.querySelector(".theFavoriteGifs")
-//-
-const clickSeeMore = document.querySelector(".seeMore")
-const clickSeeMoreDark = document.querySelector(".seeMoreDark")
-//-
 const savedmyOwnGifs = document.querySelector("#savedmyOwnGifs")
-//-
-/*-------------------------------*/
-/*   CHANGE MODE - DAY OR DARK   */
-/*-------------------------------*/
-let modeValidation = () => {
-    let styleStatus = sessionStorage.getItem("modeStyle");
-    if (styleStatus === null) {
-        styleStatus = false;    
-        sessionStorage.setItem("modeStyle", styleStatus);
-    } else if (styleStatus !== null) {
-        isDark = (styleStatus == 'true');
-        sessionStorage.setItem("modeStyle", styleStatus);
-    }
-}
-modeValidation();
-
-/*----------------------------*/
-/*   CLICK - NAVIGATION BAR   */
-/*----------------------------*/
-headerCross.addEventListener("click", () => {
-    headerCross.classList.add("off")
-    document.querySelector("#cross").classList.remove("off")
-    document.querySelector("#menu").classList.remove("off")
-})
-
-headerBurger.addEventListener("click", () => {
-    headerBurger.classList.add("off")
-    document.querySelector("#burger").classList.remove("off")
-    document.querySelector("#menu").classList.add("off")
-})
 
 let showButtonsMoreInFavorite = () => {
     let checkContentClass = document.getElementById("noContent");
     let hasOff = checkContentClass.classList.contains("off");
     if (hasOff === true) {
-        if (isDark === false) {
-            document.querySelector(".seeMore").classList.remove("off")
-            document.querySelector(".seeMoreDark").classList.add("off")
-        } else {
-            document.querySelector(".seeMore").classList.add("off")
-            document.querySelector(".seeMoreDark").classList.remove("off")
-        }
+        changeOfBtnSeeMore()
     }
 }
-
-let changeBtnSlider = () => {
-    if (window.screen.width > 768) {
-        if (isDark === true) {
-            btnSliderLeft.style.display = "none"
-            btnSliderRight.style.display = "none"
-            btnSliderLeftDark.style.display = "block"
-            btnSliderRightDark.style.display = "block"
-        } else {
-            btnSliderLeft.style.display = "block"
-            btnSliderRight.style.display = "block"
-            btnSliderLeftDark.style.display = "none"
-            btnSliderRightDark.style.display = "none"
-        }
-    } else if (window.screen.width < 768) {
-        btnSliderLeft.style.display = "none"
-        btnSliderRight.style.display = "none"
-        btnSliderLeftDark.style.display = "none"
-        btnSliderRightDark.style.display = "none"
-    } 
-}
-changeBtnSlider()  
 
 /*----------------------------*/
 /*         DARK MODE          */
@@ -111,7 +33,7 @@ const changeModeStyle = (text) => {
         changeBtnSlider()
         changesLogosHeader()
         showButtonsMoreInFavorite()
-        //getGifosFavorites()
+        changesIconsMedia()
         if (text == "darkLogoClick") {
             document.querySelector("#crossDark").classList.add("off")
             document.querySelector("#burger").classList.add("off")
@@ -127,7 +49,7 @@ const changeModeStyle = (text) => {
         changeBtnSlider()
         changesLogosHeader()
         showButtonsMoreInFavorite()
-        //getGifosFavorites()
+        changesIconsMedia()
         if (text == undefined || text == "repaintStyles") {
             document.querySelector("#menu").classList.add("off")
             document.querySelector("#cross").classList.add("off")
@@ -145,94 +67,15 @@ darkMode.addEventListener("click", () => {
     changeModeStyle()
 })
 
-let changesLogosHeader = () => {
-    if (window.screen.width > 768) {
-        if (isDark === true) { 
-            logoDarkDesktop.style.display = "block"
-            logoDesktop.style.display = "none"
-            logoDark.style.display = "none"
-            logo.style.display = "none" 
-        } else {
-            logoDarkDesktop.style.display = "none"
-            logoDesktop.style.display = "block"
-            logoDark.style.display = "none"
-            logo.style.display = "none" 
-            
-        }
-    } else if (window.screen.width < 768) {
-        if (isDark === true) { 
-            logoDesktop.style.display = "none"
-            logoDarkDesktop.style.display = "none"
-            logo.style.display = "none" 
-            logoDark.style.display = "block"
-        } else {
-            logoDesktop.style.display = "none"
-            logoDarkDesktop.style.display = "none"
-            logoDark.style.display = "none"
-            logo.style.display = "block" 
-        }     
-    } 
-}
-changesLogosHeader()
-
 changeModeStyle("repaintStyles")
 
-/*------------------------------------------*/
-/*    DARK MODE - CLICK - NAVIGATION BAR    */
-/*------------------------------------------*/
-crossDark.addEventListener("click", () => {
-    crossDark.classList.add("off")
-    document.querySelector("#crossDark").classList.remove("off")
-    document.querySelector("#menu").classList.remove("off")
-})
-
-hamburDark.addEventListener("click", () => {
-    hamburDark.classList.add("off")
-    document.querySelector("#burgerDark").classList.remove("off")
-    document.querySelector("#menu").classList.add("off")
-})
-
-btnSliderRight.addEventListener("mouseover", () => {
-    btnSliderRight.src = '/assets/Button-Slider-right-hover.svg'
-})
-
-btnSliderRight.addEventListener("mouseout", () => {
-    btnSliderRight.src = '/assets/Button-Slider-right.svg'
-})
-
-btnSliderLeft.addEventListener("mouseover", () => {
-    btnSliderLeft.src = '/assets/Button-Slider-left-hover.svg'
-})
-
-btnSliderLeft.addEventListener("mouseout", () => {
-    btnSliderLeft.src = '/assets/button-slider-left.svg'
-})
-
-btnSliderRightDark.addEventListener("mouseover", () => {
-    btnSliderRightDark.src = '/assets/Button-Slider-right-hover.svg'
-})
-
-btnSliderRightDark.addEventListener("mouseout", () => {
-    btnSliderRightDark.src = '/assets/button-slider-right-md-noct.svg'
-})
-
-btnSliderLeftDark.addEventListener("mouseover", () => {
-    btnSliderLeftDark.src = '/assets/Button-Slider-left-hover.svg'
-})
-
-btnSliderLeftDark.addEventListener("mouseout", () => {
-    btnSliderLeftDark.src = '/assets/button-slider-left-md-noct.svg'
-})
-
 gifos = JSON.parse(window.localStorage.getItem('mygifos'))
-console.log(gifos)
 
 getGifos = async () => {
     const response = await fetch(`https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${gifos.join()}`)
     const result = await response.json()  
     savedmyOwnGifs.innerHTML = "";
     for (let i = 0; i < result.data.length; i++){
-        console.log(result.data.length)
         if (i > amount) {break}
         let fatherMyGifosCheck = document.createElement("div");
         fatherMyGifosCheck.setAttribute("class", "fatherMyGifosCheck");
@@ -301,16 +144,3 @@ getGifos = async () => {
     showButtonsMoreInFavorite() 
 }
 getGifos()
-
-clickSeeMore.addEventListener("click", () => {
-    clickButtonSeeMore()
-}) 
-
-clickSeeMoreDark.addEventListener("click", () => {
-    clickButtonSeeMore()
-})
-
-const clickButtonSeeMore = () => {
-    amount = amount + 12
-    getGifos()
-}

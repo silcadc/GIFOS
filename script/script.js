@@ -1,86 +1,27 @@
-let isDark;
-//-
-let headerCross = document.getElementById("burger")
-let headerBurger = document.getElementById("cross")
-//-
 let magnifying = document.getElementById("magnifying")
 let crossMagnifying = document.getElementById("crossMagnifying")
-//-
-const API_KEY = 'VfAQnZwBHdFaj75QChwBF5O4uEoTxQXh'
-//-
-const darkMode = document.querySelector("#darkMode")
-let logoDark = document.querySelector("#logoDark")
-let logo = document.querySelector("#logo")
-let logoDarkDesktop = document.querySelector("#logoDarkDesktop")
-let logoDesktop = document.querySelector("#logoDesktop")
-//-
-let crossDark = document.getElementById("burgerDark")
-let hamburDark = document.getElementById("crossDark")
-//-
+
 let magnifDark = document.getElementById("magniDark")
 let crossMagnifDark = document.getElementById("crossMagniDark")
-//-
-let amount = 11
+
 const gifosContainer = document.querySelector(".gifosContainer")
-//-
-const clickSeeMore = document.querySelector(".seeMore")
-const clickSeeMoreDark = document.querySelector(".seeMoreDark")
-//-
+
 const formGifosFinder = document.querySelector("#gifosFinder")
-const inputTextToSearch = document.querySelector("#searchGifos")
-//-
+inputTextToSearch = document.querySelector("#searchGifos")
+
 const lineHr = document.querySelector(".lineUnderSearch")
 const wordSearchH2 = document.querySelector(".termToSearch")
-//-
+
 const tryAnotherSearch = document.querySelector("#tryAnotherSearch")
 
-const buttonSeeMore = document.querySelector(".seeMore")
-const buttonSeeMoreDark = document.querySelector(".seeMoreDark")
-//-
 const offH1Mobile = document.querySelector("#h1Mobile")
 const offH1Desktops = document.querySelector("#h1Desktops")
 const offIlustration = document.querySelector(".ilustra_header")
-//-
+
 const changePositionCross = document.querySelectorAll(".search")
-//-
+
 const clickMagnifying = document.querySelector("#magnifying")
 const clickMagniDark = document.querySelector("#magniDark")
-//-
-const btnSliderLeft = document.querySelector("#btnSliderLeft")
-const btnSliderRight = document.querySelector("#btnSliderRight")
-const btnSliderLeftDark = document.querySelector("#btnSliderLeftDark")
-const btnSliderRightDark = document.querySelector("#btnSliderRightDark")
-//-
-const newGifos = document.querySelector("#newGifos")
-/*-------------------------------*/
-/*   CHANGE MODE - DAY OR DARK   */
-/*-------------------------------*/
-let modeValidation = () => {
-    let styleStatus = sessionStorage.getItem("modeStyle");
-    if (styleStatus === null) {
-        styleStatus = false;
-        sessionStorage.setItem("modeStyle", styleStatus);
-    } else if (styleStatus !== null) {
-        isDark = (styleStatus == 'true');
-        sessionStorage.setItem("modeStyle", styleStatus);
-    }
-}
-modeValidation();
-
-/*----------------------------*/
-/*   CLICK - NAVIGATION BAR   */
-/*----------------------------*/
-headerCross.addEventListener("click", () => {
-    headerCross.classList.add("off")
-    document.querySelector("#cross").classList.remove("off")
-    document.querySelector("#menu").classList.remove("off")
-})
-
-headerBurger.addEventListener("click", () => {
-    headerBurger.classList.add("off")
-    document.querySelector("#burger").classList.remove("off")
-    document.querySelector("#menu").classList.add("off")
-})
 
 /*------------------------------------------*/
 /*   CLICK - GIFOS FINDER - FIRST SECTION   */
@@ -94,42 +35,6 @@ crossMagnifying.addEventListener("click", () => {
     crossMagnifying.classList.add("off")
     document.querySelector("#magnifying").classList.remove("off")
 })
-
-let showButtonsMore = () => {
-    let checkClass = document.getElementById("titleToSearch");
-    let hasClassOff = checkClass.classList.contains('off');
-    if (hasClassOff == false) {
-        if (isDark == false) {
-            document.querySelector(".seeMore").classList.remove("off")
-            document.querySelector(".seeMoreDark").classList.add("off")
-        } else {
-            document.querySelector(".seeMore").classList.add("off")
-            document.querySelector(".seeMoreDark").classList.remove("off")
-        }
-    }
-}
-
-let changeBtnSlider = () => {
-    if (window.screen.width > 768) {
-        if (isDark === true) {
-            btnSliderLeft.style.display = "none"
-            btnSliderRight.style.display = "none"
-            btnSliderLeftDark.style.display = "block"
-            btnSliderRightDark.style.display = "block"
-        } else {
-            btnSliderLeft.style.display = "block"
-            btnSliderRight.style.display = "block"
-            btnSliderLeftDark.style.display = "none"
-            btnSliderRightDark.style.display = "none"
-        }
-    } else if (window.screen.width < 768) {
-        btnSliderLeft.style.display = "none"
-        btnSliderRight.style.display = "none"
-        btnSliderLeftDark.style.display = "none"
-        btnSliderRightDark.style.display = "none"
-    }
-}
-changeBtnSlider()
 
 /*----------------------------*/
 /*          TRENDING          */
@@ -190,6 +95,7 @@ const changeModeStyle = (text) => {
         document.querySelector(".seeMore").classList.add("off")
         changeBtnSlider()
         changesLogosHeader()
+        changesIconsMedia()
         if (text == "darkLogoClick") {
             document.querySelector("#crossDark").classList.add("off")
             document.querySelector("#burger").classList.add("off")
@@ -199,7 +105,6 @@ const changeModeStyle = (text) => {
             document.querySelector("#crossDark").classList.add("off")
             document.querySelector("#burgerDark").classList.remove("off")
             showButtonsMore()
-
         }
     } else {
         document.body.classList.remove("dark")
@@ -213,6 +118,7 @@ const changeModeStyle = (text) => {
         document.querySelector(".seeMoreDark").classList.add("off")
         changeBtnSlider()
         changesLogosHeader()
+        changesIconsMedia()
         if (text == undefined || text == "repaintStyles") {
             document.querySelector("#menu").classList.add("off")
             document.querySelector("#cross").classList.add("off")
@@ -228,36 +134,6 @@ const changeModeStyle = (text) => {
 darkMode.addEventListener("click", () => {
     changeModeStyle()
 })
-
-let changesLogosHeader = () => {
-    if (window.screen.width > 768) {
-        if (isDark === true) {
-            logoDarkDesktop.style.display = "block"
-            logoDesktop.style.display = "none"
-            logoDark.style.display = "none"
-            logo.style.display = "none"
-        } else {
-            logoDarkDesktop.style.display = "none"
-            logoDesktop.style.display = "block"
-            logoDark.style.display = "none"
-            logo.style.display = "none"
-
-        }
-    } else if (window.screen.width < 768) {
-        if (isDark === true) {
-            logoDesktop.style.display = "none"
-            logoDarkDesktop.style.display = "none"
-            logo.style.display = "none"
-            logoDark.style.display = "block"
-        } else {
-            logoDesktop.style.display = "none"
-            logoDarkDesktop.style.display = "none"
-            logoDark.style.display = "none"
-            logo.style.display = "block"
-        }
-    }
-}
-changesLogosHeader()
 
 changeModeStyle("repaintStyles")
 /*------------------------------------------*/
@@ -415,19 +291,6 @@ const getGifos = async (textToSearch) => {
     }
 }
 
-clickSeeMore.addEventListener("click", () => {
-    clickButtonSeeMore()
-})
-
-clickSeeMoreDark.addEventListener("click", () => {
-    clickButtonSeeMore()
-})
-
-const clickButtonSeeMore = () => {
-    amount = amount + 12
-    getGifos(inputTextToSearch.value)
-}
-
 const showLineHr = () => {
     lineHr.classList.remove("off")
 }
@@ -462,35 +325,3 @@ const positionCross = () => {
         changePositionCross[i].classList.replace("search", "searchToTerm")
     }
 }
-
-btnSliderRight.addEventListener("mouseover", () => {
-    btnSliderRight.src = './assets/Button-Slider-right-hover.svg'
-})
-
-btnSliderRight.addEventListener("mouseout", () => {
-    btnSliderRight.src = './assets/Button-Slider-right.svg'
-})
-
-btnSliderLeft.addEventListener("mouseover", () => {
-    btnSliderLeft.src = './assets/Button-Slider-left-hover.svg'
-})
-
-btnSliderLeft.addEventListener("mouseout", () => {
-    btnSliderLeft.src = './assets/button-slider-left.svg'
-})
-
-btnSliderRightDark.addEventListener("mouseover", () => {
-    btnSliderRightDark.src = './assets/Button-Slider-right-hover.svg'
-})
-
-btnSliderRightDark.addEventListener("mouseout", () => {
-    btnSliderRightDark.src = './assets/button-slider-right-md-noct.svg'
-})
-
-btnSliderLeftDark.addEventListener("mouseover", () => {
-    btnSliderLeftDark.src = './assets/Button-Slider-left-hover.svg'
-})
-
-btnSliderLeftDark.addEventListener("mouseout", () => {
-    btnSliderLeftDark.src = './assets/button-slider-left-md-noct.svg'
-})

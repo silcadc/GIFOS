@@ -33,9 +33,15 @@
                 <li><a href="./myGifos.html" class="btnsNavigations" tabindex="4">Mis GIFOS
                         <hr>
                     </a></li>
-                <li><a href="./createGifos.html" tabindex="5">
-                    <img id="createMyGifos" src="/assets/button-crear-gifo.svg" alt="Button Create">
-                    </a></li>
+                <li><a href="./createGifos.html" id="createOwnGifosOff" tabindex="5">
+                    <img class="iconCreateMyGifos iconNormal" src="/assets/button-crear-gifo.svg" alt="Button Create">
+                    <img class="iconcreateMyGifos noc off" src="/assets/CTA-crear-gifo-modo-noc.svg" alt="Button Noc">
+                    <img class="iconcreateMyGifos hover off" src="/assets/CTA-crear-gifo-hover.svg" alt="Button Hover">
+                    <img class="iconcreateMyGifos hoverNoc off" src="/assets/CTA-crear-gifo-hover-modo-noc.svg" alt="Button Hov Noc">
+                    <img class="iconcreateMyGifos active off" src="/assets/CTA-crear-gifo-active.svg" alt="Button Create Active">
+                    <img class="iconcreateMyGifos activeNoc off" src="/assets/CTA-crear-gifo-active-modo-noc.svg" alt="Button Active Noc">
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -72,20 +78,24 @@
     <footer id="footer">
         <p id="footerShare">Compartir en:</p>
         <div id="socialMedia">
-            <a href="https://www.facebook.com" target="_top" title="Follow us on Facebook">
-                <img id="facebook" src="/assets/icon_facebook.svg" alt="facebook">
+            <a href="https://www.facebook.com" target="_blank" title="Follow us on Facebook">
+                <img class="facebook" src="/assets/icon_facebook.svg" alt="facebook">
+                <img class="facebookHover off" src="/assets/icon_facebook_hover.svg" alt="facebook">
+                <img class="facebookDark off" src="/assets/icon_facebook_noc.svg" alt="facebook">
             </a>
             <a href="https://twitter.com" target="_blank" title="Follow us on Twitter">
-                <img id="twitter" src="/assets/icon-tw-normal.svg" alt="twitter">
-                <img id="twitterpurple" src="/assets/icon-twitter-hover.svg" alt="twitter">
+                <img class="twitter" src="/assets/icon-tw-normal.svg" alt="twitter">
+                <img class="twitterHover off" src="/assets/icon-twitter-hover.svg" alt="twitter">
             </a>
-            <a href="https://www.instagram.com/" target="_self" title="Follow us on Instagram">
-                <img id="instagram" src="/assets/icon_instagram.svg" alt="instagram">
+            <a href="https://www.instagram.com/" target="_blank" title="Follow us on Instagram">
+                <img class="instagram" src="/assets/icon_instagram.svg" alt="instagram">
+                <img class="instagramHover off" src="/assets/icon_instagram-hover.svg" alt="instagram">
+                <img class="instagramDark off" src="/assets/icon_instagram_noc.svg" alt="instagram">
             </a>
         </div> <br> <br>
         <div id="footerCopyright">&#169; GIFOS 2020 All Rights Reserved.</div>
     </footer>
-    <script src="../script/scriptFavorite.js"></script>
     <script src="/script/scriptCommon.js"></script>
+    <script src="../script/scriptFavorite.js"></script>
 </body>
 </html>

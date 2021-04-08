@@ -76,10 +76,15 @@ body {
   grid-template-columns: 50% 50%;
 }
 
-#favoriteSection #savedGifs .favoritesGifosCheck {
+#favoriteSection #savedGifs .fatherFavoGifos {
   width: 156px;
   height: 120px;
   margin: 10%;
+}
+
+#favoriteSection #savedGifs .fatherFavoGifos .favoritesGifosCheck {
+  width: 156px;
+  height: 120px;
 }
 
 #favoriteSection .theFavoriteGifs {
@@ -101,6 +106,8 @@ body {
 #favoriteSection .seeMore {
   background: transparent;
   border: none;
+  margin-top: 30px;
+  cursor: pointer;
 }
 
 /*----------------------------*/
@@ -154,6 +161,7 @@ body {
 #myGifosSection .seeMore {
   background: transparent;
   border: none;
+  cursor: pointer;
 }
 
 /*----------------------------*/
@@ -180,13 +188,10 @@ body {
   margin: 10%;
 }
 
-.dark #favoriteSection .seeMore {
-  display: none;
-}
-
 .dark #favoriteSection .seeMoreDark {
   background: transparent;
   border: none;
+  margin-top: 30px;
 }
 
 /*---------My Gifos Section---------- */
@@ -199,13 +204,10 @@ body {
   line-height: 30px;
 }
 
-.dark .seeMore {
-  display: none;
-}
-
 .dark .seeMoreDark {
   background: transparent;
   border: none;
+  cursor: pointer;
 }
 
 /* Large devices (laptops/desktops, 768px and up) */
@@ -244,16 +246,19 @@ body {
     position: absolute;
     top: 10px;
     right: 89px;
+    cursor: pointer;
   }
   #favoriteSection #savedGifs .fatherFavoGifos .brotherFavoGifos .iconDowFavoGifos {
     position: absolute;
     top: 10px;
     right: 49px;
+    cursor: pointer;
   }
   #favoriteSection #savedGifs .fatherFavoGifos .brotherFavoGifos .iconMaxFavoGifos {
     position: absolute;
     right: 10px;
     top: 10px;
+    cursor: pointer;
   }
   #favoriteSection #savedGifs .fatherFavoGifos .brotherFavoGifos h2 {
     text-align: left;
@@ -318,16 +323,19 @@ body {
     position: absolute;
     top: 10px;
     right: 89px;
+    cursor: pointer;
   }
   #myGifosSection #savedmyOwnGifs .fatherMyGifosCheck .brotherMyGifosCheck .iconDowMyGifos {
     position: absolute;
     top: 10px;
     right: 49px;
+    cursor: pointer;
   }
   #myGifosSection #savedmyOwnGifs .fatherMyGifosCheck .brotherMyGifosCheck .iconMaxMyGifos {
     position: absolute;
     right: 10px;
     top: 10px;
+    cursor: pointer;
   }
   #myGifosSection #savedmyOwnGifs .fatherMyGifosCheck .brotherMyGifosCheck h2 {
     text-align: left;
@@ -359,13 +367,13 @@ body {
   /*----------------------------*/
   /*   CREATE GIFOS SECTION     */
   /*----------------------------*/
+  #createGifosSection {
+    height: 545px;
+  }
   #createGifosSection #camera {
     position: relative;
     left: 155px;
     bottom: 290px;
-  }
-  #createGifosSection #cameraDark {
-    display: none;
   }
   #createGifosSection #camlight {
     position: relative;
@@ -488,54 +496,6 @@ body {
   #createGifosSection #containerShowCam .upSuccess .upGifo {
     left: 147px;
   }
-  #createGifosSection #steplight {
-    position: relative;
-    bottom: 270px;
-    left: 44%;
-    width: 150px;
-    height: 32px;
-  }
-  #createGifosSection #steplight .stepTwo {
-    position: relative;
-    bottom: 0;
-    left: 9%;
-  }
-  #createGifosSection #steplight .stepTwoThree {
-    width: 32px;
-    height: 32px;
-    border: 1px solid #572EE5;
-    border-radius: 50%;
-    font-weight: 400;
-    font-family: "Roboto", sans-serif;
-    font-size: 18px;
-    text-align: center;
-    color: #572EE5;
-    padding: 5px;
-  }
-  #createGifosSection #steplight .one {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: #572EE5;
-    color: #FFFFFF;
-  }
-  #createGifosSection #steplight .two {
-    position: absolute;
-    bottom: 0;
-    left: 49px;
-  }
-  #createGifosSection #steplight .three {
-    position: absolute;
-    bottom: 0;
-    left: 98px;
-  }
-  #createGifosSection #steplight .stepThree {
-    position: absolute;
-    bottom: 0;
-    left: 98px;
-    background-color: #572EE5;
-    color: #FFFFFF;
-  }
   #createGifosSection .chronometer {
     color: #572EE5;
     font-weight: bold;
@@ -551,37 +511,84 @@ body {
     border-bottom: 3px solid #50E3C2;
     cursor: pointer;
   }
-  #createGifosSection #stepDark {
-    display: none;
+  #createGifosSection .someSteps {
+    position: relative;
+    bottom: 270px;
+    left: 44%;
+    width: 150px;
+    height: 32px;
+  }
+  #createGifosSection .someSteps .stepTwo {
+    position: relative;
+    bottom: 0;
+    left: 9%;
+  }
+  #createGifosSection .someSteps .stepTwoThree {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #572EE5;
+    border-radius: 50%;
+    font-weight: 400;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    text-align: center;
+    color: #572EE5;
+    padding: 5px;
+  }
+  #createGifosSection .someSteps .one {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #572EE5;
+    color: #FFFFFF;
+  }
+  #createGifosSection .someSteps .two {
+    position: absolute;
+    bottom: 0;
+    left: 49px;
+  }
+  #createGifosSection .someSteps .three {
+    position: absolute;
+    bottom: 0;
+    left: 98px;
+  }
+  #createGifosSection .someSteps .stepThree {
+    position: absolute;
+    bottom: 0;
+    left: 98px;
+    background-color: #572EE5;
+    color: #FFFFFF;
   }
   #createGifosSection #movie {
     position: absolute;
     bottom: 26%;
     left: 80%;
   }
-  #createGifosSection #movieDark {
-    display: none;
-  }
   #createGifosSection hr {
     position: relative;
-    bottom: 256px;
+    bottom: 268px;
     width: 796px;
     height: 6.9px;
     border-radius: 25px;
     background: #572EE5;
   }
-  #createGifosSection div .btnCreateGifos {
+  #createGifosSection #btnsCreate {
+    width: 127px;
+    height: 50px;
+    position: relative;
+    bottom: 258px;
+    left: 44%;
+  }
+  #createGifosSection #btnsCreate .btnCreateGifos {
     border: 1px solid #572EE5;
     border-radius: 25px;
     width: 127px;
     height: 50px;
-    position: relative;
-    bottom: 235px;
-    left: 44%;
+    position: absolute;
     cursor: pointer;
     background-color: transparent;
   }
-  #createGifosSection div .btnCreateGifos .color_purple {
+  #createGifosSection #btnsCreate .btnCreateGifos .color_purple {
     color: #572EE5;
     font-weight: bold;
     text-align: center;
@@ -629,11 +636,7 @@ body {
     bottom: 290px;
   }
   .dark #createGifosSection #containerShowCam {
-    position: relative;
-    left: 400px;
     border: 1px solid #FFFFFF;
-    width: 688px;
-    height: 390px;
   }
   .dark #createGifosSection #containerShowCam h1 {
     color: #FFFFFF;
@@ -650,37 +653,17 @@ body {
   .dark #createGifosSection .repeatCapture {
     color: #FFFFFF;
   }
-  .dark #createGifosSection #stepDark {
-    position: relative;
-    bottom: 270px;
-    left: 44%;
-    width: 150px;
-    height: 32px;
-  }
-  .dark #createGifosSection #stepDark .stepTwo {
-    position: relative;
-    bottom: 0;
-    left: 9%;
-  }
-  .dark #createGifosSection #stepDark .stepTwoThree {
-    width: 32px;
-    height: 32px;
+  .dark #createGifosSection .someSteps .stepTwoThree {
     border: 1px solid #FFFFFF;
-    border-radius: 50%;
-    font-weight: 400;
-    font-family: "Roboto", sans-serif;
-    font-size: 18px;
-    text-align: center;
     color: #FFFFFF;
-    padding: 5px;
-    position: relative;
-    bottom: 35px;
-    left: 49px;
   }
-  .dark #createGifosSection #stepDark .three {
-    position: relative;
-    bottom: 67px;
-    left: 98px;
+  .dark #createGifosSection .someSteps .one {
+    background-color: #FFFFFF;
+    color: #000000;
+  }
+  .dark #createGifosSection .someSteps .stepThree {
+    background-color: #FFFFFF;
+    color: #000000;
   }
   .dark #createGifosSection #movieDark {
     position: absolute;
@@ -690,10 +673,10 @@ body {
   .dark #createGifosSection hr {
     background: #FFFFFF;
   }
-  .dark #createGifosSection div .btnCreateGifos {
+  .dark #createGifosSection #btnsCreate .btnCreateGifos {
     border: 1px solid #FFFFFF;
   }
-  .dark #createGifosSection div .btnCreateGifos .color_purple {
+  .dark #createGifosSection #btnsCreate .btnCreateGifos .color_purple {
     color: #FFFFFF;
     font-weight: bold;
     text-align: center;
@@ -715,10 +698,6 @@ header .logosHeader {
   margin-left: 22px;
   margin-top: 29px;
   margin-bottom: 17.2px;
-}
-
-header .logosHeaderDesktop {
-  display: none;
 }
 
 header .checkbox-menu {
@@ -750,6 +729,7 @@ header nav #menu .btnsNavigations {
   font-size: 14px;
   line-height: 60px;
   text-decoration-line: unset;
+  cursor: pointer;
 }
 
 header nav #menu .btnsNavigations hr {
@@ -759,8 +739,8 @@ header nav #menu .btnsNavigations hr {
   margin: 0 45%;
 }
 
-header nav #menu #createMyGifos {
-  display: none;
+header nav #menu .btnsNavigations:hover {
+  border-bottom: 3px solid #50E3C2;
 }
 
 /*----------------------------*/
@@ -768,14 +748,6 @@ header nav #menu #createMyGifos {
 /*----------------------------*/
 .dark header {
   border-top: 5px solid #000000;
-}
-
-.dark header .logosHeaderDesktop {
-  display: none;
-}
-
-.dark header .logosHeader {
-  display: block;
 }
 
 .dark nav #menu {
@@ -794,9 +766,6 @@ header nav #menu #createMyGifos {
     margin-left: 156px;
     margin-top: 23px;
     margin-bottom: 17.2px;
-  }
-  header .logosHeader {
-    display: none;
   }
   header nav #menu {
     position: absolute;
@@ -817,20 +786,11 @@ header nav #menu #createMyGifos {
   header nav #menu .btnsNavigations hr {
     display: none;
   }
-  header nav #menu #createMyGifos {
-    display: block;
-  }
   /*----------------------------*/
   /*     DARK MODE - HEADER     */
   /*----------------------------*/
   .dark header {
     border-top: 5px solid #000000;
-  }
-  .dark header .logosHeaderDesktop {
-    display: block;
-  }
-  .dark header .logosHeader {
-    display: none;
   }
   .dark nav #menu {
     background: #37383C;
@@ -840,9 +800,6 @@ header nav #menu #createMyGifos {
   }
   .dark nav #menu .btnsNavigations hr {
     display: none;
-  }
-  .dark nav #menu #createMyGifos {
-    display: block;
   }
 }
 
@@ -869,14 +826,6 @@ header nav #menu #createMyGifos {
   margin-left: 32%;
   display: flex;
   justify-content: space-evenly;
-}
-
-#footer #socialMedia #twitter {
-  display: block;
-}
-
-#footer #socialMedia #twitterpurple {
-  display: none;
 }
 
 #footer #footerCopyright {
@@ -918,12 +867,6 @@ header nav #menu #createMyGifos {
   }
   #footer #socialMedia a {
     margin: 10px;
-  }
-  #footer #socialMedia a #twitterpurple {
-    display: block;
-  }
-  #footer #socialMedia a #twitter {
-    display: none;
   }
   #footer br {
     display: none;
@@ -1030,6 +973,7 @@ header nav #menu #createMyGifos {
   list-style-type: none;
   text-transform: capitalize;
   display: inline;
+  cursor: pointer;
 }
 
 #firstSection .lineUnderSearch {
@@ -1077,6 +1021,7 @@ header nav #menu #createMyGifos {
   background: transparent;
   border: none;
   margin-top: 78px;
+  cursor: pointer;
 }
 
 /*-----------GIFOS in Trend---------- */
@@ -1379,16 +1324,19 @@ header nav #menu #createMyGifos {
     position: absolute;
     top: 10px;
     right: 89px;
+    cursor: pointer;
   }
   #firstSection .gifosContainer .gifosInTopFive .filterPurpleTopFive .iconDowTopFive {
     position: absolute;
     top: 10px;
     right: 49px;
+    cursor: pointer;
   }
   #firstSection .gifosContainer .gifosInTopFive .filterPurpleTopFive .iconMaxTopFive {
     position: absolute;
     right: 10px;
     top: 10px;
+    cursor: pointer;
   }
   #firstSection .gifosContainer .gifosInTopFive .filterPurpleTopFive h2 {
     text-align: left;
@@ -1433,6 +1381,7 @@ header nav #menu #createMyGifos {
     position: absolute;
     left: 8%;
     top: 130px;
+    cursor: pointer;
   }
   #trends div #newGifos {
     display: flex;
@@ -1462,16 +1411,19 @@ header nav #menu #createMyGifos {
     position: absolute;
     top: 10px;
     right: 89px;
+    cursor: pointer;
   }
   #trends div #newGifos #gifosInTrendingContainer .purpleFilterWithIcons .iconDownloadStyle {
     position: absolute;
     top: 10px;
     right: 49px;
+    cursor: pointer;
   }
   #trends div #newGifos #gifosInTrendingContainer .purpleFilterWithIcons .iconMaximumStyle {
     position: absolute;
     right: 10px;
     top: 10px;
+    cursor: pointer;
   }
   #trends div #newGifos #gifosInTrendingContainer .purpleFilterWithIcons h2 {
     text-align: left;
@@ -1504,6 +1456,7 @@ header nav #menu #createMyGifos {
     position: absolute;
     left: 89%;
     top: 130px;
+    cursor: pointer;
   }
   #containerMaxGifs {
     opacity: 100%;
@@ -1526,18 +1479,22 @@ header nav #menu #createMyGifos {
   }
   #containerMaxGifs #imgCrossMax {
     right: 80px;
+    cursor: pointer;
   }
   #containerMaxGifs #imgFavoriteMax {
     top: 83%;
     right: 24%;
+    cursor: pointer;
   }
   #containerMaxGifs #favoriteActive {
     top: 84%;
     right: 25%;
+    cursor: pointer;
   }
   #containerMaxGifs #imgDownloadMax {
     top: 83%;
     right: 20%;
+    cursor: pointer;
   }
   /*----------------------------*/
   /*         DARK MODE          */

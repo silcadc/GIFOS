@@ -8,9 +8,6 @@ header {
         margin-top: 29px;
         margin-bottom: 17.2px;
     }
-    .logosHeaderDesktop {
-        display: none;
-    }
     .checkbox-menu {
         position: absolute;
         right: 10%;
@@ -38,6 +35,7 @@ header {
                 font-size: subtraction($font-size16, 2px);
                 line-height: 60px;
                 text-decoration-line: $text-decoration; 
+                cursor: pointer;
                 hr {
                     width: 35px;
                     height: 2px;
@@ -45,8 +43,8 @@ header {
                     margin: 0 45%;
                 }
             }
-            #createMyGifos {
-                display: none;
+            .btnsNavigations:hover  {
+                border-bottom: 3px solid $color-aqua;
             }
         }    
     }   
@@ -58,12 +56,6 @@ header {
 .dark {
     header {
         border-top: $border-top-bottom $color-black;
-        .logosHeaderDesktop {
-            display: none;
-        }
-        .logosHeader {
-            display: block;
-        }
     }
     nav {
         #menu {
@@ -83,9 +75,6 @@ header {
             margin-left: 156px;
             margin-top: 23px;
             margin-bottom: 17.2px;
-        }
-        .logosHeader {
-            display: none;
         }          
         nav {            
             #menu {   
@@ -106,9 +95,6 @@ header {
                         display: none;
                     }
                 }
-                #createMyGifos {
-                    display: block;
-                }
             }    
         }  
     }
@@ -119,12 +105,6 @@ header {
     .dark {
         header {
             border-top: $border-top-bottom $color-black;
-            .logosHeaderDesktop {
-                display: block;
-            }
-            .logosHeader {
-                display: none;
-            }
         }
         nav {
             #menu {
@@ -134,9 +114,6 @@ header {
                     hr {
                         display: none;
                     }
-                }
-                #createMyGifos {
-                    display: block;
                 }
             }    
         }

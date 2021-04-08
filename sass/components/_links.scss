@@ -16,10 +16,14 @@
     #savedGifs {
         display: grid;
         grid-template-columns: 50% 50%;
-        .favoritesGifosCheck {
+        .fatherFavoGifos {
             width: 156px;
             height: 120px; 
             margin: 10%; 
+            .favoritesGifosCheck {
+                width: 156px;
+                height: 120px;
+            }
         }
     }
     .theFavoriteGifs {
@@ -34,7 +38,9 @@
     }
     .seeMore {
         background: transparent;
-        border: none;  
+        border: none; 
+        margin-top: 30px; 
+        cursor: pointer;
     }
 }
 
@@ -73,7 +79,8 @@
     }
     .seeMore {
         background: transparent;
-        border: none;  
+        border: none; 
+        cursor: pointer; 
     }
 }
 
@@ -97,12 +104,10 @@
                 margin: 10%; 
             }
         }
-        .seeMore {
-            display: none; 
-        }
         .seeMoreDark {
             background: transparent;
-            border: none;  
+            border: none; 
+            margin-top: 30px; 
         }
     }    
 }
@@ -116,12 +121,10 @@
             line-height: 30px;
         }
     }
-    .seeMore {
-        display: none; 
-    }
     .seeMoreDark {
         background: transparent;
         border: none;  
+        cursor: pointer;
     }
 }
 
@@ -137,11 +140,11 @@
             margin: 0 7%;
             .fatherFavoGifos {
                 position: relative;
-                    width: 276px;
-                    height: 148px;
-                    left: 12px;
-                    margin: 0;
-                    margin-top: 21%;
+                width: 276px;
+                height: 148px;
+                left: 12px;
+                margin: 0;
+                margin-top: 21%;
                 .favoritesGifosCheck {
                     width: 302px;
                     height: 190px; 
@@ -159,16 +162,19 @@
                         position: absolute;
                         top: 10px;
                         right: 89px;
+                        cursor: pointer;
                     }
                     .iconDowFavoGifos {
                         position: absolute;
                         top: 10px;
                         right: 49px;
+                        cursor: pointer;
                     }
                     .iconMaxFavoGifos {
                         position: absolute;
                         right: 10px;
                         top: 10px;
+                        cursor: pointer;
                     }
                     h2 {
                         text-align: left;
@@ -236,16 +242,19 @@
                         position: absolute;
                         top: 10px;
                         right: 89px;
+                        cursor: pointer;
                     }
                     .iconDowMyGifos {
                         position: absolute;
                         top: 10px;
                         right: 49px;
+                        cursor: pointer;
                     }
                     .iconMaxMyGifos {
                         position: absolute;
                         right: 10px;
                         top: 10px;
+                        cursor: pointer;
                     }
                     h2 {
                         text-align: left;
@@ -282,13 +291,11 @@
     /*   CREATE GIFOS SECTION     */
     /*----------------------------*/
     #createGifosSection {
+        height: 545px;
         #camera {
             position: relative;
             left: 155px;
             bottom: 290px;
-        }
-        #cameraDark {
-            display: none;
         }
         #camlight {
             position: relative;
@@ -407,7 +414,19 @@
                 }
             }
         }
-        #steplight {
+        .chronometer {
+            @include generals_font;
+            font-size: subtraction($font-size16, 1px);
+            position: absolute;
+            top: 70%;
+            left: 67%;
+        }
+        .repeatCapture {
+            left: 62%;
+            border-bottom: 3px solid $color-aqua;
+            cursor:pointer;
+        }
+        .someSteps {
             position: relative;
             bottom: 270px;
             left: 44%;
@@ -455,46 +474,31 @@
                 color: $color-white;
             }
         } 
-        .chronometer {
-            @include generals_font;
-            font-size: subtraction($font-size16, 1px);
-            position: absolute;
-            top: 70%;
-            left: 67%;
-        }
-        .repeatCapture {
-            left: 62%;
-            border-bottom: 3px solid $color-aqua;
-            cursor:pointer;
-        }
-        #stepDark {
-            display: none;
-        }
         #movie {
             position: absolute;
             bottom: 26%;
             left: 80%;
         }
-        #movieDark {
-            display: none;
-        }
         hr {
             position: relative;
-            bottom: 256px;
+            bottom: 268px;
             width: 796px;
             height: 6.9px;
             border-radius: 25px;
             background: $color-purple;
         }
-        div {
+        #btnsCreate {
+            width: 127px;
+            height: 50px;
+            position: relative;
+            bottom: 258px;
+            left: 44%;
             .btnCreateGifos {
                 border: 1px solid $color-purple;
                 border-radius: 25px;
                 width: 127px;
                 height: 50px;
-                position: relative;
-                bottom: 235px;
-                left: 44%;
+                position: absolute;
                 cursor:pointer;
                 background-color: transparent;
                 .color_purple {
@@ -558,11 +562,7 @@
                 bottom: 290px;
             }
             #containerShowCam {
-                position: relative;
-                left: 400px;
                 border: 1px solid $color-white;
-                width: 688px;
-                height: 390px;
                 h1 {
                     @include generals_font($color: $color-white);
                 }
@@ -576,36 +576,18 @@
             .repeatCapture {
                 color: $color-white;
             }
-            #stepDark {
-                position: relative;
-                bottom: 270px;
-                left: 44%;
-                width: 150px;
-                height: 32px;
-                .stepTwo {
-                    position: relative;
-                    bottom: 0;
-                    left: 9%;
-                }
+            .someSteps {
                 .stepTwoThree {
-                    width: 32px;
-                    height: 32px;
                     border: 1px solid $color-white;
-                    border-radius: 50%;
-                    font-weight: $font-weight-regular;
-                    font-family: $font-labes; 
-                    font-size: 18px;
-                    text-align: center;
-                    color: $color-white;
-                    padding: 5px;
-                    position: relative;
-                    bottom: 35px;
-                    left: 49px;
+                    color: $color-white;            
                 }
-                .three {
-                    position: relative;
-                    bottom: 67px;
-                    left: 98px;
+                .one {
+                    background-color: $color-white;
+                    color: $color-black;
+                }
+                .stepThree {
+                    background-color: $color-white;
+                    color: $color-black;
                 }
             }
             #movieDark {
@@ -616,7 +598,7 @@
             hr {
                 background: $color-white;
             }
-            div {
+            #btnsCreate {
                 .btnCreateGifos {
                     border: 1px solid $color-white;
                     .color_purple {

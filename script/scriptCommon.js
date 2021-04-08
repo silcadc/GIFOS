@@ -1,3 +1,139 @@
+let isDark;
+let amount = 11
+const API_KEY = 'VfAQnZwBHdFaj75QChwBF5O4uEoTxQXh'
+
+const newGifos = document.querySelector("#newGifos")
+
+let inputTextToSearch = ""
+
+let headerCross = document.getElementById("burger")
+let headerBurger = document.getElementById("cross")
+
+let crossDark = document.getElementById("burgerDark")
+let hamburDark = document.getElementById("crossDark")
+
+const darkMode = document.querySelector("#darkMode")
+let logoDark = document.querySelector("#logoDark")
+let logo = document.querySelector("#logo")
+let logoDarkDesktop = document.querySelector("#logoDarkDesktop")
+let logoDesktop = document.querySelector("#logoDesktop")
+
+const clickSeeMore = document.querySelector(".seeMore")
+const clickSeeMoreDark = document.querySelector(".seeMoreDark")
+
+const btnSliderLeft = document.querySelector("#btnSliderLeft")
+const btnSliderRight = document.querySelector("#btnSliderRight")
+const btnSliderLeftDark = document.querySelector("#btnSliderLeftDark")
+const btnSliderRightDark = document.querySelector("#btnSliderRightDark")
+
+let facebook = document.querySelector(".facebook")
+let facebookHover = document.querySelector(".facebookHover")
+let facebookDark = document.querySelector(".facebookDark")
+
+let twitter = document.querySelector(".twitter")
+let twitterHover = document.querySelector(".twitterHover")
+
+let instagram = document.querySelector(".instagram")
+let instagramHover = document.querySelector(".instagramHover")
+let instagramDark = document.querySelector(".instagramDark")
+
+let createOwnGifosOff = document.querySelector("#createOwnGifosOff")
+let iconCreateNormal = document.querySelector(".iconNormal")
+let iconCreateNoc = document.querySelector(".noc")
+let iconCreateHover = document.querySelector(".hover")
+let iconCreateHoverNoc = document.querySelector(".hoverNoc")
+let iconCreateActive = document.querySelector(".active")
+let iconCreateActiveNoc = document.querySelector(".activeNoc")
+
+/*-------------------------------*/
+/*   CHANGE MODE - DAY OR DARK   */
+/*-------------------------------*/
+let modeValidation = () => {
+    let styleStatus = sessionStorage.getItem("modeStyle");
+    if (styleStatus === null) {
+        styleStatus = false;
+        sessionStorage.setItem("modeStyle", styleStatus);
+    } else if (styleStatus !== null) {
+        isDark = (styleStatus == 'true');
+        sessionStorage.setItem("modeStyle", styleStatus);
+    }
+}
+modeValidation();
+
+/*----------------------------*/
+/*   CLICK - NAVIGATION BAR   */
+/*----------------------------*/
+headerCross.addEventListener("click", () => {
+    headerCross.classList.add("off")
+    document.querySelector("#cross").classList.remove("off")
+    document.querySelector("#menu").classList.remove("off")
+})
+
+headerBurger.addEventListener("click", () => {
+    headerBurger.classList.add("off")
+    document.querySelector("#burger").classList.remove("off")
+    document.querySelector("#menu").classList.add("off")
+})
+
+/*----------------------------*/
+/*       CLICK - SLIDER       */
+/*----------------------------*/
+let changeBtnSlider = () => {
+    if (btnSliderLeft !== null) {
+        if (window.screen.width > 768) {
+            if (isDark === true) {
+                btnSliderLeft.style.display = "none"
+                btnSliderRight.style.display = "none"
+                btnSliderLeftDark.style.display = "block"
+                btnSliderRightDark.style.display = "block"
+            } else {
+                btnSliderLeft.style.display = "block"
+                btnSliderRight.style.display = "block"
+                btnSliderLeftDark.style.display = "none"
+                btnSliderRightDark.style.display = "none"
+            }
+        } else if (window.screen.width < 768) {
+            btnSliderLeft.style.display = "none"
+            btnSliderRight.style.display = "none"
+            btnSliderLeftDark.style.display = "none"
+            btnSliderRightDark.style.display = "none"
+        }
+    }
+}
+changeBtnSlider()
+
+let changeOfBtnSeeMore = () => {
+    if (isDark === false) {
+        document.querySelector(".seeMore").classList.remove("off")
+        document.querySelector(".seeMoreDark").classList.add("off")
+    } else {
+        document.querySelector(".seeMore").classList.add("off")
+        document.querySelector(".seeMoreDark").classList.remove("off")
+    }
+}
+
+let showButtonsMore = () => {
+    let checkClass = document.getElementById("titleToSearch");
+    let hasClassOff = checkClass.classList.contains('off');
+    if (hasClassOff == false) {
+        changeOfBtnSeeMore()
+    }
+}
+
+clickSeeMore.addEventListener("click", () => {
+    clickButtonSeeMore()
+})
+clickSeeMoreDark.addEventListener("click", () => {
+    clickButtonSeeMore()
+})
+const clickButtonSeeMore = () => {
+    amount = amount + 12
+    if (inputTextToSearch !== "undefined" && inputTextToSearch !== "") {
+        getGifos(inputTextToSearch.value)
+    } else {
+        getGifos()
+    }
+}
 
 /*----------------------------*/
 /*       GIFOS IN TREND       */
@@ -72,14 +208,10 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
             if (window.screen.width > 768) {
                 let father = image.parentNode
                 father.addEventListener("mouseover", () => {
-                    console.log(1)
                     let purpleSibling = father.lastChild
-                    console.log(purpleSibling)
-                    purpleSibling.classList.remove("off"); 
-                    console.log(purpleSibling)
+                    purpleSibling.classList.remove("off");
                 })
                 father.addEventListener("mouseleave", () => {
-                    console.log(2)
                     let purpleSibling = father.lastChild
                     purpleSibling.classList.add("off");
                 })
@@ -212,7 +344,6 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
 
         let index = 3;
         let show = function(increase) {
-            console.log(show)
             index = index + increase;
             index = Math.min(
                 Math.max(index,0),
@@ -237,3 +368,172 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
             show(-1);
         });
     })
+
+let changesLogosHeader = () => {
+    if (window.screen.width > 768) {
+        createOwnGifosOff.style.display = "block"
+        if (isDark === true) {
+            logoDarkDesktop.style.display = "block"
+            logoDesktop.style.display = "none"
+            logoDark.style.display = "none"
+            logo.style.display = "none"
+            facebook.classList.add('off') 
+            facebookDark.classList.remove('off') 
+            instagram.classList.add('off') 
+            instagramDark.classList.remove('off') 
+            iconCreateNormal.classList.add('off') 
+            iconCreateNoc.classList.remove('off') 
+        } else {
+            logoDarkDesktop.style.display = "none"
+            logoDesktop.style.display = "block"
+            logoDark.style.display = "none"
+            logo.style.display = "none"
+            facebook.classList.remove('off') 
+            facebookDark.classList.add('off') 
+            instagram.classList.remove('off') 
+            instagramDark.classList.add('off')
+            iconCreateNormal.classList.remove('off') 
+            iconCreateNoc.classList.add('off') 
+        }
+    } else if (window.screen.width < 768) {
+        createOwnGifosOff.style.display = "none"
+        if (isDark === true) {
+            logoDesktop.style.display = "none"
+            logoDarkDesktop.style.display = "none"
+            logo.style.display = "none"
+            logoDark.style.display = "block"
+            facebook.classList.add('off') 
+            facebookDark.classList.remove('off') 
+            instagram.classList.add('off') 
+            instagramDark.classList.remove('off') 
+        } else {
+            logoDesktop.style.display = "none"
+            logoDarkDesktop.style.display = "none"
+            logoDark.style.display = "none"
+            logo.style.display = "block"
+            facebook.classList.remove('off') 
+            facebookDark.classList.add('off') 
+            instagram.classList.remove('off') 
+            instagramDark.classList.add('off')
+        }
+    }
+}
+changesLogosHeader()
+
+btnSliderRight.addEventListener("mouseover", () => {
+    btnSliderRight.src = '/assets/Button-Slider-right-hover.svg'
+})
+
+btnSliderRight.addEventListener("mouseout", () => {
+    btnSliderRight.src = '/assets/Button-Slider-right.svg'
+})
+
+btnSliderLeft.addEventListener("mouseover", () => {
+    btnSliderLeft.src = '/assets/Button-Slider-left-hover.svg'
+})
+
+btnSliderLeft.addEventListener("mouseout", () => {
+    btnSliderLeft.src = '/assets/button-slider-left.svg'
+})
+
+btnSliderRightDark.addEventListener("mouseover", () => {
+    btnSliderRightDark.src = '/assets/Button-Slider-right-hover.svg'
+})
+
+btnSliderRightDark.addEventListener("mouseout", () => {
+    btnSliderRightDark.src = '/assets/button-slider-right-md-noct.svg'
+})
+
+btnSliderLeftDark.addEventListener("mouseover", () => {
+    btnSliderLeftDark.src = '/assets/Button-Slider-left-hover.svg'
+})
+
+btnSliderLeftDark.addEventListener("mouseout", () => {
+    btnSliderLeftDark.src = '/assets/button-slider-left-md-noct.svg'
+})
+//------Icons Media Hover
+facebook.addEventListener("mouseover", () => {
+    facebook.src = '/assets/icon_facebook_hover.svg'
+})
+facebook.addEventListener("mouseout", () => {
+    facebook.src = '/assets/icon_facebook.svg'
+})
+facebookDark.addEventListener("mouseover", () => {
+    facebookDark.src = '/assets/icon_facebook_hover.svg'
+})
+facebookDark.addEventListener("mouseout", () => {
+    facebookDark.src = '/assets/icon_facebook_noc.svg'
+})
+
+twitter.addEventListener("mouseover", () => {
+    twitter.src = '/assets/icon-twitter-hover.svg'
+})
+twitter.addEventListener("mouseout", () => {
+    twitter.src = '/assets/icon-tw-normal.svg'
+})
+
+instagram.addEventListener("mouseover", () => {
+    instagram.src = '/assets/icon_instagram-hover.svg'
+})
+instagram.addEventListener("mouseout", () => {
+    instagram.src = '/assets/icon_instagram.svg'
+})
+instagramDark.addEventListener("mouseover", () => {
+    instagramDark.src = '/assets/icon_instagram-hover.svg'
+})
+instagramDark.addEventListener("mouseout", () => {
+    instagramDark.src = '/assets/icon_instagram_noc.svg'
+})
+
+/*------------------------------------------*/
+/*    DARK MODE - CLICK - NAVIGATION BAR    */
+/*------------------------------------------*/
+crossDark.addEventListener("click", () => {
+    crossDark.classList.add("off")
+    document.querySelector("#crossDark").classList.remove("off")
+    document.querySelector("#menu").classList.remove("off")
+})
+
+hamburDark.addEventListener("click", () => {
+    hamburDark.classList.add("off")
+    document.querySelector("#burgerDark").classList.remove("off")
+    document.querySelector("#menu").classList.add("off")
+})
+
+let changesIconsMedia = () => {
+    facebook.addEventListener("click", () => {
+        facebook.classList.add("off")
+        facebookHover.classList.remove("off")
+    })
+    facebookDark.addEventListener("click", () => {
+        facebookDark.classList.add("off")
+        facebookHover.classList.remove("off")
+    })
+    twitter.addEventListener("click", () => {
+        twitter.classList.add("off")
+        twitterHover.classList.remove("off")
+    })
+    instagram.addEventListener("click", () => {
+        instagram.classList.add("off")
+        instagramHover.classList.remove("off")
+    })
+    instagramDark.addEventListener("click", () => {
+        instagramDark.classList.add("off")
+        instagramHover.classList.remove("off")
+    })
+}
+changesIconsMedia();
+
+iconCreateNormal.addEventListener("mouseover", () => {
+    iconCreateNormal.src = '/assets/CTA-crear-gifo-hover.svg'
+})
+iconCreateNormal.addEventListener("mouseout", () => {
+    iconCreateNormal.src = '/assets/button-crear-gifo.svg'
+})
+//---------------Dark Mode
+iconCreateNoc.addEventListener("mouseover", () => {
+    iconCreateNoc.src = '/assets/CTA-crear-gifo-hover-modo-noc.svg'
+})
+iconCreateNoc.addEventListener("mouseout", () => {
+    iconCreateNoc.src = '/assets/CTA-crear-gifo-modo-noc.svg'
+})

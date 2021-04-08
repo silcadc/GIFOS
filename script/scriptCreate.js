@@ -1,26 +1,20 @@
 let isDark;
-//-
 const API_KEY = 'VfAQnZwBHdFaj75QChwBF5O4uEoTxQXh'
-//-
+
 const darkMode = document.querySelector("#darkMode")
-let logoDark = document.querySelector("#logoDark")
-let logo = document.querySelector("#logo")
-//-
-let crossDark = document.getElementById("burgerDark")
-let hamburDark = document.getElementById("crossDark")
-//-
-let headerCross = document.getElementById("burger")
-let headerBurger = document.getElementById("cross")
-//-
+
+let logoDarkDesktop = document.querySelector("#logoDarkDesktop")
+let logoDesktop = document.querySelector("#logoDesktop")
+
 let camera = document.getElementById("camera")
 let cameraDark = document.getElementById("cameraDark")
-//-
+
 let movie = document.getElementById("movie")
 let movieDark = document.getElementById("movieDark")
-//-
-let steplight = document.querySelector("#steplight")
-let stepDark = document.querySelector("#stepDark")
-//-
+
+let steplight = document.querySelector(".steplight")
+let stepDark = document.querySelector(".stepDark")
+
 let myGifos = []
 
 const video = document.querySelector("video");
@@ -39,7 +33,6 @@ let stepOne = document.querySelector(".stepOne");
 let one = document.querySelector(".one");
 let two = document.querySelector(".two");
 let stepTwo = document.querySelector(".stepTwo");
-
 let three = document.querySelector(".three");
 let stepThree = document.querySelector(".stepThree");
 
@@ -55,13 +48,25 @@ let upSuccess = document.querySelector(".upSuccess");
 
 let recorder
 let gifBlob
+
+let facebook = document.querySelector(".facebook")
+let facebookHover = document.querySelector(".facebookHover")
+let facebookDark = document.querySelector(".facebookDark")
+
+let twitter = document.querySelector(".twitter")
+let twitterHover = document.querySelector(".twitterHover")
+
+let instagram = document.querySelector(".instagram")
+let instagramHover = document.querySelector(".instagramHover")
+let instagramDark = document.querySelector(".instagramDark")
+
 /*-------------------------------*/
 /*   CHANGE MODE - DAY OR DARK   */
 /*-------------------------------*/
 let modeValidation = () => {
     let styleStatus = sessionStorage.getItem("modeStyle");
     if (styleStatus === null) {
-        styleStatus = false;    
+        styleStatus = false;
         sessionStorage.setItem("modeStyle", styleStatus);
     } else if (styleStatus !== null) {
         isDark = (styleStatus == 'true');
@@ -70,61 +75,71 @@ let modeValidation = () => {
 }
 modeValidation();
 
-/*----------------------------*/
-/*   CLICK - NAVIGATION BAR   */
-/*----------------------------*/
-headerCross.addEventListener("click", () => {
-    headerCross.classList.add("off")
-    document.querySelector("#cross").classList.remove("off")
-    document.querySelector("#menu").classList.remove("off")
-})
-
-headerBurger.addEventListener("click", () => {
-    headerBurger.classList.add("off")
-    document.querySelector("#burger").classList.remove("off")
-    document.querySelector("#menu").classList.add("off")
-})
-
-/*------------------------------------------*/
-/*    DARK MODE - CLICK - NAVIGATION BAR    */
-/*------------------------------------------*/
-crossDark.addEventListener("click", () => {
-    crossDark.classList.add("off")
-    document.querySelector("#crossDark").classList.remove("off")
-    document.querySelector("#menu").classList.remove("off")
-})
-
-hamburDark.addEventListener("click", () => {
-    hamburDark.classList.add("off")
-    document.querySelector("#burgerDark").classList.remove("off")
-    document.querySelector("#menu").classList.add("off")
-})
+// let changesIconsMedia = () => {
+//     console.log(1)
+//     fb.addEventListener("click", () => {
+//         fb.classList.add("off")
+//         fbHover.classList.remove("off")
+//         console.log(fbHover)
+//     })
+//     fbDark.addEventListener("click", () => {
+//         fbDark.classList.add("off")
+//         fbHover.classList.remove("off")
+//     })
+//     tw.addEventListener("click", () => {
+//         tw.classList.add("off")
+//         twHover.classList.remove("off")
+//     })
+//     insta.addEventListener("click", () => {
+//         insta.classList.add("off")
+//         instaHover.classList.remove("off")
+//     })
+//     instaDark.addEventListener("click", () => {
+//         instaDark.classList.add("off")
+//         instaHover.classList.remove("off")
+//     })
+// }
+// changesIconsMedia();
 
 let changesIcons = () => {
-    if (window.screen.width > 768) {
-        if (isDark === true) { 
-            camera.style.display = "none" 
-            cameraDark.style.display = "block" 
-            movie.style.display = "none" 
-            movieDark.style.display = "block" 
-            steplight.style.display = "none" 
-            stepDark.style.display = "block" 
-        } else {
-            camera.style.display = "block" 
-            cameraDark.style.display = "none" 
-            movie.style.display = "block" 
-            movieDark.style.display = "none"
-            steplight.style.display = "block" 
-            stepDark.style.display = "none"  
-        }
-    } 
+    if (isDark === true) {
+        logoDarkDesktop.style.display = "block"
+        logoDesktop.style.display = "none"
+        camera.style.display = "none"
+        cameraDark.style.display = "block"
+        movie.style.display = "none"
+        movieDark.style.display = "block"
+        steplight.classList.add('off')
+        stepDark.classList.remove('off')
+        stepOne = document.querySelector(".stepDark > .stepOne");
+        one = document.querySelector(".stepDark > .one");
+        two = document.querySelector(".stepDark > .two");
+        stepTwo = document.querySelector(".stepDark > .stepTwo");
+        three = document.querySelector(".stepDark > .three");
+        stepThree = document.querySelector(".stepDark > .stepThree");
+    } else {
+        camera.style.display = "block"
+        cameraDark.style.display = "none"
+        movie.style.display = "block"
+        movieDark.style.display = "none"
+        steplight.classList.remove('off')
+        stepDark.classList.add('off')
+        logoDarkDesktop.style.display = "none"
+        logoDesktop.style.display = "block"
+        stepOne = document.querySelector(".steplight > .stepOne");
+        one = document.querySelector(".steplight > .one");
+        two = document.querySelector(".steplight > .two");
+        stepTwo = document.querySelector(".steplight > .stepTwo");
+        three = document.querySelector(".steplight > .three");
+        stepThree = document.querySelector(".steplight > .stepThree");
+    }
 }
 changesIcons()
 
 /*----------------------------*/
 /*         DARK MODE          */
 /*----------------------------*/
-const changeModeStyle = (text) => { 
+const changeModeStyle = (text) => {
     if (text == "darkLogoClick") {
         isDark = true;
     }else if(text == "dayLogoClick") {
@@ -139,71 +154,28 @@ const changeModeStyle = (text) => {
     }
 
     sessionStorage.setItem("modeStyle", isDark);
-    
+
     if (isDark === true) {
         document.body.classList.add("dark")
         darkMode.innerHTML = "Modo Diurno <hr>"
-        changesLogosHeader()
         changesIcons()
-        if (text == "darkLogoClick") {
-            document.querySelector("#crossDark").classList.add("off")
-            document.querySelector("#burger").classList.add("off")
-            document.querySelector("#burgerDark").classList.remove("off")
-        } else if (text == undefined || text == "repaintStyles") {
+        if (text == undefined || text == "repaintStyles") {
             document.querySelector("#menu").classList.add("off")
-            document.querySelector("#burgerDark").classList.remove("off")
-            document.querySelector("#cross").classList.add("off")
         }
     } else {
         document.body.classList.remove("dark")
         darkMode.innerHTML = "Modo Nocturno <hr>"
-        changesLogosHeader()
         changesIcons()
         if (text == undefined || text == "repaintStyles") {
             document.querySelector("#menu").classList.add("off")
-            document.querySelector("#cross").classList.add("off")
-            document.querySelector("#crossDark").classList.add("off") 
-            document.querySelector("#burger").classList.remove("off")
-            document.querySelector("#burgerDark").classList.add("off")
-        } else if (text == "dayLogoClick") {
-            document.querySelector("#cross").classList.add("off") 
-            document.querySelector("#burger").classList.remove("off")
         }
     }
 }
 
-darkMode.addEventListener("click", () => {  
+darkMode.addEventListener("click", () => {
     changeModeStyle()
 })
 
-let changesLogosHeader = () => {
-    if (window.screen.width > 768) {
-        if (isDark === true) { 
-            logoDarkDesktop.style.display = "block"
-            logoDesktop.style.display = "none"
-            logoDark.style.display = "none"
-            logo.style.display = "none"
-        } else {
-            logoDarkDesktop.style.display = "none"
-            logoDesktop.style.display = "block"
-            logoDark.style.display = "none"
-            logo.style.display = "none"
-        }
-    } else if (window.screen.width < 768) {
-        if (isDark === true) { 
-            logoDesktop.style.display = "none"
-            logoDarkDesktop.style.display = "none"
-            logo.style.display = "none" 
-            logoDark.style.display = "block"
-        } else {
-            logoDesktop.style.display = "none"
-            logoDarkDesktop.style.display = "none"
-            logoDark.style.display = "none"
-            logo.style.display = "block" 
-        }     
-    } 
-}
-changesLogosHeader()
 changeModeStyle("repaintStyles")
 
 if (window.localStorage.getItem("mygifos")) {
@@ -217,13 +189,10 @@ const getStream = () => {
             height: 480
         }
     })
-    .then(stream => {//me devuelve un objeto, sea audio o video
-        video.srcObject = stream;//aqui al nodo video le estoy seteando la propiedad
-        //srcObjet y el parametro stream que paso cuando capturo la promesa).
-        video.play()//esta propiedad es para que empiece a reproducir el src.
-
-        recorder = RecordRTC(stream, {//esta información es la forma de preparar
-            //y usar la librería para obtener el gif con las caracteristicas especificas
+    .then(stream => {
+        video.srcObject = stream;
+        video.play()
+        recorder = RecordRTC(stream, {
             type: 'gif',
             frameRate: 1,
             quality: 10,
@@ -233,13 +202,8 @@ const getStream = () => {
                 console.log('Debe volver a intentarlo')
             }
         })
-
         btnStart.classList.add('off')
         btnRecord.classList.remove('off')
-        two.classList.add('off');
-        stepTwo.classList.remove('off');
-        stepOne.classList.remove('off');
-        one.classList.add('off');
     })
     .catch(error => {
         console.error(error)
@@ -248,15 +212,15 @@ const getStream = () => {
 }
 
 const recordStart = () => {
-    recorder.startRecording(); //con startRecording empezamos a grabar
+    recorder.startRecording();
     btnRecord.classList.add('off');
     btnFinish.classList.remove('off');
 }
 
 const recordStop = () => {
     recorder.stopRecording(() => {
-        gifBlob = recorder.getBlob(); // recuperamos el video
-    }); // Finalizamos la grabacion!!
+        gifBlob = recorder.getBlob();
+    });
     btnFinish.classList.add('off');
     btnUpload.classList.remove('off');
 }
@@ -264,7 +228,6 @@ const recordStop = () => {
 const uploadGif = async () => {
     let data = new FormData();
     data.append('file', gifBlob, 'Gifos_Project.gif')
-    console.log(data.get('file'))
     const response = await fetch(`https://upload.giphy.com/v1/gifs?api_key=${API_KEY}
     `, {
       method: 'POST',
@@ -303,7 +266,7 @@ btnFinish.addEventListener('click', () => {
     three.classList.add('off');
     stepThree.classList.remove('off');
     stopChronometer()
-    chronometer.classList.add('off');   
+    chronometer.classList.add('off');
     repeatCapture.classList.remove('off');
     recordStop()
 });
@@ -345,7 +308,7 @@ function counting(){
     }else{
         hAux=hr;
     }
-    chronometer.innerHTML = hAux + ":" + mAux + ":" + sAux; 
+    chronometer.innerHTML = hAux + ":" + mAux + ":" + sAux;
 }
 
 function stopChronometer(){
@@ -360,20 +323,53 @@ repeatCapture.addEventListener('click', () => {
     stepTwo.classList.remove('off');
     three.classList.remove('off');
     stepThree.classList.add('off');
-
     btnStart.classList.add('off')
-    btnUpload.classList.add('off'); 
+    btnUpload.classList.add('off');
     btnRecord.classList.remove('off')
-    repeatCapture.classList.add('off');   
+    repeatCapture.classList.add('off');
 })
 
-btnUpload.addEventListener('click', () => { 
+btnUpload.addEventListener('click', () => {
     btnUpload.classList.add('off');
     repeatCapture.classList.add('off');
     three.classList.add('off');
     stepThree.classList.remove('off');
-    repeatCapture.classList.add('off'); 
-    chronometer.classList.add('off');   
+    repeatCapture.classList.add('off');
+    chronometer.classList.add('off');
     purpleFilterCreate.classList.remove('off');
     uploadGif();
 });
+
+//------Icons Media Hover
+facebook.addEventListener("mouseover", () => {
+    facebook.src = '/assets/icon_facebook_hover.svg'
+})
+facebook.addEventListener("mouseout", () => {
+    facebook.src = '/assets/icon_facebook.svg'
+})
+facebookDark.addEventListener("mouseover", () => {
+    facebookDark.src = '/assets/icon_facebook_hover.svg'
+})
+facebookDark.addEventListener("mouseout", () => {
+    facebookDark.src = '/assets/icon_facebook_noc.svg'
+})
+
+twitter.addEventListener("mouseover", () => {
+    twitter.src = '/assets/icon-twitter-hover.svg'
+})
+twitter.addEventListener("mouseout", () => {
+    twitter.src = '/assets/icon-tw-normal.svg'
+})
+
+instagram.addEventListener("mouseover", () => {
+    instagram.src = '/assets/icon_instagram-hover.svg'
+})
+instagram.addEventListener("mouseout", () => {
+    instagram.src = '/assets/icon_instagram.svg'
+})
+instagramDark.addEventListener("mouseover", () => {
+    instagramDark.src = '/assets/icon_instagram-hover.svg'
+})
+instagramDark.addEventListener("mouseout", () => {
+    instagramDark.src = '/assets/icon_instagram_noc.svg'
+})

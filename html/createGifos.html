@@ -14,15 +14,8 @@
 </head>
 <body>
     <header>
-        <a href="/index.html"><img id="logo" class="logosHeader" src="/assets/logo-mobile.svg" alt="logoGifos"></a>
-        <a href="/index.html"><img id="logoDark" class="logosHeader off" src="/assets/logo-mobile-modo-noct.svg"
-                alt="logoGifos"></a>
         <a href="/index.html"><img id="logoDesktop" class="logosHeaderDesktop" src="/assets/logo-desktop.svg" alt="logoGifos"></a>
         <a href="/index.html"><img id="logoDarkDesktop" class="logosHeaderDesktop" src="/assets/Logo-modo-noc.svg" alt="logoGifos"></a>
-        <img id="burger" class="checkbox-menu" src="/assets/burger.svg" alt="logoBurger" tabindex="1">
-        <img id="burgerDark" class="checkbox-menu off" src="/assets/burger-modo-noct.svg" alt="logoBurgerDark">
-        <img id="cross" class="checkbox-menu off" src="/assets/close.svg" alt="logoCheckBurger">
-        <img id="crossDark" class="checkbox-menu off" src="/assets/close-modo-noct.svg" alt="logoCheckBurgerDark">
         <nav>
             <ul id="menu" class="off">
                 <li><a href="#nightMode" class="btnsNavigations" tabindex="2" id="darkMode">Modo Nocturno
@@ -34,9 +27,15 @@
                 <li><a href="/html/myGifos.html" class="btnsNavigations" tabindex="4">Mis GIFOS
                         <hr>
                     </a></li>
-                <li><a href="#createGifos" tabindex="5">
-                    <img id="createMyGifos" src="/assets/CTA-crear-gifo-active.svg" alt="Button Create">
-                    </a></li>
+                <li><a href="#createGifos" id="createOwnGifosOff" tabindex="5">
+                    <img class="iconCreateMyGifos iconNormal off" src="/assets/button-crear-gifo.svg" alt="Button Create">
+                    <img class="iconcreateMyGifos noc off" src="/assets/CTA-crear-gifo-modo-noc.svg" alt="Button Noc">
+                    <img class="iconcreateMyGifos hover off" src="/assets/CTA-crear-gifo-hover.svg" alt="Button Hover">
+                    <img class="iconcreateMyGifos hoverNoc off" src="/assets/CTA-crear-gifo-hover-modo-noc.svg" alt="Button Hov Noc">
+                    <img class="iconcreateMyGifos active" src="/assets/CTA-crear-gifo-active.svg" alt="Button Create Active">
+                    <img class="iconcreateMyGifos activeNoc off" src="/assets/CTA-crear-gifo-active-modo-noc.svg" alt="Button Active Noc">
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -66,7 +65,7 @@
         <img id="camera" src="/assets/camara.svg" alt="camera">
         <img id="cameraDark" src="/assets/camara-modo-noc.svg" alt="camera">
         <img id="camlight" src="/assets/element-luz-camara.svg" alt="camera">
-        <div id="steplight">
+        <div class="someSteps steplight">
             <img class="steps stepOne" src="/assets/paso-a-paso.svg" alt="stepOne">
             <div class="stepTwoThree one off" alt="stepTwo">1</div>
             <img class="steps stepTwo off" src="/assets/paso-a-paso-hover.svg" alt="stepOne">
@@ -76,8 +75,9 @@
         </div>
         <div class="chronometer off">00:00:00</div>
         <div class="chronometer off repeatCapture">REPETIR CAPTURA</div>
-        <div id="stepDark">
-            <img class="steps" src="/assets/paso-a-paso-mod-noc.svg" alt="stepOne">
+        <div class="someSteps stepDark off">
+            <img class="steps stepOne" src="/assets/paso-a-paso-mod-noc.svg" alt="stepOne">
+            <div class="stepTwoThree one off" alt="stepTwo">1</div>
             <img class="steps stepTwo off" src="/assets/paso-a-paso-hover-mod-noc.svg" alt="stepOne">
             <div class="stepTwoThree two" alt="stepTwo">2</div>
             <div class="stepTwoThree three" alt="stepThree">3</div>
@@ -86,7 +86,7 @@
         <img id="movie" src="/assets/pelicula.svg" alt="movie">
         <img id="movieDark" src="/assets/pelicula-modo-noc.svg" alt="movie">
         <hr>
-        <div>
+        <div id="btnsCreate">
             <button id="btnStart" class="btnCreateGifos"><span class="color_purple">COMENZAR</span></button>
             <button id="btnRecord" class="btnCreateGifos off"><span class="color_purple">GRABAR</span></button>
             <button id="btnFinish" class="btnCreateGifos off"><span class="color_purple">FINALIZAR</span></button>
@@ -96,15 +96,19 @@
     <footer id="footer">
         <p id="footerShare">Compartir en:</p>
         <div id="socialMedia">
-            <a href="https://www.facebook.com" target="_top" title="Follow us on Facebook">
-                <img id="facebook" src="/assets/icon_facebook.svg" alt="facebook">
+            <a href="https://www.facebook.com" target="_blank" title="Follow us on Facebook">
+                <img class="facebook" src="/assets/icon_facebook.svg" alt="facebook">
+                <img class="facebookHover off" src="/assets/icon_facebook_hover.svg" alt="facebook">
+                <img class="facebookDark off" src="/assets/icon_facebook_noc.svg" alt="facebook">
             </a>
             <a href="https://twitter.com" target="_blank" title="Follow us on Twitter">
-                <img id="twitter" src="/assets/icon-tw-normal.svg" alt="twitter">
-                <img id="twitterpurple" src="/assets/icon-twitter-hover.svg" alt="twitter">
+                <img class="twitter" src="/assets/icon-tw-normal.svg" alt="twitter">
+                <img class="twitterHover off" src="/assets/icon-twitter-hover.svg" alt="twitter">
             </a>
-            <a href="https://www.instagram.com/" target="_self" title="Follow us on Instagram">
-                <img id="instagram" src="/assets/icon_instagram.svg" alt="instagram">
+            <a href="https://www.instagram.com/" target="_blank" title="Follow us on Instagram">
+                <img class="instagram" src="/assets/icon_instagram.svg" alt="instagram">
+                <img class="instagramHover off" src="/assets/icon_instagram-hover.svg" alt="instagram">
+                <img class="instagramDark off" src="/assets/icon_instagram_noc.svg" alt="instagram">
             </a>
         </div> <br> <br>
         <div id="footerCopyright">&#169; GIFOS 2020 All Rights Reserved.</div>
@@ -112,6 +116,5 @@
     <!-- Aca se agrega el CDN la Libreria sugerida -->
     <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
     <script src="/script/scriptCreate.js"></script>
-    <script src="/script/scriptCommon.js"></script>
 </body>
 </html>

@@ -19,12 +19,6 @@
         margin-left: 32%;
         display: flex;
         justify-content: space-evenly;
-        #twitter {
-            display: block;
-        }
-        #twitterpurple {
-            display: none;
-        }
     }
     #footerCopyright {
         @extend %robotos_font;
@@ -54,8 +48,6 @@
         padding: 0 100px;
         height: 100px;
         display: grid;
-        //grid-template-columns: 224px 127px 101px;
-        //grid-template-rows: auto;
         grid-template-areas:
             "footerShare socialMedia foterCopyright";
         #footerShare {
@@ -69,12 +61,6 @@
             margin-top: 30px;
             a {
                 margin: 10px;
-                #twitterpurple {
-                    display: block;
-                }
-                #twitter {
-                    display: none;
-                }
             }
         }
         br {

@@ -98,6 +98,7 @@
                 list-style-type: $list-none;
                 text-transform: capitalize;
                 display: inline;
+                cursor: pointer;
             }
         }
     }
@@ -138,6 +139,7 @@
         background: transparent;
         border: none;  
         margin-top: 78px;
+        cursor: pointer;
     }
 }
 
@@ -242,7 +244,7 @@
         right: 34px;
     }
 }
-///////////////////////////////////
+
 /*----------------------------*/
 /*         DARK MODE          */
 /*----------------------------*/
@@ -406,16 +408,19 @@
                         position: absolute;
                         top: 10px;
                         right: 89px;
+                        cursor: pointer;
                     }
                     .iconDowTopFive {
                         position: absolute;
                         top: 10px;
                         right: 49px;
+                        cursor: pointer;
                     }
                     .iconMaxTopFive {
                         position: absolute;
                         right: 10px;
                         top: 10px;
+                        cursor: pointer;
                     }
                     h2 {
                         text-align: left;
@@ -464,6 +469,7 @@
                 position: absolute;
                 left: 8%;
                 top: 130px;
+                cursor: pointer;
             }
             #newGifos {
                 display: flex;
@@ -490,16 +496,19 @@
                             position: absolute;
                             top: 10px;
                             right: 89px;
+                            cursor: pointer;
                         }
                         .iconDownloadStyle {
                             position: absolute;
                             top: 10px;
                             right: 49px;
+                            cursor: pointer;
                         }
                         .iconMaximumStyle {
                             position: absolute;
                             right: 10px;
                             top: 10px;
+                            cursor: pointer;
                         }
                         h2 {
                             text-align: left;
@@ -535,6 +544,7 @@
                 position: absolute;
                 left: 89%;
                 top: 130px;
+                cursor: pointer;
             }
         } 
     }
@@ -558,18 +568,22 @@
         }
         #imgCrossMax {
             right: 80px;
+            cursor: pointer;
         }  
         #imgFavoriteMax {
             top: 83%;
             right: 24%;
+            cursor: pointer;
         }
         #favoriteActive {
             top: 84%;
             right: 25%;
+            cursor: pointer;
         }
         #imgDownloadMax {
             top: 83%;
             right: 20%;
+            cursor: pointer;
         }
     }
     /*----------------------------*/
