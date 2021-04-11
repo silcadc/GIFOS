@@ -18,8 +18,8 @@
         grid-template-columns: 50% 50%;
         .fatherFavoGifos {
             width: 156px;
-            height: 120px; 
-            margin: 10%; 
+            height: 120px;
+            margin: 10%;
             .favoritesGifosCheck {
                 width: 156px;
                 height: 120px;
@@ -38,8 +38,8 @@
     }
     .seeMore {
         background: transparent;
-        border: none; 
-        margin-top: 30px; 
+        border: none;
+        margin-top: 30px;
         cursor: pointer;
     }
 }
@@ -63,8 +63,8 @@
         grid-template-columns: 50% 50%;
         .myGifosCheck {
             width: 156px;
-            height: 120px; 
-            margin: 10%; 
+            height: 120px;
+            margin: 10%;
         }
     }
     #myOwnGifs{
@@ -79,8 +79,8 @@
     }
     .seeMore {
         background: transparent;
-        border: none; 
-        cursor: pointer; 
+        border: none;
+        cursor: pointer;
     }
 }
 
@@ -100,16 +100,16 @@
             grid-template-columns: 50% 50%;
             .favoritesGifosCheck {
                 width: 156px;
-                height: 120px; 
-                margin: 10%; 
+                height: 120px;
+                margin: 10%;
             }
         }
         .seeMoreDark {
             background: transparent;
-            border: none; 
-            margin-top: 30px; 
+            border: none;
+            margin-top: 30px;
         }
-    }    
+    }
 }
 
 /*---------My Gifos Section---------- */
@@ -123,7 +123,7 @@
     }
     .seeMoreDark {
         background: transparent;
-        border: none;  
+        border: none;
         cursor: pointer;
     }
 }
@@ -147,7 +147,7 @@
                 margin-top: 21%;
                 .favoritesGifosCheck {
                     width: 302px;
-                    height: 190px; 
+                    height: 190px;
                     margin: 0;
                 }
                 .brotherFavoGifos {
@@ -164,6 +164,22 @@
                         right: 89px;
                         cursor: pointer;
                     }
+                    .activeStyle {
+                        position: absolute;
+                        top: 10px;
+                        right: 89px;
+                        cursor: pointer;
+                        border: 1px solid $color-white;
+                        border-radius: 6px;
+                        background: $color-white;
+                        padding: 6px;
+                        width: 32px;
+                        height: 32px;
+                        opacity: 0.7;
+                    }
+                    .activeStyle:hover {
+                        opacity: 1;
+                    }
                     .iconDowFavoGifos {
                         position: absolute;
                         top: 10px;
@@ -179,7 +195,7 @@
                     h2 {
                         text-align: left;
                         position: absolute;
-                        font-family: $font-labes; 
+                        font-family: $font-labes;
                         font-size: 16px;
                         font-weight: $font-weight-bold;
                         color: $color-white;
@@ -193,7 +209,7 @@
                         position: absolute;
                         color: $color-black;
                         font-weight: $font-weight-regular;
-                        font-family: $font-labes; 
+                        font-family: $font-labes;
                         font-size: 15px;
                         color: $color-white;
                         top: 51%;
@@ -227,7 +243,7 @@
                 margin-top: 21%;
                 .myGifosCheck {
                     width: 302px;
-                    height: 190px; 
+                    height: 190px;
                     margin: 0;
                 }
                 .brotherMyGifosCheck{
@@ -259,7 +275,7 @@
                     h2 {
                         text-align: left;
                         position: absolute;
-                        font-family: $font-labes; 
+                        font-family: $font-labes;
                         font-size: 16px;
                         font-weight: $font-weight-bold;
                         color: $color-white;
@@ -273,7 +289,7 @@
                         position: absolute;
                         color: $color-black;
                         font-weight: $font-weight-regular;
-                        font-family: $font-labes; 
+                        font-family: $font-labes;
                         font-size: 15px;
                         color: $color-white;
                         top: 51%;
@@ -286,7 +302,7 @@
         .seeMore {
             margin-top: 130px;
         }
-    }  
+    }
     /*----------------------------*/
     /*   CREATE GIFOS SECTION     */
     /*----------------------------*/
@@ -354,7 +370,7 @@
             h2 {
                 color: $color-black;
                 font-weight: $font-weight-regular;
-                font-family: $font-labes; 
+                font-family: $font-labes;
                 letter-spacing: 0;
                 font-size: sum($font-size16, 0);
                 text-align: $text-align-center;
@@ -443,7 +459,7 @@
                 border: 1px solid $color-purple;
                 border-radius: 50%;
                 font-weight: $font-weight-regular;
-                font-family: $font-labes; 
+                font-family: $font-labes;
                 font-size: 18px;
                 text-align: center;
                 color: $color-purple;
@@ -473,7 +489,7 @@
                 background-color: $color-purple;
                 color: $color-white;
             }
-        } 
+        }
         #movie {
             position: absolute;
             bottom: 26%;
@@ -505,6 +521,13 @@
                     @include generals_font;
                 }
             }
+            .btnCreateGifos:hover {
+                cursor:pointer;
+                background-color: $color-purple;
+                .color_purple:hover {
+                    @include generals_font($color: $color-white);
+                }
+            }
         }
     }
 
@@ -528,15 +551,15 @@
                     margin-top: 21%;
                     .favoritesGifosCheck {
                         width: 302px;
-                        height: 190px; 
+                        height: 190px;
                         margin: 0;
                     }
-                }             
+                }
             }
             .seeMoreDark {
                 margin-top: 130px;
             }
-        }    
+        }
     }
 
     /*---------My Gifos Section---------- */
@@ -579,7 +602,7 @@
             .someSteps {
                 .stepTwoThree {
                     border: 1px solid $color-white;
-                    color: $color-white;            
+                    color: $color-white;
                 }
                 .one {
                     background-color: $color-white;

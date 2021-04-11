@@ -223,6 +223,7 @@ formGifosFinder.addEventListener("submit" , (text) => {
 const getGifos = async (textToSearch) => {
     const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${textToSearch}`)
     const responseFromApi = await response.json()
+    //console.log(responseFromApi)
     gifosContainer.innerHTML = ""
     for (let i = 0; i < responseFromApi.pagination.count; i++)
     {
@@ -233,6 +234,7 @@ const getGifos = async (textToSearch) => {
         brotherShowGifos.setAttribute("class", "filterPurpleTopFive off");
         const imageGifos = document.createElement("img")
         imageGifos.classList.add("showGifos")
+        imageGifos.setAttribute("id", responseFromApi.data[i].id)
         imageGifos.src = responseFromApi.data[i].images.fixed_width.url
         fatherShowGifos.appendChild(imageGifos)
         fatherShowGifos.appendChild(brotherShowGifos)
@@ -288,7 +290,58 @@ const getGifos = async (textToSearch) => {
                 purpleBrother.classList.add("off");
             })
         }
+        //hover iconos favorite, download and max
+        iconFavTopFive.addEventListener("mouseover", () => {
+            iconFavTopFive.src = './assets/icon-fav-hover.svg'
+        })
+        
+        iconFavTopFive.addEventListener("mouseout", () => {
+            iconFavTopFive.src = './assets/icon-fav.svg'
+        })
+
+        iconDowTopFive.addEventListener("mouseover", () => {
+            iconDowTopFive.src = './assets/icon-download-hover.svg'
+        })
+        
+        iconDowTopFive.addEventListener("mouseout", () => {
+            iconDowTopFive.src = './assets/icon-download.svg'
+        })
+
+        iconMaxTopFive.addEventListener("mouseover", () => {
+            iconMaxTopFive.src = './assets/icon-max-hover.svg'
+        })
+        
+        iconMaxTopFive.addEventListener("mouseout", () => {
+            iconMaxTopFive.src = './assets/icon-max-normal.svg'
+        })
     }
+    //la siguiente function corresponde al evento click sobre el boton icon-max desktop      
+    let iconsMaxPrincipalPage = document.querySelectorAll(".iconMaxTopFive")
+    //console.log(iconsMaxPrincipalPage)
+    iconsMaxPrincipalPage.forEach(iconMaxPrincipal => {
+        iconMaxPrincipal.addEventListener("click", () => {
+            console.log(iconMaxPrincipal)
+            let parentIconMaxPrin = iconMaxPrincipal.parentNode
+            let brotherParentIconMaxPrin = parentIconMaxPrin.previousSibling
+            functionMaximumGifs(brotherParentIconMaxPrin);
+            console.log(functionMaximumGifs)
+        })
+    })//en procesooooo
+}
+
+//la siguiente function corresponde al evento click sobre el boton icon-max desktop    
+let maximumPrincipalPage = () => {
+    let iconsMaxPrincipalPage = document.querySelectorAll(".iconMaxTopFive")
+    console.log(iconsMaxPrincipalPage)
+    iconsMaxPrincipalPage.forEach(iconMaxPrincipal => {
+        iconMaxPrincipal.addEventListener("click", () => {
+            console.log(iconMaxPrincipal)
+            let parentIconMaxPrin = iconMaxPrincipal.parentNode
+            let brotherParentIconMaxPrin = parentIconMaxPrin.previousSibling
+            functionMaximumGifs(brotherParentIconMaxPrin);
+            console.log(functionMaximumGifs)
+        })
+    })
 }
 
 const showLineHr = () => {

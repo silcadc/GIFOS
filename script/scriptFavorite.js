@@ -8,7 +8,7 @@ let showButtonsMoreInFavorite = () => {
     }
 }
 
-const getGifos = (text) => {
+const getGifosFavorites = (text) => {
     let arrayFavoriteToString = JSON.parse(sessionStorage.getItem("fullHeart"));
     let cantFavorite = arrayFavoriteToString.join(", ");
     if (arrayFavoriteToString.length > 0) {
@@ -18,6 +18,7 @@ const getGifos = (text) => {
         fetch(`https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${cantFavorite}`)
         .then (response => response.json())
         .then (response => {
+            console.log(response)
             savedGifs.innerHTML = ""
             for (let i = 0; i < response.data.length; i++){
                 if (i > amount) {break}
@@ -28,6 +29,7 @@ const getGifos = (text) => {
                 const image = document.createElement("img")
                 image.src = response.data[i].images.original.url
                 image.setAttribute("class", "favoritesGifosCheck")
+                image.setAttribute("id", response.data[i].id)
 
                 fatherFavoGifos.appendChild(image)
                 fatherFavoGifos.appendChild(brotherFavoGifos)
@@ -35,11 +37,11 @@ const getGifos = (text) => {
 
                 let iconFavoGifos = document.createElement("img");
                 iconFavoGifos.src = '/assets/icon-fav.svg';
-                iconFavoGifos.setAttribute("class", "iconFavoGifos");
+                iconFavoGifos.setAttribute("class", "iconFavoGifos off");
 
                 let iconFavoGifosActive = document.createElement("img");
                 iconFavoGifosActive.src = '/assets/icon-fav-active.svg';
-                iconFavoGifosActive.setAttribute("class", "iconFavoGifos off");
+                iconFavoGifosActive.setAttribute("class", "activeStyle");
 
                 let iconDowFavoGifos = document.createElement("img");
                 iconDowFavoGifos.src = '/assets/icon-download.svg';
@@ -83,6 +85,42 @@ const getGifos = (text) => {
                         purpleBrotherFavoGifos.classList.add("off");
                     })
                 }
+                //hover iconos download and max
+                iconDowFavoGifos.addEventListener("mouseover", () => {
+                    iconDowFavoGifos.src = '/assets/icon-download-hover.svg'
+                })
+                
+                iconDowFavoGifos.addEventListener("mouseout", () => {
+                    iconDowFavoGifos.src = '/assets/icon-download.svg'
+                })
+
+                iconMaxFavoGifos.addEventListener("mouseover", () => {
+                    iconMaxFavoGifos.src = '/assets/icon-max-hover.svg'
+                })
+                
+                iconMaxFavoGifos.addEventListener("mouseout", () => {
+                    iconMaxFavoGifos.src = '/assets/icon-max-normal.svg'
+                })
+
+                //la siguiente function corresponde al evento click sobre el icon-favorite
+                //para eliminarel gifo de la section favorite
+                iconFavoGifosActive.addEventListener("click", () => {
+                    iconFavoGifosActive.classList.add("off");
+                    iconFavoGifos.classList.remove("off");
+                    
+                    let parentHeart = iconFavoGifos.parentNode
+                    let brotherParentHeart = parentHeart.previousSibling
+                    let idImgClick = brotherParentHeart.getAttribute("id")
+
+                    let indexArrayImgClick = arrayFavoriteToString.indexOf(idImgClick);
+                    console.log(indexArrayImgClick)
+                    if (indexArrayImgClick > -1) {
+                        console.log(indexArrayImgClick)
+                        arrayFavoriteToString.splice(indexArrayImgClick, 1);
+                        sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavoriteToString));
+                        getGifosFavorites()
+                    }
+                })
             }
             document.querySelector(".noContent").classList.add("off");
             document.querySelector(".noContentText").classList.add("off");
@@ -116,7 +154,7 @@ const changeModeStyle = (text) => {
         changeBtnSlider()
         changesLogosHeader()
         showButtonsMoreInFavorite()
-        getGifos()
+        getGifosFavorites()
         changesIconsMedia()
         if (text == "darkLogoClick") {
             document.querySelector("#crossDark").classList.add("off")
@@ -133,7 +171,7 @@ const changeModeStyle = (text) => {
         changeBtnSlider()
         changesLogosHeader()
         showButtonsMoreInFavorite()
-        getGifos()
+        getGifosFavorites()
         changesIconsMedia()
         if (text == undefined || text == "repaintStyles") {
             document.querySelector("#menu").classList.add("off")

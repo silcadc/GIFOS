@@ -248,6 +248,22 @@ body {
     right: 89px;
     cursor: pointer;
   }
+  #favoriteSection #savedGifs .fatherFavoGifos .brotherFavoGifos .activeStyle {
+    position: absolute;
+    top: 10px;
+    right: 89px;
+    cursor: pointer;
+    border: 1px solid #FFFFFF;
+    border-radius: 6px;
+    background: #FFFFFF;
+    padding: 6px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.7;
+  }
+  #favoriteSection #savedGifs .fatherFavoGifos .brotherFavoGifos .activeStyle:hover {
+    opacity: 1;
+  }
   #favoriteSection #savedGifs .fatherFavoGifos .brotherFavoGifos .iconDowFavoGifos {
     position: absolute;
     top: 10px;
@@ -590,6 +606,16 @@ body {
   }
   #createGifosSection #btnsCreate .btnCreateGifos .color_purple {
     color: #572EE5;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+  }
+  #createGifosSection #btnsCreate .btnCreateGifos:hover {
+    cursor: pointer;
+    background-color: #572EE5;
+  }
+  #createGifosSection #btnsCreate .btnCreateGifos:hover .color_purple:hover {
+    color: #FFFFFF;
     font-weight: bold;
     text-align: center;
     font-family: "Montserrat", sans-serif;
@@ -1412,6 +1438,14 @@ header nav #menu .btnsNavigations:hover {
     top: 10px;
     right: 89px;
     cursor: pointer;
+  }
+  #trends div #newGifos #gifosInTrendingContainer .purpleFilterWithIcons .iconFavActive {
+    border: 1px solid #FFFFFF;
+    border-radius: 6px;
+    background: #FFFFFF;
+    padding: 6px;
+    width: 32px;
+    height: 32px;
   }
   #trends div #newGifos #gifosInTrendingContainer .purpleFilterWithIcons .iconDownloadStyle {
     position: absolute;

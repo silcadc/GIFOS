@@ -93,7 +93,7 @@ getGifos = async () => {
         iconTrashMyGifos.setAttribute("class", "iconTrashMyGifos");
         
         let iconTrashMyGifosActive = document.createElement("img");
-        iconTrashMyGifosActive.src = '/assets/con-trash-hover.svg';
+        iconTrashMyGifosActive.src = '/assets/icon-trash-hover.svg';
         iconTrashMyGifosActive.setAttribute("class", "iconTrashMyGifos off");
         
         let iconDowMyGifos = document.createElement("img");
@@ -138,6 +138,31 @@ getGifos = async () => {
                 purpleBrotherMyGifos.classList.add("off");
             })
         }
+
+        //hover iconos favorite, download and max
+        iconTrashMyGifos.addEventListener("mouseover", () => {
+            iconTrashMyGifos.src = '/assets/icon-trash-hover.svg'
+        })
+        
+        iconTrashMyGifos.addEventListener("mouseout", () => {
+            iconTrashMyGifos.src = '/assets/icon-trash-normal.svg'
+        })
+
+        iconDowMyGifos.addEventListener("mouseover", () => {
+            iconDowMyGifos.src = '/assets/icon-download-hover.svg'
+        })
+        
+        iconDowMyGifos.addEventListener("mouseout", () => {
+            iconDowMyGifos.src = '/assets/icon-download.svg'
+        })
+
+        iconMaxMyGifos.addEventListener("mouseover", () => {
+            iconMaxMyGifos.src = '/assets/icon-max-hover.svg'
+        })
+        
+        iconMaxMyGifos.addEventListener("mouseout", () => {
+            iconMaxMyGifos.src = '/assets/icon-max-normal.svg'
+        })
     }
     document.querySelector(".noContent").classList.add("off");
     document.querySelector(".noContentText").classList.add("off");

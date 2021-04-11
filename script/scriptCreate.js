@@ -22,7 +22,6 @@ const btnStart = document.querySelector("#btnStart");
 const btnRecord = document.querySelector("#btnRecord");
 const btnFinish = document.querySelector("#btnFinish");
 const btnUpload = document.querySelector("#btnUpload");
-let btnCreateGifos = document.querySelector(".btnCreateGifos");
 
 let h1CreateGifos = document.querySelector("#h1CreateGifos");
 let h1CameraAccess = document.querySelector("#h1CameraAccess");
@@ -75,31 +74,29 @@ let modeValidation = () => {
 }
 modeValidation();
 
-// let changesIconsMedia = () => {
-//     console.log(1)
-//     fb.addEventListener("click", () => {
-//         fb.classList.add("off")
-//         fbHover.classList.remove("off")
-//         console.log(fbHover)
-//     })
-//     fbDark.addEventListener("click", () => {
-//         fbDark.classList.add("off")
-//         fbHover.classList.remove("off")
-//     })
-//     tw.addEventListener("click", () => {
-//         tw.classList.add("off")
-//         twHover.classList.remove("off")
-//     })
-//     insta.addEventListener("click", () => {
-//         insta.classList.add("off")
-//         instaHover.classList.remove("off")
-//     })
-//     instaDark.addEventListener("click", () => {
-//         instaDark.classList.add("off")
-//         instaHover.classList.remove("off")
-//     })
-// }
-// changesIconsMedia();
+let changesIconsMedia = () => {
+    facebook.addEventListener("click", () => {
+        facebook.classList.add("off")
+        facebookHover.classList.remove("off")
+    })
+    facebookDark.addEventListener("click", () => {
+        facebookDark.classList.add("off")
+        facebookHover.classList.remove("off")
+    })
+    twitter.addEventListener("click", () => {
+        twitter.classList.add("off")
+        twitterHover.classList.remove("off")
+    })
+    instagram.addEventListener("click", () => {
+        instagram.classList.add("off")
+        instagramHover.classList.remove("off")
+    })
+    instagramDark.addEventListener("click", () => {
+        instagramDark.classList.add("off")
+        instagramHover.classList.remove("off")
+    })
+}
+changesIconsMedia();
 
 let changesIcons = () => {
     if (isDark === true) {
