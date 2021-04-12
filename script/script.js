@@ -23,6 +23,8 @@ const changePositionCross = document.querySelectorAll(".search")
 const clickMagnifying = document.querySelector("#magnifying")
 const clickMagniDark = document.querySelector("#magniDark")
 
+localStorage.setItem("textToSearch", "");
+
 /*------------------------------------------*/
 /*   CLICK - GIFOS FINDER - FIRST SECTION   */
 /*------------------------------------------*/
@@ -223,11 +225,17 @@ formGifosFinder.addEventListener("submit" , (text) => {
 const getGifos = async (textToSearch) => {
     const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${textToSearch}`)
     const responseFromApi = await response.json()
-    //console.log(responseFromApi)
     gifosContainer.innerHTML = ""
+    localStorage.setItem("textToSearch", textToSearch);
     for (let i = 0; i < responseFromApi.pagination.count; i++)
     {
         if (i > amount) {break}
+        let arrayOfFavCheck = [];
+        if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
+            //-----------------------------------------------------//
+            arrayOfFavCheck = JSON.parse(sessionStorage.getItem("fullHeart"));
+            //-----------------------------------------------------//
+        }
         let fatherShowGifos = document.createElement("div");
         fatherShowGifos.setAttribute("class", "gifosInTopFive");
         let brotherShowGifos = document.createElement("div");
@@ -246,7 +254,13 @@ const getGifos = async (textToSearch) => {
         
         let iconFavTopFiveActive = document.createElement("img");
         iconFavTopFiveActive.src = './assets/icon-fav-active.svg';
-        iconFavTopFiveActive.setAttribute("class", "iconFavTopFive off");
+        iconFavTopFiveActive.setAttribute("class", "iconFavTopFive iconFavTopFiveActive off");
+
+        let isFullHeart = arrayOfFavCheck.includes(responseFromApi.data[i].id)
+        if (isFullHeart === true) {               
+            iconFavTopFive.setAttribute("class", "iconFavTopFive off");
+            iconFavTopFiveActive.setAttribute("class", "iconFavTopFive iconFavTopFiveActive");
+        }
         
         let iconDowTopFive = document.createElement("img");
         iconDowTopFive.src = './assets/icon-download.svg';
@@ -317,29 +331,59 @@ const getGifos = async (textToSearch) => {
     }
     //la siguiente function corresponde al evento click sobre el boton icon-max desktop      
     let iconsMaxPrincipalPage = document.querySelectorAll(".iconMaxTopFive")
-    //console.log(iconsMaxPrincipalPage)
     iconsMaxPrincipalPage.forEach(iconMaxPrincipal => {
         iconMaxPrincipal.addEventListener("click", () => {
-            console.log(iconMaxPrincipal)
             let parentIconMaxPrin = iconMaxPrincipal.parentNode
             let brotherParentIconMaxPrin = parentIconMaxPrin.previousSibling
             functionMaximumGifs(brotherParentIconMaxPrin);
-            console.log(functionMaximumGifs)
         })
-    })//en procesooooo
-}
-
-//la siguiente function corresponde al evento click sobre el boton icon-max desktop    
-let maximumPrincipalPage = () => {
-    let iconsMaxPrincipalPage = document.querySelectorAll(".iconMaxTopFive")
-    console.log(iconsMaxPrincipalPage)
-    iconsMaxPrincipalPage.forEach(iconMaxPrincipal => {
-        iconMaxPrincipal.addEventListener("click", () => {
-            console.log(iconMaxPrincipal)
-            let parentIconMaxPrin = iconMaxPrincipal.parentNode
-            let brotherParentIconMaxPrin = parentIconMaxPrin.previousSibling
-            functionMaximumGifs(brotherParentIconMaxPrin);
-            console.log(functionMaximumGifs)
+    })
+    //la siguiente function corresponde al evento click sobre el icon-favorite
+    let iconFavTopFive = document.querySelectorAll(".iconFavTopFive")
+    iconFavTopFive.forEach(iconFavTop => {
+        iconFavTop.addEventListener("click", () => {
+            iconFavTop.classList.toggle("off")
+            let brotherIconFavTop = iconFavTop.nextSibling
+            brotherIconFavTop.classList.toggle("off");
+            let parentIconFavTop = iconFavTop.parentNode
+            let brotherParentIconFavTop = parentIconFavTop.previousSibling
+            let idAttriTop = brotherParentIconFavTop.getAttribute("id")
+            if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
+                //-----------------------------------------------------//
+                arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));
+                //-----------------------------------------------------//
+            }
+            let inArrayFavorite = arrayFavorite.includes(idAttriTop)
+            if (inArrayFavorite === false ) {
+                arrayFavorite.push(idAttriTop);
+            }
+            sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
+            let textToSearch = localStorage.getItem("textToSearch")
+            getGifos(textToSearch)
+        })
+    })
+    //la siguiente function es para eliminar el icono de favoritos de los gifos y por ende de la lista de favoritos
+    let iconFavTopFiveActive = document.querySelectorAll(".iconFavTopFiveActive")
+    iconFavTopFiveActive.forEach(iconTopActive => {
+        iconTopActive.addEventListener("click", () => {
+            if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
+                //-----------------------------------------------------//
+                arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));
+                //-----------------------------------------------------//
+            }
+            iconTopActive.classList.toggle("off")
+            let brotherFavTopActive = iconTopActive.previousSibling
+            brotherFavTopActive.classList.toggle("off");
+            let parentFavTopActive = iconTopActive.parentNode
+            let brotherParentFavTopActive = parentFavTopActive.previousSibling
+            let idAttriTopActive = brotherParentFavTopActive.getAttribute("id")
+            let indexArrayTop = arrayFavorite.indexOf(idAttriTopActive);
+            if (indexArrayTop > -1) {
+                arrayFavorite.splice(indexArrayTop, 1);
+                sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
+                let textToSearch = localStorage.getItem("textToSearch")
+                getGifos(textToSearch)
+            }
         })
     })
 }

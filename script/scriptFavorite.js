@@ -8,7 +8,7 @@ let showButtonsMoreInFavorite = () => {
     }
 }
 
-const getGifosFavorites = (text) => {
+const getGifos = (text) => {
     let arrayFavoriteToString = JSON.parse(sessionStorage.getItem("fullHeart"));
     let cantFavorite = arrayFavoriteToString.join(", ");
     if (arrayFavoriteToString.length > 0) {
@@ -16,116 +16,122 @@ const getGifosFavorites = (text) => {
         /*        FAVORITES GIFOS         */
         /*--------------------------------*/
         fetch(`https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${cantFavorite}`)
-        .then (response => response.json())
-        .then (response => {
-            console.log(response)
-            savedGifs.innerHTML = ""
-            for (let i = 0; i < response.data.length; i++){
-                if (i > amount) {break}
-                let fatherFavoGifos = document.createElement("div");
-                fatherFavoGifos.setAttribute("class", "fatherFavoGifos");
-                let brotherFavoGifos = document.createElement("div");
-                brotherFavoGifos.setAttribute("class", "brotherFavoGifos off");
-                const image = document.createElement("img")
-                image.src = response.data[i].images.original.url
-                image.setAttribute("class", "favoritesGifosCheck")
-                image.setAttribute("id", response.data[i].id)
+            .then (response => response.json())
+            .then (response => {
+                savedGifs.innerHTML = ""
+                for (let i = 0; i < response.data.length; i++){
+                    if (i > amount) {break}
+                    let fatherFavoGifos = document.createElement("div");
+                    fatherFavoGifos.setAttribute("class", "fatherFavoGifos");
+                    let brotherFavoGifos = document.createElement("div");
+                    brotherFavoGifos.setAttribute("class", "brotherFavoGifos off");
+                    const image = document.createElement("img")
+                    image.src = response.data[i].images.original.url
+                    image.setAttribute("class", "favoritesGifosCheck")
+                    image.setAttribute("id", response.data[i].id)
 
-                fatherFavoGifos.appendChild(image)
-                fatherFavoGifos.appendChild(brotherFavoGifos)
-                savedGifs.appendChild(fatherFavoGifos)
+                    fatherFavoGifos.appendChild(image)
+                    fatherFavoGifos.appendChild(brotherFavoGifos)
+                    savedGifs.appendChild(fatherFavoGifos)
 
-                let iconFavoGifos = document.createElement("img");
-                iconFavoGifos.src = '/assets/icon-fav.svg';
-                iconFavoGifos.setAttribute("class", "iconFavoGifos off");
+                    let iconFavoGifos = document.createElement("img");
+                    iconFavoGifos.src = '/assets/icon-fav.svg';
+                    iconFavoGifos.setAttribute("class", "iconFavoGifos off");
 
-                let iconFavoGifosActive = document.createElement("img");
-                iconFavoGifosActive.src = '/assets/icon-fav-active.svg';
-                iconFavoGifosActive.setAttribute("class", "activeStyle");
+                    let iconFavoGifosActive = document.createElement("img");
+                    iconFavoGifosActive.src = '/assets/icon-fav-active.svg';
+                    iconFavoGifosActive.setAttribute("class", "activeStyle");
 
-                let iconDowFavoGifos = document.createElement("img");
-                iconDowFavoGifos.src = '/assets/icon-download.svg';
-                iconDowFavoGifos.setAttribute("class", "iconDowFavoGifos");
+                    let iconDowFavoGifos = document.createElement("img");
+                    iconDowFavoGifos.src = '/assets/icon-download.svg';
+                    iconDowFavoGifos.setAttribute("class", "iconDowFavoGifos");
 
-                let iconDowFavoGifosActive = document.createElement("img");
-                iconDowFavoGifosActive.src = '/assets/icon-download-hover.svg';
-                iconDowFavoGifosActive.setAttribute("class", "iconDowFavoGifos off");
+                    let iconDowFavoGifosActive = document.createElement("img");
+                    iconDowFavoGifosActive.src = '/assets/icon-download-hover.svg';
+                    iconDowFavoGifosActive.setAttribute("class", "iconDowFavoGifos off");
 
-                let iconMaxFavoGifos = document.createElement("img");
-                iconMaxFavoGifos.src = '/assets/icon-max-normal.svg';
-                iconMaxFavoGifos.setAttribute("class", "iconMaxFavoGifos");
+                    let iconMaxFavoGifos = document.createElement("img");
+                    iconMaxFavoGifos.src = '/assets/icon-max-normal.svg';
+                    iconMaxFavoGifos.setAttribute("class", "iconMaxFavoGifos");
 
-                let iconMaxFavoGifosActive = document.createElement("img");
-                iconMaxFavoGifosActive.src = '/assets/icon-max-hover.svg';
-                iconMaxFavoGifosActive.setAttribute("class", "iconMaxFavoGifos off");
+                    let iconMaxFavoGifosActive = document.createElement("img");
+                    iconMaxFavoGifosActive.src = '/assets/icon-max-hover.svg';
+                    iconMaxFavoGifosActive.setAttribute("class", "iconMaxFavoGifos off");
 
-                const titleFavoGifos = document.createElement("h2")
-                titleFavoGifos.textContent = response.data[i].title
+                    const titleFavoGifos = document.createElement("h2")
+                    titleFavoGifos.textContent = response.data[i].title
 
-                const userFavoGifos = document.createElement("h3")
-                userFavoGifos.textContent = response.data[i].username
+                    const userFavoGifos = document.createElement("h3")
+                    userFavoGifos.textContent = response.data[i].username
 
-                brotherFavoGifos.appendChild(iconFavoGifos)
-                brotherFavoGifos.appendChild(iconFavoGifosActive)
-                brotherFavoGifos.appendChild(iconDowFavoGifos)
-                brotherFavoGifos.appendChild(iconDowFavoGifosActive)
-                brotherFavoGifos.appendChild(iconMaxFavoGifos)
-                brotherFavoGifos.appendChild(iconMaxFavoGifosActive)
-                brotherFavoGifos.appendChild(titleFavoGifos)
-                brotherFavoGifos.appendChild(userFavoGifos)
+                    brotherFavoGifos.appendChild(iconFavoGifos)
+                    brotherFavoGifos.appendChild(iconFavoGifosActive)
+                    brotherFavoGifos.appendChild(iconDowFavoGifos)
+                    brotherFavoGifos.appendChild(iconDowFavoGifosActive)
+                    brotherFavoGifos.appendChild(iconMaxFavoGifos)
+                    brotherFavoGifos.appendChild(iconMaxFavoGifosActive)
+                    brotherFavoGifos.appendChild(titleFavoGifos)
+                    brotherFavoGifos.appendChild(userFavoGifos)
 
-                if (window.screen.width > 768) {    
-                    let fatherFavoriteGifos = image.parentNode
-                    fatherFavoriteGifos.addEventListener("mouseover", () => {
-                        let purpleBrotherFavoGifos = fatherFavoGifos.lastChild
-                        purpleBrotherFavoGifos.classList.remove("off");
+                    if (window.screen.width > 768) {    
+                        let fatherFavoriteGifos = image.parentNode
+                        fatherFavoriteGifos.addEventListener("mouseover", () => {
+                            let purpleBrotherFavoGifos = fatherFavoGifos.lastChild
+                            purpleBrotherFavoGifos.classList.remove("off");
+                        })
+                        fatherFavoriteGifos.addEventListener("mouseleave", () => {
+                            let purpleBrotherFavoGifos = fatherFavoGifos.lastChild
+                            purpleBrotherFavoGifos.classList.add("off");
+                        })
+                    }
+                    //hover iconos download and max
+                    iconDowFavoGifos.addEventListener("mouseover", () => {
+                        iconDowFavoGifos.src = '/assets/icon-download-hover.svg'
                     })
-                    fatherFavoriteGifos.addEventListener("mouseleave", () => {
-                        let purpleBrotherFavoGifos = fatherFavoGifos.lastChild
-                        purpleBrotherFavoGifos.classList.add("off");
+                    
+                    iconDowFavoGifos.addEventListener("mouseout", () => {
+                        iconDowFavoGifos.src = '/assets/icon-download.svg'
+                    })
+
+                    iconMaxFavoGifos.addEventListener("mouseover", () => {
+                        iconMaxFavoGifos.src = '/assets/icon-max-hover.svg'
+                    })
+                    
+                    iconMaxFavoGifos.addEventListener("mouseout", () => {
+                        iconMaxFavoGifos.src = '/assets/icon-max-normal.svg'
+                    })
+
+                    //la siguiente function corresponde al evento click sobre el icon-favorite
+                    //para eliminarel gifo de la section favorite
+                    iconFavoGifosActive.addEventListener("click", () => {
+                        iconFavoGifosActive.classList.add("off");
+                        iconFavoGifos.classList.remove("off");
+                        
+                        let parentHeart = iconFavoGifos.parentNode
+                        let brotherParentHeart = parentHeart.previousSibling
+                        let idImgClick = brotherParentHeart.getAttribute("id")
+
+                        let indexArrayImgClick = arrayFavoriteToString.indexOf(idImgClick);
+                        if (indexArrayImgClick > -1) {
+                            arrayFavoriteToString.splice(indexArrayImgClick, 1);
+                            sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavoriteToString));
+                            getGifos()
+                        }
                     })
                 }
-                //hover iconos download and max
-                iconDowFavoGifos.addEventListener("mouseover", () => {
-                    iconDowFavoGifos.src = '/assets/icon-download-hover.svg'
+                document.querySelector(".noContent").classList.add("off");
+                document.querySelector(".noContentText").classList.add("off");
+                showButtonsMoreInFavorite()
+                //la siguiente function corresponde al evento click sobre el boton icon-max desktop      
+                let iconMaxFavoGifos = document.querySelectorAll(".iconMaxFavoGifos")
+                iconMaxFavoGifos.forEach(iconMaxFavos => {
+                    iconMaxFavos.addEventListener("click", () => {
+                        let parentMaxFavos = iconMaxFavos.parentNode
+                        let brotherParentMaxFavos = parentMaxFavos.previousSibling
+                        functionMaximumGifs(brotherParentMaxFavos);
+                    })
                 })
-                
-                iconDowFavoGifos.addEventListener("mouseout", () => {
-                    iconDowFavoGifos.src = '/assets/icon-download.svg'
-                })
-
-                iconMaxFavoGifos.addEventListener("mouseover", () => {
-                    iconMaxFavoGifos.src = '/assets/icon-max-hover.svg'
-                })
-                
-                iconMaxFavoGifos.addEventListener("mouseout", () => {
-                    iconMaxFavoGifos.src = '/assets/icon-max-normal.svg'
-                })
-
-                //la siguiente function corresponde al evento click sobre el icon-favorite
-                //para eliminarel gifo de la section favorite
-                iconFavoGifosActive.addEventListener("click", () => {
-                    iconFavoGifosActive.classList.add("off");
-                    iconFavoGifos.classList.remove("off");
-                    
-                    let parentHeart = iconFavoGifos.parentNode
-                    let brotherParentHeart = parentHeart.previousSibling
-                    let idImgClick = brotherParentHeart.getAttribute("id")
-
-                    let indexArrayImgClick = arrayFavoriteToString.indexOf(idImgClick);
-                    console.log(indexArrayImgClick)
-                    if (indexArrayImgClick > -1) {
-                        console.log(indexArrayImgClick)
-                        arrayFavoriteToString.splice(indexArrayImgClick, 1);
-                        sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavoriteToString));
-                        getGifosFavorites()
-                    }
-                })
-            }
-            document.querySelector(".noContent").classList.add("off");
-            document.querySelector(".noContentText").classList.add("off");
-            showButtonsMoreInFavorite()
-        })
+            })
     }
 }
 
@@ -154,7 +160,7 @@ const changeModeStyle = (text) => {
         changeBtnSlider()
         changesLogosHeader()
         showButtonsMoreInFavorite()
-        getGifosFavorites()
+        getGifos()
         changesIconsMedia()
         if (text == "darkLogoClick") {
             document.querySelector("#crossDark").classList.add("off")
@@ -171,7 +177,7 @@ const changeModeStyle = (text) => {
         changeBtnSlider()
         changesLogosHeader()
         showButtonsMoreInFavorite()
-        getGifosFavorites()
+        getGifos()
         changesIconsMedia()
         if (text == undefined || text == "repaintStyles") {
             document.querySelector("#menu").classList.add("off")

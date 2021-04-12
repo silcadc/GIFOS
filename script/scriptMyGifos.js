@@ -1,11 +1,13 @@
-const savedmyOwnGifs = document.querySelector("#savedmyOwnGifs")
+let savedmyOwnGifs = document.querySelector("#savedmyOwnGifs")
+let myCreatedGifos = [];
 
 let showButtonsMoreInFavorite = () => {
     let checkContentClass = document.getElementById("noContent");
     let hasOff = checkContentClass.classList.contains("off");
+    console.log(hasOff)
     if (hasOff === true) {
         changeOfBtnSeeMore()
-    }
+    }//debo ajustar la aparición del boton ver más
 }
 
 /*----------------------------*/
@@ -69,10 +71,101 @@ darkMode.addEventListener("click", () => {
 
 changeModeStyle("repaintStyles")
 
-gifos = JSON.parse(window.localStorage.getItem('mygifos'))
+//La siguiente función muestra cada Gifo creado por el usuario en tamaño maximo
+let functionMaxMyGifos = (text) => { 
+        let brotherMax = text.nextSibling
+    let lastChildOfFather = brotherMax.lastChild
+    let h3 = lastChildOfFather
+    let h2 = h3.previousSibling
+
+    let idMyGifos = text.getAttribute("id")
+    console.log(text)
+    console.log(idMyGifos)
+
+    let containerMaxGifs = document.querySelector("#containerMaxGifs")
+    let containerImage = document.createElement("img")
+
+    const anchor = document.createElement("a");
+    const href = document.createAttribute("href");
+
+    let imgCross = document.createElement("img")
+    let iconTrashMyGifos = document.createElement("img")
+    let iconTrashMyGifosActive = document.createElement("img")
+    let imgDownload = document.createElement("img")
+
+    if (isDark == true) {
+        containerMaxGifs.style.background = "#000000";
+        imgCross.src = '../assets/close-modo-noct.svg';
+        imgCross.setAttribute("id", "imgCrossMax")
+    } else if (isDark !== true) {
+        containerMaxGifs.style.backgroundColor = "#ffffff";
+        imgCross.src = '../assets/close.svg';
+        imgCross.setAttribute("id", "imgCrossMax")
+    }
+
+    anchor.setAttributeNode(href);
+    anchor.setAttribute("download", "Gifo");
+    anchor.setAttribute("id", "anchorDownload")
+
+    containerImage.src = text.src
+    containerImage.setAttribute("id", "imgMaxSize")
+    
+    iconTrashMyGifos.src = '/assets/icon-trash-normal.svg';
+    iconTrashMyGifos.setAttribute("class", "iconTrashMyGifos");
+    iconTrashMyGifos.setAttribute("id", "Trash");
+
+    iconTrashMyGifosActive.src = '/assets/icon-trash-hover.svg';
+    iconTrashMyGifosActive.setAttribute("class", "iconTrashMyGifos off");
+    iconTrashMyGifosActive.setAttribute("id", "TrashActive");
+
+    imgDownload.src = '../assets/icon-download-hover.svg';
+    imgDownload.setAttribute("id", "imgDownloadMax")
+
+    const titleGifos = document.createElement("h2")
+    titleGifos.textContent = h2.innerText
+    const user = document.createElement("h3")
+    user.textContent = h3.innerText
+    document.querySelector("#containerMaxGifs").appendChild(titleGifos)
+    document.querySelector("#containerMaxGifs").appendChild(user)
+
+    anchor.appendChild(containerImage)
+    containerMaxGifs.appendChild(anchor)
+    containerMaxGifs.appendChild(imgCross)
+    containerMaxGifs.appendChild(iconTrashMyGifos)
+    containerMaxGifs.appendChild(iconTrashMyGifosActive)
+    containerMaxGifs.appendChild(imgDownload)
+
+    document.querySelector("#containerMaxGifs").style.display = "block"
+
+    const crossMax = document.getElementById("imgCrossMax")
+    crossMax.addEventListener("click", () => {
+        containerMaxGifs.innerHTML = ""
+        document.querySelector("#containerMaxGifs").style.display = "none";
+        let textToSearch = localStorage.getItem("textToSearch")
+        getGifos(textToSearch);
+        structureGifosTrend(apiResponseList);
+    })
+
+    // const downloadMax = document.getElementById("imgDownloadMax")
+    // downloadMax.addEventListener("click", () => {
+
+    // })
+
+    //la siguiente function corresponde al evento click sobre el boton trash, elimina los gifos Creados
+    iconTrashMyGifos.addEventListener("click", () => {
+        myCreatedGifos = JSON.parse(window.sessionStorage.getItem("mygifos"))
+        let indexOfMyGifos = myCreatedGifos.indexOf(idMyGifos);
+        if (indexOfMyGifos > -1) {
+            myCreatedGifos.splice(indexOfMyGifos, 1);
+            sessionStorage.setItem("mygifos", JSON.stringify(myCreatedGifos));
+            getGifos();
+        }
+    })        
+}
 
 getGifos = async () => {
-    const response = await fetch(`https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${gifos.join()}`)
+    myCreatedGifos = JSON.parse(window.sessionStorage.getItem("mygifos"))
+    const response = await fetch(`https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${myCreatedGifos.join()}`)
     const result = await response.json()  
     savedmyOwnGifs.innerHTML = "";
     for (let i = 0; i < result.data.length; i++){
@@ -83,6 +176,7 @@ getGifos = async () => {
         brotherMyGifosCheck.setAttribute("class", "brotherMyGifosCheck off");
         const image = document.createElement('img')
         image.setAttribute("class", "myGifosCheck")
+        image.setAttribute("id", result.data[i].id)
         image.src = result.data[i].images.original.url
         fatherMyGifosCheck.appendChild(image)
         fatherMyGifosCheck.appendChild(brotherMyGifosCheck)
@@ -167,5 +261,31 @@ getGifos = async () => {
     document.querySelector(".noContent").classList.add("off");
     document.querySelector(".noContentText").classList.add("off");
     showButtonsMoreInFavorite() 
+    //la siguiente function corresponde al evento click sobre el boton icon-max desktop      
+    let iconMaxMyGifos = document.querySelectorAll(".iconMaxMyGifos")
+    iconMaxMyGifos.forEach(maxMyGifos => {
+        maxMyGifos.addEventListener("click", () => {
+            let parentMaxMyGifos = maxMyGifos.parentNode
+            let brotherParentMaxMyGifos = parentMaxMyGifos.previousSibling
+            functionMaxMyGifos(brotherParentMaxMyGifos);
+        })
+    })
+    //la siguiente function corresponde al evento click sobre el boton trash, elimina los gifos Creados
+    let iconTrashMyGifos = document.querySelectorAll(".iconTrashMyGifos")    
+    iconTrashMyGifos.forEach(Trash => {
+        Trash.addEventListener("click", () => {
+            let fatherTrash = Trash.parentNode
+            let brotherPreviousOfFather = fatherTrash.previousSibling
+            let idTrash = brotherPreviousOfFather.getAttribute("id")
+            myCreatedGifos = JSON.parse(window.sessionStorage.getItem("mygifos"))
+            let indexOfMyGifos = myCreatedGifos.indexOf(idTrash);
+            if (indexOfMyGifos > -1) {
+                myCreatedGifos.splice(indexOfMyGifos, 1);
+                sessionStorage.setItem("mygifos", JSON.stringify(myCreatedGifos));
+                console.log(myCreatedGifos)
+                getGifos();
+            }
+        })   
+    })
 }
 getGifos()

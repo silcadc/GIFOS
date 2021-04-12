@@ -2,7 +2,7 @@ let isDark;
 let amount = 11
 const API_KEY = 'VfAQnZwBHdFaj75QChwBF5O4uEoTxQXh'
 
-const newGifos = document.querySelector("#newGifos")
+let newGifos = document.querySelector("#newGifos")
 
 let inputTextToSearch = ""
 
@@ -47,6 +47,8 @@ let iconCreateActiveNoc = document.querySelector(".activeNoc")
 
 let seeMoreEventMouse = document.querySelector(".seeMoreEventMouse")
 let seeMoreMouse = document.querySelector(".seeMoreMouse") 
+let apiResponseList 
+let arrayFavorite = [];
 
 /*-------------------------------*/
 /*   CHANGE MODE - DAY OR DARK   */
@@ -137,6 +139,231 @@ const clickButtonSeeMore = () => {
         getGifos()
     }
 }
+//La siguiente function dibuja los gifos tendencia que me entrega el endpoint trending.
+let structureGifosTrend = (apiResponseList) => {
+    newGifos = document.querySelector("#newGifos")
+    let padre = newGifos.parentNode;
+    padre.removeChild(newGifos);
+
+    let nodo = document.createElement("figure")
+    nodo.setAttribute("id", "newGifos");
+    padre.appendChild(nodo)
+    newGifos = document.querySelector("#newGifos")
+
+    apiResponseList.forEach( gif => {
+        let arrayOfFavCheck = [];
+        if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
+            //-----------------------------------------------------//
+            arrayOfFavCheck = JSON.parse(sessionStorage.getItem("fullHeart"));
+            //-----------------------------------------------------//
+        }
+        const divContainer = document.createElement("div")
+        divContainer.setAttribute("id", "gifosInTrendingContainer");
+        let purpleFilterContainer = document.createElement("div")
+        purpleFilterContainer.setAttribute("class", "purpleFilterWithIcons off");
+        const image = document.createElement("img")
+        image.src = gif.images.fixed_width.url
+        image.setAttribute("id", gif.id)
+        
+        image.setAttribute("class", 'gifTrends')
+        divContainer.appendChild(image)
+        divContainer.appendChild(purpleFilterContainer)
+        newGifos.appendChild(divContainer)
+        
+        const anchor = document.createElement("a");
+        const href = document.createAttribute("href");
+
+        let iconFavorite = document.createElement("img");
+        iconFavorite.src = '../assets/icon-fav.svg';
+        iconFavorite.setAttribute("class", "iconFavoriteStyle iconFav");
+        
+        let iconFavoriteActive = document.createElement("img");
+        iconFavoriteActive.src = '../assets/icon-fav-active.svg';
+        iconFavoriteActive.setAttribute("class", "iconFavoriteStyle off iconFavActive");
+
+        let isFullHeart = arrayOfFavCheck.includes(gif.id)
+        if (isFullHeart === true) {               
+            iconFavorite.setAttribute("class", "iconFavoriteStyle iconFav off");
+            iconFavoriteActive.setAttribute("class", "iconFavoriteStyle iconFavActive");
+        }
+    
+        let iconDownload = document.createElement("img");
+        iconDownload.src = '../assets/icon-download.svg';
+        iconDownload.setAttribute("class", "iconDownloadStyle iconDownload");
+        
+        let iconDownloadActive = document.createElement("img");
+        iconDownloadActive.src = '../assets/icon-download-hover.svg';
+        iconDownloadActive.setAttribute("class", "iconDownloadStyle off iconDownloadHover");
+        
+        let iconMaximum = document.createElement("img");
+        iconMaximum.src = '../assets/icon-max-normal.svg';
+        iconMaximum.setAttribute("class", "iconMaximumStyle iconMax");
+        
+        let iconMaximumActive = document.createElement("img");
+        iconMaximumActive.src = '../assets/icon-max-hover.svg';
+        iconMaximumActive.setAttribute("class", "iconMaximumStyle off iconMaxHover");
+    
+        //anchor.appendChild(containerImage)
+        purpleFilterContainer.appendChild(iconFavorite)
+        purpleFilterContainer.appendChild(iconFavoriteActive)
+        purpleFilterContainer.appendChild(iconDownload)
+        purpleFilterContainer.appendChild(iconDownloadActive)
+        purpleFilterContainer.appendChild(iconMaximum)
+        purpleFilterContainer.appendChild(iconMaximumActive)
+
+        let idOfGifosMouseOver = image.getAttribute("id")
+
+        for (i=0; i<apiResponseList.length; i++) {
+            if (idOfGifosMouseOver === apiResponseList[i].id) {
+                const titleGifos = document.createElement("h2")
+                titleGifos.textContent = apiResponseList[i].title
+                const user = document.createElement("h3")
+                user.textContent = apiResponseList[i].username
+                purpleFilterContainer.appendChild(titleGifos)
+                purpleFilterContainer.appendChild(user)
+                href.value = apiResponseList[i].images.fixed_width.url
+                break;
+            }
+        }
+
+        if (window.screen.width > 768) {
+            let father = image.parentNode
+            father.addEventListener("mouseover", () => {
+                let purpleSibling = father.lastChild
+                purpleSibling.classList.remove("off");
+            })
+            father.addEventListener("mouseleave", () => {
+                let purpleSibling = father.lastChild
+                purpleSibling.classList.add("off");
+            })
+        }
+
+        //hover iconos favorite, download and max
+        iconFavorite.addEventListener("mouseover", () => {
+            iconFavorite.src = '../assets/icon-fav-hover.svg'
+        })
+        
+        iconFavorite.addEventListener("mouseout", () => {
+            iconFavorite.src = '../assets/icon-fav.svg'
+        })
+
+        iconDownload.addEventListener("mouseover", () => {
+            iconDownload.src = '../assets/icon-download-hover.svg'
+        })
+        
+        iconDownload.addEventListener("mouseout", () => {
+            iconDownload.src = '../assets/icon-download.svg'
+        })
+
+        iconMaximum.addEventListener("mouseover", () => {
+            iconMaximum.src = '../assets/icon-max-hover.svg'
+        })
+        
+        iconMaximum.addEventListener("mouseout", () => {
+            iconMaximum.src = '../assets/icon-max-normal.svg'
+        })
+    })
+
+    //la siguiente function corresponde al evento click sobre la imagen en first mobile  
+    let imgNewGifos = document.querySelectorAll("#newGifos > div > img") 
+    imgNewGifos.forEach(imgGifosTrend => {
+        imgGifosTrend.addEventListener("click", () => {
+            functionMaximumGifs(imgGifosTrend);
+        })
+    })
+
+    //la siguiente function corresponde al evento click sobre el boton icon-max desktop      
+    let iconsMax = document.querySelectorAll(".iconMax")
+    iconsMax.forEach(iconMax => {
+        iconMax.addEventListener("click", () => {
+            let parentIconMax = iconMax.parentNode
+            let brotherParentIconMax = parentIconMax.previousSibling
+            functionMaximumGifs(brotherParentIconMax);
+        })
+    })
+
+    //la siguiente function corresponde al evento click sobre el icon-favorite
+    let iconsFavo = document.querySelectorAll(".iconFav")
+    iconsFavo.forEach(iconFav => {
+        iconFav.addEventListener("click", () => {
+            iconFav.classList.toggle("off")
+            let brotherIconFav = iconFav.nextSibling
+            brotherIconFav.classList.toggle("off");
+            let parentIconFav = iconFav.parentNode
+            let brotherParentIconFav = parentIconFav.previousSibling
+            let idAttribute = brotherParentIconFav.getAttribute("id")
+            if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
+                //-----------------------------------------------------//
+                arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));
+                //-----------------------------------------------------//
+            }
+            arrayFavorite.push(idAttribute);
+            sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
+            let textToSearch = localStorage.getItem("textToSearch")
+            getGifos(textToSearch)
+        })
+    })
+    //la siguiente function es para eliminar los gifos de la lista de favoritos
+    let iconsFavActive = document.querySelectorAll(".iconFavActive")
+    iconsFavActive.forEach(iconFavActive => {
+        iconFavActive.addEventListener("click", () => {
+            if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
+                //-----------------------------------------------------//
+                arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));
+                //-----------------------------------------------------//
+            }
+            iconFavActive.classList.toggle("off")
+            let brotherIconFavActive = iconFavActive.previousSibling
+            brotherIconFavActive.classList.toggle("off");
+            let parentIconFavActive = iconFavActive.parentNode
+            let brotherParentIconFavActive = parentIconFavActive.previousSibling
+            let idAttributeActive = brotherParentIconFavActive.getAttribute("id")
+            let indexArray = arrayFavorite.indexOf(idAttributeActive);
+            if (indexArray > -1) {
+                arrayFavorite.splice(indexArray, 1);
+                sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
+                getGifos()
+            }
+        })
+    })
+
+    let gifTrends = document.querySelectorAll(".gifTrends");
+    let index = 3;
+    let show = function(increase) {
+        index = index + increase;
+        index = Math.min(
+            Math.max(index,0),
+            gifTrends.length-1
+        );
+        gifTrends[index].scrollIntoView({behavior: 'smooth'});
+    }
+
+    btnSliderRight.addEventListener('click', function(){
+        show(+1);
+    });
+
+    btnSliderRightDark.addEventListener('click', function(){
+        show(+1);
+    });
+
+    btnSliderLeft.addEventListener('click', function(){
+        show(-1);
+    });
+
+    btnSliderLeftDark.addEventListener('click', function(){
+        show(-1);
+    });
+}
+
+/*----------------------------*/
+/*       GIFOS IN TREND       */
+/*----------------------------*/
+fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
+    .then (response => response.json())
+    .then (response => {
+        apiResponseList = response.data;
+        structureGifosTrend(apiResponseList);   
+    })
 
 //La siguiente función muestra cada Gifo en tamaño maximo
 let functionMaximumGifs = (text) => { 
@@ -227,7 +454,10 @@ let functionMaximumGifs = (text) => {
     const crossMax = document.getElementById("imgCrossMax")
     crossMax.addEventListener("click", () => {
         containerMaxGifs.innerHTML = ""
-        document.querySelector("#containerMaxGifs").style.display = "none"
+        document.querySelector("#containerMaxGifs").style.display = "none";
+        let textToSearch = localStorage.getItem("textToSearch")
+        getGifos(textToSearch);
+        structureGifosTrend(apiResponseList);
     })
 
     // const downloadMax = document.getElementById("imgDownloadMax")
@@ -252,217 +482,6 @@ let functionMaximumGifs = (text) => {
         }
     })
 }
-
-/*----------------------------*/
-/*       GIFOS IN TREND       */
-/*----------------------------*/
-fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
-    .then (response => response.json())
-    .then (response => {
-        let apiResponseList = response.data
-        response.data.forEach( gif => {
-            let arrayOfFavCheck = [];
-            if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
-                //-----------------------------------------------------//
-                arrayOfFavCheck = JSON.parse(sessionStorage.getItem("fullHeart"));
-                //-----------------------------------------------------//
-            }
-            const divContainer = document.createElement("div")
-            divContainer.setAttribute("id", "gifosInTrendingContainer");
-            let purpleFilterContainer = document.createElement("div")
-            purpleFilterContainer.setAttribute("class", "purpleFilterWithIcons off");
-            const image = document.createElement("img")
-            image.src = gif.images.fixed_width.url
-            image.setAttribute("id", gif.id)
-            
-            image.setAttribute("class", 'gifTrends')
-            divContainer.appendChild(image)
-            divContainer.appendChild(purpleFilterContainer)
-            newGifos.appendChild(divContainer)
-            
-            const anchor = document.createElement("a");
-            const href = document.createAttribute("href");
-
-            let iconFavorite = document.createElement("img");
-            iconFavorite.src = '../assets/icon-fav.svg';
-            iconFavorite.setAttribute("class", "iconFavoriteStyle iconFav");
-            
-            let iconFavoriteActive = document.createElement("img");
-            iconFavoriteActive.src = '../assets/icon-fav-active.svg';
-            iconFavoriteActive.setAttribute("class", "iconFavoriteStyle off iconFavActive");
-
-            let isFullHeart = arrayOfFavCheck.includes(gif.id)
-            if (isFullHeart === true) {               
-                iconFavorite.setAttribute("class", "iconFavoriteStyle iconFav off");
-                iconFavoriteActive.setAttribute("class", "iconFavoriteStyle iconFavActive");
-            }
-           
-            let iconDownload = document.createElement("img");
-            iconDownload.src = '../assets/icon-download.svg';
-            iconDownload.setAttribute("class", "iconDownloadStyle iconDownload");
-            
-            let iconDownloadActive = document.createElement("img");
-            iconDownloadActive.src = '../assets/icon-download-hover.svg';
-            iconDownloadActive.setAttribute("class", "iconDownloadStyle off iconDownloadHover");
-            
-            let iconMaximum = document.createElement("img");
-            iconMaximum.src = '../assets/icon-max-normal.svg';
-            iconMaximum.setAttribute("class", "iconMaximumStyle iconMax");
-            
-            let iconMaximumActive = document.createElement("img");
-            iconMaximumActive.src = '../assets/icon-max-hover.svg';
-            iconMaximumActive.setAttribute("class", "iconMaximumStyle off iconMaxHover");
-           
-            //anchor.appendChild(containerImage)
-            purpleFilterContainer.appendChild(iconFavorite)
-            purpleFilterContainer.appendChild(iconFavoriteActive)
-            purpleFilterContainer.appendChild(iconDownload)
-            purpleFilterContainer.appendChild(iconDownloadActive)
-            purpleFilterContainer.appendChild(iconMaximum)
-            purpleFilterContainer.appendChild(iconMaximumActive)
-
-            let idOfGifosMouseOver = image.getAttribute("id")
-
-            for (i=0; i<apiResponseList.length; i++) {
-                if (idOfGifosMouseOver === apiResponseList[i].id) {
-                    const titleGifos = document.createElement("h2")
-                    titleGifos.textContent = apiResponseList[i].title
-                    const user = document.createElement("h3")
-                    user.textContent = apiResponseList[i].username
-                    purpleFilterContainer.appendChild(titleGifos)
-                    purpleFilterContainer.appendChild(user)
-                    href.value = apiResponseList[i].images.fixed_width.url
-                    break;
-                }
-            }
-
-            if (window.screen.width > 768) {
-                let father = image.parentNode
-                father.addEventListener("mouseover", () => {
-                    let purpleSibling = father.lastChild
-                    purpleSibling.classList.remove("off");
-                })
-                father.addEventListener("mouseleave", () => {
-                    let purpleSibling = father.lastChild
-                    purpleSibling.classList.add("off");
-                })
-            }
-
-            //hover iconos favorite, download and max
-            iconFavorite.addEventListener("mouseover", () => {
-                iconFavorite.src = '../assets/icon-fav-hover.svg'
-            })
-            
-            iconFavorite.addEventListener("mouseout", () => {
-                iconFavorite.src = '../assets/icon-fav.svg'
-            })
-
-            iconDownload.addEventListener("mouseover", () => {
-                iconDownload.src = '../assets/icon-download-hover.svg'
-            })
-            
-            iconDownload.addEventListener("mouseout", () => {
-                iconDownload.src = '../assets/icon-download.svg'
-            })
-
-            iconMaximum.addEventListener("mouseover", () => {
-                iconMaximum.src = '../assets/icon-max-hover.svg'
-            })
-            
-            iconMaximum.addEventListener("mouseout", () => {
-                iconMaximum.src = '../assets/icon-max-normal.svg'
-            })
-        })
-
-        let arrayFavorite = [];
-
-        //la siguiente function corresponde al evento click sobre la imagen en first mobile  
-        let imgNewGifos = document.querySelectorAll("#newGifos > div > img") 
-        imgNewGifos.forEach(imgGifosTrend => {
-            imgGifosTrend.addEventListener("click", () => {
-                functionMaximumGifs(imgGifosTrend);
-            })
-        })
-        //la siguiente function corresponde al evento click sobre el boton icon-max desktop      
-        let iconsMax = document.querySelectorAll(".iconMax")
-        iconsMax.forEach(iconMax => {
-            iconMax.addEventListener("click", () => {
-                let parentIconMax = iconMax.parentNode
-                let brotherParentIconMax = parentIconMax.previousSibling
-                functionMaximumGifs(brotherParentIconMax);
-            })
-        })
-        //la siguiente function corresponde al evento click sobre el icon-favorite
-        let iconsFavo = document.querySelectorAll(".iconFav")
-        iconsFavo.forEach(iconFav => {
-            iconFav.addEventListener("click", () => {
-                iconFav.classList.toggle("off")
-                let brotherIconFav = iconFav.nextSibling
-                brotherIconFav.classList.toggle("off");
-                let parentIconFav = iconFav.parentNode
-                let brotherParentIconFav = parentIconFav.previousSibling
-                let idAttribute = brotherParentIconFav.getAttribute("id")
-                if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
-                    //-----------------------------------------------------//
-                    arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));
-                    //-----------------------------------------------------//
-                }
-                arrayFavorite.push(idAttribute);
-                sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
-                getGifosFavorites()
-            })
-        })
-        //la siguiente function es para eliminar los gifos de la lista de favoritos
-        let iconsFavActive = document.querySelectorAll(".iconFavActive")
-        iconsFavActive.forEach(iconFavActive => {
-            iconFavActive.addEventListener("click", () => {
-                if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
-                    //-----------------------------------------------------//
-                    arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));
-                    //-----------------------------------------------------//
-                }
-                iconFavActive.classList.toggle("off")
-                let brotherIconFavActive = iconFavActive.previousSibling
-                brotherIconFavActive.classList.toggle("off");
-                let parentIconFavActive = iconFavActive.parentNode
-                let brotherParentIconFavActive = parentIconFavActive.previousSibling
-                let idAttributeActive = brotherParentIconFavActive.getAttribute("id")
-                let indexArray = arrayFavorite.indexOf(idAttributeActive);
-                if (indexArray > -1) {
-                    arrayFavorite.splice(indexArray, 1);
-                    sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
-                    getGifosFavorites()
-                }
-            })
-        })
-    
-        let gifTrends = document.querySelectorAll(".gifTrends");
-        let index = 3;
-        let show = function(increase) {
-            index = index + increase;
-            index = Math.min(
-                Math.max(index,0),
-                gifTrends.length-1
-            );
-            gifTrends[index].scrollIntoView({behavior: 'smooth'});
-        }
-
-        btnSliderRight.addEventListener('click', function(){
-            show(+1);
-        });
-
-        btnSliderRightDark.addEventListener('click', function(){
-            show(+1);
-        });
-
-        btnSliderLeft.addEventListener('click', function(){
-            show(-1);
-        });
-
-        btnSliderLeftDark.addEventListener('click', function(){
-            show(-1);
-        });
-    })
 
 let changesLogosHeader = () => {
     if (window.screen.width > 768) {
@@ -647,3 +666,4 @@ seeMoreMouse.addEventListener("mouseover", () => {
 seeMoreMouse.addEventListener("mouseout", () => {
     seeMoreMouse.src = '/assets/CTA-ver+-modo-noc.svg'
 })
+

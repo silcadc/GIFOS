@@ -228,11 +228,25 @@
         top: 414px;
         right: 73px;
     }
+    #Trash {
+        cursor: pointer;
+        position: absolute;
+        width: 40px;
+        height: 33px;
+        top: 624px;
+        right: 352px;
+    }
     #favoriteActive {
         cursor: pointer;
         position: absolute;
         top: 420px;
         right: 82px;
+    }
+    #TrashActive {
+        cursor: pointer;
+        position: absolute;
+        top: 624px;
+        right: 355px;
     }
     #imgDownloadMax {
         opacity: 0.5;
@@ -409,6 +423,19 @@
                         top: 10px;
                         right: 89px;
                         cursor: pointer;
+                    }
+                    .iconFavTopFiveActive {
+                        position: absolute;
+                        top: 10px;
+                        right: 89px;
+                        cursor: pointer;
+                        border: 1px solid $color-white;
+                        border-radius: 6px;
+                        background: $color-white;
+                        padding: 6px;
+                        width: 32px;
+                        height: 32px;
+                        opacity: 0.7;
                     }
                     .iconDowTopFive {
                         position: absolute;

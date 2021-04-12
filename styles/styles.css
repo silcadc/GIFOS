@@ -1148,11 +1148,27 @@ header nav #menu .btnsNavigations:hover {
   right: 73px;
 }
 
+#containerMaxGifs #Trash {
+  cursor: pointer;
+  position: absolute;
+  width: 40px;
+  height: 33px;
+  top: 624px;
+  right: 352px;
+}
+
 #containerMaxGifs #favoriteActive {
   cursor: pointer;
   position: absolute;
   top: 420px;
   right: 82px;
+}
+
+#containerMaxGifs #TrashActive {
+  cursor: pointer;
+  position: absolute;
+  top: 624px;
+  right: 355px;
 }
 
 #containerMaxGifs #imgDownloadMax {
@@ -1351,6 +1367,19 @@ header nav #menu .btnsNavigations:hover {
     top: 10px;
     right: 89px;
     cursor: pointer;
+  }
+  #firstSection .gifosContainer .gifosInTopFive .filterPurpleTopFive .iconFavTopFiveActive {
+    position: absolute;
+    top: 10px;
+    right: 89px;
+    cursor: pointer;
+    border: 1px solid #FFFFFF;
+    border-radius: 6px;
+    background: #FFFFFF;
+    padding: 6px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.7;
   }
   #firstSection .gifosContainer .gifosInTopFive .filterPurpleTopFive .iconDowTopFive {
     position: absolute;
