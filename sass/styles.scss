@@ -190,7 +190,7 @@
     height: 100%;
     background-color: $color-white;
     opacity: 90%;
-    #imgMaxSize{
+    .imgMaxSize{
         width: 318px;
         height: 245px;
         position: absolute;
@@ -228,13 +228,14 @@
         top: 414px;
         right: 73px;
     }
-    #Trash {
+    .iconTrashMyGifos {
+        opacity: 0.5;
+        border: 1px solid #9CAFC3;
+        border-radius: 6px;
         cursor: pointer;
         position: absolute;
-        width: 40px;
-        height: 33px;
-        top: 624px;
-        right: 352px;
+        top: 414px;
+        right: 82px;
     }
     #favoriteActive {
         cursor: pointer;
@@ -585,7 +586,7 @@
     }
     #containerMaxGifs {
         opacity: 100%;
-        #imgMaxSize{
+        .imgMaxSize{
             width: 60%;
             height: 60%;
             position: absolute;
@@ -618,6 +619,29 @@
         #imgDownloadMax {
             top: 83%;
             right: 20%;
+            cursor: pointer;
+        }
+        .Trash {
+            cursor: pointer;
+            position: absolute;
+            width: 40px;
+            height: 33px;
+            top: 624px;
+            right: 352px;
+            opacity: 1;
+            border: unset;
+            border-radius: 0;
+        }
+        .btnSliderLeftMax {
+            position: absolute;
+            left: 138px;
+            top: 350px;
+            cursor: pointer;
+        }
+        .btnSliderRightMax {
+            position: absolute;
+            right: 151px;
+            top: 350px;
             cursor: pointer;
         }
     }

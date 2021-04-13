@@ -265,6 +265,7 @@ let structureGifosTrend = (apiResponseList) => {
     })
 
     //la siguiente function corresponde al evento click sobre la imagen en first mobile  
+    //el fin es mostrar el Gifo en tamaño maximo
     let imgNewGifos = document.querySelectorAll("#newGifos > div > img") 
     imgNewGifos.forEach(imgGifosTrend => {
         imgGifosTrend.addEventListener("click", () => {
@@ -272,7 +273,8 @@ let structureGifosTrend = (apiResponseList) => {
         })
     })
 
-    //la siguiente function corresponde al evento click sobre el boton icon-max desktop      
+    //la siguiente function corresponde al evento click sobre el boton icon-max desktop   
+    //el fin es mostrar el Gifo en tamaño maximo
     let iconsMax = document.querySelectorAll(".iconMax")
     iconsMax.forEach(iconMax => {
         iconMax.addEventListener("click", () => {
@@ -299,7 +301,7 @@ let structureGifosTrend = (apiResponseList) => {
             }
             arrayFavorite.push(idAttribute);
             sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
-            let textToSearch = localStorage.getItem("textToSearch")
+            let textToSearch = sessionStorage.getItem("textToSearch")
             getGifos(textToSearch)
         })
     })
@@ -322,7 +324,8 @@ let structureGifosTrend = (apiResponseList) => {
             if (indexArray > -1) {
                 arrayFavorite.splice(indexArray, 1);
                 sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
-                getGifos()
+                let textToSearch = sessionStorage.getItem("textToSearch")
+                getGifos(textToSearch)
             }
         })
     })
@@ -365,21 +368,21 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
         structureGifosTrend(apiResponseList);   
     })
 
-//La siguiente función muestra cada Gifo en tamaño maximo
-let functionMaximumGifs = (text) => { 
+//La siguiente función muestra cada Gifo clikeado en tamaño maximo
+let functionMaximumGifs = (element) => { 
     if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
         //-----------------------------------------------------//
         arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));
         //-----------------------------------------------------//
     }
 
-    let brotherMax = text.nextSibling
+    let brotherMax = element.nextSibling
     let lastChildOfFather = brotherMax.lastChild
     let h3 = lastChildOfFather
     let h2 = h3.previousSibling
 
     let isFavorite = false;
-    let idGifos = text.getAttribute("id")
+    let idGifos = element.getAttribute("id")
     for (i=0; i<arrayFavorite.length; i++) {
         if (idGifos === arrayFavorite[i]) {
             isFavorite = true;
@@ -387,15 +390,29 @@ let functionMaximumGifs = (text) => {
     }
 
     let containerMaxGifs = document.querySelector("#containerMaxGifs")
+        
     let containerImage = document.createElement("img")
 
-    const anchor = document.createElement("a");
-    const href = document.createAttribute("href");
+    let anchor = document.createElement("a");
+    let href = document.createAttribute("href");
 
     let imgCross = document.createElement("img")
     let imgFavorite = document.createElement("img")
     let favoriteActive = document.createElement("img")
     let imgDownload = document.createElement("img")
+
+    let titleGifos = document.createElement("h2")
+    const user = document.createElement("h3")
+
+    let btnSliderLeft = document.createElement("bottom")
+    let btnSliderLeftDark = document.createElement("bottom")
+    let btnSliderRight = document.createElement("bottom")
+    let btnSliderRightDark = document.createElement("bottom")
+
+    let imgLeft = document.createElement("img")
+    let imgLeftDark = document.createElement("img")
+    let imgRight = document.createElement("img")
+    let imgRightDark = document.createElement("img")
 
     if (isDark == true) {
         containerMaxGifs.style.background = "#000000";
@@ -414,8 +431,9 @@ let functionMaximumGifs = (text) => {
     anchor.setAttribute("id", "anchorDownload")
     //anchor.setAttribute("target", "_blank")
 
-    containerImage.src = text.src
-    containerImage.setAttribute("id", "imgMaxSize")
+    containerImage.src = element.src
+    containerImage.setAttribute("id", idGifos)
+    containerImage.setAttribute("class", "imgMaxSize")
 
     imgFavorite.src = '../assets/icon-fav-hover.svg';
     imgFavorite.setAttribute("id", "imgFavoriteMax");
@@ -435,12 +453,18 @@ let functionMaximumGifs = (text) => {
     imgDownload.src = '../assets/icon-download-hover.svg';
     imgDownload.setAttribute("id", "imgDownloadMax")
 
-    const titleGifos = document.createElement("h2")
+    imgLeft.src = '../assets/button-slider-left.svg';
+    imgLeftDark.src = '../assets/button-slider-left-md-noct.svg';
+    imgRight.src = '../assets/Button-Slider-right.svg';
+    imgRightDark.src = '../assets/button-slider-right-md-noct.svg';
+
+    btnSliderLeft.setAttribute("class", "btnSliderLeftMax");
+    btnSliderLeftDark.setAttribute("class", "btnSliderLeftMax off");
+    btnSliderRight.setAttribute("class", "btnSliderRightMax");
+    btnSliderRightDark.setAttribute("class", "btnSliderRightMax off");
+    
     titleGifos.textContent = h2.innerText
-    const user = document.createElement("h3")
     user.textContent = h3.innerText
-    document.querySelector("#containerMaxGifs").appendChild(titleGifos)
-    document.querySelector("#containerMaxGifs").appendChild(user)
 
     anchor.appendChild(containerImage)
     containerMaxGifs.appendChild(anchor)
@@ -448,6 +472,17 @@ let functionMaximumGifs = (text) => {
     containerMaxGifs.appendChild(imgFavorite)
     containerMaxGifs.appendChild(favoriteActive)
     containerMaxGifs.appendChild(imgDownload)
+    containerMaxGifs.appendChild(titleGifos)
+    containerMaxGifs.appendChild(user)
+
+    containerMaxGifs.appendChild(btnSliderLeft)
+    containerMaxGifs.appendChild(btnSliderLeftDark)
+    containerMaxGifs.appendChild(btnSliderRight)
+    containerMaxGifs.appendChild(btnSliderRightDark)
+    btnSliderLeft.appendChild(imgLeft)
+    btnSliderLeftDark.appendChild(imgLeftDark)
+    btnSliderRight.appendChild(imgRight)
+    btnSliderRightDark.appendChild(imgRightDark)
 
     document.querySelector("#containerMaxGifs").style.display = "block"
 
@@ -455,7 +490,7 @@ let functionMaximumGifs = (text) => {
     crossMax.addEventListener("click", () => {
         containerMaxGifs.innerHTML = ""
         document.querySelector("#containerMaxGifs").style.display = "none";
-        let textToSearch = localStorage.getItem("textToSearch")
+        let textToSearch = sessionStorage.getItem("textToSearch")
         getGifos(textToSearch);
         structureGifosTrend(apiResponseList);
     })
@@ -481,7 +516,27 @@ let functionMaximumGifs = (text) => {
             sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
         }
     })
+    //Funcionamiento de botones slider en tamaño maximo del Gifo
+    let btnSliderRightMax = document.querySelector(".btnSliderRightMax")
+    btnSliderRightMax.addEventListener("click", () => {
+        let fatherBtn = btnSliderRightMax.parentNode
+        let brotherOfFather = fatherBtn.previousSibling.previousSibling
+        let lastChildOfBrother = brotherOfFather.lastElementChild
+        let lastChildOfLastChild = lastChildOfBrother.lastChild
+        console.log(lastChildOfLastChild)
+        
+    
+    })
 }
+
+// let iconsMax = document.querySelectorAll(".iconMax")
+//     iconsMax.forEach(iconMax => {
+//         iconMax.addEventListener("click", () => {
+//             let parentIconMax = iconMax.parentNode
+//             let brotherParentIconMax = parentIconMax.previousSibling
+//             functionMaximumGifs(brotherParentIconMax);
+//         })
+//     })
 
 let changesLogosHeader = () => {
     if (window.screen.width > 768) {

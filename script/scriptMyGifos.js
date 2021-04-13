@@ -111,8 +111,7 @@ let functionMaxMyGifos = (text) => {
     containerImage.setAttribute("id", "imgMaxSize")
     
     iconTrashMyGifos.src = '/assets/icon-trash-normal.svg';
-    iconTrashMyGifos.setAttribute("class", "iconTrashMyGifos");
-    iconTrashMyGifos.setAttribute("id", "Trash");
+    iconTrashMyGifos.setAttribute("class", "iconTrashMyGifos Trash");
 
     iconTrashMyGifosActive.src = '/assets/icon-trash-hover.svg';
     iconTrashMyGifosActive.setAttribute("class", "iconTrashMyGifos off");
@@ -141,7 +140,7 @@ let functionMaxMyGifos = (text) => {
     crossMax.addEventListener("click", () => {
         containerMaxGifs.innerHTML = ""
         document.querySelector("#containerMaxGifs").style.display = "none";
-        let textToSearch = localStorage.getItem("textToSearch")
+        let textToSearch = sessionStorage.getItem("textToSearch")
         getGifos(textToSearch);
         structureGifosTrend(apiResponseList);
     })
@@ -261,7 +260,16 @@ getGifos = async () => {
     document.querySelector(".noContent").classList.add("off");
     document.querySelector(".noContentText").classList.add("off");
     showButtonsMoreInFavorite() 
-    //la siguiente function corresponde al evento click sobre el boton icon-max desktop      
+    //la siguiente function corresponde al evento click sobre Gifo creado - Mobile     
+    //el fin es mostrar el Gifo en tamaño maximo     
+    let myGifosCheck = document.querySelectorAll(".myGifosCheck")
+    myGifosCheck.forEach(myGifo => {
+        myGifo.addEventListener("click", () => {
+                functionMaxMyGifos(myGifo);
+        })
+    })
+    //la siguiente function corresponde al evento click sobre el boton icon-max desktop     
+    //el fin es mostrar el Gifo en tamaño maximo     
     let iconMaxMyGifos = document.querySelectorAll(".iconMaxMyGifos")
     iconMaxMyGifos.forEach(maxMyGifos => {
         maxMyGifos.addEventListener("click", () => {

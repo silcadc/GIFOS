@@ -122,7 +122,18 @@ const getGifos = (text) => {
                 document.querySelector(".noContent").classList.add("off");
                 document.querySelector(".noContentText").classList.add("off");
                 showButtonsMoreInFavorite()
-                //la siguiente function corresponde al evento click sobre el boton icon-max desktop      
+                //la siguiente function corresponde al evento click sobre el Gifo - Mobile     
+                //el fin es mostrar el Gifo en tamaño maximo 
+                let favoritesGifosCheck = document.querySelectorAll(".favoritesGifosCheck")
+                favoritesGifosCheck.forEach(favoGifo => {
+                    favoGifo.addEventListener("click", () => {
+                        console.log(favoGifo)
+                        functionMaximumGifs(favoGifo);
+                        console.log(favoGifo)
+                    })
+                })
+                //la siguiente function corresponde al evento click sobre el boton icon-max desktop  
+                //el fin es mostrar el Gifo en tamaño maximo    
                 let iconMaxFavoGifos = document.querySelectorAll(".iconMaxFavoGifos")
                 iconMaxFavoGifos.forEach(iconMaxFavos => {
                     iconMaxFavos.addEventListener("click", () => {

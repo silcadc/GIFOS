@@ -769,6 +769,20 @@ header nav #menu .btnsNavigations:hover {
   border-bottom: 3px solid #50E3C2;
 }
 
+header nav #menu .grayFavorite {
+  color: #9CAFC3;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+header nav #menu .grayMyGifos {
+  color: #9CAFC3;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+
 /*----------------------------*/
 /*     DARK MODE - HEADER     */
 /*----------------------------*/
@@ -812,6 +826,18 @@ header nav #menu .btnsNavigations:hover {
   header nav #menu .btnsNavigations hr {
     display: none;
   }
+  header nav #menu .grayFavorite {
+    color: #9CAFC3;
+  }
+  header nav #menu .grayFavorite:hover {
+    border-bottom: unset;
+  }
+  header nav #menu .grayMyGifos {
+    color: #9CAFC3;
+  }
+  header nav #menu .grayMyGifos:hover {
+    border-bottom: unset;
+  }
   /*----------------------------*/
   /*     DARK MODE - HEADER     */
   /*----------------------------*/
@@ -826,6 +852,18 @@ header nav #menu .btnsNavigations:hover {
   }
   .dark nav #menu .btnsNavigations hr {
     display: none;
+  }
+  .dark nav #menu .grayFavorite {
+    color: #9CAFC3;
+  }
+  .dark nav #menu .grayFavorite:hover {
+    border-bottom: unset;
+  }
+  .dark nav #menu .grayMyGifos {
+    color: #9CAFC3;
+  }
+  .dark nav #menu .grayMyGifos:hover {
+    border-bottom: unset;
   }
 }
 
@@ -1103,7 +1141,7 @@ header nav #menu .btnsNavigations:hover {
   opacity: 90%;
 }
 
-#containerMaxGifs #imgMaxSize {
+#containerMaxGifs .imgMaxSize {
   width: 318px;
   height: 245px;
   position: absolute;
@@ -1148,13 +1186,14 @@ header nav #menu .btnsNavigations:hover {
   right: 73px;
 }
 
-#containerMaxGifs #Trash {
+#containerMaxGifs .iconTrashMyGifos {
+  opacity: 0.5;
+  border: 1px solid #9CAFC3;
+  border-radius: 6px;
   cursor: pointer;
   position: absolute;
-  width: 40px;
-  height: 33px;
-  top: 624px;
-  right: 352px;
+  top: 414px;
+  right: 82px;
 }
 
 #containerMaxGifs #favoriteActive {
@@ -1524,7 +1563,7 @@ header nav #menu .btnsNavigations:hover {
   #containerMaxGifs {
     opacity: 100%;
   }
-  #containerMaxGifs #imgMaxSize {
+  #containerMaxGifs .imgMaxSize {
     width: 60%;
     height: 60%;
     position: absolute;
@@ -1557,6 +1596,29 @@ header nav #menu .btnsNavigations:hover {
   #containerMaxGifs #imgDownloadMax {
     top: 83%;
     right: 20%;
+    cursor: pointer;
+  }
+  #containerMaxGifs .Trash {
+    cursor: pointer;
+    position: absolute;
+    width: 40px;
+    height: 33px;
+    top: 624px;
+    right: 352px;
+    opacity: 1;
+    border: unset;
+    border-radius: 0;
+  }
+  #containerMaxGifs .btnSliderLeftMax {
+    position: absolute;
+    left: 138px;
+    top: 350px;
+    cursor: pointer;
+  }
+  #containerMaxGifs .btnSliderRightMax {
+    position: absolute;
+    right: 151px;
+    top: 350px;
     cursor: pointer;
   }
   /*----------------------------*/

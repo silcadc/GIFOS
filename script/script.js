@@ -23,7 +23,7 @@ const changePositionCross = document.querySelectorAll(".search")
 const clickMagnifying = document.querySelector("#magnifying")
 const clickMagniDark = document.querySelector("#magniDark")
 
-localStorage.setItem("textToSearch", "");
+sessionStorage.setItem("textToSearch", "");
 
 /*------------------------------------------*/
 /*   CLICK - GIFOS FINDER - FIRST SECTION   */
@@ -226,7 +226,7 @@ const getGifos = async (textToSearch) => {
     const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${textToSearch}`)
     const responseFromApi = await response.json()
     gifosContainer.innerHTML = ""
-    localStorage.setItem("textToSearch", textToSearch);
+    sessionStorage.setItem("textToSearch", textToSearch);
     for (let i = 0; i < responseFromApi.pagination.count; i++)
     {
         if (i > amount) {break}
@@ -329,7 +329,17 @@ const getGifos = async (textToSearch) => {
             iconMaxTopFive.src = './assets/icon-max-normal.svg'
         })
     }
-    //la siguiente function corresponde al evento click sobre el boton icon-max desktop      
+    //la siguiente function corresponde al evento click sobre el Gifo - Mobile  
+    //el fin es mostrar el Gifo en tamaño maximo    
+    let showGifos = document.querySelectorAll(".showGifos")
+    showGifos.forEach(showGif => {
+        showGif.addEventListener("click", () => {
+            functionMaximumGifs(showGif);
+        })
+    })
+
+    //la siguiente function corresponde al evento click sobre el boton icon-max desktop  
+    //el fin es mostrar el Gifo en tamaño maximo    
     let iconsMaxPrincipalPage = document.querySelectorAll(".iconMaxTopFive")
     iconsMaxPrincipalPage.forEach(iconMaxPrincipal => {
         iconMaxPrincipal.addEventListener("click", () => {
@@ -358,11 +368,12 @@ const getGifos = async (textToSearch) => {
                 arrayFavorite.push(idAttriTop);
             }
             sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
-            let textToSearch = localStorage.getItem("textToSearch")
+            let textToSearch = sessionStorage.getItem("textToSearch")
             getGifos(textToSearch)
         })
     })
-    //la siguiente function es para eliminar el icono de favoritos de los gifos y por ende de la lista de favoritos
+    //la siguiente function es para eliminar el icono de favoritos de los gifos y 
+    //por ende de la lista de favoritos
     let iconFavTopFiveActive = document.querySelectorAll(".iconFavTopFiveActive")
     iconFavTopFiveActive.forEach(iconTopActive => {
         iconTopActive.addEventListener("click", () => {
@@ -381,7 +392,7 @@ const getGifos = async (textToSearch) => {
             if (indexArrayTop > -1) {
                 arrayFavorite.splice(indexArrayTop, 1);
                 sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
-                let textToSearch = localStorage.getItem("textToSearch")
+                let textToSearch = sessionStorage.getItem("textToSearch")
                 getGifos(textToSearch)
             }
         })

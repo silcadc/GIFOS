@@ -175,8 +175,8 @@ darkMode.addEventListener("click", () => {
 
 changeModeStyle("repaintStyles")
 
-if (window.localStorage.getItem("mygifos")) {
-     myGifos = JSON.parse(window.localStorage.getItem("mygifos"))
+if (window.sessionStorage.getItem("mygifos")) {
+     myGifos = JSON.parse(window.sessionStorage.getItem("mygifos"))
 }
 
 const getStream = () => {
@@ -232,7 +232,7 @@ const uploadGif = async () => {
     })
     const responseJson = await response.json()
     myGifos.push(responseJson.data.id)
-    window.localStorage.setItem('mygifos', JSON.stringify(myGifos))
+    window.sessionStorage.setItem('mygifos', JSON.stringify(myGifos))
     purpleFilterCreate.classList.add('off');
     upSuccess.classList.remove('off');
 }

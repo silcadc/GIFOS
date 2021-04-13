@@ -46,6 +46,12 @@ header {
             .btnsNavigations:hover  {
                 border-bottom: 3px solid $color-aqua;
             }
+            .grayFavorite {
+                @include generals_font($color: $color-linegrey);
+            }
+            .grayMyGifos {
+                @include generals_font($color: $color-linegrey);
+            }
         }    
     }   
 }
@@ -95,6 +101,18 @@ header {
                         display: none;
                     }
                 }
+                .grayFavorite {
+                    color: $color-linegrey;
+                }
+                .grayFavorite:hover {
+                    border-bottom: unset;
+                }
+                .grayMyGifos {
+                    color: $color-linegrey;
+                }
+                .grayMyGifos:hover {
+                    border-bottom: unset;
+                }
             }    
         }  
     }
@@ -114,6 +132,18 @@ header {
                     hr {
                         display: none;
                     }
+                }
+                .grayFavorite {
+                    color: $color-linegrey;
+                }
+                .grayFavorite:hover {
+                    border-bottom: unset;
+                }
+                .grayMyGifos {
+                    color: $color-linegrey;
+                }
+                .grayMyGifos:hover {
+                    border-bottom: unset;
                 }
             }    
         }
