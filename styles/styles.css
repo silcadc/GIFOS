@@ -42,7 +42,7 @@ body {
   line-height: 33px;
 }
 
-#footer #footerShare, #footer #footerCopyright, .dark #footer #footerShare, #firstSection #gifosFinder ::placeholder, #trends #latestGifos, #containerMaxGifs h3, .dark #trends #latestGifos, .dark #containerMaxGifs h3 {
+#footer #footerShare, #footer #footerCopyright, .dark #footer #footerShare, #firstSection #gifosFinder ::placeholder, #firstSection #gifosFinder .searchAutocomplete li, #trends #latestGifos, #containerMaxGifs h3, .dark #trends #latestGifos, .dark #containerMaxGifs h3 {
   color: #000000;
   font-weight: 400;
   font-family: "Roboto", sans-serif;
@@ -972,15 +972,21 @@ header nav #menu .grayMyGifos {
 #firstSection #gifosFinder {
   text-align: center;
   cursor: pointer;
-}
-
-#firstSection #gifosFinder #searchGifos {
   background: #FFFFFF;
   border: 1px solid #572EE5;
   border-radius: 27px;
   width: 334px;
   height: 50px;
-  padding-left: 60px;
+  margin: auto;
+}
+
+#firstSection #gifosFinder #searchGifos {
+  background: #FFFFFF;
+  border: 1px solid transparent;
+  border-radius: 27px;
+  width: 300px;
+  height: 45px;
+  padding-left: 35px;
 }
 
 #firstSection #gifosFinder ::placeholder {
@@ -993,7 +999,7 @@ header nav #menu .grayMyGifos {
   height: 20px;
   position: relative;
   right: 12%;
-  top: 30%;
+  top: 21%;
 }
 
 #firstSection #gifosFinder .searchToTerm {
@@ -1002,6 +1008,19 @@ header nav #menu .grayMyGifos {
   position: absolute;
   right: 12%;
   top: 10.5rem;
+}
+
+#firstSection #gifosFinder .searchAutocomplete {
+  position: relative;
+  left: 34px;
+  bottom: 11px;
+}
+
+#firstSection #gifosFinder .searchAutocomplete li {
+  list-style-image: url("/assets/icon-search-modo-noct.svg");
+  font-size: 16px;
+  color: #9CAFC3;
+  text-align: left;
 }
 
 #firstSection #trending {
@@ -1231,9 +1250,14 @@ header nav #menu .grayMyGifos {
   font-family: "Montserrat", sans-serif;
 }
 
-.dark #firstSection #gifosFinder #searchGifos {
+.dark #firstSection #gifosFinder {
   background: #37383C;
   border: 1px solid #FFFFFF;
+}
+
+.dark #firstSection #gifosFinder #searchGifos {
+  background: #37383C;
+  border: 1px solid #37383C;
 }
 
 .dark #firstSection #gifosFinder .search {
@@ -1343,10 +1367,13 @@ header nav #menu .grayMyGifos {
   #firstSection .ilustra_header {
     width: 27rem;
   }
-  #firstSection #gifosFinder #searchGifos {
-    width: 35rem;
+  #firstSection #gifosFinder {
+    width: 600px;
     height: 50px;
-    padding-left: 60px;
+  }
+  #firstSection #gifosFinder #searchGifos {
+    width: 32rem;
+    height: 48px;
   }
   #firstSection #gifosFinder .search {
     position: relative;
@@ -1625,10 +1652,10 @@ header nav #menu .grayMyGifos {
   /*         DARK MODE          */
   /*----------------------------*/
   .dark #firstSection #gifosFinder .search {
-    top: 12.2%;
+    top: 4%;
   }
   .dark #firstSection #gifosFinder .searchToTerm {
-    top: 7.2%;
+    top: 8%;
   }
   .dark #firstSection #trending {
     margin: 0;

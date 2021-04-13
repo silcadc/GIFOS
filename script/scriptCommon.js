@@ -370,6 +370,7 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
 
 //La siguiente función muestra cada Gifo clikeado en tamaño maximo
 let functionMaximumGifs = (element) => { 
+    console.log(element)
     if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
         //-----------------------------------------------------//
         arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));
@@ -403,16 +404,6 @@ let functionMaximumGifs = (element) => {
 
     let titleGifos = document.createElement("h2")
     const user = document.createElement("h3")
-
-    let btnSliderLeft = document.createElement("bottom")
-    let btnSliderLeftDark = document.createElement("bottom")
-    let btnSliderRight = document.createElement("bottom")
-    let btnSliderRightDark = document.createElement("bottom")
-
-    let imgLeft = document.createElement("img")
-    let imgLeftDark = document.createElement("img")
-    let imgRight = document.createElement("img")
-    let imgRightDark = document.createElement("img")
 
     if (isDark == true) {
         containerMaxGifs.style.background = "#000000";
@@ -452,16 +443,6 @@ let functionMaximumGifs = (element) => {
 
     imgDownload.src = '../assets/icon-download-hover.svg';
     imgDownload.setAttribute("id", "imgDownloadMax")
-
-    imgLeft.src = '../assets/button-slider-left.svg';
-    imgLeftDark.src = '../assets/button-slider-left-md-noct.svg';
-    imgRight.src = '../assets/Button-Slider-right.svg';
-    imgRightDark.src = '../assets/button-slider-right-md-noct.svg';
-
-    btnSliderLeft.setAttribute("class", "btnSliderLeftMax");
-    btnSliderLeftDark.setAttribute("class", "btnSliderLeftMax off");
-    btnSliderRight.setAttribute("class", "btnSliderRightMax");
-    btnSliderRightDark.setAttribute("class", "btnSliderRightMax off");
     
     titleGifos.textContent = h2.innerText
     user.textContent = h3.innerText
@@ -475,15 +456,43 @@ let functionMaximumGifs = (element) => {
     containerMaxGifs.appendChild(titleGifos)
     containerMaxGifs.appendChild(user)
 
-    containerMaxGifs.appendChild(btnSliderLeft)
-    containerMaxGifs.appendChild(btnSliderLeftDark)
-    containerMaxGifs.appendChild(btnSliderRight)
-    containerMaxGifs.appendChild(btnSliderRightDark)
-    btnSliderLeft.appendChild(imgLeft)
-    btnSliderLeftDark.appendChild(imgLeftDark)
-    btnSliderRight.appendChild(imgRight)
-    btnSliderRightDark.appendChild(imgRightDark)
+    if (window.screen.width > 768) {
+        let btnSliderLeft = document.createElement("bottom")
+        let btnSliderLeftDark = document.createElement("bottom")
+        let btnSliderRight = document.createElement("bottom")
+        let btnSliderRightDark = document.createElement("bottom")
+    
+        let imgLeft = document.createElement("img")
+        let imgLeftDark = document.createElement("img")
+        let imgRight = document.createElement("img")
+        let imgRightDark = document.createElement("img")
 
+        imgLeft.src = '../assets/button-slider-left.svg';
+        imgLeftDark.src = '../assets/button-slider-left-md-noct.svg';
+        imgRight.src = '../assets/Button-Slider-right.svg';
+        imgRightDark.src = '../assets/button-slider-right-md-noct.svg';
+
+        btnSliderLeft.setAttribute("class", "btnSliderLeftMax");
+        btnSliderLeftDark.setAttribute("class", "btnSliderLeftMax off");
+        btnSliderRight.setAttribute("class", "btnSliderRightMax");
+        btnSliderRightDark.setAttribute("class", "btnSliderRightMax off");
+        if (isDark === true) {
+            btnSliderLeft.setAttribute("class", "btnSliderLeftMax off");
+            btnSliderLeftDark.setAttribute("class", "btnSliderLeftMax");
+            btnSliderRight.setAttribute("class", "btnSliderRightMax off");
+            btnSliderRightDark.setAttribute("class", "btnSliderRightMax");
+        }
+
+        containerMaxGifs.appendChild(btnSliderLeft)
+        containerMaxGifs.appendChild(btnSliderLeftDark)
+        containerMaxGifs.appendChild(btnSliderRight)
+        containerMaxGifs.appendChild(btnSliderRightDark)
+        btnSliderLeft.appendChild(imgLeft)
+        btnSliderLeftDark.appendChild(imgLeftDark)
+        btnSliderRight.appendChild(imgRight)
+        btnSliderRightDark.appendChild(imgRightDark)
+    }
+    
     document.querySelector("#containerMaxGifs").style.display = "block"
 
     const crossMax = document.getElementById("imgCrossMax")
@@ -516,27 +525,32 @@ let functionMaximumGifs = (element) => {
             sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
         }
     })
+
     //Funcionamiento de botones slider en tamaño maximo del Gifo
-    let btnSliderRightMax = document.querySelector(".btnSliderRightMax")
+    let btnSliderRightMax = document.querySelector(".btnSliderRightMax")      
     btnSliderRightMax.addEventListener("click", () => {
         let fatherBtn = btnSliderRightMax.parentNode
+        let childOfFatherBtn = fatherBtn.firstChild
+        let imgFatherBtn = childOfFatherBtn.firstChild
+        let idOfImg = imgFatherBtn.getAttribute("id")
         let brotherOfFather = fatherBtn.previousSibling.previousSibling
         let lastChildOfBrother = brotherOfFather.lastElementChild
         let lastChildOfLastChild = lastChildOfBrother.lastChild
-        console.log(lastChildOfLastChild)
-        
-    
+        let allChild = lastChildOfLastChild.childNodes
+
+        allChild.forEach(child => {
+            let imgForEachChild = child.firstChild
+            let idNextImg = imgForEachChild.getAttribute("id")
+            if (idNextImg === idOfImg){
+                let fatherImage = imgForEachChild.parentNode
+                let nextBrother = fatherImage.nextSibling
+                let firstChildImg = nextBrother.firstChild
+                console.log(firstChildImg)
+                functionMaximumGifs(firstChildImg)
+            }
+        })
     })
 }
-
-// let iconsMax = document.querySelectorAll(".iconMax")
-//     iconsMax.forEach(iconMax => {
-//         iconMax.addEventListener("click", () => {
-//             let parentIconMax = iconMax.parentNode
-//             let brotherParentIconMax = parentIconMax.previousSibling
-//             functionMaximumGifs(brotherParentIconMax);
-//         })
-//     })
 
 let changesLogosHeader = () => {
     if (window.screen.width > 768) {

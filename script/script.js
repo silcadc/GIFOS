@@ -25,6 +25,10 @@ const clickMagniDark = document.querySelector("#magniDark")
 
 sessionStorage.setItem("textToSearch", "");
 
+const formSearch = document.querySelector(".formSearch")
+const inputSearch = document.querySelector(".formSearch > input")
+const imgSearch = document.querySelector(".formSearch > imgSearch")
+const searchAutocomplete = document.querySelector(".searchAutocomplete")
 /*------------------------------------------*/
 /*   CLICK - GIFOS FINDER - FIRST SECTION   */
 /*------------------------------------------*/
@@ -37,6 +41,32 @@ crossMagnifying.addEventListener("click", () => {
     crossMagnifying.classList.add("off")
     document.querySelector("#magnifying").classList.remove("off")
 })
+
+/*----------------------------*/
+/*        AUTOCOMPLETE        */
+/*----------------------------*/
+const searchSuggestions = async term => {
+    const response = await fetch(`https://api.giphy.com/v1/gifs/search/tags?q=${term}&api_key=${API_KEY}`)
+    const responseJson = await response.json()
+    searchAutocomplete.innerHTML = ''
+    responseJson.data.slice(0, 5).forEach(suggest => {
+        const item = document.createElement('li')
+        item.textContent = suggest.name
+        searchAutocomplete.appendChild(item)
+    })
+    let liAutocomplete = document.querySelectorAll(".searchAutocomplete > li")
+    console.log(liAutocomplete)
+    liAutocomplete.forEach(li => {
+        li.addEventListener('click', () => {
+            let term = li.textContent
+            inputTextToSearch.value = term
+            getGifos(inputTextToSearch.value) 
+            showTermH2()
+            showLineHr()
+            showButtonsMore()
+        })
+    })
+}
 
 /*----------------------------*/
 /*          TRENDING          */
@@ -182,6 +212,15 @@ clickMagnifying.addEventListener("click", () =>{
         hiddenIconAnotherSearch()
         positionCross()
         document.querySelector("#searchGifos").style.marginTop = "50px";
+        searchSuggestions(inputSearch.value)
+        formGifosFinder.style.height = "200px";
+        document.querySelector("#searchGifos").style.margin = "0";
+        document.querySelector("#crossMagnifying").style.right = "18%";
+        document.querySelector("#crossMagnifying").style.top = "20%";
+        if (window.screen.width > 768) {
+            document.querySelector("#crossMagnifying").style.right = "2%";
+            document.querySelector("#crossMagnifying").style.top = "4%";
+        }
     } else {
         showLineHr()
         showIconAnotherSearch()
@@ -199,6 +238,15 @@ clickMagniDark.addEventListener("click", () =>{
         positionCross()
         hiddenIconAnotherSearch()
         document.querySelector("#searchGifos").style.marginTop = "50px";
+        searchSuggestions(inputSearch.value)
+        formGifosFinder.style.height = "200px";
+        document.querySelector("#searchGifos").style.margin = "0";
+        document.querySelector("#crossMagniDark").style.right = "18%";
+        document.querySelector("#crossMagniDark").style.top = "20%";
+        if (window.screen.width > 768) {
+        document.querySelector("#crossMagniDark").style.right = "3%";
+        document.querySelector("#crossMagniDark").style.top = "5%";
+        }
     } else {
         showLineHr()
         showIconAnotherSearch()
@@ -214,12 +262,27 @@ formGifosFinder.addEventListener("submit" , (text) => {
         showButtonsMore()
         hiddenIconAnotherSearch()
         document.querySelector("#searchGifos").style.marginTop = "50px";
+        searchSuggestions(inputSearch.value)
+        formGifosFinder.style.height = "200px";
+        document.querySelector("#searchGifos").style.margin = "0";
+        document.querySelector(".search").style.right = "9%";
+        document.querySelector(".search").style.top = "4%";
+        document.querySelector(".search").style.top = "4%";
+        if (window.screen.width < 768) {
+            document.querySelector("#magniDark").style.top = "4%";
+        }
     } else {
         getGifos(inputTextToSearch.value)
         showTermH2()
         showLineHr()
         showIconAnotherSearch()
     }
+})
+
+inputSearch.addEventListener('keyup', () => {
+    searchSuggestions(inputSearch.value)
+    formGifosFinder.style.height = "200px";
+    document.querySelector("#magnifying").style.top = "4%";
 })
 
 const getGifos = async (textToSearch) => {
@@ -251,39 +314,39 @@ const getGifos = async (textToSearch) => {
         let iconFavTopFive = document.createElement("img");
         iconFavTopFive.src = './assets/icon-fav.svg';
         iconFavTopFive.setAttribute("class", "iconFavTopFive");
-        
+
         let iconFavTopFiveActive = document.createElement("img");
         iconFavTopFiveActive.src = './assets/icon-fav-active.svg';
         iconFavTopFiveActive.setAttribute("class", "iconFavTopFive iconFavTopFiveActive off");
 
         let isFullHeart = arrayOfFavCheck.includes(responseFromApi.data[i].id)
-        if (isFullHeart === true) {               
+        if (isFullHeart === true) {
             iconFavTopFive.setAttribute("class", "iconFavTopFive off");
             iconFavTopFiveActive.setAttribute("class", "iconFavTopFive iconFavTopFiveActive");
         }
-        
+
         let iconDowTopFive = document.createElement("img");
         iconDowTopFive.src = './assets/icon-download.svg';
         iconDowTopFive.setAttribute("class", "iconDowTopFive");
-        
+
         let iconDowTopFiveActive = document.createElement("img");
         iconDowTopFiveActive.src = './assets/icon-download-hover.svg';
         iconDowTopFiveActive.setAttribute("class", "iconDowTopFive off");
-        
+
         let iconMaxTopFive = document.createElement("img");
         iconMaxTopFive.src = './assets/icon-max-normal.svg';
         iconMaxTopFive.setAttribute("class", "iconMaxTopFive");
-        
+
         let iconMaxTopFiveActive = document.createElement("img");
         iconMaxTopFiveActive.src = './assets/icon-max-hover.svg';
         iconMaxTopFiveActive.setAttribute("class", "iconMaxTopFive off");
-        
+
         const titleGifosTopFive = document.createElement("h2")
         titleGifosTopFive.textContent = responseFromApi.data[i].title
-        
+
         const userTopFive = document.createElement("h3")
         userTopFive.textContent = responseFromApi.data[i].username
-    
+
         brotherShowGifos.appendChild(iconFavTopFive)
         brotherShowGifos.appendChild(iconFavTopFiveActive)
         brotherShowGifos.appendChild(iconDowTopFive)
@@ -297,7 +360,7 @@ const getGifos = async (textToSearch) => {
             let fatherOfBrotherShowGifos = imageGifos.parentNode
             fatherOfBrotherShowGifos.addEventListener("mouseover", () => {
                 let purpleBrother = fatherOfBrotherShowGifos.lastChild
-                purpleBrother.classList.remove("off"); 
+                purpleBrother.classList.remove("off");
             })
             fatherOfBrotherShowGifos.addEventListener("mouseleave", () => {
                 let purpleBrother = fatherOfBrotherShowGifos.lastChild
@@ -308,7 +371,7 @@ const getGifos = async (textToSearch) => {
         iconFavTopFive.addEventListener("mouseover", () => {
             iconFavTopFive.src = './assets/icon-fav-hover.svg'
         })
-        
+
         iconFavTopFive.addEventListener("mouseout", () => {
             iconFavTopFive.src = './assets/icon-fav.svg'
         })
@@ -316,7 +379,7 @@ const getGifos = async (textToSearch) => {
         iconDowTopFive.addEventListener("mouseover", () => {
             iconDowTopFive.src = './assets/icon-download-hover.svg'
         })
-        
+
         iconDowTopFive.addEventListener("mouseout", () => {
             iconDowTopFive.src = './assets/icon-download.svg'
         })
@@ -324,13 +387,13 @@ const getGifos = async (textToSearch) => {
         iconMaxTopFive.addEventListener("mouseover", () => {
             iconMaxTopFive.src = './assets/icon-max-hover.svg'
         })
-        
+
         iconMaxTopFive.addEventListener("mouseout", () => {
             iconMaxTopFive.src = './assets/icon-max-normal.svg'
         })
     }
-    //la siguiente function corresponde al evento click sobre el Gifo - Mobile  
-    //el fin es mostrar el Gifo en tamaño maximo    
+    //la siguiente function corresponde al evento click sobre el Gifo - Mobile
+    //el fin es mostrar el Gifo en tamaño maximo
     let showGifos = document.querySelectorAll(".showGifos")
     showGifos.forEach(showGif => {
         showGif.addEventListener("click", () => {
@@ -338,8 +401,8 @@ const getGifos = async (textToSearch) => {
         })
     })
 
-    //la siguiente function corresponde al evento click sobre el boton icon-max desktop  
-    //el fin es mostrar el Gifo en tamaño maximo    
+    //la siguiente function corresponde al evento click sobre el boton icon-max desktop
+    //el fin es mostrar el Gifo en tamaño maximo
     let iconsMaxPrincipalPage = document.querySelectorAll(".iconMaxTopFive")
     iconsMaxPrincipalPage.forEach(iconMaxPrincipal => {
         iconMaxPrincipal.addEventListener("click", () => {
@@ -372,7 +435,7 @@ const getGifos = async (textToSearch) => {
             getGifos(textToSearch)
         })
     })
-    //la siguiente function es para eliminar el icono de favoritos de los gifos y 
+    //la siguiente function es para eliminar el icono de favoritos de los gifos y
     //por ende de la lista de favoritos
     let iconFavTopFiveActive = document.querySelectorAll(".iconFavTopFiveActive")
     iconFavTopFiveActive.forEach(iconTopActive => {
