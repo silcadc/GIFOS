@@ -3,18 +3,14 @@
 /*----------------------------*/
 //base elements
 @import "base/reset";
-@import "base/tipografia";
 //settings and variables
 @import "utilities/variables";
 @import "utilities/functions";
 @import "utilities/mixins";
 //HTML components
-@import "components/botones";
 @import "components/links";
 //components
-@import "layout/grids";
 @import "layout/header";
-@import "layout/navigation";
 @import "layout/footer";
 
 .dark {

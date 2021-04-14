@@ -1017,7 +1017,7 @@ header nav #menu .grayMyGifos {
 }
 
 #firstSection #gifosFinder .searchAutocomplete li {
-  list-style-image: url("../assets/icon-search-modo-noct.svg");
+  list-style-image: url("./assets/icon-search-modo-noct.svg");
   font-size: 16px;
   color: #9CAFC3;
   text-align: left;
