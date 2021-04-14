@@ -378,34 +378,34 @@ btnUpload.addEventListener('click', () => {
 
 //------Icons Media Hover
 facebook.addEventListener("mouseover", () => {
-    facebook.src = '/assets/icon_facebook_hover.svg'
+    facebook.src = '../assets/icon_facebook_hover.svg'
 })
 facebook.addEventListener("mouseout", () => {
-    facebook.src = '/assets/icon_facebook.svg'
+    facebook.src = '../assets/icon_facebook.svg'
 })
 facebookDark.addEventListener("mouseover", () => {
-    facebookDark.src = '/assets/icon_facebook_hover.svg'
+    facebookDark.src = '../assets/icon_facebook_hover.svg'
 })
 facebookDark.addEventListener("mouseout", () => {
-    facebookDark.src = '/assets/icon_facebook_noc.svg'
+    facebookDark.src = '../assets/icon_facebook_noc.svg'
 })
 
 twitter.addEventListener("mouseover", () => {
-    twitter.src = '/assets/icon-twitter-hover.svg'
+    twitter.src = '../assets/icon-twitter-hover.svg'
 })
 twitter.addEventListener("mouseout", () => {
-    twitter.src = '/assets/icon-tw-normal.svg'
+    twitter.src = '../assets/icon-tw-normal.svg'
 })
 
 instagram.addEventListener("mouseover", () => {
-    instagram.src = '/assets/icon_instagram-hover.svg'
+    instagram.src = '../assets/icon_instagram-hover.svg'
 })
 instagram.addEventListener("mouseout", () => {
-    instagram.src = '/assets/icon_instagram.svg'
+    instagram.src = '../assets/icon_instagram.svg'
 })
 instagramDark.addEventListener("mouseover", () => {
-    instagramDark.src = '/assets/icon_instagram-hover.svg'
+    instagramDark.src = '../assets/icon_instagram-hover.svg'
 })
 instagramDark.addEventListener("mouseout", () => {
-    instagramDark.src = '/assets/icon_instagram_noc.svg'
+    instagramDark.src = '../assets/icon_instagram_noc.svg'
 })

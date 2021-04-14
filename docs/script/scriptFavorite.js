@@ -35,27 +35,27 @@ const getGifos = (text) => {
                     savedGifs.appendChild(fatherFavoGifos)
 
                     let iconFavoGifos = document.createElement("img");
-                    iconFavoGifos.src = '/assets/icon-fav.svg';
+                    iconFavoGifos.src = '../assets/icon-fav.svg';
                     iconFavoGifos.setAttribute("class", "iconFavoGifos off");
 
                     let iconFavoGifosActive = document.createElement("img");
-                    iconFavoGifosActive.src = '/assets/icon-fav-active.svg';
+                    iconFavoGifosActive.src = '../assets/icon-fav-active.svg';
                     iconFavoGifosActive.setAttribute("class", "activeStyle");
 
                     let iconDowFavoGifos = document.createElement("img");
-                    iconDowFavoGifos.src = '/assets/icon-download.svg';
+                    iconDowFavoGifos.src = '../assets/icon-download.svg';
                     iconDowFavoGifos.setAttribute("class", "iconDowFavoGifos");
 
                     let iconDowFavoGifosActive = document.createElement("img");
-                    iconDowFavoGifosActive.src = '/assets/icon-download-hover.svg';
+                    iconDowFavoGifosActive.src = '../assets/icon-download-hover.svg';
                     iconDowFavoGifosActive.setAttribute("class", "iconDowFavoGifos off");
 
                     let iconMaxFavoGifos = document.createElement("img");
-                    iconMaxFavoGifos.src = '/assets/icon-max-normal.svg';
+                    iconMaxFavoGifos.src = '../assets/icon-max-normal.svg';
                     iconMaxFavoGifos.setAttribute("class", "iconMaxFavoGifos");
 
                     let iconMaxFavoGifosActive = document.createElement("img");
-                    iconMaxFavoGifosActive.src = '/assets/icon-max-hover.svg';
+                    iconMaxFavoGifosActive.src = '../assets/icon-max-hover.svg';
                     iconMaxFavoGifosActive.setAttribute("class", "iconMaxFavoGifos off");
 
                     const titleFavoGifos = document.createElement("h2")
@@ -86,19 +86,19 @@ const getGifos = (text) => {
                     }
                     //hover iconos download and max
                     iconDowFavoGifos.addEventListener("mouseover", () => {
-                        iconDowFavoGifos.src = '/assets/icon-download-hover.svg'
+                        iconDowFavoGifos.src = '../assets/icon-download-hover.svg'
                     })
                     
                     iconDowFavoGifos.addEventListener("mouseout", () => {
-                        iconDowFavoGifos.src = '/assets/icon-download.svg'
+                        iconDowFavoGifos.src = '../assets/icon-download.svg'
                     })
 
                     iconMaxFavoGifos.addEventListener("mouseover", () => {
-                        iconMaxFavoGifos.src = '/assets/icon-max-hover.svg'
+                        iconMaxFavoGifos.src = '../assets/icon-max-hover.svg'
                     })
                     
                     iconMaxFavoGifos.addEventListener("mouseout", () => {
-                        iconMaxFavoGifos.src = '/assets/icon-max-normal.svg'
+                        iconMaxFavoGifos.src = '../assets/icon-max-normal.svg'
                     })
 
                     //la siguiente function corresponde al evento click sobre el icon-favorite

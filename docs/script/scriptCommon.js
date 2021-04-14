@@ -636,68 +636,68 @@ let changesLogosHeader = () => {
 changesLogosHeader()
 
 btnSliderRight.addEventListener("mouseover", () => {
-    btnSliderRight.src = '/assets/Button-Slider-right-hover.svg'
+    btnSliderRight.src = '../assets/Button-Slider-right-hover.svg'
 })
 
 btnSliderRight.addEventListener("mouseout", () => {
-    btnSliderRight.src = '/assets/Button-Slider-right.svg'
+    btnSliderRight.src = '../assets/Button-Slider-right.svg'
 })
 
 btnSliderLeft.addEventListener("mouseover", () => {
-    btnSliderLeft.src = '/assets/Button-Slider-left-hover.svg'
+    btnSliderLeft.src = '../assets/Button-Slider-left-hover.svg'
 })
 
 btnSliderLeft.addEventListener("mouseout", () => {
-    btnSliderLeft.src = '/assets/button-slider-left.svg'
+    btnSliderLeft.src = '../assets/button-slider-left.svg'
 })
 
 btnSliderRightDark.addEventListener("mouseover", () => {
-    btnSliderRightDark.src = '/assets/Button-Slider-right-hover.svg'
+    btnSliderRightDark.src = '../assets/Button-Slider-right-hover.svg'
 })
 
 btnSliderRightDark.addEventListener("mouseout", () => {
-    btnSliderRightDark.src = '/assets/button-slider-right-md-noct.svg'
+    btnSliderRightDark.src = '../assets/button-slider-right-md-noct.svg'
 })
 
 btnSliderLeftDark.addEventListener("mouseover", () => {
-    btnSliderLeftDark.src = '/assets/Button-Slider-left-hover.svg'
+    btnSliderLeftDark.src = '../assets/Button-Slider-left-hover.svg'
 })
 
 btnSliderLeftDark.addEventListener("mouseout", () => {
-    btnSliderLeftDark.src = '/assets/button-slider-left-md-noct.svg'
+    btnSliderLeftDark.src = '../assets/button-slider-left-md-noct.svg'
 })
 //------Icons Media Hover
 facebook.addEventListener("mouseover", () => {
-    facebook.src = '/assets/icon_facebook_hover.svg'
+    facebook.src = '../assets/icon_facebook_hover.svg'
 })
 facebook.addEventListener("mouseout", () => {
-    facebook.src = '/assets/icon_facebook.svg'
+    facebook.src = '../assets/icon_facebook.svg'
 })
 facebookDark.addEventListener("mouseover", () => {
-    facebookDark.src = '/assets/icon_facebook_hover.svg'
+    facebookDark.src = '../assets/icon_facebook_hover.svg'
 })
 facebookDark.addEventListener("mouseout", () => {
-    facebookDark.src = '/assets/icon_facebook_noc.svg'
+    facebookDark.src = '../assets/icon_facebook_noc.svg'
 })
 
 twitter.addEventListener("mouseover", () => {
-    twitter.src = '/assets/icon-twitter-hover.svg'
+    twitter.src = '../assets/icon-twitter-hover.svg'
 })
 twitter.addEventListener("mouseout", () => {
-    twitter.src = '/assets/icon-tw-normal.svg'
+    twitter.src = '../assets/icon-tw-normal.svg'
 })
 
 instagram.addEventListener("mouseover", () => {
-    instagram.src = '/assets/icon_instagram-hover.svg'
+    instagram.src = '../assets/icon_instagram-hover.svg'
 })
 instagram.addEventListener("mouseout", () => {
-    instagram.src = '/assets/icon_instagram.svg'
+    instagram.src = '../assets/icon_instagram.svg'
 })
 instagramDark.addEventListener("mouseover", () => {
-    instagramDark.src = '/assets/icon_instagram-hover.svg'
+    instagramDark.src = '../assets/icon_instagram-hover.svg'
 })
 instagramDark.addEventListener("mouseout", () => {
-    instagramDark.src = '/assets/icon_instagram_noc.svg'
+    instagramDark.src = '../assets/icon_instagram_noc.svg'
 })
 
 /*------------------------------------------*/
@@ -740,31 +740,31 @@ let changesIconsMedia = () => {
 changesIconsMedia();
 
 iconCreateNormal.addEventListener("mouseover", () => {
-    iconCreateNormal.src = '/assets/CTA-crear-gifo-hover.svg'
+    iconCreateNormal.src = '../assets/CTA-crear-gifo-hover.svg'
 })
 iconCreateNormal.addEventListener("mouseout", () => {
-    iconCreateNormal.src = '/assets/button-crear-gifo.svg'
+    iconCreateNormal.src = '../assets/button-crear-gifo.svg'
 })
 //---------------Dark Mode
 iconCreateNoc.addEventListener("mouseover", () => {
-    iconCreateNoc.src = '/assets/CTA-crear-gifo-hover-modo-noc.svg'
+    iconCreateNoc.src = '../assets/CTA-crear-gifo-hover-modo-noc.svg'
 })
 iconCreateNoc.addEventListener("mouseout", () => {
-    iconCreateNoc.src = '/assets/CTA-crear-gifo-modo-noc.svg'
+    iconCreateNoc.src = '../assets/CTA-crear-gifo-modo-noc.svg'
 })
 
 //Btn See More
 seeMoreEventMouse.addEventListener("mouseover", () => {
-    seeMoreEventMouse.src = '/assets/CTA-ver-mas-hover.svg'
+    seeMoreEventMouse.src = '../assets/CTA-ver-mas-hover.svg'
 })
 seeMoreEventMouse.addEventListener("mouseout", () => {
-    seeMoreEventMouse.src = '/assets/CTA-ver-mas.svg'
+    seeMoreEventMouse.src = '../assets/CTA-ver-mas.svg'
 })
 //---------------Dark Mode
 seeMoreMouse.addEventListener("mouseover", () => {
-    seeMoreMouse.src = '/assets/CTA-ver+hover-modo-noc.svg'
+    seeMoreMouse.src = '../assets/CTA-ver+hover-modo-noc.svg'
 })
 seeMoreMouse.addEventListener("mouseout", () => {
-    seeMoreMouse.src = '/assets/CTA-ver+-modo-noc.svg'
+    seeMoreMouse.src = '../assets/CTA-ver+-modo-noc.svg'
 })
 

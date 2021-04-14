@@ -103,10 +103,10 @@ let functionMaxMyGifos = (text) => {
     containerImage.src = text.src
     containerImage.setAttribute("class", "imgMaxSize")
     
-    iconTrashMyGifos.src = '/assets/icon-trash-normal.svg';
+    iconTrashMyGifos.src = '../assets/icon-trash-normal.svg';
     iconTrashMyGifos.setAttribute("class", "iconTrashMyGifos Trash");
 
-    iconTrashMyGifosActive.src = '/assets/icon-trash-hover.svg';
+    iconTrashMyGifosActive.src = '../assets/icon-trash-hover.svg';
     iconTrashMyGifosActive.setAttribute("class", "iconTrashMyGifos off");
     iconTrashMyGifosActive.setAttribute("id", "TrashActive");
 
@@ -193,27 +193,27 @@ getGifos = async () => {
         savedmyOwnGifs.appendChild(fatherMyGifosCheck)
 
         let iconTrashMyGifos = document.createElement("img");
-        iconTrashMyGifos.src = '/assets/icon-trash-normal.svg';
+        iconTrashMyGifos.src = '../assets/icon-trash-normal.svg';
         iconTrashMyGifos.setAttribute("class", "iconTrashMyGifos");
         
         let iconTrashMyGifosActive = document.createElement("img");
-        iconTrashMyGifosActive.src = '/assets/icon-trash-hover.svg';
+        iconTrashMyGifosActive.src = '../assets/icon-trash-hover.svg';
         iconTrashMyGifosActive.setAttribute("class", "iconTrashMyGifos off");
         
         let iconDowMyGifos = document.createElement("img");
-        iconDowMyGifos.src = '/assets/icon-download.svg';
+        iconDowMyGifos.src = '../assets/icon-download.svg';
         iconDowMyGifos.setAttribute("class", "iconDowMyGifos");
         
         let iconDowMyGifosActive = document.createElement("img");
-        iconDowMyGifosActive.src = '/assets/icon-download-hover.svg';
+        iconDowMyGifosActive.src = '../assets/icon-download-hover.svg';
         iconDowMyGifosActive.setAttribute("class", "iconDowMyGifos off");
         
         let iconMaxMyGifos = document.createElement("img");
-        iconMaxMyGifos.src = '/assets/icon-max-normal.svg';
+        iconMaxMyGifos.src = '../assets/icon-max-normal.svg';
         iconMaxMyGifos.setAttribute("class", "iconMaxMyGifos");
         
         let iconMaxMyGifosActive = document.createElement("img");
-        iconMaxMyGifosActive.src = '/assets/icon-max-hover.svg';
+        iconMaxMyGifosActive.src = '../assets/icon-max-hover.svg';
         iconMaxMyGifosActive.setAttribute("class", "iconMaxMyGifos off");
         
         const titleGifosMyGifos = document.createElement("h2")
@@ -245,27 +245,27 @@ getGifos = async () => {
 
         //hover iconos favorite, download and max
         iconTrashMyGifos.addEventListener("mouseover", () => {
-            iconTrashMyGifos.src = '/assets/icon-trash-hover.svg'
+            iconTrashMyGifos.src = '../assets/icon-trash-hover.svg'
         })
         
         iconTrashMyGifos.addEventListener("mouseout", () => {
-            iconTrashMyGifos.src = '/assets/icon-trash-normal.svg'
+            iconTrashMyGifos.src = '../assets/icon-trash-normal.svg'
         })
 
         iconDowMyGifos.addEventListener("mouseover", () => {
-            iconDowMyGifos.src = '/assets/icon-download-hover.svg'
+            iconDowMyGifos.src = '../assets/icon-download-hover.svg'
         })
         
         iconDowMyGifos.addEventListener("mouseout", () => {
-            iconDowMyGifos.src = '/assets/icon-download.svg'
+            iconDowMyGifos.src = '../assets/icon-download.svg'
         })
 
         iconMaxMyGifos.addEventListener("mouseover", () => {
-            iconMaxMyGifos.src = '/assets/icon-max-hover.svg'
+            iconMaxMyGifos.src = '../assets/icon-max-hover.svg'
         })
         
         iconMaxMyGifos.addEventListener("mouseout", () => {
-            iconMaxMyGifos.src = '/assets/icon-max-normal.svg'
+            iconMaxMyGifos.src = '../assets/icon-max-normal.svg'
         })
     }
     document.querySelector(".noContent").classList.add("off");
