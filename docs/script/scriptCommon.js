@@ -644,7 +644,7 @@ btnSliderRight.addEventListener("mouseout", () => {
 })
 
 btnSliderLeft.addEventListener("mouseover", () => {
-    btnSliderLeft.src = './assets/button-Slider-left-hover.svg'
+    btnSliderLeft.src = './assets/button-slider-left-hover.svg'
 })
 
 btnSliderLeft.addEventListener("mouseout", () => {
@@ -660,7 +660,7 @@ btnSliderRightDark.addEventListener("mouseout", () => {
 })
 
 btnSliderLeftDark.addEventListener("mouseover", () => {
-    btnSliderLeftDark.src = './assets/button-Slider-left-hover.svg'
+    btnSliderLeftDark.src = './assets/button-slider-left-hover.svg'
 })
 
 btnSliderLeftDark.addEventListener("mouseout", () => {
