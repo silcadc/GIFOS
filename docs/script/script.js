@@ -312,11 +312,11 @@ const getGifos = async (textToSearch) => {
         gifosContainer.appendChild(fatherShowGifos)
 
         let iconFavTopFive = document.createElement("img");
-        iconFavTopFive.src = './assets/icon-fav.svg';
+        iconFavTopFive.src = '../assets/icon-fav.svg';
         iconFavTopFive.setAttribute("class", "iconFavTopFive");
 
         let iconFavTopFiveActive = document.createElement("img");
-        iconFavTopFiveActive.src = './assets/icon-fav-active.svg';
+        iconFavTopFiveActive.src = '../assets/icon-fav-active.svg';
         iconFavTopFiveActive.setAttribute("class", "iconFavTopFive iconFavTopFiveActive off");
 
         let isFullHeart = arrayOfFavCheck.includes(responseFromApi.data[i].id)
@@ -326,19 +326,19 @@ const getGifos = async (textToSearch) => {
         }
 
         let iconDowTopFive = document.createElement("img");
-        iconDowTopFive.src = './assets/icon-download.svg';
+        iconDowTopFive.src = '../assets/icon-download.svg';
         iconDowTopFive.setAttribute("class", "iconDowTopFive");
 
         let iconDowTopFiveActive = document.createElement("img");
-        iconDowTopFiveActive.src = './assets/icon-download-hover.svg';
+        iconDowTopFiveActive.src = '../assets/icon-download-hover.svg';
         iconDowTopFiveActive.setAttribute("class", "iconDowTopFive off");
 
         let iconMaxTopFive = document.createElement("img");
-        iconMaxTopFive.src = './assets/icon-max-normal.svg';
+        iconMaxTopFive.src = '../assets/icon-max-normal.svg';
         iconMaxTopFive.setAttribute("class", "iconMaxTopFive");
 
         let iconMaxTopFiveActive = document.createElement("img");
-        iconMaxTopFiveActive.src = './assets/icon-max-hover.svg';
+        iconMaxTopFiveActive.src = '../assets/icon-max-hover.svg';
         iconMaxTopFiveActive.setAttribute("class", "iconMaxTopFive off");
 
         const titleGifosTopFive = document.createElement("h2")
@@ -369,27 +369,27 @@ const getGifos = async (textToSearch) => {
         }
         //hover iconos favorite, download and max
         iconFavTopFive.addEventListener("mouseover", () => {
-            iconFavTopFive.src = './assets/icon-fav-hover.svg'
+            iconFavTopFive.src = '../assets/icon-fav-hover.svg'
         })
 
         iconFavTopFive.addEventListener("mouseout", () => {
-            iconFavTopFive.src = './assets/icon-fav.svg'
+            iconFavTopFive.src = '../assets/icon-fav.svg'
         })
 
         iconDowTopFive.addEventListener("mouseover", () => {
-            iconDowTopFive.src = './assets/icon-download-hover.svg'
+            iconDowTopFive.src = '../assets/icon-download-hover.svg'
         })
 
         iconDowTopFive.addEventListener("mouseout", () => {
-            iconDowTopFive.src = './assets/icon-download.svg'
+            iconDowTopFive.src = '../assets/icon-download.svg'
         })
 
         iconMaxTopFive.addEventListener("mouseover", () => {
-            iconMaxTopFive.src = './assets/icon-max-hover.svg'
+            iconMaxTopFive.src = '../assets/icon-max-hover.svg'
         })
 
         iconMaxTopFive.addEventListener("mouseout", () => {
-            iconMaxTopFive.src = './assets/icon-max-normal.svg'
+            iconMaxTopFive.src = '../assets/icon-max-normal.svg'
         })
     }
     //la siguiente function corresponde al evento click sobre el Gifo - Mobile
