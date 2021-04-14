@@ -9,7 +9,7 @@ let showButtonsMoreInFavorite = () => {
 }
 
 const getGifos = (text) => {
-    let arrayFavoriteToString = JSON.parse(sessionStorage.getItem("fullHeart"));
+    let arrayFavoriteToString = JSON.parse(localStorage.getItem("fullHeart"));
     let cantFavorite = arrayFavoriteToString.join(", ");
     if (arrayFavoriteToString.length > 0) {
         /*--------------------------------*/
@@ -114,7 +114,7 @@ const getGifos = (text) => {
                         let indexArrayImgClick = arrayFavoriteToString.indexOf(idImgClick);
                         if (indexArrayImgClick > -1) {
                             arrayFavoriteToString.splice(indexArrayImgClick, 1);
-                            sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavoriteToString));
+                            localStorage.setItem("fullHeart", JSON.stringify(arrayFavoriteToString));
                             getGifos()
                         }
                     })
@@ -142,6 +142,31 @@ const getGifos = (text) => {
                         functionMaximumGifs(brotherParentMaxFavos);
                     })
                 })
+                //Con esta funcion descargo los gifos
+                let iconDowFavoGifos = document.querySelectorAll(".iconDowFavoGifos")
+                iconDowFavoGifos.forEach(iconDown => {
+                    iconDown.addEventListener("click", () => {
+                        let functionForDownload = async () => {
+                            let anchor = document.createElement("a");
+                            let fatherOfElem = iconDown.parentNode
+                            let previousSiblingUrl = fatherOfElem.previousSibling
+                            let imgUrl = previousSiblingUrl.getAttribute("src")
+                            console.log(imgUrl)
+                            //utilizo fetch para la comunicación con el API, la respuesta
+                            //mediante response.blob es como un objeto binario.
+                            let response = await fetch(imgUrl);
+                            let urlBlob = await response.blob();
+                            
+                            let urlLocal = window.URL.createObjectURL(urlBlob);
+                            anchor.setAttribute("href", urlLocal);
+                            anchor.setAttribute("target", "_blank");
+                            anchor.setAttribute("download", "my_Gifos");
+                            //con esto emulo el click sobre el elemento ancla
+                            anchor.click();
+                        }
+                        functionForDownload();
+                    })
+                })
             })
     }
 }
@@ -163,7 +188,7 @@ const changeModeStyle = (text) => {
         }
     }
 
-    sessionStorage.setItem("modeStyle", isDark);
+    localStorage.setItem("modeStyle", isDark);
 
     if (isDark === true) {
         document.body.classList.add("dark")

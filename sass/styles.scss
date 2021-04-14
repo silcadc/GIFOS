@@ -36,7 +36,7 @@
     #h1Desktops {
         @extend %display_none;
     }
-    #color_aqua {
+    .color_aqua {
         color: $color-aqua;
         font-family: $font-titles;
     }
@@ -267,7 +267,7 @@
         top: 624px;
         right: 355px;
     }
-    #imgDownloadMax {
+    .imgDownloadMax {
         opacity: 0.5;
         border: 1px solid #9CAFC3;
         border-radius: 6px;
@@ -358,7 +358,7 @@
             @extend %robotos_font;
             color: $color-white;
         }
-        #imgDownloadMax {
+        .imgDownloadMax {
             opacity: 1;
         }
     }
@@ -637,7 +637,7 @@
             right: 25%;
             cursor: pointer;
         }
-        #imgDownloadMax {
+        .imgDownloadMax {
             top: 83%;
             right: 20%;
             cursor: pointer;

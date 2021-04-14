@@ -363,7 +363,7 @@
                 @include generals_font;
                 font-size: sum($font-size16, 9px);
                 line-height: 30px;
-                #color_aqua {
+                .color_aqua {
                     color: $color-aqua;
                 }
             }

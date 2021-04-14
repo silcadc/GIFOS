@@ -54,13 +54,13 @@ let arrayFavorite = [];
 /*   CHANGE MODE - DAY OR DARK   */
 /*-------------------------------*/
 let modeValidation = () => {
-    let styleStatus = sessionStorage.getItem("modeStyle");
+    let styleStatus = localStorage.getItem("modeStyle");
     if (styleStatus === null) {
         styleStatus = false;
-        sessionStorage.setItem("modeStyle", styleStatus);
+        localStorage.setItem("modeStyle", styleStatus);
     } else if (styleStatus !== null) {
         isDark = (styleStatus == 'true');
-        sessionStorage.setItem("modeStyle", styleStatus);
+        localStorage.setItem("modeStyle", styleStatus);
     }
 }
 modeValidation();
@@ -152,9 +152,9 @@ let structureGifosTrend = (apiResponseList) => {
 
     apiResponseList.forEach( gif => {
         let arrayOfFavCheck = [];
-        if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
+        if (localStorage.getItem("fullHeart") !== "" && localStorage.getItem("fullHeart") !== null) {
             //-----------------------------------------------------//
-            arrayOfFavCheck = JSON.parse(sessionStorage.getItem("fullHeart"));
+            arrayOfFavCheck = JSON.parse(localStorage.getItem("fullHeart"));
             //-----------------------------------------------------//
         }
         const divContainer = document.createElement("div")
@@ -170,7 +170,6 @@ let structureGifosTrend = (apiResponseList) => {
         divContainer.appendChild(purpleFilterContainer)
         newGifos.appendChild(divContainer)
         
-        const anchor = document.createElement("a");
         const href = document.createAttribute("href");
 
         let iconFavorite = document.createElement("img");
@@ -203,7 +202,6 @@ let structureGifosTrend = (apiResponseList) => {
         iconMaximumActive.src = '../assets/icon-max-hover.svg';
         iconMaximumActive.setAttribute("class", "iconMaximumStyle off iconMaxHover");
     
-        //anchor.appendChild(containerImage)
         purpleFilterContainer.appendChild(iconFavorite)
         purpleFilterContainer.appendChild(iconFavoriteActive)
         purpleFilterContainer.appendChild(iconDownload)
@@ -294,14 +292,14 @@ let structureGifosTrend = (apiResponseList) => {
             let parentIconFav = iconFav.parentNode
             let brotherParentIconFav = parentIconFav.previousSibling
             let idAttribute = brotherParentIconFav.getAttribute("id")
-            if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
+            if (localStorage.getItem("fullHeart") !== "" && localStorage.getItem("fullHeart") !== null) {
                 //-----------------------------------------------------//
-                arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));
+                arrayFavorite = JSON.parse(localStorage.getItem("fullHeart"));
                 //-----------------------------------------------------//
             }
             arrayFavorite.push(idAttribute);
-            sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
-            let textToSearch = sessionStorage.getItem("textToSearch")
+            localStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
+            let textToSearch = localStorage.getItem("textToSearch")
             getGifos(textToSearch)
         })
     })
@@ -309,9 +307,9 @@ let structureGifosTrend = (apiResponseList) => {
     let iconsFavActive = document.querySelectorAll(".iconFavActive")
     iconsFavActive.forEach(iconFavActive => {
         iconFavActive.addEventListener("click", () => {
-            if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
+            if (localStorage.getItem("fullHeart") !== "" && localStorage.getItem("fullHeart") !== null) {
                 //-----------------------------------------------------//
-                arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));
+                arrayFavorite = JSON.parse(localStorage.getItem("fullHeart"));
                 //-----------------------------------------------------//
             }
             iconFavActive.classList.toggle("off")
@@ -323,8 +321,8 @@ let structureGifosTrend = (apiResponseList) => {
             let indexArray = arrayFavorite.indexOf(idAttributeActive);
             if (indexArray > -1) {
                 arrayFavorite.splice(indexArray, 1);
-                sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
-                let textToSearch = sessionStorage.getItem("textToSearch")
+                localStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
+                let textToSearch = localStorage.getItem("textToSearch")
                 getGifos(textToSearch)
             }
         })
@@ -365,15 +363,40 @@ fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`)
     .then (response => response.json())
     .then (response => {
         apiResponseList = response.data;
-        structureGifosTrend(apiResponseList);   
+        structureGifosTrend(apiResponseList); 
+        //Con esta funcion descargo los gifos
+        let iconDownloadStyle = document.querySelectorAll(".iconDownloadStyle")
+        iconDownloadStyle.forEach(iconDown => {
+            iconDown.addEventListener("click", () => {
+                let functionForDownload = async () => {
+                    let anchor = document.createElement("a");
+                    let fatherOfElem = iconDown.parentNode
+                    let previousSiblingUrl = fatherOfElem.previousSibling
+                    let imgUrl = previousSiblingUrl.getAttribute("src")
+                    console.log(imgUrl)
+                    //utilizo fetch para la comunicación con el API, la respuesta
+                    //mediante response.blob es como un objeto binario.
+                    let response = await fetch(imgUrl);
+                    let urlBlob = await response.blob();
+                    
+                    let urlLocal = window.URL.createObjectURL(urlBlob);
+                    anchor.setAttribute("href", urlLocal);
+                    anchor.setAttribute("target", "_blank");
+                    anchor.setAttribute("download", "my_Gifos");
+                    //con esto emulo el click sobre el elemento ancla
+                    anchor.click();
+                }
+                functionForDownload();
+            })
+        })
     })
 
 //La siguiente función muestra cada Gifo clikeado en tamaño maximo
 let functionMaximumGifs = (element) => { 
     console.log(element)
-    if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
+    if (localStorage.getItem("fullHeart") !== "" && localStorage.getItem("fullHeart") !== null) {
         //-----------------------------------------------------//
-        arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));
+        arrayFavorite = JSON.parse(localStorage.getItem("fullHeart"));
         //-----------------------------------------------------//
     }
 
@@ -393,10 +416,7 @@ let functionMaximumGifs = (element) => {
     let containerMaxGifs = document.querySelector("#containerMaxGifs")
         
     let containerImage = document.createElement("img")
-
-    let anchor = document.createElement("a");
-    let href = document.createAttribute("href");
-
+    
     let imgCross = document.createElement("img")
     let imgFavorite = document.createElement("img")
     let favoriteActive = document.createElement("img")
@@ -416,11 +436,6 @@ let functionMaximumGifs = (element) => {
         imgCross.src = '../assets/close.svg';
         imgCross.setAttribute("id", "imgCrossMax")
     }
-
-    anchor.setAttributeNode(href);
-    anchor.setAttribute("download", "Gifo");
-    anchor.setAttribute("id", "anchorDownload")
-    //anchor.setAttribute("target", "_blank")
 
     containerImage.src = element.src
     containerImage.setAttribute("id", idGifos)
@@ -442,17 +457,16 @@ let functionMaximumGifs = (element) => {
     }
 
     imgDownload.src = '../assets/icon-download-hover.svg';
-    imgDownload.setAttribute("id", "imgDownloadMax")
+    imgDownload.setAttribute("class", "imgDownloadMax")
     
     titleGifos.textContent = h2.innerText
     user.textContent = h3.innerText
 
-    anchor.appendChild(containerImage)
-    containerMaxGifs.appendChild(anchor)
+    containerMaxGifs.appendChild(containerImage)
+    containerMaxGifs.appendChild(imgDownload)
     containerMaxGifs.appendChild(imgCross)
     containerMaxGifs.appendChild(imgFavorite)
     containerMaxGifs.appendChild(favoriteActive)
-    containerMaxGifs.appendChild(imgDownload)
     containerMaxGifs.appendChild(titleGifos)
     containerMaxGifs.appendChild(user)
 
@@ -491,6 +505,30 @@ let functionMaximumGifs = (element) => {
         btnSliderLeftDark.appendChild(imgLeftDark)
         btnSliderRight.appendChild(imgRight)
         btnSliderRightDark.appendChild(imgRightDark)
+        //Funcionamiento de botones slider en tamaño maximo del Gifo
+        let btnSliderRightMax = document.querySelector(".btnSliderRightMax")      
+        btnSliderRightMax.addEventListener("click", () => {
+            let fatherBtn = btnSliderRightMax.parentNode
+            let childOfFatherBtn = fatherBtn.firstChild
+            let imgFatherBtn = childOfFatherBtn.firstChild
+            let idOfImg = imgFatherBtn.getAttribute("id")
+            let brotherOfFather = fatherBtn.previousSibling.previousSibling
+            let lastChildOfBrother = brotherOfFather.lastElementChild
+            let lastChildOfLastChild = lastChildOfBrother.lastChild
+            let allChild = lastChildOfLastChild.childNodes
+
+            allChild.forEach(child => {
+                let imgForEachChild = child.firstChild
+                let idNextImg = imgForEachChild.getAttribute("id")
+                if (idNextImg === idOfImg){
+                    let fatherImage = imgForEachChild.parentNode
+                    let nextBrother = fatherImage.nextSibling
+                    let firstChildImg = nextBrother.firstChild
+                    console.log(firstChildImg)
+                    functionMaximumGifs(firstChildImg)
+                }
+            })
+        })
     }
     
     document.querySelector("#containerMaxGifs").style.display = "block"
@@ -499,21 +537,40 @@ let functionMaximumGifs = (element) => {
     crossMax.addEventListener("click", () => {
         containerMaxGifs.innerHTML = ""
         document.querySelector("#containerMaxGifs").style.display = "none";
-        let textToSearch = sessionStorage.getItem("textToSearch")
+        let textToSearch = localStorage.getItem("textToSearch")
         getGifos(textToSearch);
         structureGifosTrend(apiResponseList);
     })
-
-    // const downloadMax = document.getElementById("imgDownloadMax")
-    // downloadMax.addEventListener("click", () => {
-
-    // })
+    //Con esta funcion descargo los gifos
+    let imgDownloadMax = document.querySelector(".imgDownloadMax")
+    imgDownloadMax.addEventListener("click", () => {
+        let functionForDownload = async () => {
+            let anchor = document.createElement("a");
+            
+            let previousSiblingUrl = imgDownloadMax.previousSibling
+            console.log(previousSiblingUrl)
+            let imgUrl = previousSiblingUrl.getAttribute("src")
+            console.log(imgUrl)
+            //utilizo fetch para la comunicación con el API, la respuesta
+            //mediante response.blob es como un objeto binario.
+            let response = await fetch(imgUrl);
+            let urlBlob = await response.blob();
+            
+            let urlLocal = window.URL.createObjectURL(urlBlob);
+            anchor.setAttribute("href", urlLocal);
+            anchor.setAttribute("target", "_blank");
+            anchor.setAttribute("download", "my_Gifos");
+            //con esto emulo el click sobre el elemento ancla
+            anchor.click();
+        }
+        functionForDownload();
+    })
 
     imgFavorite.addEventListener("click", () => {
         imgFavorite.classList.toggle("off")
         favoriteActive.classList.remove("off");
         arrayFavorite.push(idGifos);
-        sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
+        localStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
     })
 
     favoriteActive.addEventListener("click", () => {
@@ -522,33 +579,8 @@ let functionMaximumGifs = (element) => {
         let index = arrayFavorite.indexOf(idGifos);
         if (index > -1) {
             arrayFavorite.splice(index, 1);
-            sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
+            localStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
         }
-    })
-
-    //Funcionamiento de botones slider en tamaño maximo del Gifo
-    let btnSliderRightMax = document.querySelector(".btnSliderRightMax")      
-    btnSliderRightMax.addEventListener("click", () => {
-        let fatherBtn = btnSliderRightMax.parentNode
-        let childOfFatherBtn = fatherBtn.firstChild
-        let imgFatherBtn = childOfFatherBtn.firstChild
-        let idOfImg = imgFatherBtn.getAttribute("id")
-        let brotherOfFather = fatherBtn.previousSibling.previousSibling
-        let lastChildOfBrother = brotherOfFather.lastElementChild
-        let lastChildOfLastChild = lastChildOfBrother.lastChild
-        let allChild = lastChildOfLastChild.childNodes
-
-        allChild.forEach(child => {
-            let imgForEachChild = child.firstChild
-            let idNextImg = imgForEachChild.getAttribute("id")
-            if (idNextImg === idOfImg){
-                let fatherImage = imgForEachChild.parentNode
-                let nextBrother = fatherImage.nextSibling
-                let firstChildImg = nextBrother.firstChild
-                console.log(firstChildImg)
-                functionMaximumGifs(firstChildImg)
-            }
-        })
     })
 }
 

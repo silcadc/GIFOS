@@ -23,7 +23,7 @@ const changePositionCross = document.querySelectorAll(".search")
 const clickMagnifying = document.querySelector("#magnifying")
 const clickMagniDark = document.querySelector("#magniDark")
 
-sessionStorage.setItem("textToSearch", "");
+localStorage.setItem("textToSearch", "");
 
 const formSearch = document.querySelector(".formSearch")
 const inputSearch = document.querySelector(".formSearch > input")
@@ -113,7 +113,7 @@ const changeModeStyle = (text) => {
             isDark = true;
         }
     }
-    sessionStorage.setItem("modeStyle", isDark);
+    localStorage.setItem("modeStyle", isDark);
 
     if (isDark === true) {
         document.body.classList.add("dark")
@@ -289,14 +289,14 @@ const getGifos = async (textToSearch) => {
     const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${textToSearch}`)
     const responseFromApi = await response.json()
     gifosContainer.innerHTML = ""
-    sessionStorage.setItem("textToSearch", textToSearch);
+    localStorage.setItem("textToSearch", textToSearch);
     for (let i = 0; i < responseFromApi.pagination.count; i++)
     {
         if (i > amount) {break}
         let arrayOfFavCheck = [];
-        if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
+        if (localStorage.getItem("fullHeart") !== "" && localStorage.getItem("fullHeart") !== null) {
             //-----------------------------------------------------//
-            arrayOfFavCheck = JSON.parse(sessionStorage.getItem("fullHeart"));
+            arrayOfFavCheck = JSON.parse(localStorage.getItem("fullHeart"));
             //-----------------------------------------------------//
         }
         let fatherShowGifos = document.createElement("div");
@@ -421,17 +421,17 @@ const getGifos = async (textToSearch) => {
             let parentIconFavTop = iconFavTop.parentNode
             let brotherParentIconFavTop = parentIconFavTop.previousSibling
             let idAttriTop = brotherParentIconFavTop.getAttribute("id")
-            if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
+            if (localStorage.getItem("fullHeart") !== "" && localStorage.getItem("fullHeart") !== null) {
                 //-----------------------------------------------------//
-                arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));
+                arrayFavorite = JSON.parse(localStorage.getItem("fullHeart"));
                 //-----------------------------------------------------//
             }
             let inArrayFavorite = arrayFavorite.includes(idAttriTop)
             if (inArrayFavorite === false ) {
                 arrayFavorite.push(idAttriTop);
             }
-            sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
-            let textToSearch = sessionStorage.getItem("textToSearch")
+            localStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
+            let textToSearch = localStorage.getItem("textToSearch")
             getGifos(textToSearch)
         })
     })
@@ -440,9 +440,9 @@ const getGifos = async (textToSearch) => {
     let iconFavTopFiveActive = document.querySelectorAll(".iconFavTopFiveActive")
     iconFavTopFiveActive.forEach(iconTopActive => {
         iconTopActive.addEventListener("click", () => {
-            if (sessionStorage.getItem("fullHeart") !== "" && sessionStorage.getItem("fullHeart") !== null) {
+            if (localStorage.getItem("fullHeart") !== "" && localStorage.getItem("fullHeart") !== null) {
                 //-----------------------------------------------------//
-                arrayFavorite = JSON.parse(sessionStorage.getItem("fullHeart"));
+                arrayFavorite = JSON.parse(localStorage.getItem("fullHeart"));
                 //-----------------------------------------------------//
             }
             iconTopActive.classList.toggle("off")
@@ -454,10 +454,35 @@ const getGifos = async (textToSearch) => {
             let indexArrayTop = arrayFavorite.indexOf(idAttriTopActive);
             if (indexArrayTop > -1) {
                 arrayFavorite.splice(indexArrayTop, 1);
-                sessionStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
-                let textToSearch = sessionStorage.getItem("textToSearch")
+                localStorage.setItem("fullHeart", JSON.stringify(arrayFavorite));
+                let textToSearch = localStorage.getItem("textToSearch")
                 getGifos(textToSearch)
             }
+        })
+    })
+    //Con esta funcion descargo los gifos
+    let iconDowTopFive = document.querySelectorAll(".iconDowTopFive")
+    iconDowTopFive.forEach(iconDown => {
+        iconDown.addEventListener("click", () => {
+            let functionForDownload = async () => {
+                let anchor = document.createElement("a");
+                let fatherOfElem = iconDown.parentNode
+                let previousSiblingUrl = fatherOfElem.previousSibling
+                let imgUrl = previousSiblingUrl.getAttribute("src")
+                console.log(imgUrl)
+                //utilizo fetch para la comunicación con el API, la respuesta
+                //mediante response.blob es como un objeto binario.
+                let response = await fetch(imgUrl);
+                let urlBlob = await response.blob();
+                
+                let urlLocal = window.URL.createObjectURL(urlBlob);
+                anchor.setAttribute("href", urlLocal);
+                anchor.setAttribute("target", "_blank");
+                anchor.setAttribute("download", "my_Gifos");
+                //con esto emulo el click sobre el elemento ancla
+                anchor.click();
+            }
+            functionForDownload();
         })
     })
 }

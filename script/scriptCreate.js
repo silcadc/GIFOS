@@ -63,13 +63,13 @@ let instagramDark = document.querySelector(".instagramDark")
 /*   CHANGE MODE - DAY OR DARK   */
 /*-------------------------------*/
 let modeValidation = () => {
-    let styleStatus = sessionStorage.getItem("modeStyle");
+    let styleStatus = localStorage.getItem("modeStyle");
     if (styleStatus === null) {
         styleStatus = false;
-        sessionStorage.setItem("modeStyle", styleStatus);
+        localStorage.setItem("modeStyle", styleStatus);
     } else if (styleStatus !== null) {
         isDark = (styleStatus == 'true');
-        sessionStorage.setItem("modeStyle", styleStatus);
+        localStorage.setItem("modeStyle", styleStatus);
     }
 }
 modeValidation();
@@ -150,7 +150,7 @@ const changeModeStyle = (text) => {
         }
     }
 
-    sessionStorage.setItem("modeStyle", isDark);
+    localStorage.setItem("modeStyle", isDark);
 
     if (isDark === true) {
         document.body.classList.add("dark")
@@ -175,8 +175,8 @@ darkMode.addEventListener("click", () => {
 
 changeModeStyle("repaintStyles")
 
-if (window.sessionStorage.getItem("mygifos")) {
-     myGifos = JSON.parse(window.sessionStorage.getItem("mygifos"))
+if (window.localStorage.getItem("mygifos")) {
+     myGifos = JSON.parse(window.localStorage.getItem("mygifos"))
 }
 
 const getStream = () => {
@@ -232,9 +232,48 @@ const uploadGif = async () => {
     })
     const responseJson = await response.json()
     myGifos.push(responseJson.data.id)
-    window.sessionStorage.setItem('mygifos', JSON.stringify(myGifos))
+    let idCreate = responseJson.data.id
+    window.localStorage.setItem('mygifos', JSON.stringify(myGifos))
     purpleFilterCreate.classList.add('off');
     upSuccess.classList.remove('off');
+    //Con esta funcion descargo los gifos
+    let iconDownload = document.querySelector(".iconDownload");
+    let iconLink = document.querySelector(".iconLink")
+    fetch(`https://api.giphy.com/v1/gifs/${idCreate}?api_key=${API_KEY}`)
+        .then (response => response.json())
+        .then (response => {
+            let urlToDownload = response.data.images.original.url
+            iconDownload.addEventListener("click", () => {
+                let functionForDownload = async () => {
+                    let anchor = document.createElement("a");
+                    //utilizo fetch para la comunicación con el API, la respuesta
+                    //mediante response.blob es como un objeto binario.
+                    let answer = await fetch(urlToDownload);
+                    let urlBlob = await answer.blob();
+                    
+                    let urlLocal = window.URL.createObjectURL(urlBlob);
+                    anchor.setAttribute("href", urlLocal);
+                    anchor.setAttribute("target", "_blank");
+                    anchor.setAttribute("download", "my_Gifos");
+                    //con esto emulo el click sobre el elemento ancla
+                    anchor.click();
+                }
+                functionForDownload();
+            })
+            //con esta función puedo copiar en portapapeles el link del Gifo Creado
+            iconLink.addEventListener("click", () => {
+                //lo que hago es emular un espacio para almacenar el link
+                let inputAux = document.createElement("input");
+                inputAux.setAttribute("value", urlToDownload);
+                document.body.appendChild(inputAux);
+                inputAux.select();//con select emulo seleccionar el link en pantalla
+                let boolean = document.execCommand("copy");//execCommand("copy"), emula hacer un ctrl+C
+                //emula el comando de copiar
+                document.body.removeChild(inputAux);
+                console.log(boolean)//imprime true o false, lo que confirma haber copiado o no
+                //la url.
+            })
+        })
 }
 
 btnStart.addEventListener('click', () => {

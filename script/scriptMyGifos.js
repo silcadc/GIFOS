@@ -7,7 +7,7 @@ let showButtonsMoreInFavorite = () => {
     console.log(hasOff)
     if (hasOff === true) {
         changeOfBtnSeeMore()
-    }//debo ajustar la aparición del boton ver más
+    }
 }
 
 /*----------------------------*/
@@ -27,7 +27,7 @@ const changeModeStyle = (text) => {
         }
     }
 
-    sessionStorage.setItem("modeStyle", isDark);
+    localStorage.setItem("modeStyle", isDark);
     
     if (isDark === true) {
         document.body.classList.add("dark")
@@ -85,9 +85,6 @@ let functionMaxMyGifos = (text) => {
     let containerMaxGifs = document.querySelector("#containerMaxGifs")
     let containerImage = document.createElement("img")
 
-    const anchor = document.createElement("a");
-    const href = document.createAttribute("href");
-
     let imgCross = document.createElement("img")
     let iconTrashMyGifos = document.createElement("img")
     let iconTrashMyGifosActive = document.createElement("img")
@@ -103,12 +100,8 @@ let functionMaxMyGifos = (text) => {
         imgCross.setAttribute("id", "imgCrossMax")
     }
 
-    anchor.setAttributeNode(href);
-    anchor.setAttribute("download", "Gifo");
-    anchor.setAttribute("id", "anchorDownload")
-
     containerImage.src = text.src
-    containerImage.setAttribute("id", "imgMaxSize")
+    containerImage.setAttribute("class", "imgMaxSize")
     
     iconTrashMyGifos.src = '/assets/icon-trash-normal.svg';
     iconTrashMyGifos.setAttribute("class", "iconTrashMyGifos Trash");
@@ -118,7 +111,7 @@ let functionMaxMyGifos = (text) => {
     iconTrashMyGifosActive.setAttribute("id", "TrashActive");
 
     imgDownload.src = '../assets/icon-download-hover.svg';
-    imgDownload.setAttribute("id", "imgDownloadMax")
+    imgDownload.setAttribute("class", "imgDownloadMax")
 
     const titleGifos = document.createElement("h2")
     titleGifos.textContent = h2.innerText
@@ -127,8 +120,7 @@ let functionMaxMyGifos = (text) => {
     document.querySelector("#containerMaxGifs").appendChild(titleGifos)
     document.querySelector("#containerMaxGifs").appendChild(user)
 
-    anchor.appendChild(containerImage)
-    containerMaxGifs.appendChild(anchor)
+    containerMaxGifs.appendChild(containerImage)
     containerMaxGifs.appendChild(imgCross)
     containerMaxGifs.appendChild(iconTrashMyGifos)
     containerMaxGifs.appendChild(iconTrashMyGifosActive)
@@ -140,30 +132,49 @@ let functionMaxMyGifos = (text) => {
     crossMax.addEventListener("click", () => {
         containerMaxGifs.innerHTML = ""
         document.querySelector("#containerMaxGifs").style.display = "none";
-        let textToSearch = sessionStorage.getItem("textToSearch")
+        let textToSearch = localStorage.getItem("textToSearch")
         getGifos(textToSearch);
         structureGifosTrend(apiResponseList);
     })
 
-    // const downloadMax = document.getElementById("imgDownloadMax")
-    // downloadMax.addEventListener("click", () => {
-
-    // })
+    let imgDownloadMax = document.querySelector(".imgDownloadMax")
+    imgDownloadMax.addEventListener("click", () => {
+        let functionForDownload = async () => {
+            let anchor = document.createElement("a");
+            
+            let previousSiblingUrl = imgDownloadMax.previousSibling
+            console.log(previousSiblingUrl)
+            let imgUrl = previousSiblingUrl.getAttribute("src")
+            console.log(imgUrl)
+            //utilizo fetch para la comunicación con el API, la respuesta
+            //mediante response.blob es como un objeto binario.
+            let response = await fetch(imgUrl);
+            let urlBlob = await response.blob();
+            
+            let urlLocal = window.URL.createObjectURL(urlBlob);
+            anchor.setAttribute("href", urlLocal);
+            anchor.setAttribute("target", "_blank");
+            anchor.setAttribute("download", "my_Gifos");
+            //con esto emulo el click sobre el elemento ancla
+            anchor.click();
+        }
+        functionForDownload();
+    })
 
     //la siguiente function corresponde al evento click sobre el boton trash, elimina los gifos Creados
     iconTrashMyGifos.addEventListener("click", () => {
-        myCreatedGifos = JSON.parse(window.sessionStorage.getItem("mygifos"))
+        myCreatedGifos = JSON.parse(window.localStorage.getItem("mygifos"))
         let indexOfMyGifos = myCreatedGifos.indexOf(idMyGifos);
         if (indexOfMyGifos > -1) {
             myCreatedGifos.splice(indexOfMyGifos, 1);
-            sessionStorage.setItem("mygifos", JSON.stringify(myCreatedGifos));
+            localStorage.setItem("mygifos", JSON.stringify(myCreatedGifos));
             getGifos();
         }
     })        
 }
 
 getGifos = async () => {
-    myCreatedGifos = JSON.parse(window.sessionStorage.getItem("mygifos"))
+    myCreatedGifos = JSON.parse(window.localStorage.getItem("mygifos"))
     const response = await fetch(`https://api.giphy.com/v1/gifs?api_key=${API_KEY}&ids=${myCreatedGifos.join()}`)
     const result = await response.json()  
     savedmyOwnGifs.innerHTML = "";
@@ -285,15 +296,39 @@ getGifos = async () => {
             let fatherTrash = Trash.parentNode
             let brotherPreviousOfFather = fatherTrash.previousSibling
             let idTrash = brotherPreviousOfFather.getAttribute("id")
-            myCreatedGifos = JSON.parse(window.sessionStorage.getItem("mygifos"))
+            myCreatedGifos = JSON.parse(window.localStorage.getItem("mygifos"))
             let indexOfMyGifos = myCreatedGifos.indexOf(idTrash);
             if (indexOfMyGifos > -1) {
                 myCreatedGifos.splice(indexOfMyGifos, 1);
-                sessionStorage.setItem("mygifos", JSON.stringify(myCreatedGifos));
+                localStorage.setItem("mygifos", JSON.stringify(myCreatedGifos));
                 console.log(myCreatedGifos)
                 getGifos();
             }
         })   
+    })
+    let iconDowMyGifos = document.querySelectorAll(".iconDowMyGifos")
+    iconDowMyGifos.forEach(iconDown => {
+        iconDown.addEventListener("click", () => {
+            let functionForDownload = async () => {
+                let anchor = document.createElement("a");
+                let fatherOfElem = iconDown.parentNode
+                let previousSiblingUrl = fatherOfElem.previousSibling
+                let imgUrl = previousSiblingUrl.getAttribute("src")
+                console.log(imgUrl)
+                //utilizo fetch para la comunicación con el API, la respuesta
+                //mediante response.blob es como un objeto binario.
+                let response = await fetch(imgUrl);
+                let urlBlob = await response.blob();
+                
+                let urlLocal = window.URL.createObjectURL(urlBlob);
+                anchor.setAttribute("href", urlLocal);
+                anchor.setAttribute("target", "_blank");
+                anchor.setAttribute("download", "my_Gifos");
+                //con esto emulo el click sobre el elemento ancla
+                anchor.click();
+            }
+            functionForDownload();
+        })
     })
 }
 getGifos()
