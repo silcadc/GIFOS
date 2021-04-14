@@ -10,34 +10,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/styles.css" type="text/css">
-    <title>Project GIFOS</title>
+    <title>My Gifos Section</title>
 </head>
 <body>
-    <header>
+    <header> 
         <a href="index.html"><img id="logo" class="logosHeader" src="./assets/logo-mobile.svg" alt="logoGifos"></a>
-        <a href="index.html"><img id="logoDark" class="logosHeader" src="./assets/logo-mobile-modo-noct.svg"
-                alt="logoGifos"></a>
+        <a href="index.html"><img id="logoDark" class="logosHeader off" src="./assets/logo-mobile-modo-noct.svg" alt="logoGifos"></a>
         <a href="index.html"><img id="logoDesktop" class="logosHeaderDesktop" src="./assets/logo-desktop.svg" alt="logoGifos"></a>
-        <a href="index.html"><img id="logoDarkDesktop" class="logosHeaderDesktop" src="./assets/Logo-modo-noc.svg"
-                alt="logoGifos"></a>
+        <a href="index.html"><img id="logoDarkDesktop" class="logosHeaderDesktop" src="./assets/Logo-modo-noc.svg" alt="logoGifos"></a>
         <img id="burger" class="checkbox-menu" src="./assets/burger.svg" alt="logoBurger" tabindex="1">
         <img id="burgerDark" class="checkbox-menu off" src="./assets/burger-modo-noct.svg" alt="logoBurgerDark">
         <img id="cross" class="checkbox-menu off" src="./assets/close.svg" alt="logoCheckBurger">
         <img id="crossDark" class="checkbox-menu off" src="./assets/close-modo-noct.svg" alt="logoCheckBurgerDark">
         <nav>
             <ul id="menu" class="off">
-                <li><a href="#nightMode" class="btnsNavigations grayNightMode" tabindex="2" id="darkMode">Modo Nocturno
+                <li><a href="#nightMode" class="btnsNavigations" tabindex="2" id="darkMode">Modo Nocturno
                         <hr>
-                    </a>
-                </li>
-                <li><a href="favoriteGifs.html" class="btnsNavigations"  tabindex="3" id="linkFavoritos">Favoritos
+                    </a></li>
+                <li><a href="favoriteGifs.html" class="btnsNavigations" tabindex="3">Favoritos
                         <hr>
-                    </a>
-                </li>
-                <li><a href="myGifos.html" class="btnsNavigations"  tabindex="4">Mis GIFOS
+                    </a></li>
+                <li><a href="#myGifos" class="btnsNavigations grayMyGifos" tabindex="4">Mis GIFOS
                         <hr>
-                    </a>
-                </li>
+                    </a></li>
                 <li><a href="createGifos.html" id="createOwnGifosOff" tabindex="5">
                     <img class="iconCreateMyGifos iconNormal" src="./assets/button-crear-gifo.svg" alt="Button Create">
                     <img class="iconcreateMyGifos noc off" src="./assets/CTA-crear-gifo-modo-noc.svg" alt="Button Noc">
@@ -50,31 +45,16 @@
             </ul>
         </nav>
     </header>
-    <section id="firstSection">
-        <h1 id="h1Mobile" class="color_purple color_white">Inspírate, busca,<br>guarda, y crea los<br>mejores <span
-            class="color_aqua">GIFOS</span></h1>
-        <h1 id="h1Desktops" class="color_purple color_white">Inspírate, busca, guarda, y crea<br>los mejores <span
-            class="color_aqua">GIFOS</span></h1>        
-        <img class="ilustra_header" src="./assets/ilustra_header.svg" alt="making_friends_with_GIFOS">
-        <form id="gifosFinder" class="formSearch">
-            <input type="text" id="searchGifos" class="inputSearch" name="name" placeholder="Busca GIFOS y más" tabindex="5">
-            <img id="magnifying" class="search imgSearch" src="./assets/icon-search.svg" alt="searchGifos" tabindex="6">
-            <img id="magniDark" class="search off" src="./assets/icon-search-mod-noc.svg" alt="searchGifosDark">
-            <a href="index.html"><img id="crossMagnifying" class="search off" src="./assets/close.svg"
-                    alt="closeSearch"></a>
-            <a href="index.html"><img id="crossMagniDark" class="search off" src="./assets/close-modo-noct.svg" alt="closeSearchDark"></a>
-            <ul class="searchAutocomplete"></ul>
-        </form>
-        <h3 id="trending" class="color_purple color_white">Trending:</h3>
-        <div class="ultrendings">
+    <section id="myGifosSection">
+        <div>
+            <img id="myGifos" src="./assets/icon-mis-gifos.svg" alt="myGifos">
         </div>
-        <hr class="lineUnderSearch off">
-        <div id="tryAnotherSearch" class="off">
-            <img class="noContent" src="./assets/icon-busqueda-sin-resultado.svg" alt="No Search Results">
-            <h3 class="noContentText">Intenta con otra búsqueda.</h3>
+        <h2 class="titlesSection">Mis GIFOS</h2>
+        <div id="savedmyOwnGifs"></div>
+        <div id="myOwnGifs">
+            <img id="noContent" class="noContent" src="./assets/icon-mis-gifos-sin-contenido.svg" alt="Gifos Without Content">
+            <h3 class="noContentText">¡Anímate a crear tu primer GIFO!</h3>
         </div>
-        <h2 class="color_purple termToSearch off" id="titleToSearch"></h2>
-        <div class="gifosContainer"></div>
         <button class="seeMore off">
             <img src="./assets/CTA-ver-mas.svg" class="seeMoreEventMouse" alt="See More">
         </button>
@@ -115,6 +95,6 @@
         <div id="footerCopyright">&#169; GIFOS 2020 All Rights Reserved.</div>
     </footer>
     <script src="./script/scriptCommon.js"></script>
-    <script src="./script/script.js"></script>
+    <script src="./script/scriptMyGifos.js"></script>
 </body>
 </html>
