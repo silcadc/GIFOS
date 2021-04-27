@@ -70,6 +70,7 @@
             position: relative;
             right: 12%;
             top: 21%;
+            z-index: 1;
         }
         .searchToTerm {
             width: 20px;
@@ -294,9 +295,9 @@
             .search {
                 top: 21%;
             }
-            .searchToTerm {
-                top: 29%;
-            }
+            // .searchToTerm {
+            //     top: 29%;
+            // }
         }
         #trending {
             margin: 0;
@@ -388,11 +389,11 @@
                 right: 6%;
                 top: 16.5%;
             }
-            .searchToTerm {
-                position: relative;
-                right: 6%;
-                top: 15%;
-            }
+            // .searchToTerm {
+            //     position: relative;
+            //     right: 6%;
+            //     top: 15%;
+            // }
         }
         #trending {
             margin-top: 73px;
@@ -671,9 +672,9 @@
                 .search {
                     top: 4%;
                 }
-                .searchToTerm {
-                    top: 8%;
-                }
+                // .searchToTerm {
+                //     top: 8%;
+                // }
             }
             #trending {
                 margin: 0;

@@ -35,12 +35,35 @@ const searchAutocomplete = document.querySelector(".searchAutocomplete")
 magnifying.addEventListener("click", () => {
     magnifying.classList.add("off")
     document.querySelector("#crossMagnifying").classList.remove("off")
+    if(inputTextToSearch.value !=="") {
+        document.querySelector("#crossMagnifying").style.top = "7.5rem";
+        document.querySelector("#crossMagnifying").style.right = "17%";
+        if (window.screen.width > 768) {
+            document.querySelector("#crossMagnifying").style.right = "33%";
+            document.querySelector("#crossMagnifying").style.top = "19%";
+        }
+    } 
 })
 
 crossMagnifying.addEventListener("click", () => {
     crossMagnifying.classList.add("off")
     document.querySelector("#magnifying").classList.remove("off")
+    if(inputTextToSearch.value !=="") {
+        document.querySelector("#magnifying").style.top = "7.5rem";
+        document.querySelector("#magnifying").style.right = "17%";
+        inputTextToSearch.value = "";
+        if (window.screen.width > 768) {
+            document.querySelector("#magnifying").style.right = "33%";
+            document.querySelector("#magnifying").style.top = "19%";
+        }
+    } 
 })
+
+const positionCross = () => {
+    for (i = 0; i < changePositionCross.length; i++) {
+        changePositionCross[i].classList.replace("search", "searchToTerm")
+    }
+}
 
 /*----------------------------*/
 /*        AUTOCOMPLETE        */
@@ -55,7 +78,6 @@ const searchSuggestions = async term => {
         searchAutocomplete.appendChild(item)
     })
     let liAutocomplete = document.querySelectorAll(".searchAutocomplete > li")
-    console.log(liAutocomplete)
     liAutocomplete.forEach(li => {
         li.addEventListener('click', () => {
             let term = li.textContent
@@ -191,11 +213,28 @@ hamburDark.addEventListener("click", () => {
 magnifDark.addEventListener("click", () => {
     magnifDark.classList.add("off")
     document.querySelector("#crossMagniDark").classList.remove("off")
+    if(inputTextToSearch.value !=="") {
+        document.querySelector("#crossMagniDark").style.top = "7.5rem";
+        document.querySelector("#crossMagniDark").style.right = "17%";
+        if (window.screen.width > 768) {
+            document.querySelector("#crossMagniDark").style.right = "33%";
+            document.querySelector("#crossMagniDark").style.top = "19%";
+        }
+    }
 })
 
 crossMagnifDark.addEventListener("click", () => {
     crossMagnifDark.classList.add("off")
     document.querySelector("#magniDark").classList.remove("off")
+    if(inputTextToSearch.value !=="") {
+        document.querySelector("#magniDark").style.top = "7.5rem";
+        document.querySelector("#magniDark").style.right = "17%";
+        inputTextToSearch.value = "";
+        if (window.screen.width > 768) {
+            document.querySelector("#magniDark").style.right = "33%";
+            document.querySelector("#magniDark").style.top = "19%";
+        }
+    }
 })
 
 /*----------------------------*/
@@ -215,12 +254,6 @@ clickMagnifying.addEventListener("click", () =>{
         searchSuggestions(inputSearch.value)
         formGifosFinder.style.height = "200px";
         document.querySelector("#searchGifos").style.margin = "0";
-        document.querySelector("#crossMagnifying").style.right = "18%";
-        document.querySelector("#crossMagnifying").style.top = "20%";
-        if (window.screen.width > 768) {
-            document.querySelector("#crossMagnifying").style.right = "2%";
-            document.querySelector("#crossMagnifying").style.top = "4%";
-        }
     } else {
         showLineHr()
         showIconAnotherSearch()
@@ -241,11 +274,9 @@ clickMagniDark.addEventListener("click", () =>{
         searchSuggestions(inputSearch.value)
         formGifosFinder.style.height = "200px";
         document.querySelector("#searchGifos").style.margin = "0";
-        document.querySelector("#crossMagniDark").style.right = "18%";
-        document.querySelector("#crossMagniDark").style.top = "20%";
         if (window.screen.width > 768) {
-        document.querySelector("#crossMagniDark").style.right = "3%";
-        document.querySelector("#crossMagniDark").style.top = "5%";
+            document.querySelector("#crossMagniDark").style.right = "33%";
+            document.querySelector("#crossMagniDark").style.top = "19%";
         }
     } else {
         showLineHr()
@@ -261,15 +292,21 @@ formGifosFinder.addEventListener("submit" , (text) => {
         showLineHr()
         showButtonsMore()
         hiddenIconAnotherSearch()
+        positionCross()
         document.querySelector("#searchGifos").style.marginTop = "50px";
         searchSuggestions(inputSearch.value)
         formGifosFinder.style.height = "200px";
         document.querySelector("#searchGifos").style.margin = "0";
-        document.querySelector(".search").style.right = "9%";
-        document.querySelector(".search").style.top = "4%";
-        document.querySelector(".search").style.top = "4%";
-        if (window.screen.width < 768) {
-            document.querySelector("#magniDark").style.top = "4%";
+        if (window.screen.width > 768) {
+            document.querySelector("#magnifying").style.right = "33%";
+            document.querySelector("#magnifying").style.top = "74%";
+            document.querySelector("#magniDark").style.right = "33%";
+            document.querySelector("#magniDark").style.top = "73%";
+        } else {
+            document.querySelector("#magnifying").style.right = "17%";
+            document.querySelector("#magnifying").style.top = "23.5rem";
+            document.querySelector("#magniDark").style.right = "17%";
+            document.querySelector("#magniDark").style.top = "66%";
         }
     } else {
         getGifos(inputTextToSearch.value)
@@ -282,7 +319,7 @@ formGifosFinder.addEventListener("submit" , (text) => {
 inputSearch.addEventListener('keyup', () => {
     searchSuggestions(inputSearch.value)
     formGifosFinder.style.height = "200px";
-    document.querySelector("#magnifying").style.top = "4%";
+    //document.querySelector("#magnifying").style.top = "4%";
 })
 
 const getGifos = async (textToSearch) => {
@@ -498,8 +535,8 @@ const showTermH2 = () => {
 
 const showIconAnotherSearch = () => {
     tryAnotherSearch.classList.remove("off")
-    buttonSeeMore.classList.add("off")
-    buttonSeeMoreDark.classList.add("off")
+    //buttonSeeMore.classList.add("off")
+    //buttonSeeMoreDark.classList.add("off")
 }
 
 const hiddenIconAnotherSearch = () => {
@@ -514,10 +551,4 @@ const offH1Title = () => {
 const offIlustra_header = () => {
     offIlustration.classList.remove("ilustra_header")
     offIlustration.classList.add("off")
-}
-
-const positionCross = () => {
-    for (i = 0; i < changePositionCross.length; i++) {
-        changePositionCross[i].classList.replace("search", "searchToTerm")
-    }
 }
