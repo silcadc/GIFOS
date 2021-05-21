@@ -998,17 +998,6 @@ header nav #menu .grayMyGifos {
   width: 20px;
   height: 20px;
   position: relative;
-  right: 12%;
-  top: 21%;
-  z-index: 1;
-}
-
-#firstSection #gifosFinder .searchToTerm {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  right: 12%;
-  top: 10.5rem;
 }
 
 #firstSection #gifosFinder .searchAutocomplete {
@@ -1261,10 +1250,6 @@ header nav #menu .grayMyGifos {
   border: 1px solid #37383C;
 }
 
-.dark #firstSection #gifosFinder .search {
-  top: 21%;
-}
-
 .dark #firstSection #trending {
   margin: 0;
   margin-top: 31px;
@@ -1371,11 +1356,6 @@ header nav #menu .grayMyGifos {
   #firstSection #gifosFinder #searchGifos {
     width: 32rem;
     height: 48px;
-  }
-  #firstSection #gifosFinder .search {
-    position: relative;
-    right: 6%;
-    top: 16.5%;
   }
   #firstSection #trending {
     margin-top: 73px;

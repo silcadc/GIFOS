@@ -35,13 +35,9 @@ const searchAutocomplete = document.querySelector(".searchAutocomplete")
 magnifying.addEventListener("click", () => {
     magnifying.classList.add("off")
     document.querySelector("#crossMagnifying").classList.remove("off")
-    if(inputTextToSearch.value !=="") {
-        document.querySelector("#crossMagnifying").style.top = "7.5rem";
-        document.querySelector("#crossMagnifying").style.right = "17%";
-        if (window.screen.width > 768) {
-            document.querySelector("#crossMagnifying").style.right = "33%";
-            document.querySelector("#crossMagnifying").style.top = "19%";
-        }
+    if(inputTextToSearch.value !=="" && window.screen.width > 768) {
+        document.querySelector("#crossMagnifying").style.right = "33%";
+        document.querySelector("#crossMagnifying").style.top = "19%";
     } 
 })
 
@@ -49,12 +45,12 @@ crossMagnifying.addEventListener("click", () => {
     crossMagnifying.classList.add("off")
     document.querySelector("#magnifying").classList.remove("off")
     if(inputTextToSearch.value !=="") {
-        document.querySelector("#magnifying").style.top = "7.5rem";
-        document.querySelector("#magnifying").style.right = "17%";
         inputTextToSearch.value = "";
+        searchSuggestions() 
+        formGifosFinder.style.height = "50px";
         if (window.screen.width > 768) {
-            document.querySelector("#magnifying").style.right = "33%";
-            document.querySelector("#magnifying").style.top = "19%";
+            document.querySelector("#magnifying").style.right = "31%";
+            document.querySelector("#magnifying").style.top = "81%";
         }
     } 
 })
@@ -213,13 +209,9 @@ hamburDark.addEventListener("click", () => {
 magnifDark.addEventListener("click", () => {
     magnifDark.classList.add("off")
     document.querySelector("#crossMagniDark").classList.remove("off")
-    if(inputTextToSearch.value !=="") {
-        document.querySelector("#crossMagniDark").style.top = "7.5rem";
-        document.querySelector("#crossMagniDark").style.right = "17%";
-        if (window.screen.width > 768) {
-            document.querySelector("#crossMagniDark").style.right = "33%";
-            document.querySelector("#crossMagniDark").style.top = "19%";
-        }
+    if(inputTextToSearch.value !=="" && window.screen.width > 768) {
+        document.querySelector("#crossMagniDark").style.right = "33%";
+        document.querySelector("#crossMagniDark").style.top = "19%";
     }
 })
 
@@ -227,8 +219,6 @@ crossMagnifDark.addEventListener("click", () => {
     crossMagnifDark.classList.add("off")
     document.querySelector("#magniDark").classList.remove("off")
     if(inputTextToSearch.value !=="") {
-        document.querySelector("#magniDark").style.top = "7.5rem";
-        document.querySelector("#magniDark").style.right = "17%";
         inputTextToSearch.value = "";
         if (window.screen.width > 768) {
             document.querySelector("#magniDark").style.right = "33%";
@@ -295,18 +285,20 @@ formGifosFinder.addEventListener("submit" , (text) => {
         positionCross()
         document.querySelector("#searchGifos").style.marginTop = "50px";
         searchSuggestions(inputSearch.value)
-        formGifosFinder.style.height = "200px";
         document.querySelector("#searchGifos").style.margin = "0";
-        if (window.screen.width > 768) {
+        if (isDark !== true && window.screen.width > 768) {
             document.querySelector("#magnifying").style.right = "33%";
             document.querySelector("#magnifying").style.top = "74%";
             document.querySelector("#magniDark").style.right = "33%";
             document.querySelector("#magniDark").style.top = "73%";
+            
         } else {
             document.querySelector("#magnifying").style.right = "17%";
             document.querySelector("#magnifying").style.top = "23.5rem";
             document.querySelector("#magniDark").style.right = "17%";
             document.querySelector("#magniDark").style.top = "66%";
+            document.querySelector("#crossMagniDark").style.top = "80%";
+            document.querySelector("#crossMagniDark").style.right = "31%";
         }
     } else {
         getGifos(inputTextToSearch.value)
@@ -316,10 +308,17 @@ formGifosFinder.addEventListener("submit" , (text) => {
     }
 })
 
-inputSearch.addEventListener('keyup', () => {
+inputSearch.addEventListener('keydown', () => {
     searchSuggestions(inputSearch.value)
     formGifosFinder.style.height = "200px";
-    //document.querySelector("#magnifying").style.top = "4%";
+    if (isDark !== true) {
+        document.querySelector("#magnifying").classList.add("off");
+        document.querySelector("#crossMagnifying").classList.remove("off");
+        document.querySelector("#crossMagnifying").style.top = "4%";
+    } else {
+        document.querySelector("#magniDark").classList.add("off");
+        document.querySelector("#crossMagniDark").classList.remove("off");
+    }
 })
 
 const getGifos = async (textToSearch) => {
@@ -535,8 +534,6 @@ const showTermH2 = () => {
 
 const showIconAnotherSearch = () => {
     tryAnotherSearch.classList.remove("off")
-    //buttonSeeMore.classList.add("off")
-    //buttonSeeMoreDark.classList.add("off")
 }
 
 const hiddenIconAnotherSearch = () => {

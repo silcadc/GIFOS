@@ -68,16 +68,6 @@
             width: 20px;
             height: 20px;
             position: relative;
-            right: 12%;
-            top: 21%;
-            z-index: 1;
-        }
-        .searchToTerm {
-            width: 20px;
-            height: 20px;
-            position: absolute;
-            right: 12%;
-            top: 10.5rem;
         }
         .searchAutocomplete {
             position: relative;
@@ -292,12 +282,6 @@
                 background: $color-darkgrey;
                 border: $border $color-darkgrey;
             }
-            .search {
-                top: 21%;
-            }
-            // .searchToTerm {
-            //     top: 29%;
-            // }
         }
         #trending {
             margin: 0;
@@ -384,16 +368,6 @@
                 width: percentage(3200%, $page-max-width, $rem);
                 height: 48px;
             }
-            .search {
-                position: relative;
-                right: 6%;
-                top: 16.5%;
-            }
-            // .searchToTerm {
-            //     position: relative;
-            //     right: 6%;
-            //     top: 15%;
-            // }
         }
         #trending {
             margin-top: 73px;
@@ -672,9 +646,6 @@
                 .search {
                     top: 4%;
                 }
-                // .searchToTerm {
-                //     top: 8%;
-                // }
             }
             #trending {
                 margin: 0;
